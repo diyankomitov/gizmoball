@@ -9,6 +9,8 @@ Tomas Chmelevskij
 Alistair Gillies
 Diyan Komitov
 
+Please use the develop branch for unstable code (basically all code prior to submission)
+
 To clone this repo to your local machine:
 git clone https://gitlab.cis.strath.ac.uk/mhb15157/cs308-gizmoball.git
 cd cs308-gizmoball
