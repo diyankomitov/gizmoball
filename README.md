@@ -1,4 +1,4 @@
-##Gizmoball CS308 Group MW_Th5
+## Gizmoball CS308 Group MW_Th5
 
 This is the Gizmoball git repository for group MW_Th5
 
