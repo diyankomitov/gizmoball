@@ -9,7 +9,7 @@ Developers:
 * Alistair Gillies
 * Diyan Komitov
 
-Please use the develop branch for unstable code (basically all code prior to submission)
+Please use the develop branch or create your own feature branch for unstable code/new features.
 
 To clone this repo to your local machine:
 ```
@@ -23,3 +23,4 @@ cd existing_folder
 git init
 git remote add origin https://gitlab.cis.strath.ac.uk/mhb15157/cs308-gizmoball.git
 ```
+
