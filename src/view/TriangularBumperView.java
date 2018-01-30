@@ -1,31 +1,21 @@
 package view;
 
-import javafx.beans.NamedArg;
-import javafx.scene.Group;
-import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Polygon;
+import util.Constants;
 
 
-public class TriangularBumperView extends Group {
-    private Polygon triangle;
-    private Paint fill;
+public class TriangularBumperView extends GizmoView {
 
-    public TriangularBumperView(@NamedArg("side") double side) {
+    public TriangularBumperView() {
         super();
-        triangle = new Polygon(0.0, 0.0, 0.0, side, side, side);
-        setFill(Color.RED);
+
+        double side = Constants.ONE_L_IN_PIXELS;
+
+        Polygon triangle = new Polygon(0.0, 0.0, 0.0, side, side, side);
+        triangle.setFill(Color.GREEN); //TODO put in css
+
+
         this.getChildren().add(triangle);
-
-    }
-
-    public Paint getFill() {
-        return fill;
-    }
-
-    public void setFill(Paint fill) {
-        this.fill = fill;
-        triangle.setFill(fill);
     }
 }

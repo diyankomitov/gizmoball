@@ -1,30 +1,34 @@
 package view;
 
-import javafx.beans.NamedArg;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.RowConstraints;
+import model.GizmoballModel;
+import util.Constants;
+import util.Observer;
 
-import java.util.Arrays;
-
-public class BoardView extends GridPane {
+public class BoardView extends GridPane implements Observer{
     private int curCol;
     private int curRow;
     private Pane[][] cells;
+    private BallView ballView;
+    private GizmoballModel model;
+    private double cellSize;
+    private boolean isGridOn;
 
-    public BoardView(@NamedArg("cellSize") double cellSize) {
+    public BoardView() {    //TODO: Refactor
+        this.cellSize = Constants.ONE_L_IN_PIXELS;
         this.setPrefSize(cellSize*20, cellSize*20);
         this.setMinSize(cellSize*20, cellSize*20);
         this.setMaxSize(cellSize*20, cellSize*20);
-        this.setStyle("-fx-background-color: white, gray; -fx-background-insets: 0, 1 1 0 0 ; -fx-padding: 1;");
+//        this.setStyle("-fx-background-color: white, gray; -fx-background-insets: 0, 1 1 0 0 ; -fx-padding: 1;");
 
         cells = new Pane[20][20];
 
         for (int y = 0; y<20; y++) {
             for (int x = 0; x<20; x++) {
                 Pane cell = new Pane();
-                cell.setStyle("-fx-border-color: white; -fx-background-insets: 0, 0 0 1 1 ;");
+                cell.getStyleClass().addAll("boardCell","grid");
+//                cell.setStyle("-fx-border-color: white; -fx-background-insets: 0, 0 0 1 1 ;");
                 cell.setPrefSize(cellSize, cellSize);
                 cell.setOnMouseDragReleased(event -> {
                     curCol = getColumnIndex(cell);
@@ -34,6 +38,17 @@ public class BoardView extends GridPane {
                 this.add(cell, x, y);
             }
         }
+        isGridOn = true;
+
+    }
+
+    public void toggleGrid() {
+        for (Pane[] cell : cells) {
+            for (Pane pane : cell) {
+                pane.getStyleClass().set(1, isGridOn ? "noGrid" : "grid");
+            }
+        }
+        isGridOn = !isGridOn;
     }
 
     public int getCurRow() {
@@ -42,5 +57,19 @@ public class BoardView extends GridPane {
 
     public int getCurCol() {
         return curCol;
+    }
+
+//    public void setModel(GizmoballModel model) {
+//        this.model = model;
+//        model.subscribe(this);
+//        ballView.setTranslateX(model.getBall().getX() * cellSize);
+//        ballView.setTranslateY(model.getBall().getY() * cellSize);
+//    }
+
+    @Override
+    public void update() {
+        ballView.setTranslateX(model.getBall().getX() * cellSize);
+        ballView.setTranslateY(model.getBall().getY() * cellSize);
+
     }
 }

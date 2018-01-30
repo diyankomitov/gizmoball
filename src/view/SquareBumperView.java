@@ -1,29 +1,36 @@
 package view;
 
-import javafx.beans.NamedArg;
-import javafx.scene.Group;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import util.Constants;
 
 
-public class SquareBumperView extends Group {
-    private Rectangle square;
-    private Paint fill;
+public class SquareBumperView extends GizmoView {
 
-    public SquareBumperView(@NamedArg("side") double side) {
+    private final Rectangle square;
+    private boolean isToggle;
+
+    public SquareBumperView() {
         super();
+        double side = Constants.ONE_L_IN_PIXELS;
+        isToggle = false;
+
         square = new Rectangle(side, side);
-        setFill(Color.YELLOW);
+        square.setFill(Color.RED); //TODO: put in css
+        square.setStyle("-fx-stroke: red; -fx-stroke-type: inside; -fx-stroke-width: 2");
+
+
         this.getChildren().add(square);
     }
 
-    public Paint getFill() {
-        return fill;
-    }
+    public void toggle() {
+        if (!isToggle) {
+            square.setFill(Color.DARKRED);
+        }
+        else {
+            square.setFill(Color.RED); //TODO: put in css
+        }
 
-    public void setFill(Paint fill) {
-        this.fill = fill;
-        square.setFill(fill);
+        isToggle = !isToggle;
     }
 }
