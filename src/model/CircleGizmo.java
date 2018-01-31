@@ -13,11 +13,18 @@ public class CircleGizmo implements Gizmo {
     private final double diameter;
     private final double rCoefficient;
     private List<Circle> circles;
+    private GizmoType type = GizmoType.CIRCLE;
 
-    public CircleGizmo(double x, double y, double diameter) {
+    private String name = "C";
+
+    public CircleGizmo(double x, double y, double diameter, int cCounter) {
         this.x = x;
         this.y = y;
+
+        name= name.concat(Integer.toString(cCounter));
+
         this.diameter = diameter;
+
         rCoefficient = 1.0;
         circles = new ArrayList<>();
     }
@@ -45,4 +52,19 @@ public class CircleGizmo implements Gizmo {
         this.x = x;
         this.y = y;
     }
+
+//    @Override
+//    public GizmoType getType() {
+//        return type;
+//    }
+//
+//    @Override
+//    public double getXCoord() {
+//        return x;
+//    }
+//
+//    @Override
+//    public double getYCoord() {
+//        return y;
+//    }
 }
