@@ -3,6 +3,8 @@ package main;
 import javafx.scene.paint.Color;
 import physics.Circle;
 import physics.LineSegment;
+import util.Observable;
+import util.Observer;
 
 import java.util.ArrayList;
 
@@ -11,7 +13,7 @@ import static main.Constants.ONE_L;
 import static main.FlipperDirection.LEFT;
 import static main.FlipperDirection.RIGHT;
 
-public class Flipper {
+public class Flipper implements Observable{
 
     private double angle; //Angle the flipper is at
     private FlipperDirection direction;
@@ -64,27 +66,6 @@ public class Flipper {
         return angle;
     }
 
-    /**
-     *  private void rotate(Flipper flipper) {
-     if (direction == -1) {
-
-     double angle = Math.min(flipper.getAngle() + 54, 90);
-     flipper.setAngle(angle);
-     } else if (direction == 1) {
-     double angle = Math.max(flipper.getAngle() - 54, -90);
-     flipper.setAngle(angle);
-
-     } else if (direction == 0) {
-     if (flipper.getAngle() > 0) {
-     double angle = Math.max(flipper.getAngle() - 54, 0);
-     flipper.setAngle(angle);
-     } else {
-     double angle = Math.min(flipper.getAngle() + 54, 0);
-     flipper.setAngle(angle);
-     }
-     }
-     }
-     */
 
     public void rotate (){
         if(direction == RIGHT)
@@ -106,7 +87,7 @@ public class Flipper {
                 angle = Math.min(angle + DELTA_ANGLE, 0);
             }
         }
-
+        this.notifyObservers();
     }
 
     public ArrayList<Circle> getCircles() {

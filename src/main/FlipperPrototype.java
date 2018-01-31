@@ -32,26 +32,19 @@ public class  FlipperPrototype extends Application {
         Pane pane = new Pane();
 
         pane.setPrefSize(ONE_L_IN_PIXELS*10, ONE_L_IN_PIXELS*10);
-        Rectangle rectangleL = new Rectangle(ONE_L_IN_PIXELS/4, ONE_L_IN_PIXELS*2);
-        rectangleL.setArcWidth(ONE_L_IN_PIXELS/4);
-        rectangleL.setArcHeight(ONE_L_IN_PIXELS/4);
-        pane.getChildren().add(rectangleL);
-        rectangleL.setTranslateX(ONE_L_IN_PIXELS*4);
-        rectangleL.setTranslateY(ONE_L_IN_PIXELS*5);
 
-        Rectangle rectangleR = new Rectangle(ONE_L_IN_PIXELS/4, ONE_L_IN_PIXELS*2);
-        rectangleR.setArcWidth(ONE_L_IN_PIXELS/4);
-        rectangleR.setArcHeight(ONE_L_IN_PIXELS/4);
-        pane.getChildren().add(rectangleR);
-        rectangleR.setTranslateX(ONE_L_IN_PIXELS*6);
-        rectangleR.setTranslateY(ONE_L_IN_PIXELS*5);
 
         Flipper flipperL = new Flipper(ONE_L*4, ONE_L*5, 0, LEFT );
         Flipper flipperR = new Flipper(ONE_L*6, ONE_L*5, 0, RIGHT );
 
+        FlipperView flipperViewL = new FlipperView(4,5, flipperL);
+        FlipperView flipperViewR = new FlipperView(6,5, flipperR);
 
-        Rotate rotate = new Rotate(0, ONE_L_IN_PIXELS/8, ONE_L_IN_PIXELS/8);
-        rectangleR.getTransforms().add(rotate);
+        pane.getChildren().add(flipperViewL);
+        pane.getChildren().add(flipperViewR);
+
+       // Rotate rotate = new Rotate(0, ONE_L_IN_PIXELS/8, ONE_L_IN_PIXELS/8);
+        //rectangleR.getTransforms().add(rotate);
 
         Scene scene = new Scene(pane);
 
@@ -73,9 +66,11 @@ public class  FlipperPrototype extends Application {
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
                 case LEFT:
+                    System.out.println("pressleft");
                     flipperL.setTriggered(true);
                     break;
                 case RIGHT:
+                    System.out.println("pressright");
                     flipperR.setTriggered(true);
                     break;
             }
@@ -89,6 +84,7 @@ public class  FlipperPrototype extends Application {
                     flipperR.setTriggered(false);
                     break;
             }
+            System.out.println("release");
         });
 
         primaryStage.setScene(scene);
