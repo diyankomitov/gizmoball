@@ -2,6 +2,7 @@ package test;
 
 
 import controller.GizmoballController;
+import model.Ball;
 import model.Gizmo;
 import model.GizmoType;
 import model.GizmoballModel;
@@ -24,10 +25,35 @@ public class testAddGizmo {
     }
 
     @Test
-    public void testAddGizmo() {
+    public void testAddCGizmo() {
         gizmoballModel.addGizmo(4.0, 20.0, GizmoType.CIRCLE);
         assertEquals(gizmoballModel.getCCounter(), 1);
 
+    }
+
+    @Test
+    public void testAddSGizmo() {
+        gizmoballModel.addGizmo(4.0, 20.0, GizmoType.SQUARE);
+        assertEquals(gizmoballModel.getSCounter(), 1);
+
+    }
+
+    @Test
+    public void testAddTGizmo() {
+        gizmoballModel.addGizmo(4.0, 20.0, GizmoType.TRIANGLE);
+        assertEquals(gizmoballModel.getTCounter(), 1);
+
+    }
+
+    @Test
+    public void testAddNoGizmo() {
+        assertFalse(gizmoballModel.addGizmo(4.0, 20.0, GizmoType.ABSORBER));
+    }
+
+    @Test
+    public void testAddBall() {
+        gizmoballModel.addBall(1, 3, 0, 0);
+        assertEquals(gizmoballModel.getBall().getId(), "B0");
     }
 
     @Test
@@ -70,10 +96,13 @@ public class testAddGizmo {
         gizmoballModel.removeGizmo("S1");
         assertEquals(gizmoballModel.getGizmoByName("S1"), null);
     }
-
-    @After
-    public void tearDown() {
-
+    @Test
+    public void testGetCoordGizmo () {
+        gizmoballModel.addGizmo(1, 1, GizmoType.SQUARE );
+        assertEquals(gizmoballModel.getGizmoByCoords(1, 1), gizmoballModel.getGizmos().get(0));
     }
+
+
+
 
 }

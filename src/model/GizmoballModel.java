@@ -12,6 +12,7 @@ public class GizmoballModel implements Observable{
     private static final int BOARD_WIDTH = 20;
 
     private List<Gizmo> gizmos;
+//    private List<Ball> balls;
 
     private Ball ball;
     private double timeUntilCollision;
@@ -20,14 +21,21 @@ public class GizmoballModel implements Observable{
     private int sCounter = 0;
     private int tCounter = 0;
     private int cCounter = 0;
-
+    private int bCounter = 0;
     private String id;
 
 
     public GizmoballModel(String id) {
         this.id = id;
         gizmos = new ArrayList<>();
-        ball = new Ball(0,0,1,1);
+
+    }
+
+    public void addBall(double x, double y, double xv, double yv) {
+        ball = new Ball(x, y, xv, yv, 0);
+        BoardState.add("Move " + ball.getId() + " " + x + " " + y + " " + xv + " " + yv);
+        bCounter++;
+//        balls.add(ball);
     }
 
     public void moveBall() {
@@ -88,7 +96,7 @@ public class GizmoballModel implements Observable{
                 tCounter++;
                 break;
             default:
-                gizmo = null; //TODO: implement proper default
+                return false; //TODO: implement proper default
         }
 
         //add to the string array eg "Type Name CoordX CoordY
@@ -113,7 +121,9 @@ public class GizmoballModel implements Observable{
         return tCounter;
     }
 
-    public List<Gizmo> getGizmos() { return gizmos; }
+    public List<Gizmo> getGizmos(){
+        return gizmos;
+    }
 
     public Gizmo getGizmoByName(String gName) {
         for(Gizmo g:gizmos) {
@@ -123,14 +133,43 @@ public class GizmoballModel implements Observable{
         }
         return null;
     }
+    public Gizmo getGizmoByCoords(double x, double y) {
+        for(Gizmo g:gizmos) {
+            if(g.getXCoord() == x){
+                if(g.getYCoord() == y){
+                    return g;
+                }
+            }
+        }
+        return null;
+    }
 
     public Ball getBall() {
         return ball;
     }
 
+//    public Ball getBall(String id) {
+//        for (Ball b : balls){
+//            if(b.getId().equals(id)){
+//                return b;
+//            }
+//        }
+//        return null;
+//    }
+
+//    public List<Ball> getBalls(){
+//        return balls;
+//    }
+
     public void moveGizmo(int fromX, int fromY, int toX, int toY) {
         BoardState.add("Move " + id + " " + toX + " " + toY);
         //add to that string array for file
+        //TODO actually remove gizmo
+    }
+    public void rotateGizmo(String  id) {
+        BoardState.add("Rotate " + id);
+        //add to that string array for file
+        //TODO actually rotate gizmo
     }
 
     public void removeGizmo(String id) {
