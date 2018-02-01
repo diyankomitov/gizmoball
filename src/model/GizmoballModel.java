@@ -67,7 +67,7 @@ public class GizmoballModel implements Observable{
         }
     }
 
-    public void addGizmo(double x, double y, GizmoType type) {
+    public boolean addGizmo(double x, double y, GizmoType type) {
 
         Gizmo gizmo;
             switch (type) {
@@ -92,8 +92,16 @@ public class GizmoballModel implements Observable{
         }
 
         //add to the string array eg "Type Name CoordX CoordY
-        BoardState.add(type + " " + id + " " + x + " " + y);
-        gizmos.add(gizmo);
+
+        if((!gizmos.contains(x))&& (!gizmos.contains(y))){
+            gizmos.add(gizmo);
+            BoardState.add(type + " " + id + " " + x + " " + y);
+
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     public int getCCounter() {
