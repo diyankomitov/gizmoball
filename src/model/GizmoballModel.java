@@ -1,6 +1,7 @@
 package model;
 
 import physics.*;
+import util.BoardState;
 import util.Observable;
 
 import java.util.ArrayList;
@@ -20,8 +21,11 @@ public class GizmoballModel implements Observable{
     private int tCounter = 0;
     private int cCounter = 0;
 
+    private String id;
 
-    public GizmoballModel() {
+
+    public GizmoballModel(String id) {
+        this.id = id;
         gizmos = new ArrayList<>();
         ball = new Ball(0,0,1,1);
     }
@@ -64,29 +68,31 @@ public class GizmoballModel implements Observable{
     }
 
     public void addGizmo(double x, double y, GizmoType type) {
-        System.out.println("here0");
+
         Gizmo gizmo;
-        System.out.println("here");
-        switch (type) {
+            switch (type) {
             case CIRCLE:
                 gizmo = new CircleGizmo(x, y, ONE_L_UNIT, cCounter);
+                id = gizmo.getName();
                 cCounter++;
-                System.out.println("here2");
                 break;
             case SQUARE:
                 gizmo = new SquareGizmo(x,y, ONE_L_UNIT, sCounter);
+                id = gizmo.getName();
                 sCounter++;
+
                 break;
             case TRIANGLE:
                 gizmo = new TriangleGizmo(x,y, ONE_L_UNIT, tCounter);
+                id = gizmo.getName();
                 tCounter++;
                 break;
             default:
                 gizmo = null; //TODO: implement proper default
         }
 
-        //add to the string array
-
+        //add to the string array eg "Type Name CoordX CoordY
+        BoardState.add(type + " " + id + " " + x + " " + y);
         gizmos.add(gizmo);
     }
 
@@ -105,10 +111,11 @@ public class GizmoballModel implements Observable{
     }
 
     public void moveGizmo(int fromX, int fromY, int toX, int toY) {
-
+        BoardState.add("Move " + id + " " + toX + " " + toY);
+        //add to that string array for file
     }
 
     public void removeGizmo(int x, int y) {
-
+        //add to that string array for file
     }
 }

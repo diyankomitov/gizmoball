@@ -23,7 +23,7 @@ public class SquareGizmo implements Gizmo {
         this.x = x;
         this.y = y;
 
-        name = name.concat(Integer.toString(sCounter));
+        this.name = name.concat(Integer.toString(sCounter));
 
         this.width = width;
 
@@ -74,6 +74,11 @@ public class SquareGizmo implements Gizmo {
     public void setCoords(double x, double y) {
         this.x = x;
         this.y = y;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 
 //    @Override

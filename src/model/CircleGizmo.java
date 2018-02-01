@@ -21,7 +21,7 @@ public class CircleGizmo implements Gizmo {
         this.x = x;
         this.y = y;
 
-        name= name.concat(Integer.toString(cCounter));
+        this.name= name.concat(Integer.toString(cCounter));
 
         this.diameter = diameter;
 
@@ -51,6 +51,11 @@ public class CircleGizmo implements Gizmo {
     public void setCoords(double x, double y) {
         this.x = x;
         this.y = y;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 
 //    @Override

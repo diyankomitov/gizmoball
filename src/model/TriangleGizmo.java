@@ -22,7 +22,7 @@ public class TriangleGizmo implements Gizmo {
         this.y = y;
         this.side = side;
 
-        name = name.concat(Integer.toString(tCounter));
+        this.name = name.concat(Integer.toString(tCounter));
 
         rCoefficient = 1.0;
         sides = new ArrayList<>();
@@ -66,6 +66,11 @@ public class TriangleGizmo implements Gizmo {
     public void setCoords(double x, double y) {
         this.x = x;
         this.y = y;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 
 //    @Override
