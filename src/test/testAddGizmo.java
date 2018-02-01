@@ -63,6 +63,14 @@ public class testAddGizmo {
         assertEquals(gizmoballModel.getGizmoByName("S0").getType(), GizmoType.SQUARE);
     }
 
+    @Test
+    public void testRemoveGizmo () {
+        gizmoballModel.addGizmo(1, 1, GizmoType.SQUARE );
+        assertEquals(gizmoballModel.getSCounter(), 1);
+        gizmoballModel.removeGizmo("S1");
+        assertEquals(gizmoballModel.getGizmoByName("S1"), null);
+    }
+
     @After
     public void tearDown() {
 

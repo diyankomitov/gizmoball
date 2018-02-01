@@ -112,6 +112,7 @@ public class GizmoballModel implements Observable{
     public int getTCounter() {
         return tCounter;
     }
+
     public List<Gizmo> getGizmos() { return gizmos; }
 
     public Gizmo getGizmoByName(String gName) {
@@ -132,7 +133,9 @@ public class GizmoballModel implements Observable{
         //add to that string array for file
     }
 
-    public void removeGizmo(int x, int y) {
+    public void removeGizmo(String id) {
         //add to that string array for file
+        BoardState.add("Remove " + id );
+        gizmos.remove(getGizmoByName(id));
     }
 }
