@@ -1,6 +1,5 @@
 package view;
 
-import controller.GizmoViewController;
 import javafx.scene.Group;
 
 public class GizmoView extends Group {

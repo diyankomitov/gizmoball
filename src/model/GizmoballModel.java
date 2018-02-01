@@ -11,9 +11,15 @@ public class GizmoballModel implements Observable{
     private static final int BOARD_WIDTH = 20;
 
     private List<Gizmo> gizmos;
+
     private Ball ball;
     private double timeUntilCollision;
     private Vect velocity;
+
+    private int sCounter = 0;
+    private int tCounter = 0;
+    private int cCounter = 0;
+
 
     public GizmoballModel() {
         gizmos = new ArrayList<>();
@@ -58,23 +64,40 @@ public class GizmoballModel implements Observable{
     }
 
     public void addGizmo(double x, double y, GizmoType type) {
+        System.out.println("here0");
         Gizmo gizmo;
-
+        System.out.println("here");
         switch (type) {
             case CIRCLE:
-                gizmo = new CircleGizmo(x, y, ONE_L_UNIT);
+                gizmo = new CircleGizmo(x, y, ONE_L_UNIT, cCounter);
+                cCounter++;
+                System.out.println("here2");
                 break;
             case SQUARE:
-                gizmo = new SquareGizmo(x,y, ONE_L_UNIT);
+                gizmo = new SquareGizmo(x,y, ONE_L_UNIT, sCounter);
+                sCounter++;
                 break;
             case TRIANGLE:
-                gizmo = new TriangleGizmo(x,y, ONE_L_UNIT);
+                gizmo = new TriangleGizmo(x,y, ONE_L_UNIT, tCounter);
+                tCounter++;
                 break;
             default:
                 gizmo = null; //TODO: implement proper default
         }
 
+        //add to the string array
+
         gizmos.add(gizmo);
+    }
+
+    public int getCCounter() {
+        return cCounter;
+    }
+    public int getSCounter() {
+        return sCounter;
+    }
+    public int getTCounter() {
+        return tCounter;
     }
 
     public Ball getBall() {

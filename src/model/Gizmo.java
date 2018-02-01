@@ -14,4 +14,10 @@ public interface Gizmo {
     double getRCoefficient();
 
     void setCoords(double x, double y);
+
+//    GizmoType getType();
+//
+//    double getXCoord();
+//
+//    double getYCoord();
 }
