@@ -17,13 +17,14 @@ public class testAddGizmo {
 
     @Before
     public void setUp() {
-        gizmoballModel.addGizmo(4.0, 20.0, GizmoType.CIRCLE);
+        gizmoballModel = new GizmoballModel("T");
     }
 
     @Test
     public void testAddGizmo() {
+        gizmoballModel.addGizmo(4.0, 20.0, GizmoType.CIRCLE);
 
-        assertEquals(gizmoballModel.getCCounter(), 0);
+        assertEquals(gizmoballModel.getCCounter(), 1);
 
     }
 
