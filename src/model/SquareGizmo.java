@@ -81,18 +81,18 @@ public class SquareGizmo implements Gizmo {
         return name;
     }
 
-//    @Override
-//    public GizmoType getType() {
-//        return type;
-//    }
-//
-//    @Override
-//    public double getXCoord() {
-//        return x;
-//    }
-//
-//    @Override
-//    public double getYCoord() {
-//        return y;
-//    }
+    @Override
+    public GizmoType getType() {
+        return type;
+    }
+
+    @Override
+    public double getXCoord() {
+        return x;
+    }
+
+    @Override
+    public double getYCoord() {
+        return y;
+    }
 }

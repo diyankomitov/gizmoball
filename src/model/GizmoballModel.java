@@ -70,7 +70,7 @@ public class GizmoballModel implements Observable{
     public boolean addGizmo(double x, double y, GizmoType type) {
 
         Gizmo gizmo;
-            switch (type) {
+        switch (type) {
             case CIRCLE:
                 gizmo = new CircleGizmo(x, y, ONE_L_UNIT, cCounter);
                 id = gizmo.getName();
@@ -93,15 +93,14 @@ public class GizmoballModel implements Observable{
 
         //add to the string array eg "Type Name CoordX CoordY
 
-        if((!gizmos.contains(x))&& (!gizmos.contains(y))){
-            gizmos.add(gizmo);
-            BoardState.add(type + " " + id + " " + x + " " + y);
-
-            return true;
-        } else {
-            return false;
+        for (Gizmo g:gizmos){
+            if((g.getXCoord()==x)&&(g.getYCoord()==y)){
+                return false;
+            }
         }
-
+        gizmos.add(gizmo);
+        BoardState.add(type + " " + id + " " + x + " " + y);
+        return true;
     }
 
     public int getCCounter() {
@@ -112,6 +111,16 @@ public class GizmoballModel implements Observable{
     }
     public int getTCounter() {
         return tCounter;
+    }
+    public List<Gizmo> getGizmos() { return gizmos; }
+
+    public Gizmo getGizmoByName(String gName) {
+        for(Gizmo g:gizmos) {
+            if(g.getName().equals(gName)){
+                return g;
+            }
+        }
+        return null;
     }
 
     public Ball getBall() {
