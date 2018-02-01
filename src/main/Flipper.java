@@ -16,11 +16,11 @@ import static main.FlipperDirection.RIGHT;
 
 public class Flipper implements Observable{
 
+    private final double xpos;
+    private final double ypos;
     private Circle corner2;
     private double angle; //Angle the flipper is at
     private FlipperDirection direction;
-    private double xpos;
-    private double ypos;
     private ArrayList<LineSegment> lineSegments; //2 line segments - could render separately?
     private ArrayList<Circle> circles;//2 cirrcles, one larger than the other? same size?
     private Color colour;
@@ -33,10 +33,12 @@ public class Flipper implements Observable{
      * @param a
      */
     public Flipper(double x, double y, double a, FlipperDirection direction){
+        double width = ONE_L/2;
+        double length = ONE_L*2;
 
         double offset = 0;
         if(direction == FlipperDirection.RIGHT) {
-            offset = ONE_L;
+            offset = ONE_L+width;
         }
 
         xpos = x + offset;
@@ -48,8 +50,6 @@ public class Flipper implements Observable{
         circles = new ArrayList<>();
         colour = Color.ORANGE;
 
-        double width = ONE_L/2;
-        double length = ONE_L*2;
 
         LineSegment side1 = new LineSegment(xpos,ypos, xpos,ypos + length);
         LineSegment side2 = new LineSegment(xpos+width, ypos, xpos+width, ypos+length);
