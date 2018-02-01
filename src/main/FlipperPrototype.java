@@ -33,12 +33,12 @@ public class  FlipperPrototype extends Application {
 
         pane.setPrefSize(ONE_L_IN_PIXELS*10, ONE_L_IN_PIXELS*10);
 
-
         Flipper flipperL = new Flipper(3, 5, 0, LEFT );
         Flipper flipperR = new Flipper(5, 5, 0, RIGHT );
 
         FlipperView flipperViewL = new FlipperView(flipperL);
         FlipperView flipperViewR = new FlipperView(flipperR);
+
 
         pane.getChildren().add(flipperViewL);
         pane.getChildren().add(flipperViewR);
