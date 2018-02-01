@@ -3,6 +3,7 @@ package main;
 import javafx.scene.paint.Color;
 import physics.Circle;
 import physics.LineSegment;
+import physics.Vect;
 import util.Observable;
 import util.Observer;
 
@@ -15,6 +16,7 @@ import static main.FlipperDirection.RIGHT;
 
 public class Flipper implements Observable{
 
+    private Circle corner2;
     private double angle; //Angle the flipper is at
     private FlipperDirection direction;
     private double xpos;
@@ -55,7 +57,7 @@ public class Flipper implements Observable{
         lineSegments.add(side2);
 
         Circle corner1 = new Circle(xpos+width/2, y, width/2);
-        Circle corner2 = new Circle(xpos+width/2, y+length, width/2);
+        corner2 = new Circle(xpos+width/2, y+length, width/2);
         circles.add(corner1);
         circles.add(corner2);
     }
@@ -72,6 +74,7 @@ public class Flipper implements Observable{
         {
             if (triggered) {
                 angle = Math.min(angle + DELTA_ANGLE, 90);
+
             }
             else {
                 angle = Math.max(angle - DELTA_ANGLE, 0);
@@ -87,6 +90,23 @@ public class Flipper implements Observable{
                 angle = Math.min(angle + DELTA_ANGLE, 0);
             }
         }
+
+        lineSegments.forEach(lineSegment -> {
+            double x1 = lineSegment.p1().x();
+            double y1 = lineSegment.p1().y();
+            double x2 = lineSegment.p2().x();
+            double y2 = lineSegment.p2().y();
+            double newX2 = x2*Math.cos(angle) - y2*Math.sin(angle);
+            double newY2 = y2*Math.cos(angle) + x2*Math.sin(angle);
+            lineSegment = new LineSegment(x1, y1, newX2, newY2);
+        });
+
+        double cX = corner2.getCenter().x();
+        double cY = corner2.getCenter().y();
+        double newCX = cX*Math.cos(angle) - cY*Math.sin(angle);
+        double newCY = cY*Math.cos(angle) + cX*Math.sin(angle);
+        corner2 = new Circle(newCX,newCY,corner2.getRadius());
+
         this.notifyObservers();
     }
 

@@ -66,11 +66,9 @@ public class  FlipperPrototype extends Application {
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
                 case LEFT:
-                    System.out.println("pressleft");
                     flipperL.setTriggered(true);
                     break;
                 case RIGHT:
-                    System.out.println("pressright");
                     flipperR.setTriggered(true);
                     break;
             }
@@ -84,7 +82,6 @@ public class  FlipperPrototype extends Application {
                     flipperR.setTriggered(false);
                     break;
             }
-            System.out.println("release");
         });
 
         primaryStage.setScene(scene);

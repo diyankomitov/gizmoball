@@ -33,7 +33,6 @@ public class FlipperView extends Group implements Observer{
 
     @Override
     public void update() {
-        System.out.println("updating");
         angle = flipper.getAngle();
         rotate.setAngle(angle);
     }
