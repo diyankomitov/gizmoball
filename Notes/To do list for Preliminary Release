@@ -1,0 +1,22 @@
+1. Final design - a revised class diagram with explanation, and any changes we have made
+2. Validation Testing Strategy - set of test cases based on use cases. 
+                               - should be described in a way third party can understand and perform on system
+                               a. Test Number
+                               b. Purpose of test
+                               c. test inputs - enough detail that a third party can execute
+                               d. expected outputs - lets the third party determine whether the test has
+                               completed successfully.
+3. Describe JUnit Testing Strategy - describe how the group is going to achieve this.
+                            a. how we are going to identify JUnit test cases
+                            b. How we are approaching it as a group 
+                            - these will be examined in week 10 but the actual cases will not be 
+                            submitted yet
+4. Updated project plan - who's working on what and by what date - Gantt Chart
+5. Executable jars - flipper triggering 
+                - absorber, ball motion, gravity and friction 
+                -ball collisions with bumpers and walls
+                -loading files in standard format
+                
+                
+                              
+                            
