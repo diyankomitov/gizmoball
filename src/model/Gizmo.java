@@ -16,7 +16,9 @@ public interface Gizmo {
     void setCoords(double x, double y);
 
     String getName();
+
     GizmoType getType();
+
 
     double getXCoord();
 

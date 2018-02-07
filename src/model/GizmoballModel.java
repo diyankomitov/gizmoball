@@ -25,8 +25,8 @@ public class GizmoballModel implements Observable{
     private String id;
 
 
-    public GizmoballModel(String id) {
-        this.id = id;
+    public GizmoballModel() {
+
         gizmos = new ArrayList<>();
 
     }
@@ -75,25 +75,31 @@ public class GizmoballModel implements Observable{
         }
     }
 
-    public boolean addGizmo(double x, double y, GizmoType type) {
-
+    public boolean addGizmo(double x, double y, GizmoType type, String name) {
         Gizmo gizmo;
+
         switch (type) {
             case CIRCLE:
-                gizmo = new CircleGizmo(x, y, ONE_L_UNIT, cCounter);
-                id = gizmo.getName();
-                cCounter++;
+                if(name.equals("")) {
+                    gizmo = new CircleGizmo(x, y, ONE_L_UNIT, "C" + (int)x + (int)y);
+                }else{
+                    gizmo = new CircleGizmo(x, y, ONE_L_UNIT, name);
+                }
                 break;
             case SQUARE:
-                gizmo = new SquareGizmo(x,y, ONE_L_UNIT, sCounter);
-                id = gizmo.getName();
-                sCounter++;
-
+                if(name.equals("")) {
+                gizmo = new SquareGizmo(x,y, ONE_L_UNIT,"S" + (int)x + (int)y );
+                }else{
+                    gizmo = new SquareGizmo(x,y, ONE_L_UNIT,name );
+                }
                 break;
             case TRIANGLE:
-                gizmo = new TriangleGizmo(x,y, ONE_L_UNIT, tCounter);
-                id = gizmo.getName();
-                tCounter++;
+                if(name.equals("")) {
+                    gizmo = new TriangleGizmo(x, y, ONE_L_UNIT, "T" + (int)x + (int)y);
+                } else {
+                    gizmo = new TriangleGizmo(x, y, ONE_L_UNIT, name);
+
+                }
                 break;
             default:
                 return false; //TODO: implement proper default
@@ -111,16 +117,6 @@ public class GizmoballModel implements Observable{
         return true;
     }
 
-    public int getCCounter() {
-        return cCounter;
-    }
-    public int getSCounter() {
-        return sCounter;
-    }
-    public int getTCounter() {
-        return tCounter;
-    }
-
     public List<Gizmo> getGizmos(){
         return gizmos;
     }
@@ -133,6 +129,7 @@ public class GizmoballModel implements Observable{
         }
         return null;
     }
+
     public Gizmo getGizmoByCoords(double x, double y) {
         for(Gizmo g:gizmos) {
             if(g.getXCoord() == x){

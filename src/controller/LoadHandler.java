@@ -4,14 +4,15 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.Gizmo;
+import model.GizmoType;
+import model.GizmoballModel;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 
 public class LoadHandler implements EventHandler<ActionEvent> {
     private Stage stage;
-
+    private GizmoballModel model; //Alistair thinks it might needs passed
     public LoadHandler(Stage stage) {
 
         this.stage = stage;
@@ -34,10 +35,49 @@ public class LoadHandler implements EventHandler<ActionEvent> {
 
     public void loadGame(File file) {
         try {
+            model = new GizmoballModel();
             FileReader fileReader  = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            int strCount = 0;
+            String stringLine;
+            String boardDetailStr[];
+            while((stringLine = bufferedReader.readLine())!=null) {
+                boardDetailStr = stringLine.split(" ");
+
+            }
 
         } catch (FileNotFoundException e) {
             System.out.println("Error when trying to load the game. :(");
+        } catch(IOException e ) {
+            System.out.println("Error when trying to load the game. :(");
         }
+    }
+
+    public void checkAction(String[] string){
+        double x;
+        double y;
+
+        switch(string[0]) {
+            case "Triangle":
+
+                 x = Double.parseDouble(string[2]);
+                 y = Double.parseDouble(string[3]);
+
+                 model.addGizmo(x, y, GizmoType.TRIANGLE, string[1] );
+                break;
+            case "Square":
+                x = Double.parseDouble(string[2]);
+                y = Double.parseDouble(string[3]);
+                model.addGizmo(x, y, GizmoType.SQUARE, string[1]);
+                break;
+            case "Circle":
+                x = Double.parseDouble(string[2]);
+                y = Double.parseDouble(string[3]);
+                model.addGizmo(x, y, GizmoType.CIRCLE, string[1]);
+                break;
+            case "LeftFlipper":
+
+        }
+
     }
 }

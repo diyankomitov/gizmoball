@@ -17,13 +17,13 @@ public class SquareGizmo implements Gizmo {
     private final List<Circle> corners;
     private GizmoType type = GizmoType.SQUARE;
 
-    private String name = "S";
+    private String name;
 
-    public SquareGizmo(double x, double y, double width, int sCounter) {
+    public SquareGizmo(double x, double y, double width, String name) {
         this.x = x;
         this.y = y;
 
-        this.name = name.concat(Integer.toString(sCounter));
+        this.name = name;
 
         this.width = width;
 

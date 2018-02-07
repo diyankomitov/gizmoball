@@ -14,17 +14,15 @@ public class CircleGizmo implements Gizmo {
     private final double rCoefficient;
     private List<Circle> circles;
     private GizmoType type = GizmoType.CIRCLE;
+    private String name;
 
-    private String name = "C";
-
-    public CircleGizmo(double x, double y, double diameter, int cCounter) {
+    public CircleGizmo(double x, double y, double diameter, String name) {
         this.x = x;
         this.y = y;
 
-        this.name= name.concat(Integer.toString(cCounter));
+        this.name = name;
 
         this.diameter = diameter;
-
         rCoefficient = 1.0;
         circles = new ArrayList<>();
     }
