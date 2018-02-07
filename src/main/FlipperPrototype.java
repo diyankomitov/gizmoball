@@ -11,6 +11,7 @@ import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import static main.Constants.MILLIS_PER_FRAME;
 import static main.Constants.ONE_L;
 import static main.Constants.ONE_L_IN_PIXELS;
 import static main.FlipperDirection.LEFT;
@@ -57,7 +58,7 @@ public class  FlipperPrototype extends Application {
                         } //moves the ball
                 ),
                 new KeyFrame(
-                        Duration.millis(50) //then waits 50 miliseconds before running again
+                        Duration.millis(MILLIS_PER_FRAME) //then waits 50 miliseconds before running again
                 )
         );
         timeline.setCycleCount(Timeline.INDEFINITE); //keeps running until stop is called
