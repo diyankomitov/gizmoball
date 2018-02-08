@@ -5,7 +5,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 import util.Observer;
 
-import static main.Constants.ONE_L_IN_PIXELS;
+import static util.Constants.ONE_L_IN_PIXELS;
 
 public class FlipperView extends Group implements Observer{
 

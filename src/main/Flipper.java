@@ -9,8 +9,8 @@ import util.Observer;
 
 import java.util.ArrayList;
 
-import static main.Constants.DELTA_ANGLE;
-import static main.Constants.ONE_L;
+import static util.Constants.DELTA_ANGLE;
+import static util.Constants.ONE_L;
 import static main.FlipperDirection.LEFT;
 import static main.FlipperDirection.RIGHT;
 

@@ -33,13 +33,17 @@ public class GizmoballModel implements Observable{
     public void moveBall() {
         double moveTime = 0.05;
         findTimeUntilCollision();
-        if (timeUntilCollision > moveTime) {
-            ball.moveForTime(moveTime);
+
+        if (!ball.isInAbsorber()) {
+            if (timeUntilCollision > moveTime) {
+                ball.moveForTime(moveTime);
+            }
+            else {
+                ball.moveForTime(timeUntilCollision);
+                ball.setVelocity(velocity);
+            }
         }
-        else {
-            ball.moveForTime(timeUntilCollision);
-            ball.setVelocity(velocity);
-        }
+
         notifyObservers();
     }
 
@@ -53,7 +57,13 @@ public class GizmoballModel implements Observable{
                 time = Geometry.timeUntilWallCollision(line, ball.getCircle(), ball.getVelocity());
                 if (time < timeUntilCollision) {
                     timeUntilCollision = time;
-                    velocity = Geometry.reflectWall(line, ball.getVelocity(), gizmo.getRCoefficient());
+
+                    if (gizmo.getType() == GizmoType.ABSORBER) {
+                        ((Absorber)gizmo).addBall(ball);
+                    }
+                    else {
+                        velocity = Geometry.reflectWall(line, ball.getVelocity(), gizmo.getRCoefficient());
+                    }
                 }
             }
 
@@ -61,7 +71,13 @@ public class GizmoballModel implements Observable{
                 time = Geometry.timeUntilCircleCollision(circle, ball.getCircle(), ball.getVelocity());
                 if (time < timeUntilCollision) {
                     timeUntilCollision = time;
-                    velocity = Geometry.reflectCircle(circle.getCenter(), ball.getCenter(), ball.getVelocity(), gizmo.getRCoefficient());
+
+                    if (gizmo.getType() == GizmoType.ABSORBER) {
+                        ((Absorber)gizmo).addBall(ball);
+                    }
+                    else {
+                        velocity = Geometry.reflectCircle(circle.getCenter(), ball.getCenter(), ball.getVelocity(), gizmo.getRCoefficient());
+                    }
                 }
             }
         }

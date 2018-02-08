@@ -8,6 +8,7 @@ public class Ball {
     private Vect velocity;
     private double x;
     private double y;
+    private boolean inAbsorber = false;
 
     public Ball(double x, double y, double xv, double yv) {
         this.x = x;
@@ -41,7 +42,23 @@ public class Ball {
         return x;
     }
 
+    public void setX(double x){
+        this.x =  x;
+    }
+
     public double getY() {
         return y;
+    }
+
+    public void setY(double y){
+        this.y =  y;
+    }
+
+    public boolean isInAbsorber() {
+        return inAbsorber;
+    }
+
+    public void setInAbsorber(boolean inAbsorber) {
+        this.inAbsorber = inAbsorber;
     }
 }
