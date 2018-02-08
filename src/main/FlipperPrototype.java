@@ -10,6 +10,10 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.CircleGizmo;
+import model.Gizmo;
+import view.CircularBumperView;
+import view.GizmoView;
 
 import static main.Constants.MILLIS_PER_FRAME;
 import static main.Constants.ONE_L;
@@ -34,11 +38,14 @@ public class  FlipperPrototype extends Application {
 
         pane.setPrefSize(ONE_L_IN_PIXELS*10, ONE_L_IN_PIXELS*10);
 
-        Flipper flipperL = new Flipper(3, 5, 0, LEFT );
-        Flipper flipperR = new Flipper(5, 5, 0, RIGHT );
+//        Flipper flipperL = new Flipper(3, 5, 0, LEFT );
+//        Flipper flipperR = new Flipper(5, 5, 0, RIGHT );
+//
+//        FlipperView flipperViewL = new FlipperView(flipperL);
+//        FlipperView flipperViewR = new FlipperView(flipperR);
 
-        FlipperView flipperViewL = new FlipperView(flipperL);
-        FlipperView flipperViewR = new FlipperView(flipperR);
+        Gizmo circle = new CircleGizmo(3,5,2,1);
+        GizmoView circleView = new CircularBumperView(circle);
 
 
         pane.getChildren().add(flipperViewL);
