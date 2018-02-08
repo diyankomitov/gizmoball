@@ -9,5 +9,6 @@ public class Constants {
     public static final double MILLIS_PER_FRAME = 1000/FRAMERATE;
     public static final double FLIPPER_ANGULAR_VELOCITY = 1080 * ONE_L;
     public static final double DELTA_ANGLE = FLIPPER_ANGULAR_VELOCITY/FRAMERATE;
+    public static final double GRAVITY = 25 * ONE_L;
 
 }

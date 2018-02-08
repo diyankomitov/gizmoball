@@ -31,6 +31,10 @@ public class Ball implements Observable{
         return new Vect(x,y);
     }
 
+    public double getDiameter() {
+        return diameter;
+    }
+
     public void setVelocity(Vect velocity) {
         this.velocity = velocity;
     }
@@ -39,6 +43,7 @@ public class Ball implements Observable{
         x += (velocity.x() * moveTime);
         y += (velocity.y() * moveTime);
 
+        System.out.println("x: " + x + " y: " + y);
         notifyObservers();
     }
 
@@ -48,6 +53,7 @@ public class Ball implements Observable{
 
     public void setX(double x){
         this.x =  x;
+        notifyObservers();
     }
 
     public double getY() {
@@ -56,6 +62,7 @@ public class Ball implements Observable{
 
     public void setY(double y){
         this.y =  y;
+        notifyObservers();
     }
 
     public boolean isInAbsorber() {

@@ -7,6 +7,8 @@ import util.Observable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static util.Constants.GRAVITY;
+
 public class GizmoballModel implements Observable{
     private static final double ONE_L_UNIT = 1.0;
     private static final int BOARD_WIDTH = 20;
@@ -24,16 +26,19 @@ public class GizmoballModel implements Observable{
     private String id;
     private Gizmo collidedGizmo;
 
+    private Vect gravity = new Vect(0, GRAVITY);
 
     public GizmoballModel(String id) {
         this.id = id;
         gizmos = new ArrayList<>();
-        ball = new Ball(3,2,0,1);
+        ball = new Ball(3,0,0,0);
     }
 
     public void moveBall() {
         double moveTime = 0.05;
+        ball.setVelocity(ball.getVelocity().plus(gravity.times(moveTime)));
         findTimeUntilCollision();
+        System.out.println(ball.isInAbsorber());
         if (!ball.isInAbsorber()) {
             if (timeUntilCollision > moveTime) {
                 ball.moveForTime(moveTime);

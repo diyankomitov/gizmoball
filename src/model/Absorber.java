@@ -44,7 +44,11 @@ public class Absorber implements Gizmo, Observable {
     }
 
     public void shootBall() {
-        ball.setVelocity(new Vect(0, 50*ONE_L));
+        if (ball != null && ball.isInAbsorber()) {
+            ball.setInAbsorber(false);
+            ball.setY(this.y-(ball.getDiameter()/2));
+            ball.setVelocity(new Vect(0, -50*ONE_L));
+        }
     }
 
 
@@ -113,6 +117,7 @@ public class Absorber implements Gizmo, Observable {
     }
 
     public void addBall(Ball ball) {
+        System.out.println("adding ball");
         this.ball = ball;
         this.ball.setVelocity(new Vect(0,0));
         this.ball.setX(x + width - 0.25*ONE_L);

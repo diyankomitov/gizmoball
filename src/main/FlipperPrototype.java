@@ -39,7 +39,7 @@ public class  FlipperPrototype extends Application {
 
         pane.setPrefSize(ONE_L_IN_PIXELS*10, ONE_L_IN_PIXELS*10);
 
-        Absorber absorber = new Absorber(2,5, 5,2, 1);
+        Absorber absorber = new Absorber(2,9, 5,1, 1);
         AbsorberView absorberView = new AbsorberView(absorber);
 
 
@@ -50,8 +50,8 @@ public class  FlipperPrototype extends Application {
         Ball ball = model.getBall();
         BallView ballView = new BallView(ball);
 
-        pane.getChildren().add(ballView);
         pane.getChildren().add(absorberView);
+        pane.getChildren().add(ballView);
 
         Timeline timeline = new Timeline(
                 new KeyFrame(   //keyframes allow for something to happen at a given time
@@ -69,6 +69,13 @@ public class  FlipperPrototype extends Application {
 
         Scene scene = new Scene(pane);
 
+        scene.setOnKeyPressed(event -> {
+            switch (event.getCode()) {
+                case SPACE:
+                    absorber.shootBall();
+                    break;
+            }
+        });
 
 
 
