@@ -38,7 +38,7 @@ public class  Main extends Application {
 
         GizmoballController gizmoballController = mainFXML.getController();
         gizmoballController.setSaveHandler(new SaveHandler(primaryStage));
-        gizmoballController.setLoadHandler(new LoadHandler(primaryStage));
+        gizmoballController.setLoadHandler(new LoadHandler(primaryStage, gizmoballController.getBoard()));
 
         primaryStage.setScene(scene);
         primaryStage.show();

@@ -10,13 +10,16 @@ import main.FlipperDirection;
 import model.Gizmo;
 import model.GizmoType;
 import model.GizmoballModel;
+import view.BoardView;
 
 import java.io.*;
 
 public class LoadHandler implements EventHandler<ActionEvent> {
     private Stage stage;
     private GizmoballModel model; //Alistair thinks it might needs passed
-    public LoadHandler(Stage stage) {
+    private BoardView board;
+    public LoadHandler(Stage stage, BoardView board) {
+        this.board = board;
 
         this.stage = stage;
     }
@@ -42,18 +45,30 @@ public class LoadHandler implements EventHandler<ActionEvent> {
             model = new GizmoballModel();
             FileReader fileReader  = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
+            int j = 0;
 
             String stringLine;
             String boardDetailStr[];
+
             while((stringLine = bufferedReader.readLine())!=null) {
                 if(!stringLine.equals("")) {
                     boardDetailStr = stringLine.split(" ");
                     for(int i=0; i<boardDetailStr.length; i++){
                         System.out.println("string array at position: "+ i +" contains: "+boardDetailStr[i]);
                     }
+
                     checkAction(boardDetailStr);
+
                 }
             }
+
+            model.getGizmos().forEach(gizmo -> {
+//                System.out.println(i);
+                System.out.println(gizmo);
+                board.addGizmo(gizmo);
+            });
+
+
 
         } catch (FileNotFoundException e) {
             System.out.println("Error when trying to load the game. :(");
@@ -68,9 +83,9 @@ public class LoadHandler implements EventHandler<ActionEvent> {
         Flipper flipper;
         switch(string[0]) {
             case "Triangle":
-                 x = Double.parseDouble(string[2]);
-                 y = Double.parseDouble(string[3]);
-                 model.addGizmo(x, y, GizmoType.TRIANGLE, string[1] );
+                x = Double.parseDouble(string[2]);
+                y = Double.parseDouble(string[3]);
+                model.addGizmo(x, y, GizmoType.TRIANGLE, string[1]);
                 break;
             case "Square":
                 x = Double.parseDouble(string[2]);
@@ -85,14 +100,14 @@ public class LoadHandler implements EventHandler<ActionEvent> {
             case "LeftFlipper":
                 x = Double.parseDouble(string[2]);
                 y = Double.parseDouble(string[3]);
-               // TODO  need to edit flipper so given a name like the gizmos
-               flipper = new Flipper(x, y, 0 , FlipperDirection.LEFT);
+                // TODO  need to edit flipper so given a name like the gizmos
+                flipper = new Flipper(x, y, 0 , FlipperDirection.LEFT);
                 break;
             case "RightFlipper" :
                 x = Double.parseDouble(string[2]);
                 y = Double.parseDouble(string[3]);
                 //TODO edit flipper
-              flipper = new Flipper(x, y, 0, FlipperDirection.RIGHT);
+                flipper = new Flipper(x, y, 0, FlipperDirection.RIGHT);
                 break;
             case "Absorber" :
                 x = Double.parseDouble(string[2]);
@@ -105,5 +120,6 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                 break;
         }
 
+        System.out.println(model.getGizmos().size());
     }
 }
