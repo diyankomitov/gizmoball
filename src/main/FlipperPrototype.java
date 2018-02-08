@@ -11,8 +11,10 @@ import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.Absorber;
+import model.Ball;
 import model.GizmoballModel;
 import view.AbsorberView;
+import view.BallView;
 
 import static util.Constants.MILLIS_PER_FRAME;
 import static util.Constants.ONE_L;
@@ -38,8 +40,12 @@ public class  FlipperPrototype extends Application {
         pane.setPrefSize(ONE_L_IN_PIXELS*10, ONE_L_IN_PIXELS*10);
 
         Absorber absorber = new Absorber(2,5, 5,2, 1);
-
         AbsorberView absorberView = new AbsorberView(absorber);
+
+        Ball ball = new Ball(3, 3,3, 3);
+        BallView ballView = new BallView(ball);
+
+        pane.getChildren().add(ballView);
         pane.getChildren().add(absorberView);
 
         GizmoballModel model = new GizmoballModel("1");
