@@ -37,9 +37,9 @@ public class  FlipperPrototype extends Application {
 
         Pane pane = new Pane();
 
-        pane.setPrefSize(ONE_L_IN_PIXELS*10, ONE_L_IN_PIXELS*10);
+        pane.setPrefSize(ONE_L_IN_PIXELS*20, ONE_L_IN_PIXELS*20);
 
-        Absorber absorber = new Absorber(2,9, 5,1, 1);
+        Absorber absorber = new Absorber(0,19, 20,1, 1);
         AbsorberView absorberView = new AbsorberView(absorber);
 
 

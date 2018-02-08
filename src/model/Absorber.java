@@ -117,7 +117,6 @@ public class Absorber implements Gizmo, Observable {
     }
 
     public void addBall(Ball ball) {
-        System.out.println("adding ball");
         this.ball = ball;
         this.ball.setVelocity(new Vect(0,0));
         this.ball.setX(x + width - 0.25*ONE_L);

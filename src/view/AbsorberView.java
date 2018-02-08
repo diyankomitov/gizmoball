@@ -2,10 +2,7 @@ package view;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.transform.Rotate;
-import main.Flipper;
 import model.Absorber;
-import util.Constants;
 import util.Observer;
 
 import static util.Constants.ONE_L_IN_PIXELS;

@@ -1,6 +1,7 @@
 package main;
 
 import javafx.scene.paint.Color;
+import main.FlipperDirection;
 import physics.Circle;
 import physics.LineSegment;
 import physics.Vect;

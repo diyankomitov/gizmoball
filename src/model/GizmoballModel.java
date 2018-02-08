@@ -7,11 +7,14 @@ import util.Observable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static util.Constants.FRICTION_MU;
+import static util.Constants.FRICTION_MU_2;
 import static util.Constants.GRAVITY;
 
 public class GizmoballModel implements Observable{
     private static final double ONE_L_UNIT = 1.0;
     private static final int BOARD_WIDTH = 20;
+//    private final LineSegment wall;
 
     private List<Gizmo> gizmos;
 
@@ -32,13 +35,23 @@ public class GizmoballModel implements Observable{
         this.id = id;
         gizmos = new ArrayList<>();
         ball = new Ball(3,0,0,0);
+
+//        wall = new LineSegment(0,0,20,0);
     }
 
     public void moveBall() {
         double moveTime = 0.05;
         ball.setVelocity(ball.getVelocity().plus(gravity.times(moveTime)));
+
+        double vOldX = ball.getVelocity().x();
+        double vOldY = ball.getVelocity().y();
+
+        double vNewX = vOldX * (1-(FRICTION_MU*moveTime) - (FRICTION_MU_2* Math.abs(vOldX) * moveTime));
+        double vNewY = vOldY * (1-(FRICTION_MU*moveTime) - (FRICTION_MU_2* Math.abs(vOldY) * moveTime));
+
+        ball.setVelocity(new Vect(vNewX, vNewY));
+
         findTimeUntilCollision();
-        System.out.println(ball.isInAbsorber());
         if (!ball.isInAbsorber()) {
             if (timeUntilCollision > moveTime) {
                 ball.moveForTime(moveTime);
@@ -79,6 +92,13 @@ public class GizmoballModel implements Observable{
                 }
             }
         }
+
+//        time = Geometry.timeUntilWallCollision(wall, ball.getCircle(), ball.getVelocity());
+//        if (time < timeUntilCollision) {
+//            timeUntilCollision = time;
+//            velocity = Geometry.reflectWall(wall, ball.getVelocity(), 1);
+//        }
+
     }
 
     public void addGizmo(Gizmo gizmo) {
