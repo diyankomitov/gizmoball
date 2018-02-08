@@ -1,9 +1,12 @@
 package controller;
 
+import com.sun.deploy.util.ArrayUtil;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import main.Flipper;
+import main.FlipperDirection;
 import model.Gizmo;
 import model.GizmoType;
 import model.GizmoballModel;
@@ -35,15 +38,21 @@ public class LoadHandler implements EventHandler<ActionEvent> {
 
     public void loadGame(File file) {
         try {
+            System.out.println("At top of loadGame");
             model = new GizmoballModel();
             FileReader fileReader  = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
-            int strCount = 0;
+
             String stringLine;
             String boardDetailStr[];
             while((stringLine = bufferedReader.readLine())!=null) {
-                boardDetailStr = stringLine.split(" ");
-
+                if(!stringLine.equals("")) {
+                    boardDetailStr = stringLine.split(" ");
+                    for(int i=0; i<boardDetailStr.length; i++){
+                        System.out.println("string array at position: "+ i +" contains: "+boardDetailStr[i]);
+                    }
+                    checkAction(boardDetailStr);
+                }
             }
 
         } catch (FileNotFoundException e) {
@@ -56,13 +65,11 @@ public class LoadHandler implements EventHandler<ActionEvent> {
     public void checkAction(String[] string){
         double x;
         double y;
-
+        Flipper flipper;
         switch(string[0]) {
             case "Triangle":
-
                  x = Double.parseDouble(string[2]);
                  y = Double.parseDouble(string[3]);
-
                  model.addGizmo(x, y, GizmoType.TRIANGLE, string[1] );
                 break;
             case "Square":
@@ -76,7 +83,26 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                 model.addGizmo(x, y, GizmoType.CIRCLE, string[1]);
                 break;
             case "LeftFlipper":
+                x = Double.parseDouble(string[2]);
+                y = Double.parseDouble(string[3]);
+               // TODO  need to edit flipper so given a name like the gizmos
+               flipper = new Flipper(x, y, 0 , FlipperDirection.LEFT);
+                break;
+            case "RightFlipper" :
+                x = Double.parseDouble(string[2]);
+                y = Double.parseDouble(string[3]);
+                //TODO edit flipper
+              flipper = new Flipper(x, y, 0, FlipperDirection.RIGHT);
+                break;
+            case "Absorber" :
+                x = Double.parseDouble(string[2]);
+                y = Double.parseDouble(string[3]);
+                double x2 = Double.parseDouble(string[4]);
+                double y2 = Double.parseDouble(string[5]);
+                model.addAbsorber(x, y, x2, y2, string[1]);
 
+            default:
+                break;
         }
 
     }

@@ -117,6 +117,12 @@ public class GizmoballModel implements Observable{
         return true;
     }
 
+    public boolean addAbsorber(double x, double y, double x2, double y2,String name){
+
+
+        return false;
+    }
+
     public List<Gizmo> getGizmos(){
         return gizmos;
     }
