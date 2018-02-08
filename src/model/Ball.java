@@ -2,8 +2,9 @@ package model;
 
 import physics.Circle;
 import physics.Vect;
+import util.Observable;
 
-public class Ball {
+public class Ball implements Observable{
     private final double diameter;
     private Vect velocity;
     private double x;
