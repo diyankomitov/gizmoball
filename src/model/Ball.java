@@ -1,5 +1,6 @@
 package model;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
 import physics.Circle;
 import physics.Vect;
 import util.Observable;
@@ -37,6 +38,8 @@ public class Ball implements Observable{
     public void moveForTime(double moveTime) {
         x += (velocity.x() * moveTime);
         y += (velocity.y() * moveTime);
+
+        notifyObservers();
     }
 
     public double getX() {

@@ -22,29 +22,31 @@ public class GizmoballModel implements Observable{
     private int cCounter = 0;
 
     private String id;
+    private Gizmo collidedGizmo;
 
 
     public GizmoballModel(String id) {
         this.id = id;
         gizmos = new ArrayList<>();
-        ball = new Ball(0,0,1,1);
+        ball = new Ball(3,2,0,1);
     }
 
     public void moveBall() {
         double moveTime = 0.05;
         findTimeUntilCollision();
-
         if (!ball.isInAbsorber()) {
             if (timeUntilCollision > moveTime) {
                 ball.moveForTime(moveTime);
             }
             else {
+                if (collidedGizmo.getType() == GizmoType.ABSORBER) {
+                    ((Absorber)collidedGizmo).addBall(ball);
+                }
                 ball.moveForTime(timeUntilCollision);
                 ball.setVelocity(velocity);
             }
         }
-
-        notifyObservers();
+//        notifyObservers();
     }
 
 
@@ -57,13 +59,8 @@ public class GizmoballModel implements Observable{
                 time = Geometry.timeUntilWallCollision(line, ball.getCircle(), ball.getVelocity());
                 if (time < timeUntilCollision) {
                     timeUntilCollision = time;
-
-                    if (gizmo.getType() == GizmoType.ABSORBER) {
-                        ((Absorber)gizmo).addBall(ball);
-                    }
-                    else {
                         velocity = Geometry.reflectWall(line, ball.getVelocity(), gizmo.getRCoefficient());
-                    }
+                        collidedGizmo = gizmo;
                 }
             }
 
@@ -72,15 +69,15 @@ public class GizmoballModel implements Observable{
                 if (time < timeUntilCollision) {
                     timeUntilCollision = time;
 
-                    if (gizmo.getType() == GizmoType.ABSORBER) {
-                        ((Absorber)gizmo).addBall(ball);
-                    }
-                    else {
-                        velocity = Geometry.reflectCircle(circle.getCenter(), ball.getCenter(), ball.getVelocity(), gizmo.getRCoefficient());
-                    }
+                    velocity = Geometry.reflectCircle(circle.getCenter(), ball.getCenter(), ball.getVelocity(), gizmo.getRCoefficient());
+                    collidedGizmo = gizmo;
                 }
             }
         }
+    }
+
+    public void addGizmo(Gizmo gizmo) {
+        gizmos.add(gizmo);
     }
 
     public boolean addGizmo(double x, double y, GizmoType type) {

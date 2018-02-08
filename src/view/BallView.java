@@ -34,6 +34,7 @@ public class BallView extends Group implements Observer{
 
     @Override
     public void update() {
-
+        this.setTranslateX(ballModel.getX() * ONE_L_IN_PIXELS);
+        this.setTranslateY(ballModel.getY() * ONE_L_IN_PIXELS);
     }
 }
