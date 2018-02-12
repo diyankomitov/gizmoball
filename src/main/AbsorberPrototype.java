@@ -7,16 +7,17 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.Flipper;
-import view.FlipperView;
+import model.Absorber;
+import model.Ball;
+import model.GizmoballModel;
+import view.AbsorberView;
+import view.BallView;
 
 import static util.Constants.MILLIS_PER_FRAME;
 import static util.Constants.ONE_L_IN_PIXELS;
-import static view.FlipperDirection.LEFT;
-import static view.FlipperDirection.RIGHT;
 
 
-public class  FlipperPrototype extends Application {
+public class AbsorberPrototype extends Application {
     private int direction;
 
 
@@ -30,29 +31,26 @@ public class  FlipperPrototype extends Application {
 
         Pane pane = new Pane();
 
-        pane.setPrefSize(ONE_L_IN_PIXELS*10, ONE_L_IN_PIXELS*10);
+        pane.setPrefSize(ONE_L_IN_PIXELS*20, ONE_L_IN_PIXELS*20);
 
-        Flipper flipperL = new Flipper(3, 5, 0, LEFT );
-        Flipper flipperR = new Flipper(5, 5, 0, RIGHT );
-
-        FlipperView flipperViewL = new FlipperView(flipperL);
-        FlipperView flipperViewR = new FlipperView(flipperR);
+        Absorber absorber = new Absorber(0,19, 20,1, 1);
+        AbsorberView absorberView = new AbsorberView(absorber);
 
 
-        pane.getChildren().add(flipperViewL);
-        pane.getChildren().add(flipperViewR);
+        GizmoballModel model = new GizmoballModel();
+        model.addGizmo(absorber);
 
-        // Rotate rotate = new Rotate(0, ONE_L_IN_PIXELS/8, ONE_L_IN_PIXELS/8);
-        //rectangleR.getTransforms().add(rotate);
+        Ball ball = model.getBall();
+        BallView ballView = new BallView(ball);
 
-        Scene scene = new Scene(pane);
+        pane.getChildren().add(absorberView);
+        pane.getChildren().add(ballView);
 
         Timeline timeline = new Timeline(
                 new KeyFrame(   //keyframes allow for something to happen at a given time
                         Duration.ZERO,  //keyframe that has zero duration, or it happens immediately
                         actionEvent -> {
-                            flipperL.rotate();
-                            flipperR.rotate();
+                            model.moveBall();
                         } //moves the ball
                 ),
                 new KeyFrame(
@@ -62,23 +60,12 @@ public class  FlipperPrototype extends Application {
         timeline.setCycleCount(Timeline.INDEFINITE); //keeps running until stop is called
 
 
+        Scene scene = new Scene(pane);
+
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
-                case LEFT:
-                    flipperL.setTriggered(true);
-                    break;
-                case RIGHT:
-                    flipperR.setTriggered(true);
-                    break;
-            }
-        });
-        scene.setOnKeyReleased(event -> {
-            switch (event.getCode()) {
-                case LEFT:
-                    flipperL.setTriggered(false);
-                    break;
-                case RIGHT:
-                    flipperR.setTriggered(false);
+                case SPACE:
+                    absorber.shootBall();
                     break;
             }
         });

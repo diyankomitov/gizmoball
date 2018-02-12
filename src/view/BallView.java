@@ -4,7 +4,6 @@ import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import model.Ball;
-import util.Constants;
 import util.Observer;
 
 import static util.Constants.ONE_L_IN_PIXELS;
@@ -30,6 +29,16 @@ public class BallView extends Group implements Observer{
         this.setTranslateY(y);
 
         ballModel.subscribe(this);
+    }
+
+    public BallView() {
+        this.x = 0;
+        this.y = 0;
+        this.ballModel = null;
+        double radius = ONE_L_IN_PIXELS/4;
+        Circle ball = new Circle(radius);
+        ball.setFill(Color.CYAN); //TODO put in css
+        this.getChildren().add(ball);
     }
 
     @Override

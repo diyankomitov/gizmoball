@@ -1,13 +1,11 @@
 package controller;
 
-import com.sun.deploy.util.ArrayUtil;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import main.Flipper;
-import main.FlipperDirection;
-import model.Gizmo;
+import model.Flipper;
+import view.FlipperDirection;
 import model.GizmoType;
 import model.GizmoballModel;
 import view.BoardView;

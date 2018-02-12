@@ -42,8 +42,8 @@
                     <Separator/>
 
                     <Label text="Flippers"/>
-                    <FlipperView fx:id="leftFlipperButton" orientation="LEFT"/>
-                    <FlipperView fx:id="rightFlipperButton" orientation="RIGHT"/>
+                    <FlipperView fx:id="leftFlipperButton"/>
+                    <FlipperView fx:id="rightFlipperButton"/>
 
                     <Separator/>
 

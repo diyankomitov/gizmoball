@@ -1,19 +1,17 @@
-package main;
+package model;
 
 import javafx.scene.paint.Color;
-import main.FlipperDirection;
+import view.FlipperDirection;
 import physics.Circle;
 import physics.LineSegment;
-import physics.Vect;
 import util.Observable;
-import util.Observer;
 
 import java.util.ArrayList;
 
 import static util.Constants.DELTA_ANGLE;
 import static util.Constants.ONE_L;
-import static main.FlipperDirection.LEFT;
-import static main.FlipperDirection.RIGHT;
+import static view.FlipperDirection.LEFT;
+import static view.FlipperDirection.RIGHT;
 
 public class Flipper implements Observable{
 

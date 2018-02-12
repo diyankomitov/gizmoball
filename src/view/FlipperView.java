@@ -1,44 +1,57 @@
 package view;
 
-import javafx.beans.NamedArg;
 import javafx.scene.Group;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
-import util.Constants;
+import model.Flipper;
+import util.Observer;
 
+import static util.Constants.ONE_L_IN_PIXELS;
 
-import static view.FlipperOrientation.LEFT;
+public class FlipperView extends Group implements Observer{
 
-public class FlipperView extends Group{
-    public FlipperView(@NamedArg("orientation") FlipperOrientation orientation) {
-        super();
+    private final double x;
+    private final double y;
+    private final Flipper flipper;
+    private final Rotate rotate;
+    private double angle;
 
-        double length = Constants.ONE_L_IN_PIXELS*2;
-        double width = length/4;
+    public FlipperView(Flipper flipper) {
+        this.x = flipper.getXpos() * ONE_L_IN_PIXELS;
+        this.y = flipper.getYpos() * ONE_L_IN_PIXELS;
+        this.flipper = flipper;
+        Rectangle rectangle = new Rectangle(ONE_L_IN_PIXELS/2, ONE_L_IN_PIXELS*2);
+        rectangle.setArcWidth(ONE_L_IN_PIXELS/2);
+        rectangle.setArcHeight(ONE_L_IN_PIXELS/2);
+        this.getChildren().add(rectangle);
+        rectangle.setFill(Color.ORANGE);
 
-        Rectangle flipper = new Rectangle(width, length);
-        flipper.setArcHeight(width);
-        flipper.setArcWidth(width);
-        flipper.setFill(Color.ORANGE); //TODO put in css
+        this.setTranslateX(x);
+        this.setTranslateY(y);
 
-        Rotate rotate = new Rotate();
+        rotate = new Rotate(0, ONE_L_IN_PIXELS/4, ONE_L_IN_PIXELS/4);
+        this.getTransforms().add(rotate);
 
-        AnchorPane flipperBox = new AnchorPane();
+        flipper.subscribe(this);
+    }
 
-        flipperBox.setPrefSize(length, length);
+    public FlipperView() {
+        this.x = 0;
+        this.y = 0;
+        this.flipper = null;
+        Rectangle rectangle = new Rectangle(ONE_L_IN_PIXELS/2, ONE_L_IN_PIXELS*2);
+        rectangle.setArcWidth(ONE_L_IN_PIXELS/2);
+        rectangle.setArcHeight(ONE_L_IN_PIXELS/2);
+        this.getChildren().add(rectangle);
+        rectangle.setFill(Color.ORANGE);
 
-        if (orientation == LEFT) {
-            AnchorPane.setLeftAnchor(flipper, 0.0);
-        }
-        else {
-            AnchorPane.setRightAnchor(flipper, 0.0);
-        }
-        flipperBox.getChildren().add(flipper);
+        rotate = null;
+    }
 
-        this.getChildren().add(flipperBox);
+    @Override
+    public void update() {
+        angle = flipper.getAngle();
+        rotate.setAngle(angle);
     }
 }
