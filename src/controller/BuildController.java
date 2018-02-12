@@ -48,6 +48,10 @@ public class BuildController {
         });
     }
 
+    public BoardView getBoard() {
+        return board;
+    }
+
     public void setSwitchHandler(SwitchModeHandler switchToPlay) {
         switchButton.setOnAction(switchToPlay);
     }

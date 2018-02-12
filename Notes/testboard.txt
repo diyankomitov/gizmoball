@@ -1,0 +1,35 @@
+Triangle T 19 0
+
+
+Triangle T2 1 1
+
+Square S02 0 2
+Square S12 1 2
+Square S22 2 2
+Square S32 3 2
+Square S42 4 2
+Square S52 5 2
+Square S62 6 2
+Square S72 7 2
+Square S82 8 2
+Square S132 13 2
+Square S142 14 2
+Square S152 15 2
+Square S162 16 2
+Square S172 17 2
+Square S182 18 2
+
+Circle C43 4 3
+Circle C54 5 4
+Circle C65 6 5
+Circle C76 7 6
+Circle C99 9 9
+Circle C109 10 9
+Circle C1110 11 10
+Circle C129 12 9
+Circle C139 13 9
+Circle C156 15 6
+Circle C165 16 5
+Circle C174 17 4
+Circle C183 18 3
+

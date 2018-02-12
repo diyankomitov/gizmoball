@@ -2,6 +2,7 @@ package view;
 
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import model.Gizmo;
 import model.GizmoballModel;
 import util.Constants;
 import util.Observer;
@@ -49,6 +50,26 @@ public class BoardView extends GridPane implements Observer{
             }
         }
         isGridOn = !isGridOn;
+    }
+
+    public void addGizmo(Gizmo gizmo){
+        int x = (int) gizmo.getXCoord();
+        int y = (int) gizmo.getYCoord();
+            switch(gizmo.getType()){
+                case CIRCLE:
+                   this.add(new CircularBumperView(), x, y);
+                   break;
+                case TRIANGLE:
+                    this.add(new TriangularBumperView(), x, y);
+                    break;
+                case SQUARE:
+                    this.add(new SquareBumperView(), x, y);
+                    break;
+            }
+    }
+
+    public void fillBoard() {
+
     }
 
     public int getCurRow() {

@@ -15,14 +15,14 @@ public class TriangleGizmo implements Gizmo {
     private final List<Circle> corners;
     private GizmoType type = GizmoType.TRIANGLE;
 
-    private String name = "T";
+    private String name;
 
-    public TriangleGizmo(double x, double y, double side, int tCounter) {
+    public TriangleGizmo(double x, double y, double side, String name) {
         this.x = x;
         this.y = y;
         this.side = side;
 
-        this.name = name.concat(Integer.toString(tCounter));
+        this.name = name;
 
         rCoefficient = 1.0;
         sides = new ArrayList<>();

@@ -8,15 +8,17 @@ import util.Observable;
 public class Ball implements Observable{
     private final double diameter;
     private Vect velocity;
+    private String id = "B";
     private double x;
     private double y;
     private boolean inAbsorber = false;
 
-    public Ball(double x, double y, double xv, double yv) {
+    public Ball(double x, double y, double xv, double yv, int counter) {
         this.x = x;
         this.y = y;
         this.velocity = new Vect(xv, yv);
         this.diameter = 0.5;
+        this.id = id.concat(Integer.toString(counter));
     }
 
     public Circle getCircle() {
@@ -45,6 +47,10 @@ public class Ball implements Observable{
 
         System.out.println("x: " + x + " y: " + y);
         notifyObservers();
+    }
+
+    public String getId(){
+        return id;
     }
 
     public double getX() {
