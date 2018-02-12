@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.GizmoballController"
+            prefHeight="500.0" prefWidth="500.0">
+
+    <top>
+        <MenuBar>
+            <Menu text="File">
+                <MenuItem fx:id="save" text="Save"/>
+                <MenuItem fx:id="load" text="Load"/>
+                <MenuItem fx:id="exit" text="Exit"/>
+
+            </Menu>
+        </MenuBar>
+    </top>
+    <center>
+        <StackPane>
+            <fx:include fx:id="playView" source="PlayView.fxml"/>
+            <fx:include fx:id="buildView" source="BuildView.fxml"/>
+        </StackPane>
+    </center>
+
+</BorderPane>

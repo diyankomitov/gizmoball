@@ -1,0 +1,15 @@
+#board {
+    -fx-background-color: #e6e6e6;
+    -fx-border-color: black;
+}
+
+.boardCell {
+    /*-fx-background-insets: 0, 0 0 1 1 ;*/
+}
+
+.noGrid {
+    -fx-border-color: #e6e6e6;
+}
+.grid {
+    -fx-border-color: black;
+}

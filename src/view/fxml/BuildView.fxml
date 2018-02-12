@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import util.Constants?>
+<?import view.*?>
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.BuildController"
+            style="-fx-background-color: white; -fx-padding: 10">
+
+    <fx:define>
+        <Constants fx:id="oneLInPixels" fx:constant="ONE_L_IN_PIXELS" />
+    </fx:define>
+
+    <left>
+        <VBox>
+            <HBox style="-fx-border-color: grey">
+                <ToolBar orientation="VERTICAL" style="-fx-alignment: top-center; -fx-border-color: grey; -fx-background-color: lightgrey">
+                    <Button fx:id="moveButton" text="Move"/>
+                    <Button fx:id="rotateButton" text="Rotate"/>
+                    <Button fx:id="deleteButton" text="Delete"/>
+
+                    <Separator/>
+
+                    <Button fx:id="connectButton" text="Connect"/>
+                    <Button fx:id="disconnectButton" text="Disconnect"/>
+
+                    <Separator/>
+
+                    <Button fx:id="switchButton" text="Switch to Play"/>
+                    <Button fx:id="toggleGrid" text="Toggle Grid"/>
+                    <Button fx:id="clearBoardButton" text="Clear Board"/>
+                </ToolBar>
+                <ToolBar orientation="VERTICAL" style="-fx-background-color: lightgrey; -fx-border-color: grey; ">
+                    <Label text="Bumpers"/>
+                    <SquareBumperView fx:id="squareButton"/>
+                    <TriangularBumperView fx:id="triangleButton"/>
+                    <CircularBumperView fx:id="circleButton"/>
+
+                    <Separator/>
+
+                    <Label text="Flippers"/>
+                    <FlipperView fx:id="leftFlipperButton" orientation="LEFT"/>
+                    <FlipperView fx:id="rightFlipperButton" orientation="RIGHT"/>
+
+                    <Separator/>
+
+                    <Label text="Absorber"/>
+                    <AbsorberView fx:id="absorberButton"/>
+
+                    <Separator/>
+
+                    <Label text="Ball"/>
+                    <BallView fx:id="ballButton"/>
+                </ToolBar>
+            </HBox>
+
+            <VBox>
+                <Label text="Ball Speed"/>
+                <HBox>
+                    <Slider fx:id="ballSpeedSlider" majorTickUnit="1" minorTickCount="10" snapToTicks="true" showTickLabels="true"/>
+                    <TextField fx:id="ballSpeedField" maxWidth="50"/>
+                </HBox>
+            </VBox>
+            <VBox>
+                <Label text="Gravity"/>
+                <HBox>
+                    <Slider fx:id="gravitySlider" majorTickUnit="1" minorTickCount="10" snapToTicks="true" showTickLabels="true"/>
+                    <TextField fx:id="gravityField" maxWidth="50"/>
+                </HBox>
+            </VBox>
+            <VBox>
+                <Label text="Friction"/>
+                <HBox>
+                    <Slider fx:id="frictionSlider" majorTickUnit="1" minorTickCount="10" snapToTicks="true" showTickLabels="true"/>
+                    <TextField fx:id="frictionField" maxWidth="50"/>
+                </HBox>
+            </VBox>
+        </VBox>
+
+    </left>
+
+    <center>
+        <BoardView fx:id="board">
+            <BorderPane.margin>
+                <Insets topRightBottomLeft="10"/>
+            </BorderPane.margin>
+        </BoardView>
+    </center>
+
+    <bottom>
+        <Label fx:id="information" BorderPane.alignment="BOTTOM_RIGHT" text="Here is where information to the user might be displayed"/>
+    </bottom>
+</BorderPane>
