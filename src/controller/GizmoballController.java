@@ -5,6 +5,7 @@ import javafx.geometry.HorizontalDirection;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
+import view.BoardView;
 
 import java.io.File;
 
@@ -41,6 +42,10 @@ public class GizmoballController {
 
         buildViewController.setSwitchHandler(switchToPlay);
         playViewController.setSwitchHandler(switchToBuild);
+    }
+
+    public BoardView getBoard() {
+        return buildViewController.getBoard();
     }
 
     public void setSaveHandler(SaveHandler saveHandler) {

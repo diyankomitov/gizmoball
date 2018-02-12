@@ -21,6 +21,6 @@ To add this repo to an existing folder:
 ```
 cd existing_folder
 git init
-git remote add origin https://gitlab.cis.strath.ac.uk/mhb15157/cs308-gizmoball.git
+git remote add origin https://gitl++++++++++++++++++++++++++++++++\  ;ab.cis.strath.ac.uk/mhb15157/cs308-gizmoball.git
 ```
 
