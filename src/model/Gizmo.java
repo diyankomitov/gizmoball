@@ -14,4 +14,11 @@ public interface Gizmo {
     double getRCoefficient();
 
     void setCoords(double x, double y);
+
+    String getName();
+    GizmoType getType();
+
+    double getXCoord();
+
+    double getYCoord();
 }

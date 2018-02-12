@@ -13,11 +13,17 @@ public class TriangleGizmo implements Gizmo {
     private final double rCoefficient;
     private final List<LineSegment> sides;
     private final List<Circle> corners;
+    private GizmoType type = GizmoType.TRIANGLE;
 
-    public TriangleGizmo(double x, double y, double side) {
+    private String name = "T";
+
+    public TriangleGizmo(double x, double y, double side, int tCounter) {
         this.x = x;
         this.y = y;
         this.side = side;
+
+        this.name = name.concat(Integer.toString(tCounter));
+
         rCoefficient = 1.0;
         sides = new ArrayList<>();
         corners = new ArrayList<>();
@@ -60,5 +66,25 @@ public class TriangleGizmo implements Gizmo {
     public void setCoords(double x, double y) {
         this.x = x;
         this.y = y;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public GizmoType getType() {
+        return type;
+    }
+
+    @Override
+    public double getXCoord() {
+        return x;
+    }
+
+    @Override
+    public double getYCoord() {
+        return y;
     }
 }

@@ -15,10 +15,15 @@ public class SquareGizmo implements Gizmo {
     private final double rCoefficient;
     private final List<LineSegment> sides;
     private final List<Circle> corners;
+    private GizmoType type = GizmoType.SQUARE;
 
-    public SquareGizmo(double x, double y, double width) {
+    private String name = "S";
+
+    public SquareGizmo(double x, double y, double width, int sCounter) {
         this.x = x;
         this.y = y;
+
+        this.name = name.concat(Integer.toString(sCounter));
 
         this.width = width;
 
@@ -69,5 +74,25 @@ public class SquareGizmo implements Gizmo {
     public void setCoords(double x, double y) {
         this.x = x;
         this.y = y;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public GizmoType getType() {
+        return type;
+    }
+
+    @Override
+    public double getXCoord() {
+        return x;
+    }
+
+    @Override
+    public double getYCoord() {
+        return y;
     }
 }
