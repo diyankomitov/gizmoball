@@ -35,7 +35,7 @@ public class GizmoballModel implements Observable{
     public GizmoballModel() {
 
         gizmos = new ArrayList<>();
-        ball = new Ball(3,0,0,0, 1);
+        ball = new Ball(6,0,0,0, 1);
 
 //        wall = new LineSegment(0,0,20,0);
 

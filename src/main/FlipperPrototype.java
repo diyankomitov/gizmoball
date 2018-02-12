@@ -8,6 +8,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.Flipper;
+import model.GizmoballModel;
+import view.BallView;
 import view.FlipperView;
 
 import static util.Constants.MILLIS_PER_FRAME;
@@ -30,17 +32,27 @@ public class  FlipperPrototype extends Application {
 
         Pane pane = new Pane();
 
-        pane.setPrefSize(ONE_L_IN_PIXELS*10, ONE_L_IN_PIXELS*10);
+        pane.setPrefSize(ONE_L_IN_PIXELS*20, ONE_L_IN_PIXELS*20);
 
-        Flipper flipperL = new Flipper(3, 5, 0, LEFT );
-        Flipper flipperR = new Flipper(5, 5, 0, RIGHT );
+        Flipper flipperL = new Flipper(3, 15, 0, LEFT );
+        Flipper flipperR = new Flipper(5, 15, 0, RIGHT );
 
-        FlipperView flipperViewL = new FlipperView(flipperL);
-        FlipperView flipperViewR = new FlipperView(flipperR);
+        FlipperView flipperViewL = new FlipperView(flipperL, pane);
+        FlipperView flipperViewR = new FlipperView(flipperR, pane);
 
 
         pane.getChildren().add(flipperViewL);
         pane.getChildren().add(flipperViewR);
+
+        GizmoballModel model = new GizmoballModel();
+        model.addGizmo(flipperL);
+        model.addGizmo(flipperR);
+
+        BallView ballView = new BallView(model.getBall());
+        pane.getChildren().add(ballView);
+//
+//        pane.getChildren().addAll(flipperViewL.getPoint(), flipperViewL.getPoint2(), flipperViewL.getPoint3(), flipperViewL.getPoint4());
+//        pane.getChildren().addAll(flipperViewR.getPoint(), flipperViewR.getPoint2(), flipperViewR.getPoint3(), flipperViewR.getPoint4());
 
         // Rotate rotate = new Rotate(0, ONE_L_IN_PIXELS/8, ONE_L_IN_PIXELS/8);
         //rectangleR.getTransforms().add(rotate);
@@ -53,6 +65,7 @@ public class  FlipperPrototype extends Application {
                         actionEvent -> {
                             flipperL.rotate();
                             flipperR.rotate();
+                            model.moveBall();
                         } //moves the ball
                 ),
                 new KeyFrame(

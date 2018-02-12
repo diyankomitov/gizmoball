@@ -45,7 +45,7 @@ public class Ball implements Observable{
         x += (velocity.x() * moveTime);
         y += (velocity.y() * moveTime);
 
-        System.out.println("x: " + x + " y: " + y);
+//        System.out.println("x: " + x + " y: " + y);
         notifyObservers();
     }
 
