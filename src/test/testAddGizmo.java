@@ -44,11 +44,6 @@ public class testAddGizmo {
 
     }
 
-    @Test
-    public void testAddBall() {
-        gizmoballModel.addBall(1, 3, 0, 0);
-        assertEquals(gizmoballModel.getBall().getId(), "B0");
-    }
 
     @Test
     public void testAddGizmoz() {

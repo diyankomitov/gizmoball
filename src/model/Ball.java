@@ -12,13 +12,15 @@ public class Ball implements Observable{
     private double x;
     private double y;
     private boolean inAbsorber = false;
+    private String name;
 
-    public Ball(double x, double y, double xv, double yv, int counter) {
+    public Ball(double x, double y, double xv, double yv, String name) {
         this.x = x;
         this.y = y;
+        this.name=name;
         this.velocity = new Vect(xv, yv);
         this.diameter = 0.5;
-        this.id = id.concat(Integer.toString(counter));
+
     }
 
     public Circle getCircle() {

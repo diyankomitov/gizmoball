@@ -34,15 +34,15 @@ public class GizmoballModel implements Observable{
     public GizmoballModel() {
 
         gizmos = new ArrayList<>();
-        ball = new Ball(6,16,0,0, 1);
+
 
 //        wall = new LineSegment(0,0,20,0);
 
     }
 
-    public void addBall(double x, double y, double xv, double yv) {
-        ball = new Ball(x, y, xv, yv, 0);
-        BoardState.add("Move " + ball.getId() + " " + x + " " + y + " " + xv + " " + yv);
+    public void addBall(double x, double y, double xv, double yv, String name) {
+        ball = new Ball(x, y, xv, yv, name);
+        BoardState.add("Move " + name + " " + x + " " + y + " " + xv + " " + yv);
         bCounter++;
 //        balls.add(ball);
     }
@@ -195,6 +195,11 @@ public class GizmoballModel implements Observable{
 
 
         return false;
+    }
+
+    public void clearGizmos() {
+        gizmos = new ArrayList<>();
+        ball=null;
     }
 
     public List<Gizmo> getGizmos(){
