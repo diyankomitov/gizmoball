@@ -2,7 +2,10 @@ package view;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import model.SquareGizmo;
 import util.Constants;
+
+import static util.Constants.ONE_L_IN_PIXELS;
 
 
 public class SquareBumperView extends GizmoView {
@@ -10,9 +13,9 @@ public class SquareBumperView extends GizmoView {
     private final Rectangle square;
     private boolean isToggle;
 
-    public SquareBumperView() {
-        super();
-        double side = Constants.ONE_L_IN_PIXELS;
+    public SquareBumperView(SquareGizmo squareGizmo) {
+        super(squareGizmo);
+        double side = ONE_L_IN_PIXELS;
         isToggle = false;
 
         square = new Rectangle(side, side);

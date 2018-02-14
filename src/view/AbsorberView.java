@@ -13,7 +13,7 @@ public class AbsorberView extends GizmoView implements Observer{
     private final Absorber absorberModel;
 
     public AbsorberView(Absorber absorberModel) {
-        super();
+        super(absorberModel);
         this.x = absorberModel.getXCoord() * ONE_L_IN_PIXELS;
         this.y = absorberModel.getYCoord() * ONE_L_IN_PIXELS;
         this.absorberModel = absorberModel;
@@ -27,16 +27,16 @@ public class AbsorberView extends GizmoView implements Observer{
         absorberModel.subscribe(this);
     }
 
-    /* This is for button*/
-    public AbsorberView() {
-        x = 0;
-        y = 0;
-        absorberModel = null;
-
-        Rectangle rectangle = new Rectangle(ONE_L_IN_PIXELS, ONE_L_IN_PIXELS);
-        this.getChildren().add(rectangle);
-        rectangle.setFill(Color.PURPLE); //TODO: move elsewhere
-    }
+//    /* This is for button*/
+//    public AbsorberView() {
+//        x = 0;
+//        y = 0;
+//        absorberModel = null;
+//
+//        Rectangle rectangle = new Rectangle(ONE_L_IN_PIXELS, ONE_L_IN_PIXELS);
+//        this.getChildren().add(rectangle);
+//        rectangle.setFill(Color.PURPLE); //TODO: move elsewhere
+//    }
 
     @Override
     public void update() {

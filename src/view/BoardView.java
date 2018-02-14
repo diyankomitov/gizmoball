@@ -57,13 +57,13 @@ public class BoardView extends GridPane implements Observer{
         int y = (int) gizmo.getYCoord();
             switch(gizmo.getType()){
                 case CIRCLE:
-                   this.add(new CircularBumperView(), x, y);
+//                   this.add(new CircularBumperView(), x, y);
                    break;
                 case TRIANGLE:
-                    this.add(new TriangularBumperView(), x, y);
+//                    this.add(new TriangularBumperView(), x, y);
                     break;
                 case SQUARE:
-                    this.add(new SquareBumperView(), x, y);
+//                    this.add(new SquareBumperView(), x, y);
                     break;
             }
     }

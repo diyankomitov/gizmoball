@@ -47,6 +47,7 @@ public class  FlipperPrototype extends Application {
         GizmoballModel model = new GizmoballModel();
         model.addGizmo(flipperL);
         model.addGizmo(flipperR);
+        model.addBall(4,2,0,0);
 
         BallView ballView = new BallView(model.getBall());
         pane.getChildren().add(ballView);

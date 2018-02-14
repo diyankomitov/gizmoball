@@ -27,15 +27,26 @@ public class GizmoballModel implements Observable{
     private int bCounter = 0;
     private String id;
     private Gizmo collidedGizmo;
+    private List<LineSegment> walls;
+    private List<Circle> wallCircles;
 
-    private Vect gravity = new Vect(0, 0);
+    private Vect gravity = new Vect(0, GRAVITY);
 
     public GizmoballModel() {
 
         gizmos = new ArrayList<>();
-        ball = new Ball(6,16,0,0, 1);
 
-//        wall = new LineSegment(0,0,20,0);
+        walls = new ArrayList<>();
+        walls.add(new LineSegment(0,0,0,20));
+        walls.add(new LineSegment(0,20,20,20));
+        walls.add(new LineSegment(20,20,20,0));
+        walls.add(new LineSegment(20,0,0,0));
+
+        wallCircles = new ArrayList<>();
+        wallCircles.add(new Circle(0,0,0));
+        wallCircles.add(new Circle(20,0,0));
+        wallCircles.add(new Circle(20,20,0));
+        wallCircles.add(new Circle(0,20,0));
 
     }
 
@@ -71,6 +82,9 @@ public class GizmoballModel implements Observable{
                 ball.setVelocity(velocity);
             }
         }
+
+
+
 //        notifyObservers();
     }
 
@@ -120,6 +134,21 @@ public class GizmoballModel implements Observable{
                         }
                     }
                 }
+            }
+        }
+
+        for (LineSegment line : walls) {
+            time = Geometry.timeUntilWallCollision(line, ball.getCircle(), ball.getVelocity());
+            if (time < timeUntilCollision) {
+                timeUntilCollision = time;
+                velocity = Geometry.reflectWall(line, ball.getVelocity(), 1);
+            }
+        }
+        for (Circle corner : wallCircles) {
+            time = Geometry.timeUntilCircleCollision(corner, ball.getCircle(), ball.getVelocity());
+            if (time < timeUntilCollision) {
+                timeUntilCollision = time;
+                velocity = Geometry.reflectCircle(corner.getCenter(), ball.getCenter(), ball.getVelocity(), 1);
             }
         }
 
