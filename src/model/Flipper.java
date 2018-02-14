@@ -27,6 +27,8 @@ public class Flipper implements Gizmo, Observable{
     private Color colour;
     private boolean triggered; //indicates when the flipper is being moved by a keypress
     private boolean moving;
+    private String name;
+    private double offset;
 
     public Vect getCenter() {
         return center;
@@ -40,17 +42,19 @@ public class Flipper implements Gizmo, Observable{
      * @param y
      * @param a
      */
-    public Flipper(double x, double y, double a, FlipperDirection direction){
+    public Flipper(double x, double y, double a, FlipperDirection direction, String name){
         width = ONE_L/2;
         length = ONE_L*2;
 
-        double offset = 0;
+        offset = 0;
         if(direction == FlipperDirection.RIGHT) {
             offset = ONE_L+width;
         }
 
         xpos = x + offset;
         ypos = y;
+
+        this.name=name;
 
         angle = a;
         this.direction = direction;
@@ -75,7 +79,9 @@ public class Flipper implements Gizmo, Observable{
         return angle;
     }
 
-
+    public double getOffset() {
+        return offset;
+    }
     public void rotate(){
         if(direction == RIGHT)
         {
@@ -171,7 +177,13 @@ public class Flipper implements Gizmo, Observable{
 
     @Override
     public GizmoType getType() {
-        return GizmoType.LEFT_FLIPPER;
+        switch (direction) {
+            case RIGHT:
+                return GizmoType.RIGHT_FLIPPER;
+            case LEFT:
+                return GizmoType.LEFT_FLIPPER;
+                default: return null;
+        }
     }
 
     @Override

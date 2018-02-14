@@ -18,8 +18,8 @@ import static util.Constants.ONE_L_IN_PIXELS;
 
 public class FlipperView extends Group implements Observer{
 
-    private final double x;
-    private final double y;
+    private double x;
+    private double y;
     private final Flipper flipper;
     private final Rotate rotate;
     private Circle point;
@@ -28,6 +28,8 @@ public class FlipperView extends Group implements Observer{
     private Circle point4;
     private double angle;
     private Pane root;
+
+
 
     public FlipperView(Flipper flipper, Pane root) {
         this.root = root;
@@ -57,6 +59,38 @@ public class FlipperView extends Group implements Observer{
         root.getChildren().addAll(point, point2, point3, point4);
 
         flipper.subscribe(this);
+    }
+    public FlipperView(Flipper flipper) {
+
+        this.x = flipper.getXpos() * ONE_L_IN_PIXELS;
+        this.y = flipper.getYpos() * ONE_L_IN_PIXELS;
+        this.flipper = flipper;
+        Rectangle rectangle = new Rectangle(ONE_L_IN_PIXELS/2, ONE_L_IN_PIXELS*2);
+        rectangle.setArcWidth(ONE_L_IN_PIXELS/2);
+        rectangle.setArcHeight(ONE_L_IN_PIXELS/2);
+        this.getChildren().add(rectangle);
+        rectangle.setFill(Color.ORANGE);
+
+        rotate = new Rotate(0, ONE_L_IN_PIXELS/4, ONE_L_IN_PIXELS/4);
+        this.getTransforms().add(rotate);
+
+
+        flipper.subscribe(this);
+    }
+
+    public void setX(){
+
+        this.setTranslateX((flipper.getOffset()*ONE_L_IN_PIXELS)-ONE_L_IN_PIXELS);
+
+    }
+
+
+    public double getX(){
+        return x;
+    }
+
+    public double getY(){
+        return y;
     }
 
     public Circle getPoint() {

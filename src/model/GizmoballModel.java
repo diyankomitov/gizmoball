@@ -3,6 +3,7 @@ package model;
 import physics.*;
 import util.BoardState;
 import util.Observable;
+import view.FlipperDirection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,8 +85,8 @@ public class GizmoballModel implements Observable{
                 time = Geometry.timeUntilWallCollision(line, ball.getCircle(), ball.getVelocity());
                 if (time < timeUntilCollision) {
                     timeUntilCollision = time;
-                        velocity = Geometry.reflectWall(line, ball.getVelocity(), gizmo.getRCoefficient());
-                        collidedGizmo = gizmo;
+                    velocity = Geometry.reflectWall(line, ball.getVelocity(), gizmo.getRCoefficient());
+                    collidedGizmo = gizmo;
                 }
             }
 
@@ -148,7 +149,7 @@ public class GizmoballModel implements Observable{
                 break;
             case SQUARE:
                 if(name.equals("")) {
-                gizmo = new SquareGizmo(x,y, ONE_L_UNIT,"S" + (int)x + (int)y );
+                    gizmo = new SquareGizmo(x,y, ONE_L_UNIT,"S" + (int)x + (int)y );
                 }else{
                     gizmo = new SquareGizmo(x,y, ONE_L_UNIT,name );
                 }
@@ -161,11 +162,24 @@ public class GizmoballModel implements Observable{
 
                 }
                 break;
+            case LEFT_FLIPPER:
+                if(name.equals("")) {
+                    gizmo = new Flipper(x, y, 0, FlipperDirection.LEFT, "LF"+(int)x + (int)y);
+                } else {
+                    gizmo = new Flipper(x ,y, 0, FlipperDirection.LEFT, name);
+                }
+                break;
+            case RIGHT_FLIPPER:
+                if(name.equals("")) {
+                    gizmo = new Flipper(x, y, 0, FlipperDirection.RIGHT, "RF"+(int)x + (int)y);
+                } else {
+                    gizmo = new Flipper(x ,y, 0, FlipperDirection.RIGHT, name);
+                }
+                break;
             default:
                 return false; //TODO: implement proper default
         }
 
-        //add to the string array eg "Type Name CoordX CoordY
 
         for (Gizmo g:gizmos){
             if((g.getXCoord()==x)&&(g.getYCoord()==y)){
@@ -173,7 +187,7 @@ public class GizmoballModel implements Observable{
             }
         }
         gizmos.add(gizmo);
-        BoardState.add(type + " " + id + " " + x + " " + y);
+        BoardState.add(type + " " + name + " " + x + " " + y);
         return true;
     }
 

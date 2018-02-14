@@ -78,7 +78,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
     public void checkAction(String[] string){
         double x;
         double y;
-        Flipper flipper;
+
         switch(string[0]) {
             case "Triangle":
                 x = Double.parseDouble(string[2]);
@@ -98,14 +98,12 @@ public class LoadHandler implements EventHandler<ActionEvent> {
             case "LeftFlipper":
                 x = Double.parseDouble(string[2]);
                 y = Double.parseDouble(string[3]);
-                // TODO  need to edit flipper so given a name like the gizmos
-                flipper = new Flipper(x, y, 0 , FlipperDirection.LEFT);
+                model.addGizmo(x, y, GizmoType.LEFT_FLIPPER, string[1]);
                 break;
             case "RightFlipper" :
                 x = Double.parseDouble(string[2]);
                 y = Double.parseDouble(string[3]);
-                //TODO edit flipper
-                flipper = new Flipper(x, y, 0, FlipperDirection.RIGHT);
+                model.addGizmo(x, y, GizmoType.RIGHT_FLIPPER, string[1]);
                 break;
             case "Absorber" :
                 x = Double.parseDouble(string[2]);
