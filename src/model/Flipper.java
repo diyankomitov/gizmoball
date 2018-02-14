@@ -1,9 +1,8 @@
 package model;
 
 import javafx.scene.paint.Color;
+import physics.*;
 import view.FlipperDirection;
-import physics.Circle;
-import physics.LineSegment;
 import util.Observable;
 
 import java.util.ArrayList;
@@ -27,6 +26,13 @@ public class Flipper implements Gizmo, Observable{
     private ArrayList<Circle> circles;//2 cirrcles, one larger than the other? same size?
     private Color colour;
     private boolean triggered; //indicates when the flipper is being moved by a keypress
+    private boolean moving;
+
+    public Vect getCenter() {
+        return center;
+    }
+
+    private Vect center;
 
     /**
      * Constructor
@@ -52,6 +58,8 @@ public class Flipper implements Gizmo, Observable{
         circles = new ArrayList<>();
         colour = Color.ORANGE;
 
+        double radius = width/2;
+        center = new Vect(xpos + radius, ypos + radius);
 
 
 
@@ -73,10 +81,16 @@ public class Flipper implements Gizmo, Observable{
         {
             if (triggered) {
                 angle = Math.min(angle + DELTA_ANGLE, 90);
-
             }
             else {
                 angle = Math.max(angle - DELTA_ANGLE, 0);
+            }
+
+            if (angle > 0 && angle < 90) {
+                moving = true;
+            }
+            else {
+                moving = false;
             }
 
         }
@@ -88,23 +102,16 @@ public class Flipper implements Gizmo, Observable{
             else {
                 angle = Math.min(angle + DELTA_ANGLE, 0);
             }
+
+            if (angle < 0 && angle > -90) {
+                moving = true;
+            }
+            else {
+                moving = false;
+            }
         }
 
-//        lineSegments.forEach(lineSegment -> {
-//            double x1 = lineSegment.p1().x();
-//            double y1 = lineSegment.p1().y();
-//            double x2 = lineSegment.p2().x();
-//            double y2 = lineSegment.p2().y();
-//            double newX2 = x2*Math.cos(angle) - y2*Math.sin(angle);
-//            double newY2 = y2*Math.cos(angle) + x2*Math.sin(angle);
-//            lineSegment = new LineSegment(x1, y1, newX2, newY2);
-//        });
 
-//        double cX = corner2.getCenter().x();
-//        double cY = corner2.getCenter().y();
-//        double newCX = cX*Math.cos(angle) - cY*Math.sin(angle);
-//        double newCY = cY*Math.cos(angle) + cX*Math.sin(angle);
-//        corner2 = new Circle(newCX,newCY,corner2.getRadius());
 
         this.notifyObservers();
     }
@@ -114,65 +121,36 @@ public class Flipper implements Gizmo, Observable{
         double lineLength = length - width;
         double radianAngle = Math.toRadians(angle);
 
-        double otherAngle = Math.toRadians(angle+90);
+        LineSegment leftSide = new LineSegment(xpos,center.y(), xpos, center.y() + lineLength);
+        LineSegment rightSide = new LineSegment(xpos+width, center.y(), xpos + width, center.y() + lineLength);
 
-        double radius = width/2;
+        leftSide = Geometry.rotateAround(leftSide, center, new Angle(radianAngle));
+        rightSide = Geometry.rotateAround(rightSide, center, new Angle(radianAngle));
 
-        double centerX = xpos + radius;
-        double centerY = ypos + radius;
-        double lineXOffset = lineLength * Math.cos(otherAngle);
-        double lineYOffset = lineLength * Math.sin(otherAngle);
+        List<LineSegment> lines = new ArrayList<>();
+        lines.add(leftSide);
+        lines.add(rightSide);
 
-//        System.out.println("angle: " + angle + " radian: " + radianAngle + " cos: " + Math.cos(radianAngle) + " offset: " + lineXOffset);
-
-        double lineY = ypos + width/2;
-
-
-
-
-//        double x1 = radius * (Math.cos(radianAngle) * -1) + radius + xpos;
-//        double y1 = radius * (Math.sin(radianAngle) * -1) + radius + ypos;
-//
-//        double x2 = (Math.cos(radianAngle) * (width - radius)) + radius + xpos;
-//        double y2 = (Math.sin(radianAngle) * (width - radius)) + radius + xpos;
-//        double y2 = radius * (-Math.sin(radianAngle)) + radius + xpos + width;
-
-
-        double x1 = centerX + ((xpos - centerX) * Math.cos(radianAngle)) - ((lineY-centerY)*Math.sin(radianAngle));
-        double y1 = centerY + ((xpos - centerX) * Math.sin(radianAngle)) - ((lineY-centerY)*Math.cos(radianAngle));
-
-        double x2 = centerX + ((xpos+width) - centerX) * Math.cos(radianAngle) - (lineY-centerY)*Math.sin(radianAngle);
-        double y2 = centerY + ((xpos+width) - centerX) * Math.sin(radianAngle) - (lineY-centerY)*Math.cos(radianAngle);
-
-
-
-        System.out.println("x1: " + (x1+lineXOffset) + " y1: " + (y1+lineYOffset) + " x2: " + (x2+lineXOffset) + " y2: " + (y2+lineYOffset));
-
-
-//
-//        double x1 = (width/2) * Math.cos(radianAngle) - width/2;
-//        double y1 = (width/2) * Math.sin(radianAngle) + width/2;
-//
-//        double x2 = (width/2) * Math.cos(radianAngle) + width/2;
-//        double y2 = (width/2) * Math.sin(radianAngle) + width/2;
-
-        LineSegment side1 = new LineSegment(x1, y1, x1 + lineXOffset,y1 + lineYOffset);
-        LineSegment side2 = new LineSegment(x2, y2, x2 + lineXOffset, y2 + lineYOffset);
-
-
-//        System.out.println("x: " + x1);
-//        System.out.println("sidex: " + side1.p1().x());
-
-        ArrayList<LineSegment> list = new ArrayList<>();
-        list.add(side1);
-        list.add(side2);
-
-        return list;
+        return lines;
     }
 
-    public ArrayList<Circle> getCircles() {
-        //Perhaps returns a new array list of circles of a paticular size
-        return new ArrayList<>();
+    public List<Circle> getCircles() {
+        double lineLength = length - width;
+        double radianAngle = Math.toRadians(angle);
+        double radius = width/2;
+
+
+        Circle circleOne = new Circle(center, radius);
+        Circle circleTwo = new Circle(center.plus(new Vect(0, lineLength)), radius);
+
+        circleOne = Geometry.rotateAround(circleOne, center, new Angle(radianAngle));
+        circleTwo = Geometry.rotateAround(circleTwo, center, new Angle(radianAngle));
+
+        List<Circle> circles = new ArrayList<>();
+        circles.add(circleOne);
+        circles.add(circleTwo);
+
+        return circles;
     }
 
     @Override
@@ -245,5 +223,9 @@ public class Flipper implements Gizmo, Observable{
 
     public void setTriggered(boolean triggered) {
         this.triggered = triggered;
+    }
+
+    public boolean isMoving() {
+        return moving;
     }
 }

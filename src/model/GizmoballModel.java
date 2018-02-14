@@ -7,9 +7,7 @@ import util.Observable;
 import java.util.ArrayList;
 import java.util.List;
 
-import static util.Constants.FRICTION_MU;
-import static util.Constants.FRICTION_MU_2;
-import static util.Constants.GRAVITY;
+import static util.Constants.*;
 
 public class GizmoballModel implements Observable{
     private static final double ONE_L_UNIT = 1.0;
@@ -30,12 +28,12 @@ public class GizmoballModel implements Observable{
     private String id;
     private Gizmo collidedGizmo;
 
-    private Vect gravity = new Vect(0, GRAVITY);
+    private Vect gravity = new Vect(0, 0);
 
     public GizmoballModel() {
 
         gizmos = new ArrayList<>();
-        ball = new Ball(6,0,0,0, 1);
+        ball = new Ball(6,16,0,0, 1);
 
 //        wall = new LineSegment(0,0,20,0);
 
@@ -98,6 +96,29 @@ public class GizmoballModel implements Observable{
 
                     velocity = Geometry.reflectCircle(circle.getCenter(), ball.getCenter(), ball.getVelocity(), gizmo.getRCoefficient());
                     collidedGizmo = gizmo;
+                }
+            }
+
+            if (gizmo.getType() == GizmoType.LEFT_FLIPPER || gizmo.getType() == GizmoType.RIGHT_FLIPPER) {
+                if (((Flipper)gizmo).isMoving()) {
+                    System.out.println("trying");
+                    for (LineSegment line : gizmo.getLines()) {
+                        time = Geometry.timeUntilRotatingWallCollision(line,((Flipper) gizmo).getCenter(), Math.toRadians(FLIPPER_ANGULAR_VELOCITY), ball.getCircle(), ball.getVelocity());
+                        if (time < timeUntilCollision) {
+                            timeUntilCollision = time;
+                            velocity = Geometry.reflectRotatingWall(line, ((Flipper) gizmo).getCenter(), Math.toRadians(FLIPPER_ANGULAR_VELOCITY), ball.getCircle(), ball.getVelocity(), gizmo.getRCoefficient());
+                            collidedGizmo = gizmo;
+                        }
+                    }
+                    for (Circle circle : gizmo.getCircles()) {
+                        time = Geometry.timeUntilRotatingCircleCollision(circle, ((Flipper) gizmo).getCenter(), Math.toRadians(FLIPPER_ANGULAR_VELOCITY), ball.getCircle(), ball.getVelocity());
+                        if (time < timeUntilCollision) {
+                            timeUntilCollision = time;
+
+                            velocity = Geometry.reflectRotatingCircle(circle, ((Flipper) gizmo).getCenter(), Math.toRadians(FLIPPER_ANGULAR_VELOCITY), ball.getCircle(), ball.getVelocity(), gizmo.getRCoefficient());
+                            collidedGizmo = gizmo;
+                        }
+                    }
                 }
             }
         }
