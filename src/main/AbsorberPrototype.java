@@ -33,18 +33,15 @@ public class AbsorberPrototype extends Application {
 
         pane.setPrefSize(ONE_L_IN_PIXELS*20, ONE_L_IN_PIXELS*20);
 
-        Absorber absorber = new Absorber(0,19, 20,1, 1);
+        Absorber absorber = new Absorber(0,19, 20,20, "blah");
         AbsorberView absorberView = new AbsorberView(absorber);
-
 
         GizmoballModel model = new GizmoballModel();
         model.addGizmo(absorber);
-        model.addBall(2,1,0,0);
+        model.addBall(2,1,0,0, "B");
 
         Ball ball = model.getBall();
         BallView ballView = new BallView(ball);
-
-
 
         pane.getChildren().add(absorberView);
         pane.getChildren().add(ballView);

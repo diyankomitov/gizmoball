@@ -28,15 +28,15 @@ public class AbsorberView extends GizmoView implements Observer{
     }
 
 //    /* This is for button*/
-//    public AbsorberView() {
-//        x = 0;
-//        y = 0;
-//        absorberModel = null;
-//
-//        Rectangle rectangle = new Rectangle(ONE_L_IN_PIXELS, ONE_L_IN_PIXELS);
-//        this.getChildren().add(rectangle);
-//        rectangle.setFill(Color.PURPLE); //TODO: move elsewhere
-//    }
+    public AbsorberView() {
+        x = 0;
+        y = 0;
+        absorberModel = null;
+
+        Rectangle rectangle = new Rectangle(ONE_L_IN_PIXELS, ONE_L_IN_PIXELS);
+        this.getChildren().add(rectangle);
+        rectangle.setFill(Color.PURPLE); //TODO: move elsewhere
+    }
 
     @Override
     public void update() {

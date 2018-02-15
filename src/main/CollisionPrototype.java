@@ -51,7 +51,7 @@ public class CollisionPrototype extends Application {
 
         pane.getChildren().addAll(squareView, triangleView, circleView);
 //        model.addBall(6.5,2,0,0);
-        model.addBall(4.5, 2, 0, 0);
+        model.addBall(4.5, 2, 0, 0, "B");
 //        model.addBall(2.5, 2, 0, 0);
 
 

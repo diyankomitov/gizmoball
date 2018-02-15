@@ -34,11 +34,11 @@ public class  FlipperPrototype extends Application {
 
         pane.setPrefSize(ONE_L_IN_PIXELS*20, ONE_L_IN_PIXELS*20);
 
-        Flipper flipperL = new Flipper(3, 15, 0, LEFT );
-        Flipper flipperR = new Flipper(5, 15, 0, RIGHT );
+        Flipper flipperL = new Flipper(3, 15, 0, LEFT, "LF315" );
+        Flipper flipperR = new Flipper(5, 15, 0, RIGHT, "RF515" );
 
-        FlipperView flipperViewL = new FlipperView(flipperL, pane);
-        FlipperView flipperViewR = new FlipperView(flipperR, pane);
+        FlipperView flipperViewL = new FlipperView(flipperL);
+        FlipperView flipperViewR = new FlipperView(flipperR);
 
 
         pane.getChildren().add(flipperViewL);
@@ -47,7 +47,7 @@ public class  FlipperPrototype extends Application {
         GizmoballModel model = new GizmoballModel();
         model.addGizmo(flipperL);
         model.addGizmo(flipperR);
-        model.addBall(4,2,0,0);
+        model.addBall(4,2,0,0, "B");
 
         BallView ballView = new BallView(model.getBall());
         pane.getChildren().add(ballView);

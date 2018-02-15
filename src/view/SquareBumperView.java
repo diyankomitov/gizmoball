@@ -20,8 +20,18 @@ public class SquareBumperView extends GizmoView {
 
         square = new Rectangle(side, side);
         square.setFill(Color.RED); //TODO: put in css
-        square.setStyle("-fx-stroke: red; -fx-stroke-type: inside; -fx-stroke-width: 2");
 
+
+        this.getChildren().add(square);
+    }
+
+    public SquareBumperView() {
+        double side = ONE_L_IN_PIXELS;
+        isToggle = false;
+
+        square = new Rectangle(side, side);
+        square.setFill(Color.RED); //TODO: put in css
+        square.setStyle("-fx-stroke: red; -fx-stroke-type: inside; -fx-stroke-width: 2");
 
         this.getChildren().add(square);
     }

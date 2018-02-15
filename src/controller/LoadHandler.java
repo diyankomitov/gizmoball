@@ -22,6 +22,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
         this.stage = stage;
     }
 
+
     @Override
     public void handle(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -37,10 +38,20 @@ public class LoadHandler implements EventHandler<ActionEvent> {
         }
     }
 
+    public void clearBoard() {
+        board.clearBoard();
+        model.clearGizmos();
+
+    }
+
     public void loadGame(File file) {
         try {
             System.out.println("At top of loadGame");
+
             model = new GizmoballModel();
+
+            clearBoard();
+
             FileReader fileReader  = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             int j = 0;
@@ -62,9 +73,17 @@ public class LoadHandler implements EventHandler<ActionEvent> {
 
             model.getGizmos().forEach(gizmo -> {
 //                System.out.println(i);
-                System.out.println(gizmo);
-                board.addGizmo(gizmo);
-            });
+                        System.out.println(gizmo);
+                        board.addGizmo(gizmo);
+
+                    }
+
+
+
+            );
+            if(model.getBall()!=null){
+                board.addBall(model.getBall());
+            }
 
 
 
@@ -78,7 +97,8 @@ public class LoadHandler implements EventHandler<ActionEvent> {
     public void checkAction(String[] string){
         double x;
         double y;
-        Flipper flipper;
+        double x2;
+        double y2;
         switch(string[0]) {
             case "Triangle":
                 x = Double.parseDouble(string[2]);
@@ -98,22 +118,36 @@ public class LoadHandler implements EventHandler<ActionEvent> {
             case "LeftFlipper":
                 x = Double.parseDouble(string[2]);
                 y = Double.parseDouble(string[3]);
-                // TODO  need to edit flipper so given a name like the gizmos
-                flipper = new Flipper(x, y, 0 , FlipperDirection.LEFT);
+                model.addGizmo(x, y, GizmoType.LEFT_FLIPPER, string[1]);
                 break;
             case "RightFlipper" :
                 x = Double.parseDouble(string[2]);
                 y = Double.parseDouble(string[3]);
-                //TODO edit flipper
-                flipper = new Flipper(x, y, 0, FlipperDirection.RIGHT);
+                model.addGizmo(x, y, GizmoType.RIGHT_FLIPPER, string[1]);
                 break;
             case "Absorber" :
                 x = Double.parseDouble(string[2]);
                 y = Double.parseDouble(string[3]);
-                double x2 = Double.parseDouble(string[4]);
-                double y2 = Double.parseDouble(string[5]);
+                x2 = Double.parseDouble(string[4]);
+                y2 = Double.parseDouble(string[5]);
                 model.addAbsorber(x, y, x2, y2, string[1]);
+                break;
+            case "Ball":
+                x = Double.parseDouble(string[2]);
+                y = Double.parseDouble(string[3]);
+                x2 = Double.parseDouble(string[4]);
+                y2 = Double.parseDouble(string[5]);
+                model.addBall(x, y, x2, y2, string[1]);
+                break;
+            case "Delete":
+                if(string[1].charAt(0)=='B') {
+                    model.removeBall();
+                    board.removeBall();
+                }
+                model.removeGizmo(string[1]);
 
+
+                break;
             default:
                 break;
         }

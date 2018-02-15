@@ -16,4 +16,12 @@ public class GizmoView extends Group {
 //        this.setOnMouseReleased(event -> controller.onMouseReleased());
     }
 
+    public GizmoView() {
+//        this.setTranslateX(gizmo.getXCoord()*ONE_L_IN_PIXELS);
+//        this.setTranslateY(gizmo.getYCoord()*ONE_L_IN_PIXELS);
+//        this.setOnMousePressed(event -> controller.onMousePressed());
+//        this.setOnDragDetected(event -> controller.onDragDetected());
+//        this.setOnMouseDragged(controller::onMouseDragged);
+//        this.setOnMouseReleased(event -> controller.onMouseReleased());
+    }
 }
