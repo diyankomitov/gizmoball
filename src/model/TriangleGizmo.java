@@ -14,7 +14,7 @@ public class TriangleGizmo implements Gizmo {
     private final List<LineSegment> sides;
     private final List<Circle> corners;
     private GizmoType type = GizmoType.TRIANGLE;
-
+    private double angle = 0;
     private String name;
 
     public TriangleGizmo(double x, double y, double side, String name) {
@@ -86,5 +86,16 @@ public class TriangleGizmo implements Gizmo {
     @Override
     public double getYCoord() {
         return y;
+    }
+
+    public void rotate(){
+        angle += 90;
+        if(angle>=360){
+            angle -= 360;
+        }
+    }
+
+    public double getAngle(){
+        return angle;
     }
 }

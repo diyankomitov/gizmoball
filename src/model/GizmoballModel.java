@@ -285,10 +285,17 @@ public class GizmoballModel implements Observable{
         //add to that string array for file
         //TODO actually remove gizmo
     }
+
     public void rotateGizmo(String  id) {
         BoardState.add("Rotate " + id);
         //add to that string array for file
         //TODO actually rotate gizmo
+        Gizmo target = getGizmoByName(id);
+        if(target.getType() == GizmoType.TRIANGLE){
+            //Rotate
+            ((TriangleGizmo)target).rotate();
+
+        }
     }
 
     public void removeGizmo(String id) {
@@ -296,4 +303,5 @@ public class GizmoballModel implements Observable{
         BoardState.add("Delete " + id );
         gizmos.remove(getGizmoByName(id));
     }
+
 }

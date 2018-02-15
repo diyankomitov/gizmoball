@@ -146,8 +146,11 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                 }
                 model.removeGizmo(string[1]);
 
-
                 break;
+            case "Rotate":
+                //TODO call rotate gizmo on string[2]
+                model.rotateGizmo(string[1]);
+
             default:
                 break;
         }
