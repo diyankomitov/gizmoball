@@ -172,7 +172,7 @@ public class Flipper implements Gizmo, Observable{
 
     @Override
     public String getName() {
-        return "blah";
+        return name;
     }
 
     @Override

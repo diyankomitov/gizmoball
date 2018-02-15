@@ -23,19 +23,19 @@ public class Absorber implements Gizmo, Observable {
     private final List<LineSegment> sides;
     private final List<Circle> corners;
     private GizmoType type = GizmoType.ABSORBER;
-    private String name = "S";
+    private String name;
 
     private Ball ball;
 
-    public Absorber(double x, double y, double width, double height, int sCounter) {
+    public Absorber(double x, double y, double x2, double y2, String name) {
 
         this.x = x;
         this.y = y;
 
-        this.name = name.concat(Integer.toString(sCounter));
+        this.name = name;
 
-        this.width = width;
-        this.height = height;
+        this.width = x2 - x;
+        this.height = y2 - y;
 
         rCoefficient = Double.NEGATIVE_INFINITY;
 

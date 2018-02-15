@@ -21,8 +21,8 @@ public class AbsorberView extends GizmoView implements Observer{
         this.getChildren().add(rectangle);
         rectangle.setFill(Color.PURPLE); //TODO: move elsewhere
 
-        this.setTranslateX(x);
-        this.setTranslateY(y);
+//        this.setTranslateX(x);
+//        this.setTranslateY(y);
 
         absorberModel.subscribe(this);
     }

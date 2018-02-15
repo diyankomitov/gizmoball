@@ -47,6 +47,10 @@ public class GizmoballModel implements Observable{
 //        balls.add(ball);
     }
 
+    public void removeBall() {
+        ball = null;
+    }
+
     public void moveBall() {
         double moveTime = 0.05;
         ball.setVelocity(ball.getVelocity().plus(gravity.times(moveTime)));
@@ -165,6 +169,7 @@ public class GizmoballModel implements Observable{
             case LEFT_FLIPPER:
                 if(name.equals("")) {
                     gizmo = new Flipper(x, y, 0, FlipperDirection.LEFT, "LF"+(int)x + (int)y);
+
                 } else {
                     gizmo = new Flipper(x ,y, 0, FlipperDirection.LEFT, name);
                 }
@@ -193,8 +198,8 @@ public class GizmoballModel implements Observable{
 
     public boolean addAbsorber(double x, double y, double x2, double y2,String name){
 
+        return gizmos.add(new Absorber(x,y,x2,y2, name));
 
-        return false;
     }
 
     public void clearGizmos() {
@@ -214,6 +219,9 @@ public class GizmoballModel implements Observable{
         }
         return null;
     }
+
+
+
 
     public Gizmo getGizmoByCoords(double x, double y) {
         for(Gizmo g:gizmos) {
@@ -256,7 +264,8 @@ public class GizmoballModel implements Observable{
 
     public void removeGizmo(String id) {
         //add to that string array for file
-        BoardState.add("Remove " + id );
+        BoardState.add("Delete " + id );
         gizmos.remove(getGizmoByName(id));
+
     }
 }

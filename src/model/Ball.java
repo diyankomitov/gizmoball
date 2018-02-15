@@ -51,8 +51,8 @@ public class Ball implements Observable{
         notifyObservers();
     }
 
-    public String getId(){
-        return id;
+    public String getName(){
+        return name;
     }
 
     public double getX() {

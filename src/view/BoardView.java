@@ -2,14 +2,12 @@ package view;
 
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import model.Ball;
-import model.Flipper;
-import model.Gizmo;
-import model.GizmoballModel;
+import model.*;
 import util.Constants;
 import util.Observer;
 
 import java.util.Arrays;
+import java.util.Queue;
 
 public class BoardView extends GridPane implements Observer{
     private int curCol;
@@ -63,6 +61,10 @@ public class BoardView extends GridPane implements Observer{
         this.add(new BallView(), x, y);
     }
 
+    public void removeBall() {
+       // this.getChildren().remove();
+    }
+
     public void addGizmo(Gizmo gizmo){
         int x = (int) gizmo.getXCoord();
         int y = (int) gizmo.getYCoord();
@@ -80,19 +82,22 @@ public class BoardView extends GridPane implements Observer{
                 case LEFT_FLIPPER:
                     FlipperView flipperLeft = new FlipperView((Flipper)gizmo);
                     this.add(flipperLeft, x, y, 1, 2);
-
                     break;
                 case RIGHT_FLIPPER:
                     FlipperView flipperRight = new FlipperView((Flipper)gizmo);
                     this.add(flipperRight, x, y, 1, 2);
                     flipperRight.setX();
+                    break;
+                case ABSORBER:
+                    AbsorberView absorberView = new AbsorberView((Absorber)gizmo);
+                    this.add(absorberView, x, y, (int)((Absorber) gizmo).getWidth(), (int)((Absorber) gizmo).getHeight() );
+                    System.out.println(absorberView.getTranslateY());
+                    break;
 
             }
     }
 
-    public void removeGizmo() {
-        //todo remove gizmo from view
-    }
+
 
     public void clearBoard() {
         this.getChildren().clear();
