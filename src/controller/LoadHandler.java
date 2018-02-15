@@ -22,6 +22,9 @@ public class LoadHandler implements EventHandler<ActionEvent> {
         this.stage = stage;
     }
 
+    //TODO add key connects
+    //TODO add default options if input is incorrect ie missing params or wrong name/type
+    //TODO add alert message if loading fails
 
     @Override
     public void handle(ActionEvent event) {
