@@ -18,6 +18,7 @@ public class TriangularBumperView extends GizmoView {
 
         Polygon triangle = new Polygon(0.0, 0.0, 0.0, side, side, side);
         triangle.setFill(Color.GREEN); //TODO put in css
+        rotate(triangleGizmo.getAngle());
 
         this.getChildren().add(triangle);
     }
@@ -32,8 +33,8 @@ public class TriangularBumperView extends GizmoView {
         this.getChildren().add(triangle);
     }
 
-public void rotate(double angle){
+    public void rotate(double angle){
         this.setRotate(angle);
-}
+    }
 
 }
