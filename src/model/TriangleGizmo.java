@@ -14,7 +14,7 @@ public class TriangleGizmo implements Gizmo {
     private final List<LineSegment> sides;
     private final List<Circle> corners;
     private GizmoType type = GizmoType.TRIANGLE;
-    private double angle = 0;
+    private double angle = 90;
     private String name;
 
     public TriangleGizmo(double x, double y, double side, String name) {

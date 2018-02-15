@@ -140,7 +140,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                 model.addBall(x, y, x2, y2, string[1]);
                 break;
             case "Delete":
-                if(string[1].charAt(0)=='B') {
+                if(model.getBall()!=null && model.getBall().getName().equals(string[1])) {
                     model.removeBall();
                     board.removeBall();
                 }
@@ -148,9 +148,10 @@ public class LoadHandler implements EventHandler<ActionEvent> {
 
                 break;
             case "Rotate":
-                //TODO call rotate gizmo on string[2]
-                model.rotateGizmo(string[1]);
 
+                model.rotateGizmo(string[1]);
+                break;
+            //TODO add key connects
             default:
                 break;
         }
