@@ -18,4 +18,9 @@ public class TriangularBumperView extends GizmoView {
 
         this.getChildren().add(triangle);
     }
+
+public void rotate(double angle){
+        this.setRotate(angle);
+}
+
 }

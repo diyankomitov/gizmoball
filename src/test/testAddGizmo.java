@@ -2,10 +2,7 @@ package test;
 
 
 import controller.GizmoballController;
-import model.Ball;
-import model.Gizmo;
-import model.GizmoType;
-import model.GizmoballModel;
+import model.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -88,6 +85,35 @@ public class testAddGizmo {
         assertEquals(gizmoballModel.getGizmoByCoords(1, 1), gizmoballModel.getGizmos().get(0));
     }
 
+    @Test
+    public void testRotate90(){
+        gizmoballModel.addGizmo(1, 1, GizmoType.TRIANGLE, "T");
+        gizmoballModel.rotateGizmo("T");
+        assertEquals(((TriangleGizmo)gizmoballModel.getGizmoByName("T")).getAngle(), 90.0, 0);
+    }
+
+    @Test
+    public void testRotate360(){
+        gizmoballModel.addGizmo(1, 1, GizmoType.TRIANGLE, "T");
+        gizmoballModel.rotateGizmo("T");
+        gizmoballModel.rotateGizmo("T");
+        gizmoballModel.rotateGizmo("T");
+        gizmoballModel.rotateGizmo("T");
+        assertEquals(((TriangleGizmo)gizmoballModel.getGizmoByName("T")).getAngle(), 0, 0);
+    }
+
+    @Test
+    public void testRotateOver360(){
+        gizmoballModel.addGizmo(1, 1, GizmoType.TRIANGLE, "T");
+        gizmoballModel.rotateGizmo("T");
+        gizmoballModel.rotateGizmo("T");
+        gizmoballModel.rotateGizmo("T");
+        gizmoballModel.rotateGizmo("T");
+        gizmoballModel.rotateGizmo("T");
+        gizmoballModel.rotateGizmo("T");
+        gizmoballModel.rotateGizmo("T");
+        assertEquals(((TriangleGizmo)gizmoballModel.getGizmoByName("T")).getAngle(), 270, 0);
+    }
 
 
 
