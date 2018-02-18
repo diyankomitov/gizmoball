@@ -4,9 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import model.Flipper;
-import view.FlipperDirection;
-import model.GizmoType;
+import model.Absorber;
+import model.BoardObjectType;
 import model.GizmoballModel;
 import view.BoardView;
 
@@ -16,10 +15,11 @@ public class LoadHandler implements EventHandler<ActionEvent> {
     private Stage stage;
     private GizmoballModel model; //Alistair thinks it might needs passed
     private BoardView board;
-    public LoadHandler(Stage stage, BoardView board) {
+    public LoadHandler(Stage stage, BoardView board, GizmoballModel model) {
         this.board = board;
 
         this.stage = stage;
+        this.model = model;
     }
 
 
@@ -47,8 +47,6 @@ public class LoadHandler implements EventHandler<ActionEvent> {
     public void loadGame(File file) {
         try {
             System.out.println("At top of loadGame");
-
-            model = new GizmoballModel();
 
             clearBoard();
 
@@ -81,11 +79,23 @@ public class LoadHandler implements EventHandler<ActionEvent> {
 
 
             );
-            if(model.getBall()!=null){
-                board.addBall(model.getBall());
-            }
+            model.getBalls().forEach(ball -> {
+                if(ball!=null){
+                    board.addBall(ball);
+                }
+            });
 
 
+
+
+            Absorber absorber = (Absorber) model.getGizmoByName("A");
+            board.getScene().setOnKeyPressed(keyEvent -> {
+                switch (keyEvent.getCode()) {
+                    case G:
+                        absorber.shootBall();
+                        break;
+                }
+            });
 
         } catch (FileNotFoundException e) {
             System.out.println("Error when trying to load the game. :(");
@@ -103,27 +113,27 @@ public class LoadHandler implements EventHandler<ActionEvent> {
             case "Triangle":
                 x = Double.parseDouble(string[2]);
                 y = Double.parseDouble(string[3]);
-                model.addGizmo(x, y, GizmoType.TRIANGLE, string[1]);
+                model.addGizmo(x, y, BoardObjectType.TRIANGLE, string[1]);
                 break;
             case "Square":
                 x = Double.parseDouble(string[2]);
                 y = Double.parseDouble(string[3]);
-                model.addGizmo(x, y, GizmoType.SQUARE, string[1]);
+                model.addGizmo(x, y, BoardObjectType.SQUARE, string[1]);
                 break;
             case "Circle":
                 x = Double.parseDouble(string[2]);
                 y = Double.parseDouble(string[3]);
-                model.addGizmo(x, y, GizmoType.CIRCLE, string[1]);
+                model.addGizmo(x, y, BoardObjectType.CIRCLE, string[1]);
                 break;
             case "LeftFlipper":
                 x = Double.parseDouble(string[2]);
                 y = Double.parseDouble(string[3]);
-                model.addGizmo(x, y, GizmoType.LEFT_FLIPPER, string[1]);
+                model.addGizmo(x, y, BoardObjectType.LEFT_FLIPPER, string[1]);
                 break;
             case "RightFlipper" :
                 x = Double.parseDouble(string[2]);
                 y = Double.parseDouble(string[3]);
-                model.addGizmo(x, y, GizmoType.RIGHT_FLIPPER, string[1]);
+                model.addGizmo(x, y, BoardObjectType.RIGHT_FLIPPER, string[1]);
                 break;
             case "Absorber" :
                 x = Double.parseDouble(string[2]);

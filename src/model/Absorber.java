@@ -22,7 +22,7 @@ public class Absorber implements Gizmo, Observable {
 
     private final List<LineSegment> sides;
     private final List<Circle> corners;
-    private GizmoType type = GizmoType.ABSORBER;
+    private BoardObjectType type = BoardObjectType.ABSORBER;
     private String name;
 
     private Ball ball;
@@ -102,7 +102,7 @@ public class Absorber implements Gizmo, Observable {
     }
 
     @Override
-    public GizmoType getType() {
+    public BoardObjectType getType() {
         return type;
     }
 
@@ -114,6 +114,21 @@ public class Absorber implements Gizmo, Observable {
     @Override
     public double getYCoord() {
         return y;
+    }
+
+    @Override
+    public boolean isRotating() {
+        return false;
+    }
+
+    @Override
+    public Vect getCenter() {
+        return new Vect(x+(width/2), y+(height/2));
+    }
+
+    @Override
+    public double getAngularVelocity() {
+        return 0;
     }
 
     public void addBall(Ball ball) {

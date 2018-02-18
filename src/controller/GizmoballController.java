@@ -5,6 +5,7 @@ import javafx.geometry.HorizontalDirection;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
+import model.GizmoballModel;
 import view.BoardView;
 
 import java.io.File;
@@ -24,6 +25,7 @@ public class GizmoballController {
     private BuildController buildViewController;
     @FXML
     private PlayController playViewController;
+    private GizmoballModel model;
 
 
     public GizmoballController() {
@@ -37,8 +39,8 @@ public class GizmoballController {
         });
 
 
-        SwitchModeHandler switchToPlay = new SwitchModeHandler(buildView, playView, RIGHT);
-        SwitchModeHandler switchToBuild = new SwitchModeHandler(playView, buildView, LEFT);
+        SwitchModeHandler switchToPlay = new SwitchModeHandler(buildView, playView, buildViewController, playViewController, RIGHT);
+        SwitchModeHandler switchToBuild = new SwitchModeHandler(playView, buildView,  buildViewController, playViewController, LEFT);
 
         buildViewController.setSwitchHandler(switchToPlay);
         playViewController.setSwitchHandler(switchToBuild);
@@ -54,5 +56,10 @@ public class GizmoballController {
 
     public void setLoadHandler(LoadHandler loadHandler) {
         load.setOnAction(loadHandler);
+    }
+
+    public void setModel(GizmoballModel model) {
+        this.model = model;
+        playViewController.setModel(model);
     }
 }

@@ -35,7 +35,7 @@ public class BuildController {
     @FXML
     public void initialize() {
         toggleGrid.setOnAction(event -> {
-            board.toggleGrid();
+            toggleGrid();
         });
 
         ballSpeedField.textProperty().bindBidirectional(ballSpeedSlider.valueProperty(), new NumberStringConverter());
@@ -52,7 +52,15 @@ public class BuildController {
         return board;
     }
 
+    public void toggleGrid() {
+        board.toggleGrid();
+    }
+
     public void setSwitchHandler(SwitchModeHandler switchToPlay) {
         switchButton.setOnAction(switchToPlay);
+    }
+
+    public void setBoard(BoardView board) {
+        this.board = board;
     }
 }

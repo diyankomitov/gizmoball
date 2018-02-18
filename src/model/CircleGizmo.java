@@ -13,7 +13,7 @@ public class CircleGizmo implements Gizmo {
     private final double diameter;
     private final double rCoefficient;
     private List<Circle> circles;
-    private GizmoType type = GizmoType.CIRCLE;
+    private BoardObjectType type = BoardObjectType.CIRCLE;
     private String name;
 
     public CircleGizmo(double x, double y, double diameter, String name) {
@@ -35,7 +35,7 @@ public class CircleGizmo implements Gizmo {
     @Override
     public List<Circle> getCircles() {
         circles.clear();
-        Circle circle = new Circle(x,y,diameter/2);
+        Circle circle = new Circle(x+diameter/2,y+diameter/2,diameter/2);
         circles.add(circle);
         return circles;
     }
@@ -57,7 +57,7 @@ public class CircleGizmo implements Gizmo {
     }
 
     @Override
-    public GizmoType getType() {
+    public BoardObjectType getType() {
         return type;
     }
 
@@ -69,5 +69,20 @@ public class CircleGizmo implements Gizmo {
     @Override
     public double getYCoord() {
         return y;
+    }
+
+    @Override
+    public boolean isRotating() {
+        return false;
+    }
+
+    @Override
+    public Vect getCenter() {
+        return new Vect(x+(diameter/2), y+(diameter/2));
+    }
+
+    @Override
+    public double getAngularVelocity() {
+        return 0;
     }
 }

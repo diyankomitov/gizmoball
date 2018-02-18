@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static util.Constants.DELTA_ANGLE;
+import static util.Constants.FLIPPER_ANGULAR_VELOCITY;
 import static util.Constants.ONE_L;
 import static view.FlipperDirection.LEFT;
 import static view.FlipperDirection.RIGHT;
@@ -30,11 +31,9 @@ public class Flipper implements Gizmo, Observable{
     private String name;
     private double offset;
 
-    public Vect getCenter() {
-        return center;
-    }
-
     private Vect center;
+    private boolean rotating;
+    private double angularVelocity;
 
     /**
      * Constructor
@@ -176,12 +175,12 @@ public class Flipper implements Gizmo, Observable{
     }
 
     @Override
-    public GizmoType getType() {
+    public BoardObjectType getType() {
         switch (direction) {
             case RIGHT:
-                return GizmoType.RIGHT_FLIPPER;
+                return BoardObjectType.RIGHT_FLIPPER;
             case LEFT:
-                return GizmoType.LEFT_FLIPPER;
+                return BoardObjectType.LEFT_FLIPPER;
                 default: return null;
         }
     }
@@ -196,6 +195,20 @@ public class Flipper implements Gizmo, Observable{
         return ypos;
     }
 
+    @Override
+    public boolean isRotating() {
+        return rotating;
+    }
+
+    @Override
+    public Vect getCenter() {
+        return center;
+    }
+
+    @Override
+    public double getAngularVelocity() {
+        return Math.toRadians(FLIPPER_ANGULAR_VELOCITY);
+    }
 
     public double getXpos() {
         return xpos;

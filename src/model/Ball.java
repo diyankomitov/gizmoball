@@ -1,14 +1,13 @@
 package model;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
 import physics.Circle;
 import physics.Vect;
 import util.Observable;
 
-public class Ball implements Observable{
+public class Ball implements BoardObject, Observable{
     private final double diameter;
     private Vect velocity;
-    private String id = "B";
+    private Vect potentialVelocity;
     private double x;
     private double y;
     private boolean inAbsorber = false;
@@ -20,7 +19,7 @@ public class Ball implements Observable{
         this.name=name;
         this.velocity = new Vect(xv, yv);
         this.diameter = 0.5;
-
+        potentialVelocity = new Vect(0,0);
     }
 
     public Circle getCircle() {
@@ -51,6 +50,14 @@ public class Ball implements Observable{
         notifyObservers();
     }
 
+    public void setPotentialVelocity(Vect potentialVelocity) {
+        this.potentialVelocity = potentialVelocity;
+    }
+
+    public void applyPotentialVelocity() {
+        velocity = potentialVelocity;
+    }
+
     public String getName(){
         return name;
     }
@@ -79,5 +86,10 @@ public class Ball implements Observable{
 
     public void setInAbsorber(boolean inAbsorber) {
         this.inAbsorber = inAbsorber;
+    }
+
+    @Override
+    public BoardObjectType getType() {
+        return BoardObjectType.BALL;
     }
 }

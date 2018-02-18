@@ -48,7 +48,6 @@ public class BoardView extends Pane implements Observer{
             }
         }
         isGridOn = true;
-
     }
 
     public void toggleGrid() {
@@ -143,8 +142,11 @@ public class BoardView extends Pane implements Observer{
 
     @Override
     public void update() {
-        ballView.setTranslateX(model.getBall().getX() * cellSize);
-        ballView.setTranslateY(model.getBall().getY() * cellSize);
+        model.getBalls().forEach(ball -> {
+
+            ballView.setTranslateX(ball.getX() * cellSize);
+            ballView.setTranslateY(ball.getY() * cellSize);
+        });
 
     }
 }

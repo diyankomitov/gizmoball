@@ -1,7 +1,6 @@
 package model;
 
 import physics.Circle;
-import physics.Geometry;
 import physics.LineSegment;
 import physics.Vect;
 
@@ -15,7 +14,7 @@ public class SquareGizmo implements Gizmo {
     private final double rCoefficient;
     private final List<LineSegment> sides;
     private final List<Circle> corners;
-    private GizmoType type = GizmoType.SQUARE;
+    private BoardObjectType type = BoardObjectType.SQUARE;
 
     private String name;
 
@@ -82,7 +81,7 @@ public class SquareGizmo implements Gizmo {
     }
 
     @Override
-    public GizmoType getType() {
+    public BoardObjectType getType() {
         return type;
     }
 
@@ -94,5 +93,20 @@ public class SquareGizmo implements Gizmo {
     @Override
     public double getYCoord() {
         return y;
+    }
+
+    @Override
+    public boolean isRotating() {
+        return false;
+    }
+
+    @Override
+    public Vect getCenter() {
+        return new Vect(x+width, y+width);
+    }
+
+    @Override
+    public double getAngularVelocity() {
+        return 0;
     }
 }

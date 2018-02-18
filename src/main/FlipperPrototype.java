@@ -49,8 +49,11 @@ public class  FlipperPrototype extends Application {
         model.addGizmo(flipperR);
         model.addBall(4,2,0,0, "B");
 
-        BallView ballView = new BallView(model.getBall());
-        pane.getChildren().add(ballView);
+
+        model.getBalls().forEach(ball -> {
+            BallView ballView = new BallView(ball);
+            pane.getChildren().add(ballView);
+        });
 //
 //        pane.getChildren().addAll(flipperViewL.getPoint(), flipperViewL.getPoint2(), flipperViewL.getPoint3(), flipperViewL.getPoint4());
 //        pane.getChildren().addAll(flipperViewR.getPoint(), flipperViewR.getPoint2(), flipperViewR.getPoint3(), flipperViewR.getPoint4());
@@ -66,7 +69,7 @@ public class  FlipperPrototype extends Application {
                         actionEvent -> {
                             flipperL.rotate();
                             flipperR.rotate();
-                            model.moveBall();
+                            model.moveBalls();
                         } //moves the ball
                 ),
                 new KeyFrame(

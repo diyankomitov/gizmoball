@@ -2,11 +2,11 @@ package model;
 
 import physics.Circle;
 import physics.LineSegment;
+import physics.Vect;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public interface Gizmo {
+public interface Gizmo extends BoardObject {
 
     List<LineSegment> getLines();
     List<Circle> getCircles();
@@ -17,10 +17,13 @@ public interface Gizmo {
 
     String getName();
 
-    GizmoType getType();
-
-
     double getXCoord();
 
     double getYCoord();
+
+    boolean isRotating();
+
+    Vect getCenter();
+
+    double getAngularVelocity();
 }

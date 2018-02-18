@@ -40,17 +40,19 @@ public class AbsorberPrototype extends Application {
         model.addGizmo(absorber);
         model.addBall(2,1,0,0, "B");
 
-        Ball ball = model.getBall();
-        BallView ballView = new BallView(ball);
+
+        model.getBalls().forEach(ball -> {
+            BallView ballView = new BallView(ball);
+            pane.getChildren().add(ballView);
+        });
 
         pane.getChildren().add(absorberView);
-        pane.getChildren().add(ballView);
 
         Timeline timeline = new Timeline(
                 new KeyFrame(   //keyframes allow for something to happen at a given time
                         Duration.ZERO,  //keyframe that has zero duration, or it happens immediately
                         actionEvent -> {
-                            model.moveBall();
+                            model.moveBalls();
                         } //moves the ball
                 ),
                 new KeyFrame(

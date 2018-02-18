@@ -14,6 +14,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.Absorber;
+import model.GizmoballModel;
 
 
 public class  Main extends Application {
@@ -36,9 +38,12 @@ public class  Main extends Application {
         Scene scene = new Scene(root);
         scene.getStylesheets().add("view/css/styles.css");
 
+        GizmoballModel model = new GizmoballModel();
+
         GizmoballController gizmoballController = mainFXML.getController();
         gizmoballController.setSaveHandler(new SaveHandler(primaryStage));
-        gizmoballController.setLoadHandler(new LoadHandler(primaryStage, gizmoballController.getBoard()));
+        gizmoballController.setLoadHandler(new LoadHandler(primaryStage, gizmoballController.getBoard(), model));
+        gizmoballController.setModel(model);
 
         primaryStage.setScene(scene);
         primaryStage.show();

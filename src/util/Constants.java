@@ -12,5 +12,6 @@ public class Constants {
     public static final double GRAVITY = 25 * ONE_L;
     public static final double FRICTION_MU = 0.025;
     public static final double FRICTION_MU_2 = 0.025 * ONE_L;
+    public static final double BOARD_WIDTH = 20;
 
 }

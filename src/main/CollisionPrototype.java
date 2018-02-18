@@ -51,12 +51,24 @@ public class CollisionPrototype extends Application {
 
         pane.getChildren().addAll(squareView, triangleView, circleView);
 //        model.addBall(6.5,2,0,0);
-        model.addBall(4.5, 2, 0, 0, "B");
-//        model.addBall(2.5, 2, 0, 0);
+        model.addBall(2, 2, 4, 0, "B1");
+        model.addBall(2, 3, 4, 0, "B2");
+        model.addBall(2, 4, 4, 0, "B3");
+        model.addBall(2, 5, 4, 0, "B4");
+        model.addBall(2, 6, 4, 0, "B5");
+        model.addBall(2, 7, 4, 0, "B6");
+        model.addBall(18, 2, -4, 0, "B7");
+        model.addBall(18, 3, -4, 0, "B8");
+        model.addBall(18, 4, -4, 0, "B9");
+        model.addBall(18, 5, -4, 0, "B10");
+        model.addBall(18, 6, -4, 0, "B11");
+        model.addBall(18, 7, -4, 0, "B12");
 
 
-        BallView ballView = new BallView(model.getBall());
-        pane.getChildren().add(ballView);
+        model.getBalls().forEach(ball -> {
+            BallView ballView = new BallView(ball);
+            pane.getChildren().add(ballView);
+        });
 
         Scene scene = new Scene(pane);
 
@@ -64,7 +76,7 @@ public class CollisionPrototype extends Application {
                 new KeyFrame(   //keyframes allow for something to happen at a given time
                         Duration.ZERO,  //keyframe that has zero duration, or it happens immediately
                         actionEvent -> {
-                            model.moveBall();
+                            model.moveBalls();
                         } //moves the ball
                 ),
                 new KeyFrame(
