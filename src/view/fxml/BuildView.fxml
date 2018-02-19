@@ -29,7 +29,7 @@
 
                     <Separator/>
 
-                    <Button fx:id="switchButton" text="Switch to Play"/>
+                    <Button fx:id="switchButton" text="Switch to Run"/>
                     <Button fx:id="toggleGrid" text="Toggle Grid"/>
                     <Button fx:id="clearBoardButton" text="Clear Board"/>
                 </ToolBar>
