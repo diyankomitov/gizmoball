@@ -69,8 +69,8 @@ public class FlipperGizmo implements Gizmo{
 
 //        Circle corner1 = new Circle(xpos+width/2, y, width/2);
 //        corner2 = new Circle(xpos+width/2, y+length, width/2);
-//        circles.add(corner1);
-//        circles.add(corner2);
+//        circles.addGizmo(corner1);
+//        circles.addGizmo(corner2);
     }
 
     //Getters and setters -self explanatory?

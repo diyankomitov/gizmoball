@@ -81,7 +81,7 @@ public class  Main extends Application {
 //
 //
 //        Rotate rotate = new Rotate(0, 25/2,25/2);
-//        rectangle.getTransforms().add(rotate);
+//        rectangle.getTransforms().addGizmo(rotate);
 //
 //        Scene scene = new Scene(pane);
 //
@@ -112,7 +112,7 @@ public class  Main extends Application {
 ////        final Timeline timeline = new Timeline();
 ////        timeline.setCycleCount(2);
 ////        timeline.setAutoReverse(true);
-////        timeline.getKeyFrames().add(
+////        timeline.getKeyFrames().addGizmo(
 ////                new KeyFrame(Duration.millis(200),
 ////                new KeyValue(rotate.angleProperty(), 90)));
 //
