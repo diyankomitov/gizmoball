@@ -209,7 +209,7 @@ public class GizmoballModel{
     }
 
 //    public void addGizmo(Gizmo gizmo) {
-//        board.add(gizmo);
+//        board.addGizmo(gizmo);
 //    }
 
     public boolean addGizmo(double x, double y, String name, BoardObjectType type) {
@@ -263,14 +263,14 @@ public class GizmoballModel{
                 return false;
             }
         }
-        board.add(gizmo);
+        board.addGizmo(gizmo);
         BoardState.add(type + " " + name + " " + x + " " + y);
         return true;
     }
 
     public boolean addAbsorber(double x, double y, double x2, double y2,String name){
 
-        return board.add(new AbsorberGizmo(x,y,x2,y2, name));
+        return board.addGizmo(new AbsorberGizmo(x,y,x2,y2, name));
 
     }
 
@@ -332,14 +332,14 @@ public class GizmoballModel{
 //    }
 
 //    public void moveGizmo(int fromX, int fromY, int toX, int toY) {
-//        BoardState.add("Move " + id + " " + toX + " " + toY);
-//        //add to that string array for file
+//        BoardState.addGizmo("Move " + id + " " + toX + " " + toY);
+//        //addGizmo to that string array for file
 //        //TODO actually remove gizmo
 //    }
 
     public void rotateGizmo(String  id) {
         BoardState.add("Rotate " + id);
-        //add to that string array for file
+        //addGizmo to that string array for file
         //TODO actually rotate gizmo
         Gizmo target = getGizmoByName(id);
         if(target.getType() == BoardObjectType.TRIANGLE){
@@ -350,7 +350,7 @@ public class GizmoballModel{
     }
 
     public void removeGizmo(String id) {
-        //add to that string array for file
+        //addGizmo to that string array for file
         BoardState.add("Delete " + id );
         board.remove(getGizmoByName(id));
     }

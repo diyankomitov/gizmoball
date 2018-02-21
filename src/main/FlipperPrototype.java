@@ -59,7 +59,7 @@ public class  FlipperPrototype extends Application {
 //        pane.getChildren().addAll(flipperViewR.getPoint(), flipperViewR.getPoint2(), flipperViewR.getPoint3(), flipperViewR.getPoint4());
 
         // Rotate rotate = new Rotate(0, ONE_L_IN_PIXELS/8, ONE_L_IN_PIXELS/8);
-        //rectangleR.getTransforms().add(rotate);
+        //rectangleR.getTransforms().addGizmo(rotate);
 
         Scene scene = new Scene(pane);
 

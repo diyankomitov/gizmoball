@@ -14,10 +14,12 @@ public class CircleGizmo implements Gizmo {
     private double y;
     private final double diameter;
     private final double rCoefficient;
-    private List<Circle> circles;
+    private Circle circle;
     private BoardObjectType type = BoardObjectType.CIRCLE;
     private String name;
     private List<Observer> observers;
+    private double angle;
+    private boolean triggered;
 
     public CircleGizmo(double x, double y, double diameter, String name) {
         this.x = x;
@@ -27,8 +29,10 @@ public class CircleGizmo implements Gizmo {
 
         this.diameter = diameter;
         rCoefficient = 1.0;
-        circles = new ArrayList<>();
+        circle = new Circle();
         observers = new ArrayList<>();
+
+        triggered = false;
     }
 
     @Override
@@ -45,19 +49,34 @@ public class CircleGizmo implements Gizmo {
     }
 
     @Override
-    public double getRCoefficient() {
-        return rCoefficient;
-    }
-
-    @Override
-    public void setCoords(double x, double y) {
+    public void setCoordinates(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
     @Override
-    public String getName() {
-        return name;
+    public double getRCoefficient() {
+        return rCoefficient;
+    }
+
+    @Override
+    public void rotate() {
+        //TODO
+    }
+
+    @Override
+    public double getAngle() {
+        return 0;
+    }
+
+    @Override
+    public void trigger() {
+        triggered = true;
+    }
+
+    @Override
+    public void sendTrigger() {
+        //TODO: implement this as we implement collision
     }
 
     @Override
@@ -65,30 +84,6 @@ public class CircleGizmo implements Gizmo {
         return type;
     }
 
-    @Override
-    public double getXCoord() {
-        return x;
-    }
-
-    @Override
-    public double getYCoord() {
-        return y;
-    }
-
-    @Override
-    public boolean isRotating() {
-        return false;
-    }
-
-    @Override
-    public Vect getCenter() {
-        return new Vect(x+(diameter/2), y+(diameter/2));
-    }
-
-    @Override
-    public double getAngularVelocity() {
-        return 0;
-    }
 
     @Override
     public List<Observer> getObservers() {
