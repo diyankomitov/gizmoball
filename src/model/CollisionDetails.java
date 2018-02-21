@@ -1,12 +1,14 @@
 package model;
 
+import model.board.Ball;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class CollissionDetails {
+public class CollisionDetails {
     private Map<Ball, Double> details;
 
-    public CollissionDetails() {
+    public CollisionDetails() {
         this.details = new HashMap<>();
     }
 

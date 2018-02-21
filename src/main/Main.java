@@ -3,18 +3,11 @@ package main;
 import controller.GizmoballController;
 import controller.LoadHandler;
 import controller.SaveHandler;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import model.Absorber;
 import model.GizmoballModel;
 
 

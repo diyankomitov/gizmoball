@@ -34,7 +34,6 @@ public class PlayController {
 
 
 
-
     }
 
     public void setModel(GizmoballModel model) {
@@ -44,7 +43,7 @@ public class PlayController {
                 new KeyFrame(   //keyframes allow for something to happen at a given time
                         Duration.ZERO,  //keyframe that has zero duration, or it happens immediately
                         actionEvent -> {
-                            model.moveBalls();
+//                            model.moveBalls();
                         } //moves the ball
                 ),
                 new KeyFrame(

@@ -2,8 +2,7 @@ package view;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import model.CircleGizmo;
-import util.Constants;
+import model.board.gizmos.CircleGizmo;
 
 import static util.Constants.ONE_L_IN_PIXELS;
 

@@ -1,26 +1,25 @@
 package util;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public interface Observable {
-    List<Observer> observers = new ArrayList<>();
 
     default void notifyObservers() {
-        observers.forEach(Observer::update);
+        getObservers().forEach(Observer::update);
     }
 
     default void subscribe(Observer observer) {
         if (observer == null) {
             throw new NullPointerException();
         }
-        if (!observers.contains(observer)) {
-            observers.add(observer);
+        if (!getObservers().contains(observer)) {
+            getObservers().add(observer);
         }
     }
 
     default void unsubscribe(Observer observer) {
-        observers.remove(observer);
+        getObservers().remove(observer);
     }
+
+    List<Observer> getObservers();
 }

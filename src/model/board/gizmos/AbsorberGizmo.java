@@ -1,16 +1,19 @@
-package model;
+package model.board.gizmos;
 
+import model.board.Ball;
+import model.board.BoardObjectType;
 import physics.Circle;
 import physics.LineSegment;
 import physics.Vect;
 import util.Observable;
+import util.Observer;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static util.Constants.ONE_L;
 
-public class Absorber implements Gizmo, Observable {
+public class AbsorberGizmo implements Gizmo {
 
     private double x;
     private double y;
@@ -26,8 +29,9 @@ public class Absorber implements Gizmo, Observable {
     private String name;
 
     private Ball ball;
+    private List<Observer> observers;
 
-    public Absorber(double x, double y, double x2, double y2, String name) {
+    public AbsorberGizmo(double x, double y, double x2, double y2, String name) {
 
         this.x = x;
         this.y = y;
@@ -41,6 +45,7 @@ public class Absorber implements Gizmo, Observable {
 
         sides = new ArrayList<>();
         corners = new ArrayList<>();
+        observers = new ArrayList<>();
     }
 
     public void shootBall() {
@@ -161,5 +166,10 @@ public class Absorber implements Gizmo, Observable {
 
     public void setWidth(double width) {
         this.width = width;
+    }
+
+    @Override
+    public List<Observer> getObservers() {
+        return observers;
     }
 }

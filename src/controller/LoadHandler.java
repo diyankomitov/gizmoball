@@ -4,8 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import model.Absorber;
-import model.BoardObjectType;
+import model.board.gizmos.AbsorberGizmo;
+import model.board.BoardObjectType;
 import model.GizmoballModel;
 import view.BoardView;
 
@@ -88,7 +88,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
 
 
 
-            Absorber absorber = (Absorber) model.getGizmoByName("A");
+            AbsorberGizmo absorber = (AbsorberGizmo) model.getGizmoByName("A");
             board.getScene().setOnKeyPressed(keyEvent -> {
                 switch (keyEvent.getCode()) {
                     case G:
@@ -113,27 +113,27 @@ public class LoadHandler implements EventHandler<ActionEvent> {
             case "Triangle":
                 x = Double.parseDouble(string[2]);
                 y = Double.parseDouble(string[3]);
-                model.addGizmo(x, y, BoardObjectType.TRIANGLE, string[1]);
+                model.addGizmo(x, y, string[1], BoardObjectType.TRIANGLE);
                 break;
             case "Square":
                 x = Double.parseDouble(string[2]);
                 y = Double.parseDouble(string[3]);
-                model.addGizmo(x, y, BoardObjectType.SQUARE, string[1]);
+                model.addGizmo(x, y, string[1], BoardObjectType.SQUARE);
                 break;
             case "Circle":
                 x = Double.parseDouble(string[2]);
                 y = Double.parseDouble(string[3]);
-                model.addGizmo(x, y, BoardObjectType.CIRCLE, string[1]);
+                model.addGizmo(x, y, string[1], BoardObjectType.CIRCLE);
                 break;
             case "LeftFlipper":
                 x = Double.parseDouble(string[2]);
                 y = Double.parseDouble(string[3]);
-                model.addGizmo(x, y, BoardObjectType.LEFT_FLIPPER, string[1]);
+                model.addGizmo(x, y, string[1], BoardObjectType.LEFT_FLIPPER);
                 break;
             case "RightFlipper" :
                 x = Double.parseDouble(string[2]);
                 y = Double.parseDouble(string[3]);
-                model.addGizmo(x, y, BoardObjectType.RIGHT_FLIPPER, string[1]);
+                model.addGizmo(x, y, string[1], BoardObjectType.RIGHT_FLIPPER);
                 break;
             case "Absorber" :
                 x = Double.parseDouble(string[2]);

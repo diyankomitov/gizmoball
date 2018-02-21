@@ -2,8 +2,7 @@ package view;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import model.SquareGizmo;
-import util.Constants;
+import model.board.gizmos.SquareGizmo;
 
 import static util.Constants.ONE_L_IN_PIXELS;
 

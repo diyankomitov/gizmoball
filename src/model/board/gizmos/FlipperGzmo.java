@@ -1,7 +1,9 @@
-package model;
+package model.board.gizmos;
 
 import javafx.scene.paint.Color;
+import model.board.BoardObjectType;
 import physics.*;
+import util.Observer;
 import view.FlipperDirection;
 import util.Observable;
 
@@ -14,13 +16,12 @@ import static util.Constants.ONE_L;
 import static view.FlipperDirection.LEFT;
 import static view.FlipperDirection.RIGHT;
 
-public class Flipper implements Gizmo, Observable{
+public class FlipperGzmo implements Gizmo{
 
     private double xpos;
     private double ypos;
     private final double width;
     private final double length;
-    private Circle corner2;
     private double angle; //Angle the flipper is at
     private FlipperDirection direction;
     private ArrayList<LineSegment> lineSegments; //2 line segments - could render separately?
@@ -34,6 +35,7 @@ public class Flipper implements Gizmo, Observable{
     private Vect center;
     private boolean rotating;
     private double angularVelocity;
+    private List<Observer> observers;
 
     /**
      * Constructor
@@ -41,7 +43,7 @@ public class Flipper implements Gizmo, Observable{
      * @param y
      * @param a
      */
-    public Flipper(double x, double y, double a, FlipperDirection direction, String name){
+    public FlipperGzmo(double x, double y, double a, FlipperDirection direction, String name){
         width = ONE_L/2;
         length = ONE_L*2;
 
@@ -63,7 +65,7 @@ public class Flipper implements Gizmo, Observable{
 
         double radius = width/2;
         center = new Vect(xpos + radius, ypos + radius);
-
+        observers = new ArrayList<>();
 
 
 //        Circle corner1 = new Circle(xpos+width/2, y, width/2);
@@ -115,8 +117,6 @@ public class Flipper implements Gizmo, Observable{
                 moving = false;
             }
         }
-
-
 
         this.notifyObservers();
     }
@@ -252,5 +252,10 @@ public class Flipper implements Gizmo, Observable{
 
     public boolean isMoving() {
         return moving;
+    }
+
+    @Override
+    public List<Observer> getObservers() {
+        return observers;
     }
 }

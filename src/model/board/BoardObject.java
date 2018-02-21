@@ -1,6 +1,4 @@
-package model;
-
-import physics.Geometry;
+package model.board;
 
 public interface BoardObject {
 

@@ -2,7 +2,7 @@ package view;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import model.Absorber;
+import model.board.gizmos.AbsorberGizmo;
 import util.Observer;
 
 import static util.Constants.ONE_L_IN_PIXELS;
@@ -10,9 +10,9 @@ import static util.Constants.ONE_L_IN_PIXELS;
 public class AbsorberView extends GizmoView implements Observer{
     private final double x;
     private final double y;
-    private final Absorber absorberModel;
+    private final AbsorberGizmo absorberModel;
 
-    public AbsorberView(Absorber absorberModel) {
+    public AbsorberView(AbsorberGizmo absorberModel) {
         super(absorberModel);
         this.x = absorberModel.getXCoord() * ONE_L_IN_PIXELS;
         this.y = absorberModel.getYCoord() * ONE_L_IN_PIXELS;

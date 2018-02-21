@@ -7,7 +7,6 @@ import javafx.event.EventHandler;
 import javafx.geometry.HorizontalDirection;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
-import model.Absorber;
 
 import static javafx.geometry.HorizontalDirection.*;
 

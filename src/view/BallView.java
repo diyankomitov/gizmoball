@@ -3,7 +3,7 @@ package view;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import model.Ball;
+import model.board.Ball;
 import util.Observer;
 
 import static util.Constants.ONE_L_IN_PIXELS;
@@ -24,7 +24,7 @@ public class BallView extends Group implements Observer{
         this.ballModel = ballModel;
         double radius = ONE_L_IN_PIXELS/4;
         ball = new Circle(radius);
-        ball.setFill(Color.CYAN); //TODO put in css
+        ball.setFill(Color.NAVY); //TODO put in css
         this.getChildren().add(ball);
 
         this.setTranslateX(x);
@@ -50,7 +50,7 @@ public class BallView extends Group implements Observer{
         if (hue == 360) {
             hue = 0;
         }
-        ball.setFill(Color.hsb(hue,1.0,1.0));
+//        ball.setFill(Color.hsb(hue,1.0,1.0));
         hue++;
     }
 }

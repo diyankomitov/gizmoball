@@ -1,7 +1,6 @@
-package model;
+package model.board;
 
 import physics.Circle;
-import physics.Geometry;
 import physics.LineSegment;
 
 import java.util.ArrayList;

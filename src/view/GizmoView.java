@@ -1,7 +1,7 @@
 package view;
 
 import javafx.scene.Group;
-import model.Gizmo;
+import model.board.gizmos.Gizmo;
 
 import static util.Constants.ONE_L_IN_PIXELS;
 

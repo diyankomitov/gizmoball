@@ -1,8 +1,10 @@
-package model;
+package model.board.gizmos;
 
+import model.board.BoardObjectType;
 import physics.Circle;
 import physics.LineSegment;
 import physics.Vect;
+import util.Observer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ public class CircleGizmo implements Gizmo {
     private List<Circle> circles;
     private BoardObjectType type = BoardObjectType.CIRCLE;
     private String name;
+    private List<Observer> observers;
 
     public CircleGizmo(double x, double y, double diameter, String name) {
         this.x = x;
@@ -25,6 +28,7 @@ public class CircleGizmo implements Gizmo {
         this.diameter = diameter;
         rCoefficient = 1.0;
         circles = new ArrayList<>();
+        observers = new ArrayList<>();
     }
 
     @Override
@@ -84,5 +88,10 @@ public class CircleGizmo implements Gizmo {
     @Override
     public double getAngularVelocity() {
         return 0;
+    }
+
+    @Override
+    public List<Observer> getObservers() {
+        return observers;
     }
 }

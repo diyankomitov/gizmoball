@@ -2,10 +2,8 @@ package view;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
-import model.TriangleGizmo;
+import model.board.gizmos.TriangleGizmo;
 import util.Constants;
-
-import static util.Constants.ONE_L_IN_PIXELS;
 
 
 public class TriangularBumperView extends GizmoView {

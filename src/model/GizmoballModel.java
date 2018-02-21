@@ -1,8 +1,12 @@
 package model;
 
+import model.board.Ball;
+import model.board.Board;
+import model.board.BoardObjectType;
+import model.board.Walls;
+import model.board.gizmos.*;
 import physics.*;
 import util.BoardState;
-import util.Observable;
 import view.FlipperDirection;
 
 import java.util.ArrayList;
@@ -12,38 +16,24 @@ import java.util.Map;
 
 import static util.Constants.*;
 
-public class GizmoballModel implements Observable{
+public class GizmoballModel{
     private static final double ONE_L_UNIT = 1.0;
-    private CollissionDetails details;
-
-    private int sCounter = 0;
-    private int tCounter = 0;
-    private int cCounter = 0;
-    private int bCounter = 0;
-
+    private CollisionDetails details;
     private Board board;
+    private Vect gravity;
+    private Vect friction;
 
-    private Vect gravity = new Vect(0, GRAVITY);
+    private BoardObjectType collidedGizmo;
+
 
     public GizmoballModel() {
         board = new Board();
-        details = new CollissionDetails();
-    }
-
-    public void addBall(double x, double y, double xv, double yv, String name) {
-        Ball ball = new Ball(x, y, xv, yv, name);
-        board.add(ball);
-        details.addBall(ball);
-        BoardState.add("Move " + name + " " + x + " " + y + " " + xv + " " + yv);
-        bCounter++;
-    }
-
-    public void removeBall() {
-//        board.remove();
+        details = new CollisionDetails();
+        gravity = new Vect(0, GRAVITY);
     }
 
     public void moveBalls() {
-        double moveTime = 0.05;
+        double moveTime = SECONDS_PER_FRAME;
         for (Ball ball : board.getBalls()) {
 
             ball.setVelocity(ball.getVelocity().plus(gravity.times(moveTime)));
@@ -65,11 +55,11 @@ public class GizmoballModel implements Observable{
                     ball.moveForTime(moveTime);
                 }
                 else {
-//                    if (collidedGizmo != null) {
-//                        if (collidedGizmo.getType() == BoardObjectType.ABSORBER) {
-//                            ((Absorber)collidedGizmo).addBall(ball);
-//                        }
-//                    }
+                    if (collidedGizmo != null) {
+                        if (collidedGizmo == BoardObjectType.ABSORBER) {
+                            ((AbsorberGizmo)getGizmoByName("A")).addBall(ball);
+                        }
+                    }
                     ball.moveForTime(details.getTimeUntilCollission(ball));
                     ball.applyPotentialVelocity();
                 }
@@ -82,7 +72,6 @@ public class GizmoballModel implements Observable{
 
 
     private void findTimeUntilGizmoCollission(Gizmo gizmo, Ball ball) {
-//        double time = Double.MAX_VALUE;
         double time;
         List<LineSegment> lines = gizmo.getLines();
         List<Circle> circles = gizmo.getCircles();
@@ -98,6 +87,7 @@ public class GizmoballModel implements Observable{
                     timeUntilCollision = time;
                     velocity = Geometry.reflectRotatingWall(line, gizmo.getCenter(), gizmo.getAngularVelocity(), ball.getCircle(), ball.getVelocity(), gizmo.getRCoefficient());
                     ball.setPotentialVelocity(velocity);
+                    collidedGizmo = gizmo.getType();
                 }
             }
 
@@ -107,6 +97,7 @@ public class GizmoballModel implements Observable{
                     timeUntilCollision = time;
                     velocity = Geometry.reflectRotatingCircle(circle, gizmo.getCenter(), gizmo.getAngularVelocity(), ball.getCircle(), ball.getVelocity(), gizmo.getRCoefficient());
                     ball.setPotentialVelocity(velocity);
+                    collidedGizmo = gizmo.getType();
                 }
             }
         }
@@ -117,6 +108,7 @@ public class GizmoballModel implements Observable{
                     timeUntilCollision = time;
                     velocity = Geometry.reflectWall(line, ball.getVelocity(), gizmo.getRCoefficient());
                     ball.setPotentialVelocity(velocity);
+                    collidedGizmo = gizmo.getType();
                 }
             }
 
@@ -126,6 +118,7 @@ public class GizmoballModel implements Observable{
                     timeUntilCollision = time;
                     velocity = Geometry.reflectCircle(circle.getCenter(), ball.getCenter(), ball.getVelocity(), gizmo.getRCoefficient());
                     ball.setPotentialVelocity(velocity);
+                    collidedGizmo = gizmo.getType();
                 }
             }
         }
@@ -215,11 +208,11 @@ public class GizmoballModel implements Observable{
         });
     }
 
-    public void addGizmo(Gizmo gizmo) {
-        board.add(gizmo);
-    }
+//    public void addGizmo(Gizmo gizmo) {
+//        board.add(gizmo);
+//    }
 
-    public boolean addGizmo(double x, double y, BoardObjectType type, String name) {
+    public boolean addGizmo(double x, double y, String name, BoardObjectType type) {
         Gizmo gizmo;
 
         switch (type) {
@@ -247,17 +240,17 @@ public class GizmoballModel implements Observable{
                 break;
             case LEFT_FLIPPER:
                 if(name.equals("")) {
-                    gizmo = new Flipper(x, y, 0, FlipperDirection.LEFT, "LF"+(int)x + (int)y);
+                    gizmo = new FlipperGzmo(x, y, 0, FlipperDirection.LEFT, "LF"+(int)x + (int)y);
 
                 } else {
-                    gizmo = new Flipper(x ,y, 0, FlipperDirection.LEFT, name);
+                    gizmo = new FlipperGzmo(x ,y, 0, FlipperDirection.LEFT, name);
                 }
                 break;
             case RIGHT_FLIPPER:
                 if(name.equals("")) {
-                    gizmo = new Flipper(x, y, 0, FlipperDirection.RIGHT, "RF"+(int)x + (int)y);
+                    gizmo = new FlipperGzmo(x, y, 0, FlipperDirection.RIGHT, "RF"+(int)x + (int)y);
                 } else {
-                    gizmo = new Flipper(x ,y, 0, FlipperDirection.RIGHT, name);
+                    gizmo = new FlipperGzmo(x ,y, 0, FlipperDirection.RIGHT, name);
                 }
                 break;
             default:
@@ -277,7 +270,7 @@ public class GizmoballModel implements Observable{
 
     public boolean addAbsorber(double x, double y, double x2, double y2,String name){
 
-        return board.add(new Absorber(x,y,x2,y2, name));
+        return board.add(new AbsorberGizmo(x,y,x2,y2, name));
 
     }
 
@@ -314,8 +307,19 @@ public class GizmoballModel implements Observable{
         return board.getBalls();
     }
 
+    public void addBall(double x, double y, double xv, double yv, String name) {
+        Ball ball = new Ball(x, y, xv, yv, name);
+        board.add(ball);
+        details.addBall(ball);
+        BoardState.add("Move " + name + " " + x + " " + y + " " + xv + " " + yv);
+    }
+
+    public void removeBall() {
+//        board.remove();
+    }
+
+    //        for (Ball b : balls){
 //    public Ball getBall(String id) {
-//        for (Ball b : balls){
 //            if(b.getId().equals(id)){
 //                return b;
 //            }

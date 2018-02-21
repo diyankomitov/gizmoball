@@ -1,13 +1,10 @@
 package view;
 
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import model.*;
-import util.Constants;
+import model.board.Ball;
+import model.board.gizmos.*;
 import util.Observer;
-
-import java.util.Arrays;
-import java.util.Queue;
 
 import static util.Constants.ONE_L_IN_PIXELS;
 
@@ -84,16 +81,16 @@ public class BoardView extends Pane implements Observer{
                     this.getChildren().add(new SquareBumperView((SquareGizmo) gizmo));
                     break;
                 case LEFT_FLIPPER:
-                    FlipperView flipperLeft = new FlipperView((Flipper)gizmo);
+                    FlipperView flipperLeft = new FlipperView((FlipperGzmo)gizmo);
                     this.getChildren().add(flipperLeft);
                     break;
                 case RIGHT_FLIPPER:
-                    FlipperView flipperRight = new FlipperView((Flipper)gizmo);
+                    FlipperView flipperRight = new FlipperView((FlipperGzmo)gizmo);
                     this.getChildren().add(flipperRight);
 //                    flipperRight.setX();
                     break;
                 case ABSORBER:
-                    AbsorberView absorberView = new AbsorberView((Absorber)gizmo);
+                    AbsorberView absorberView = new AbsorberView((AbsorberGizmo)gizmo);
                     this.getChildren().add(absorberView);
                     System.out.println(absorberView.getTranslateY());
                     break;

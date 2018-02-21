@@ -1,8 +1,12 @@
-package model;
+package model.board;
 
 import physics.Circle;
 import physics.Vect;
 import util.Observable;
+import util.Observer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Ball implements BoardObject, Observable{
     private final double diameter;
@@ -12,6 +16,7 @@ public class Ball implements BoardObject, Observable{
     private double y;
     private boolean inAbsorber = false;
     private String name;
+    private List<Observer> observers = new ArrayList<>();
 
     public Ball(double x, double y, double xv, double yv, String name) {
         this.x = x;
@@ -91,5 +96,10 @@ public class Ball implements BoardObject, Observable{
     @Override
     public BoardObjectType getType() {
         return BoardObjectType.BALL;
+    }
+
+    @Override
+    public List<Observer> getObservers() {
+        return observers;
     }
 }
