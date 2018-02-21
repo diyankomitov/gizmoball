@@ -9,7 +9,7 @@ import util.Observer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SquareGizmo implements Gizmo {
+public class SquareGizmo implements Gizmo { //TODO: maybe add an abstract class to avoid duplication
     private double x;
     private double y;
     private double width;
@@ -17,7 +17,6 @@ public class SquareGizmo implements Gizmo {
     private final List<LineSegment> sides;
     private final List<Circle> corners;
     private BoardObjectType type = BoardObjectType.SQUARE;
-
     private String name;
     private List<Observer> observers;
 
@@ -34,6 +33,26 @@ public class SquareGizmo implements Gizmo {
         sides = new ArrayList<>();
         corners = new ArrayList<>();
         observers = new ArrayList<>();
+    }
+
+    @Override
+    public BoardObjectType getType() {
+        return type;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public double getX() {
+        return x;
+    }
+
+    @Override
+    public double getY() {
+        return y;
     }
 
     @Override
@@ -69,49 +88,37 @@ public class SquareGizmo implements Gizmo {
     }
 
     @Override
-    public double getRCoefficient() {
-        return rCoefficient;
-    }
-
-    @Override
-    public void setCoords(double x, double y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public BoardObjectType getType() {
-        return type;
-    }
-
-    @Override
-    public double getXCoord() {
-        return x;
-    }
-
-    @Override
-    public double getYCoord() {
-        return y;
-    }
-
-    @Override
-    public boolean isRotating() {
-        return false;
-    }
-
-    @Override
     public Vect getCenter() {
         return new Vect(x+width, y+width);
     }
 
     @Override
-    public double getAngularVelocity() {
+    public void setCoordinates(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    @Override
+    public double getRCoefficient() {
+        return rCoefficient;
+    }
+
+    @Override
+    public void rotate() {
+    }
+
+    @Override
+    public double getAngle() {
         return 0;
+    }
+
+    @Override
+    public void trigger() {
+    }
+
+    @Override
+    public void sendTrigger() {
+        //TODO: implement when doing triggering system
     }
 
     @Override

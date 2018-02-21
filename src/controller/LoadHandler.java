@@ -40,7 +40,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
 
     public void clearBoard() {
         board.clearBoard();
-        model.clearGizmos();
+        model.clearBoard();
 
     }
 
@@ -70,14 +70,9 @@ public class LoadHandler implements EventHandler<ActionEvent> {
             }
 
             model.getGizmos().forEach(gizmo -> {
-//                System.out.println(i);
-                        System.out.println(gizmo);
                         board.addGizmo(gizmo);
 
                     }
-
-
-
             );
             model.getBalls().forEach(ball -> {
                 if(ball!=null){
@@ -85,17 +80,6 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                 }
             });
 
-
-
-
-            AbsorberGizmo absorber = (AbsorberGizmo) model.getGizmoByName("A");
-            board.getScene().setOnKeyPressed(keyEvent -> {
-                switch (keyEvent.getCode()) {
-                    case G:
-                        absorber.shootBall();
-                        break;
-                }
-            });
 
         } catch (FileNotFoundException e) {
             System.out.println("Error when trying to load the game. :(");
@@ -151,7 +135,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                 break;
             case "Delete":
                 if(string[1].charAt(0)=='B') {
-                    model.removeBall();
+                    model.removeBall(string[1]);
                     board.removeBall();
                 }
                 model.removeGizmo(string[1]);

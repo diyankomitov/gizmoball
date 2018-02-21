@@ -45,8 +45,33 @@ public class CircleGizmo implements Gizmo {
     }
 
     @Override
+    public void setCoordinates(double x, double y) {
+
+    }
+
+    @Override
     public double getRCoefficient() {
         return rCoefficient;
+    }
+
+    @Override
+    public void rotate() {
+
+    }
+
+    @Override
+    public double getAngle() {
+        return 0;
+    }
+
+    @Override
+    public void trigger() {
+
+    }
+
+    @Override
+    public void sendTrigger() {
+
     }
 
     @Override
@@ -58,6 +83,16 @@ public class CircleGizmo implements Gizmo {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public double getX() {
+        return 0;
+    }
+
+    @Override
+    public double getY() {
+        return 0;
     }
 
     @Override

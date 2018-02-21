@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.board.gizmos.FlipperGzmo;
+import model.board.gizmos.FlipperGizmo;
 import model.GizmoballModel;
 import view.BallView;
 import view.FlipperView;
@@ -34,8 +34,8 @@ public class  FlipperPrototype extends Application {
 
         pane.setPrefSize(ONE_L_IN_PIXELS*20, ONE_L_IN_PIXELS*20);
 
-        FlipperGzmo flipperL = new FlipperGzmo(3, 15, 0, LEFT, "LF315" );
-        FlipperGzmo flipperR = new FlipperGzmo(5, 15, 0, RIGHT, "RF515" );
+        FlipperGizmo flipperL = new FlipperGizmo(3, 15, 0, LEFT, "LF315" );
+        FlipperGizmo flipperR = new FlipperGizmo(5, 15, 0, RIGHT, "RF515" );
 
         FlipperView flipperViewL = new FlipperView(flipperL);
         FlipperView flipperViewR = new FlipperView(flipperR);

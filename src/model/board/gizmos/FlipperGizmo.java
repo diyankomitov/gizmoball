@@ -16,7 +16,7 @@ import static util.Constants.ONE_L;
 import static view.FlipperDirection.LEFT;
 import static view.FlipperDirection.RIGHT;
 
-public class FlipperGzmo implements Gizmo{
+public class FlipperGizmo implements Gizmo{
 
     private double xpos;
     private double ypos;
@@ -33,7 +33,6 @@ public class FlipperGzmo implements Gizmo{
     private double offset;
 
     private Vect center;
-    private boolean rotating;
     private double angularVelocity;
     private List<Observer> observers;
 
@@ -43,7 +42,7 @@ public class FlipperGzmo implements Gizmo{
      * @param y
      * @param a
      */
-    public FlipperGzmo(double x, double y, double a, FlipperDirection direction, String name){
+    public FlipperGizmo(double x, double y, double a, FlipperDirection direction, String name){
         width = ONE_L/2;
         length = ONE_L*2;
 
@@ -193,11 +192,6 @@ public class FlipperGzmo implements Gizmo{
     @Override
     public double getYCoord() {
         return ypos;
-    }
-
-    @Override
-    public boolean isRotating() {
-        return rotating;
     }
 
     @Override

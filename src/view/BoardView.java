@@ -81,11 +81,11 @@ public class BoardView extends Pane implements Observer{
                     this.getChildren().add(new SquareBumperView((SquareGizmo) gizmo));
                     break;
                 case LEFT_FLIPPER:
-                    FlipperView flipperLeft = new FlipperView((FlipperGzmo)gizmo);
+                    FlipperView flipperLeft = new FlipperView((FlipperGizmo)gizmo);
                     this.getChildren().add(flipperLeft);
                     break;
                 case RIGHT_FLIPPER:
-                    FlipperView flipperRight = new FlipperView((FlipperGzmo)gizmo);
+                    FlipperView flipperRight = new FlipperView((FlipperGizmo)gizmo);
                     this.getChildren().add(flipperRight);
 //                    flipperRight.setX();
                     break;
