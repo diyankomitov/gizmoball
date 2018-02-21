@@ -53,11 +53,11 @@ public class Board {
         return circles;
     }
 
-    public boolean add(Gizmo gizmo) {
+    public boolean addGizmo(Gizmo gizmo) {
         return gizmos.add(gizmo);
     }
 
-    public void add(Ball ball) {
+    public void addBall(Ball ball) {
         balls.add(ball);
     }
 
@@ -66,7 +66,9 @@ public class Board {
         balls.clear();
     }
 
-    public void remove(Gizmo gizmo) {
+    public void removeGizmo(Gizmo gizmo) {
         gizmos.remove(gizmo);
     }
+
+    public void removeBall(Ball ball) { balls.remove(ball); }
 }
