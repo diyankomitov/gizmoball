@@ -9,7 +9,9 @@ import util.Observable;
 import util.Observer;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 import static util.Constants.ONE_L;
 
@@ -28,7 +30,10 @@ public class AbsorberGizmo implements Gizmo {
     private BoardObjectType type = BoardObjectType.ABSORBER;
     private String name;
 
-    private Ball ball;
+    private Queue<Ball> balls;
+
+    private boolean triggered;
+
     private List<Observer> observers;
 
     public AbsorberGizmo(double x, double y, double x2, double y2, String name) {
@@ -46,17 +51,20 @@ public class AbsorberGizmo implements Gizmo {
         sides = new ArrayList<>();
         corners = new ArrayList<>();
         observers = new ArrayList<>();
+
+        balls = new LinkedList<>();
+
+        triggered = false;
     }
 
     public void shootBall() {
-        if (ball != null && ball.isInAbsorber()) {
+        if (balls.size() > 0 ) {
+            Ball ball = balls.remove();
             ball.setInAbsorber(false);
             ball.setY(this.y-(ball.getDiameter()/2));
             ball.setVelocity(new Vect(0, -50*ONE_L));
         }
     }
-
-
 
     @Override
     public List<LineSegment> getLines() {
@@ -96,14 +104,30 @@ public class AbsorberGizmo implements Gizmo {
     }
 
     @Override
-    public void setCoords(double x, double y) {
-        this.x = x;
-        this.y = y;
+    public void rotate() {
+        //You cannot rotate an absorber
+        //TODO: return some dummy value?
     }
 
     @Override
-    public String getName() {
-        return name;
+    public double getAngle() {
+        return 0;
+    }
+
+    @Override
+    public void trigger() {
+        triggered = true;
+    }
+
+    @Override
+    public void sendTrigger() {
+        //TODO: implement this method when we implement the trigger system
+    }
+
+    @Override
+    public void setCoordinates(double x, double y) {
+        this.x = x;
+        this.y = y;
     }
 
     @Override
@@ -111,45 +135,16 @@ public class AbsorberGizmo implements Gizmo {
         return type;
     }
 
-    @Override
-    public double getXCoord() {
-        return x;
-    }
-
-    @Override
-    public double getYCoord() {
-        return y;
-    }
-
-    @Override
-    public boolean isRotating() {
-        return false;
-    }
-
-    @Override
-    public Vect getCenter() {
-        return new Vect(x+(width/2), y+(height/2));
-    }
-
-    @Override
-    public double getAngularVelocity() {
-        return 0;
-    }
-
     public void addBall(Ball ball) {
-        this.ball = ball;
-        this.ball.setVelocity(new Vect(0,0));
-        this.ball.setX(x + width - 0.25*ONE_L);
-        this.ball.setY(y + height - 0.25*ONE_L);
-        this.ball.setInAbsorber(true);
+        ball.setVelocity(new Vect(0,0));
+        ball.setX(x + width - 0.25*ONE_L);
+        ball.setY(y + height - 0.25*ONE_L);
+        ball.setInAbsorber(true);
+        this.balls.add(ball);
     }
 
-    public void removeBall() {
-        this.ball = null;
-    }
-
-    public Ball getBall() {
-        return ball;
+    public Queue<Ball> getBalls() {
+        return balls;
     }
 
     public double getHeight() {
@@ -166,6 +161,11 @@ public class AbsorberGizmo implements Gizmo {
 
     public void setWidth(double width) {
         this.width = width;
+    }
+
+    public boolean isTriggered()
+    {
+        return triggered;
     }
 
     @Override
