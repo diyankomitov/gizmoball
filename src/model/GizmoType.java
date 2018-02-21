@@ -1,5 +1,15 @@
 package model;
 
 public enum GizmoType {
-    CIRCLE, SQUARE, TRIANGLE, LEFT_FLIPPER, RIGHT_FLIPPER, ABSORBER, WALL
+    CIRCLE("Circle"), SQUARE("Square"), TRIANGLE("Triangle"), LEFT_FLIPPER("LeftFlipper"), RIGHT_FLIPPER("RightFlipper"), ABSORBER("Absorber"), WALLS("Wall");
+
+    private final String name;
+
+    GizmoType(String name) {
+        this.name = name;
+    }
+
+    public String toString() {
+        return this.name;
+    }
 }

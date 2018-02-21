@@ -22,11 +22,6 @@ public class GizmoballModel implements Observable{
     private double timeUntilCollision;
     private Vect velocity;
 
-    private int sCounter = 0;
-    private int tCounter = 0;
-    private int cCounter = 0;
-    private int bCounter = 0;
-    private String id;
     private Gizmo collidedGizmo;
     private List<LineSegment> walls;
     private List<Circle> wallCircles;
@@ -54,8 +49,7 @@ public class GizmoballModel implements Observable{
 
     public void addBall(double x, double y, double xv, double yv, String name) {
         ball = new Ball(x, y, xv, yv, name);
-        BoardState.add("Move " + name + " " + x + " " + y + " " + xv + " " + yv);
-        bCounter++;
+        BoardState.add("Ball " + name + " " + x + " " + y + " " + xv + " " + yv + "\n");
 //        balls.add(ball);
     }
 
@@ -224,12 +218,12 @@ public class GizmoballModel implements Observable{
             }
         }
         gizmos.add(gizmo);
-        BoardState.add(type + " " + name + " " + x + " " + y);
+        BoardState.add(type.toString() + " " + name + " " + (int)x + " " + (int)y + "\n");
         return true;
     }
 
     public boolean addAbsorber(double x, double y, double x2, double y2,String name){
-
+        BoardState.add("Absorber" + " " + name + " " + (int)x + " " + (int)y+ " " + (int)x2 + " "+ (int)y2 +"\n");
         return gizmos.add(new Absorber(x,y,x2,y2, name));
 
     }
@@ -280,17 +274,17 @@ public class GizmoballModel implements Observable{
 //        return balls;
 //    }
 
-    public void moveGizmo(int fromX, int fromY, int toX, int toY) {
-        BoardState.add("Move " + id + " " + toX + " " + toY);
+    public void moveGizmo(String name, int toX, int toY) {
+        BoardState.add("Move " + name + " " + toX + " " + toY + "\n");
         //add to that string array for file
         //TODO actually remove gizmo
     }
 
-    public void rotateGizmo(String  id) {
-        BoardState.add("Rotate " + id);
+    public void rotateGizmo(String  name) {
+        BoardState.add("Rotate " + name + "\n");
         //add to that string array for file
         //TODO actually rotate gizmo
-        Gizmo target = getGizmoByName(id);
+        Gizmo target = getGizmoByName(name);
         if(target.getType() == GizmoType.TRIANGLE){
             //Rotate
             ((TriangleGizmo)target).rotate();
@@ -298,10 +292,10 @@ public class GizmoballModel implements Observable{
         }
     }
 
-    public void removeGizmo(String id) {
+    public void removeGizmo(String name) {
         //add to that string array for file
-        BoardState.add("Delete " + id );
-        gizmos.remove(getGizmoByName(id));
+        BoardState.add("Delete " + name + "\n" );
+        gizmos.remove(getGizmoByName(name));
     }
 
 }
