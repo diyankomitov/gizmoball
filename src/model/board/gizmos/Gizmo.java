@@ -13,19 +13,16 @@ public interface Gizmo extends BoardObject, Observable {
     List<LineSegment> getLines();
     List<Circle> getCircles();
 
+    void setCoordinates(double x, double y);
+
     double getRCoefficient();
 
-    void setCoords(double x, double y);
+    void rotate();
 
-    String getName();
+    double getAngle();
 
-    double getXCoord();
+    void trigger();
 
-    double getYCoord();
+    void sendTrigger();
 
-    boolean isRotating();
-
-    Vect getCenter();
-
-    double getAngularVelocity();
 }
