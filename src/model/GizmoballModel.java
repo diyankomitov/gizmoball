@@ -57,6 +57,8 @@ public class GizmoballModel implements Observable{
         ball = null;
     }
 
+
+    //todo add gravity and friction to the save file?? Depends if necessary
     public void moveBall() {
         double moveTime = 0.05;
         ball.setVelocity(ball.getVelocity().plus(gravity.times(moveTime)));

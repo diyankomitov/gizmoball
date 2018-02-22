@@ -24,8 +24,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
 
     //TODO add key connects
     //TODO add default options if input is incorrect ie missing params or wrong name/type
-    //TODO add alert message if loading fails
-
+    //TODO add gravity and friction???
     @Override
     public void handle(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
