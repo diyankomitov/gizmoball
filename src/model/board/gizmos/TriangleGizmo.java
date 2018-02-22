@@ -39,13 +39,13 @@ public class TriangleGizmo implements Gizmo {
     public List<LineSegment> getLines() {
         sides.clear();
 
-        LineSegment ls1 = new LineSegment(x, y, x, y+side);
-        LineSegment ls2 = new LineSegment(x, y+side,x+side, y+side);
-        LineSegment ls3 = new LineSegment(x+side,y+side,x, y);
+        LineSegment ls1 = new LineSegment(x, y, x+side, y);
+        LineSegment ls2 = new LineSegment(x+side, y,x, y+side);
+        LineSegment ls3 = new LineSegment(x,y+side, x, y);
 
-        ls1 = Geometry.rotateAround(ls1, new Vect(x + side/2, y + side/2), new Angle(Math.toRadians(angle)));
-        ls2 = Geometry.rotateAround(ls2, new Vect(x + side/2, y + side/2), new Angle(Math.toRadians(angle)));
-        ls3 = Geometry.rotateAround(ls3, new Vect(x + side/2, y + side/2), new Angle(Math.toRadians(angle)));
+        ls1 = Geometry.rotateAround(ls1, getCenter(), new Angle(Math.toRadians(angle)));
+        ls2 = Geometry.rotateAround(ls2, getCenter(), new Angle(Math.toRadians(angle)));
+        ls3 = Geometry.rotateAround(ls3, getCenter(), new Angle(Math.toRadians(angle)));
 
         sides.add(ls1);
         sides.add(ls2);
@@ -59,19 +59,23 @@ public class TriangleGizmo implements Gizmo {
         corners.clear();
 
         Circle c1 = new Circle(x, y, 0);
-        Circle c2 = new Circle(x, y+side, 0);
-        Circle c3 = new Circle(x+side, y+side, 0);
+        Circle c2 = new Circle(x+side, y, 0);
+        Circle c3 = new Circle(x, y+side, 0);
 
         c1 = Geometry.rotateAround(c1, new Vect(x + side/2, y + side/2), new Angle(Math.toRadians(angle)));
         c2 = Geometry.rotateAround(c2, new Vect(x + side/2, y + side/2), new Angle(Math.toRadians(angle)));
         c3 = Geometry.rotateAround(c3, new Vect(x + side/2, y + side/2), new Angle(Math.toRadians(angle)));
-
 
         corners.add(c1);
         corners.add(c2);
         corners.add(c3);
 
         return corners;
+    }
+
+    @Override
+    public Vect getCenter() {
+        return new Vect(x + (side/2), y + (side/2));
     }
 
     @Override
@@ -91,6 +95,20 @@ public class TriangleGizmo implements Gizmo {
         return type;
     }
 
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public double getX() {
+        return x;
+    }
+
+    @Override
+    public double getY() {
+        return y;
+    }
 
     @Override
     public void rotate(){

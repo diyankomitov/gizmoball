@@ -75,6 +75,11 @@ public class SquareGizmo implements Gizmo {
     }
 
     @Override
+    public Vect getCenter() {
+        return new Vect(x + (width/2), y + (width/2));
+    }
+
+    @Override
     public void setCoordinates(double x, double y) {
         this.x = x;
         this.y = y;
@@ -87,10 +92,7 @@ public class SquareGizmo implements Gizmo {
 
     @Override
     public void rotate() {
-        angle += 90;
-        if(angle>=360){
-            angle -= 360;
-        }
+        angle = 0;
     }
 
     @Override
@@ -113,6 +115,20 @@ public class SquareGizmo implements Gizmo {
         return type;
     }
 
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public double getX() {
+        return x;
+    }
+
+    @Override
+    public double getY() {
+        return y;
+    }
 
     @Override
     public List<Observer> getObservers() {
