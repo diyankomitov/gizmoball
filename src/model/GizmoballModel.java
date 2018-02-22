@@ -327,9 +327,18 @@ public class GizmoballModel{
         board.clear();
     }
 
-    public boolean moveGizmo(String name, double newX, double newY) { //TODO: check if new position is valid
+    public boolean moveGizmo(String name, double newX, double newY) {
         BoardState.add("Move " + name + " " + newX + " " + newY);
-        getGizmo(name).setCoordinates(newX,newY);
+        Gizmo gizmo = getGizmo(name);
+        gizmo.setCoordinates(newX,newY);
+
+
+        for (Gizmo g : board.getGizmos()) {
+            if (g.getBoundingBox().isIntersecting(gizmo.getBoundingBox())){
+                return false;
+            }
+        }
+        return true;
     }
 
     public void moveGizmo(double x, double y, double newX, double newY) { //TODO: check if new position is valid
