@@ -2,6 +2,7 @@ package model.board;
 
 import physics.Circle;
 import physics.LineSegment;
+import physics.Vect;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +35,28 @@ public class Walls implements BoardObject{
     }
 
     @Override
+    public Vect getCenter() {
+        return null;
+    }
+
+    @Override
     public BoardObjectType getType() {
         return BoardObjectType.WALLS;
+    }
+
+    @Override
+    public String getName() {
+        return "Walls";
+    }
+
+    @Override
+    public double getX() {
+        return 0;
+    }
+
+    @Override
+    public double getY() {
+        return 0;
     }
 
     public double getRCoefficient() {

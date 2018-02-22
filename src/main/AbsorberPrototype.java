@@ -36,7 +36,7 @@ public class AbsorberPrototype extends Application {
         AbsorberView absorberView = new AbsorberView(absorber);
 
         GizmoballModel model = new GizmoballModel();
-        model.addGizmo(absorber);
+//        model.addGizmo(absorber);
         model.addBall(2,1,0,0, "B");
 
 
@@ -66,7 +66,7 @@ public class AbsorberPrototype extends Application {
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
                 case SPACE:
-                    absorber.shootBall();
+//                    absorber.shootBall();
                     break;
             }
         });

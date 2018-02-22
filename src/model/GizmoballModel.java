@@ -14,14 +14,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static model.board.BoardObjectType.*;
 import static util.Constants.*;
 
 public class GizmoballModel{
-    private static final double ONE_L_UNIT = 1.0;
     private CollisionDetails details;
     private Board board;
     private Vect gravity;
-    private Vect friction;
+    private double frictionMU;
+    private double frictionMU2;
 
     private BoardObjectType collidedGizmo;
 
@@ -30,6 +31,8 @@ public class GizmoballModel{
         board = new Board();
         details = new CollisionDetails();
         gravity = new Vect(0, GRAVITY);
+        frictionMU = FRICTION_MU;
+        frictionMU2 = FRICTION_MU_2;
     }
 
     public void moveBalls() {
@@ -41,14 +44,14 @@ public class GizmoballModel{
             double vOldX = ball.getVelocity().x();
             double vOldY = ball.getVelocity().y();
 
-            double vNewX = vOldX * (1 - (FRICTION_MU * moveTime) - (FRICTION_MU_2 * Math.abs(vOldX) * moveTime));
-            double vNewY = vOldY * (1 - (FRICTION_MU * moveTime) - (FRICTION_MU_2 * Math.abs(vOldY) * moveTime));
+            double vNewX = vOldX * (1 - (frictionMU * moveTime) - (frictionMU2 * Math.abs(vOldX) * moveTime));
+            double vNewY = vOldY * (1 - (frictionMU * moveTime) - (frictionMU2 * Math.abs(vOldY) * moveTime));
 
             ball.setVelocity(new Vect(vNewX, vNewY));
         }
 
-            findTimeUntilCollision();
-//        System.out.println(ball.getVelocity());
+        findTimeUntilCollision();
+
         board.getBalls().forEach(ball -> {
             if (!ball.isInAbsorber()) {
                 if (details.getTimeUntilCollission(ball) > moveTime) {
@@ -56,11 +59,11 @@ public class GizmoballModel{
                 }
                 else {
                     if (collidedGizmo != null) {
-                        if (collidedGizmo == BoardObjectType.ABSORBER) {
-                            ((AbsorberGizmo)getGizmoByName("A")).addBall(ball);
+                        if (collidedGizmo == ABSORBER) {
+                            ((AbsorberGizmo) getGizmo("A")).addBall(ball);
                         }
                     }
-                    ball.moveForTime(details.getTimeUntilCollission(ball));
+                    ball.moveForTime(details.getTimeUntilCollission(ball)); //TODO: Fix issue where ball velocity becomes too low and stops abruptly
                     ball.applyPotentialVelocity();
                 }
             }
@@ -77,25 +80,26 @@ public class GizmoballModel{
         List<Circle> circles = gizmo.getCircles();
         Vect velocity;
         double timeUntilCollision = details.getTimeUntilCollission(ball);
+        Circle ballCircle = ball.getCircles().get(0);
 
-
-        if (gizmo.isRotating()) {
+        if ((gizmo.getType() == LEFT_FLIPPER || gizmo.getType() == RIGHT_FLIPPER) && ((FlipperGizmo)gizmo).isMoving()) {
+            //TODO: hopefully remove the casting, probably through interface for moving gizmos or maybe reduce it to one cast at the start
 
             for (LineSegment line : lines) {
-                time = Geometry.timeUntilRotatingWallCollision(line, gizmo.getCenter(), gizmo.getAngularVelocity(), ball.getCircle(), ball.getVelocity());
+                time = Geometry.timeUntilRotatingWallCollision(line, gizmo.getCenter(), ((FlipperGizmo)gizmo).getAngularVelocity(), ballCircle, ball.getVelocity()); //TODO: Fix flipper collision
                 if (time < timeUntilCollision) {
                     timeUntilCollision = time;
-                    velocity = Geometry.reflectRotatingWall(line, gizmo.getCenter(), gizmo.getAngularVelocity(), ball.getCircle(), ball.getVelocity(), gizmo.getRCoefficient());
+                    velocity = Geometry.reflectRotatingWall(line, gizmo.getCenter(), ((FlipperGizmo)gizmo).getAngularVelocity(), ballCircle, ball.getVelocity(), gizmo.getRCoefficient());
                     ball.setPotentialVelocity(velocity);
                     collidedGizmo = gizmo.getType();
                 }
             }
 
             for (Circle circle : circles) {
-                time = Geometry.timeUntilRotatingCircleCollision(circle, gizmo.getCenter(), gizmo.getAngularVelocity(), ball.getCircle(), ball.getVelocity());
+                time = Geometry.timeUntilRotatingCircleCollision(circle, gizmo.getCenter(), ((FlipperGizmo)gizmo).getAngularVelocity(), ballCircle, ball.getVelocity());
                 if (time < timeUntilCollision) {
                     timeUntilCollision = time;
-                    velocity = Geometry.reflectRotatingCircle(circle, gizmo.getCenter(), gizmo.getAngularVelocity(), ball.getCircle(), ball.getVelocity(), gizmo.getRCoefficient());
+                    velocity = Geometry.reflectRotatingCircle(circle, gizmo.getCenter(), ((FlipperGizmo)gizmo).getAngularVelocity(), ballCircle, ball.getVelocity(), gizmo.getRCoefficient());
                     ball.setPotentialVelocity(velocity);
                     collidedGizmo = gizmo.getType();
                 }
@@ -103,7 +107,7 @@ public class GizmoballModel{
         }
         else {
             for (LineSegment line : lines) {
-                time = Geometry.timeUntilWallCollision(line, ball.getCircle(), ball.getVelocity());
+                time = Geometry.timeUntilWallCollision(line, ballCircle, ball.getVelocity());
                 if (time < timeUntilCollision) {
                     timeUntilCollision = time;
                     velocity = Geometry.reflectWall(line, ball.getVelocity(), gizmo.getRCoefficient());
@@ -113,7 +117,7 @@ public class GizmoballModel{
             }
 
             for (Circle circle : circles) {
-                time = Geometry.timeUntilCircleCollision(circle, ball.getCircle(), ball.getVelocity());
+                time = Geometry.timeUntilCircleCollision(circle, ballCircle, ball.getVelocity());
                 if (time < timeUntilCollision) {
                     timeUntilCollision = time;
                     velocity = Geometry.reflectCircle(circle.getCenter(), ball.getCenter(), ball.getVelocity(), gizmo.getRCoefficient());
@@ -133,9 +137,10 @@ public class GizmoballModel{
         List<Circle> circles = walls.getCircles();
         Vect velocity;
         double timeUntilCollision = details.getTimeUntilCollission(ball);
+        Circle ballCircle = ball.getCircles().get(0);
 
         for (LineSegment line : lines) {
-            time = Geometry.timeUntilWallCollision(line, ball.getCircle(), ball.getVelocity());
+            time = Geometry.timeUntilWallCollision(line, ballCircle, ball.getVelocity());
             if (time < timeUntilCollision) {
                 timeUntilCollision = time;
                 velocity = Geometry.reflectWall(line, ball.getVelocity(), walls.getRCoefficient());
@@ -144,7 +149,7 @@ public class GizmoballModel{
         }
 
         for (Circle circle : circles) {
-            time = Geometry.timeUntilCircleCollision(circle, ball.getCircle(), ball.getVelocity());
+            time = Geometry.timeUntilCircleCollision(circle, ballCircle, ball.getVelocity());
             if (time < timeUntilCollision) {
                 timeUntilCollision = time;
                 velocity = Geometry.reflectCircle(circle.getCenter(), ball.getCenter(), ball.getVelocity(), walls.getRCoefficient());
@@ -160,7 +165,7 @@ public class GizmoballModel{
         double timeUntilCollisionOther = details.getTimeUntilCollission(otherBall);
         double time;
 
-        time = Geometry.timeUntilBallBallCollision(ball.getCircle(), ball.getVelocity(), otherBall.getCircle(), otherBall.getVelocity());
+        time = Geometry.timeUntilBallBallCollision(ball.getCircles().get(0), ball.getVelocity(), otherBall.getCircles().get(0), otherBall.getVelocity());
         Geometry.VectPair velocities = Geometry.reflectBalls(ball.getCenter(), 1, ball.getVelocity(), otherBall.getCenter(), 1, otherBall.getVelocity());
 
         if (time < timeUntilCollision) {
@@ -208,151 +213,215 @@ public class GizmoballModel{
         });
     }
 
-//    public void addGizmo(Gizmo gizmo) {
-//        board.addGizmo(gizmo);
-//    }
-
+    //TODO: Maybe move position checking of add and move to the board, or at least a private method
     public boolean addGizmo(double x, double y, String name, BoardObjectType type) {
         Gizmo gizmo;
+        String gizmoName = name; //TODO: check if gizmo with same name already exists
 
         switch (type) {
             case CIRCLE:
                 if(name.equals("")) {
-                    gizmo = new CircleGizmo(x, y, ONE_L_UNIT, "C" + (int)x + (int)y);
-                }else{
-                    gizmo = new CircleGizmo(x, y, ONE_L_UNIT, name);
+                    gizmoName = "C" + (int)x + (int)y;
                 }
+
+                gizmo = new CircleGizmo(x, y, ONE_L, gizmoName);
                 break;
             case SQUARE:
                 if(name.equals("")) {
-                    gizmo = new SquareGizmo(x,y, ONE_L_UNIT,"S" + (int)x + (int)y );
-                }else{
-                    gizmo = new SquareGizmo(x,y, ONE_L_UNIT,name );
+                    gizmoName = "S" + (int)x + (int)y;
                 }
+
+                gizmo = new SquareGizmo(x, y, ONE_L, gizmoName);
                 break;
             case TRIANGLE:
                 if(name.equals("")) {
-                    gizmo = new TriangleGizmo(x, y, ONE_L_UNIT, "T" + (int)x + (int)y);
-                } else {
-                    gizmo = new TriangleGizmo(x, y, ONE_L_UNIT, name);
-
+                    gizmoName = "T" + (int)x + (int)y;
                 }
+
+                gizmo = new TriangleGizmo(x, y, ONE_L, gizmoName);
                 break;
             case LEFT_FLIPPER:
                 if(name.equals("")) {
-                    gizmo = new FlipperGzmo(x, y, 0, FlipperDirection.LEFT, "LF"+(int)x + (int)y);
-
-                } else {
-                    gizmo = new FlipperGzmo(x ,y, 0, FlipperDirection.LEFT, name);
+                    gizmoName = "LF" + (int)x + (int)y;
                 }
+
+                gizmo = new FlipperGizmo(x, y, 0, type, gizmoName);
                 break;
             case RIGHT_FLIPPER:
                 if(name.equals("")) {
-                    gizmo = new FlipperGzmo(x, y, 0, FlipperDirection.RIGHT, "RF"+(int)x + (int)y);
-                } else {
-                    gizmo = new FlipperGzmo(x ,y, 0, FlipperDirection.RIGHT, name);
+                    gizmoName = "RF" + (int)x + (int)y;
                 }
+
+                gizmo = new FlipperGizmo(x, y, 0, type, gizmoName);
                 break;
             default:
-                return false; //TODO: implement proper default
+                return false;
         }
 
 
-        for (Gizmo g:board.getGizmos()){
-            if((g.getXCoord()==x)&&(g.getYCoord()==y)){
+        for (Gizmo g : board.getGizmos()){
+            if((g.getX()==x) && (g.getY()==y)){
                 return false;
             }
         }
+
         board.addGizmo(gizmo);
+
         BoardState.add(type + " " + name + " " + x + " " + y);
+
         return true;
     }
 
-    public boolean addAbsorber(double x, double y, double x2, double y2,String name){
+    //    }
+    public boolean addAbsorber(double x, double y, double x2, double y2, String name){
+        String absorberName = name; //TODO: check if absorber with same name already exists
 
-        return board.addGizmo(new AbsorberGizmo(x,y,x2,y2, name));
+        if(name.equals("")) {
+            absorberName = "A" + (int)x + (int)y;
+        }
 
+        for (Gizmo gizmo : board.getGizmos()) {
+            if (gizmo.getX() > x && gizmo.getX() < x2 && gizmo.getY() > y && gizmo.getY() < y2) {
+                return false;
+            }
+        }
+
+        Gizmo gizmo = new AbsorberGizmo(x, y, x2, y2, absorberName);
+
+        BoardState.add(ABSORBER.toString() + " " + name + " " + x + " " + y);
+        board.addGizmo(gizmo);
+        return true;
     }
 
-    public void clearGizmos() {
+    //TODO: probably return booleans  for all of the bellow
+
+    public void addBall(double x, double y, double xv, double yv, String name) {
+        Ball ball = new Ball(x, y, xv, yv, name); //TODO: check if ball with same name already exists
+        //TODO: Detect if ball is within a gizmo
+        board.addBall(ball);
+        details.addBall(ball);
+        BoardState.add("Add " + name + " " + x + " " + y + " " + xv + " " + yv);
+    }
+
+    public void removeGizmo(String name) { //TODO: check if exists
+        BoardState.add("Delete " + name);
+        board.removeGizmo(getGizmo(name));
+    }
+
+    public void removeGizmo(double x, double y) {  //TODO: check if exists
+        Gizmo gizmo = getGizmo(x, y);
+        BoardState.add("Delete " + gizmo.getName());
+        board.removeGizmo(gizmo);
+    }
+
+    public void removeBall(String name) { //TODO: check if exists
+        BoardState.add("Delete " + name);
+        board.removeBall(getBall(name));
+    }
+
+    public void removeBall(double x, double y) { //TODO: check if exists
+        Ball ball = getBall(x, y);
+        BoardState.add("Delete " + ball.getName());
+        board.removeBall(ball);
+    }
+
+    public void clearBoard() {
         board.clear();
     }
 
-    public List<Gizmo> getGizmos(){
+    public void moveGizmo(String name, double newX, double newY) { //TODO: check if new position is valid
+        BoardState.add("Move " + name + " " + newX + " " + newY);
+        getGizmo(name).setCoordinates(newX,newY);
+    }
+
+    public void moveGizmo(double x, double y, double newX, double newY) { //TODO: check if new position is valid
+        Gizmo gizmo = getGizmo(x,y);
+        BoardState.add("Move " + gizmo.getName() + " " + newX + " " + newY);
+        gizmo.setCoordinates(newX, newY);
+    }
+
+    public void moveBall(String name, double newX, double newY) { //TODO: check if new position is valid
+        BoardState.add("Move " + name + " " + newX + " " + newY);
+        getBall(name).setX(newX);
+        getBall(name).setY(newY);
+    }
+
+    public void moveBall(double x, double y, double newX, double newY) { //TODO: check if new position is valid
+        Ball ball = getBall(x,y);
+        BoardState.add("Move " + ball.getName() + " " + newX + " " + newY);
+        ball.setX(newX);
+        ball.setY(newY);
+    }
+
+    public void rotateGizmo(String name) {
+        BoardState.add("Rotate " + name);
+        getGizmo(name).rotate();
+    }
+
+    public void rotateGizmo(double x, double y) {
+        Gizmo gizmo = getGizmo(x,y);
+        BoardState.add("Rotate " + gizmo.getName());
+        gizmo.rotate();
+    }
+
+    public void triggerGizmo(String name) {
+        getGizmo(name).trigger();
+    }
+
+    public void triggerGizmo(double x, double y) {
+        getGizmo(x, y).trigger();
+    }
+
+    public void setGravity(double yVelocity) { //TODO: probably check upper and lower bounds
+        this.gravity = new Vect(0, yVelocity);
+    }
+    public void setFriction(double mu, double mu2) { //TODO: probably check upper and lower bounds
+        this.frictionMU = mu;
+        this.frictionMU2 = mu2;
+    }
+
+    public List<Gizmo> getGizmos(){ //TODO: Remove? Maybe return a copy
         return board.getGizmos();
     }
 
-    public Gizmo getGizmoByName(String gName) {
-        for(Gizmo g:board.getGizmos()) {
-            if(g.getName().equals(gName)){
-                return g;
-            }
-        }
-        return null;
-    }
-
-    public Gizmo getGizmoByCoords(double x, double y) {
-        for(Gizmo g:board.getGizmos()) {
-            if(g.getXCoord() == x){
-                if(g.getYCoord() == y){
-                    return g;
-                }
-            }
-        }
-        return null;
-    }
-
-    public List<Ball> getBalls() {
+    public List<Ball> getBalls() { //TODO: Remove? Maybe return a copy
 //        return ball;
         return board.getBalls();
     }
 
-    public void addBall(double x, double y, double xv, double yv, String name) {
-        Ball ball = new Ball(x, y, xv, yv, name);
-        board.add(ball);
-        details.addBall(ball);
-        BoardState.add("Move " + name + " " + x + " " + y + " " + xv + " " + yv);
-    }
-
-    public void removeBall() {
-//        board.remove();
-    }
-
-    //        for (Ball b : balls){
-//    public Ball getBall(String id) {
-//            if(b.getId().equals(id)){
-//                return b;
-//            }
-//        }
-//        return null;
-//    }
-
-//    public List<Ball> getBalls(){
-//        return balls;
-//    }
-
-//    public void moveGizmo(int fromX, int fromY, int toX, int toY) {
-//        BoardState.addGizmo("Move " + id + " " + toX + " " + toY);
-//        //addGizmo to that string array for file
-//        //TODO actually remove gizmo
-//    }
-
-    public void rotateGizmo(String  id) {
-        BoardState.add("Rotate " + id);
-        //addGizmo to that string array for file
-        //TODO actually rotate gizmo
-        Gizmo target = getGizmoByName(id);
-        if(target.getType() == BoardObjectType.TRIANGLE){
-            //Rotate
-            ((TriangleGizmo)target).rotate();
-
+    public Gizmo getGizmo(String name) {
+        for(Gizmo gizmo : board.getGizmos()) {
+            if(gizmo.getName().equals(name)){
+                return gizmo;
+            }
         }
+        return null;
     }
 
-    public void removeGizmo(String id) {
-        //addGizmo to that string array for file
-        BoardState.add("Delete " + id );
-        board.remove(getGizmoByName(id));
+    public Gizmo getGizmo(double x, double y) {
+        for(Gizmo gizmo : board.getGizmos()) {
+            if(gizmo.getX() == x && gizmo.getY() == y){
+                return gizmo;
+            }
+        }
+        return null;
     }
 
+    public Ball getBall(String name) {
+        for(Ball ball : board.getBalls()) {
+            if(ball.getName().equals(name)){
+                return ball;
+            }
+        }
+        return null;
+    }
+
+    public Ball getBall(double x, double y) {
+        for(Ball ball : board.getBalls()) {
+            if(ball.getX() == x && ball.getY() == y){
+                return ball;
+            }
+        }
+        return null;
+    }
 }

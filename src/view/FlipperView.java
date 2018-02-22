@@ -5,7 +5,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
-import model.board.gizmos.FlipperGzmo;
+import model.board.gizmos.FlipperGizmo;
 import physics.LineSegment;
 import util.Observer;
 
@@ -18,7 +18,7 @@ public class FlipperView extends Group implements Observer{
 
     private double x;
     private double y;
-    private final FlipperGzmo flipper;
+    private final FlipperGizmo flipper;
     private final Rotate rotate;
     private Circle point;
     private Circle point2;
@@ -29,10 +29,10 @@ public class FlipperView extends Group implements Observer{
 
 
 
-    public FlipperView(FlipperGzmo flipper) {
+    public FlipperView(FlipperGizmo flipper) {
 //        this.root = root;
-        this.x = flipper.getXpos() * ONE_L_IN_PIXELS;
-        this.y = flipper.getYpos() * ONE_L_IN_PIXELS;
+        this.x = flipper.getX() * ONE_L_IN_PIXELS;
+        this.y = flipper.getY() * ONE_L_IN_PIXELS;
         this.flipper = flipper;
         Rectangle rectangle = new Rectangle(ONE_L_IN_PIXELS/2, ONE_L_IN_PIXELS*2);
         rectangle.setArcWidth(ONE_L_IN_PIXELS/2);
@@ -68,7 +68,7 @@ public class FlipperView extends Group implements Observer{
 
     public void setX(){
 
-        this.setTranslateX((flipper.getOffset()*ONE_L_IN_PIXELS)-ONE_L_IN_PIXELS);
+//        this.setTranslateX((flipper.getOffset()*ONE_L_IN_PIXELS)-ONE_L_IN_PIXELS);
 
     }
 

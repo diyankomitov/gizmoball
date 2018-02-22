@@ -5,7 +5,6 @@ import model.board.BoardObjectType;
 import physics.Circle;
 import physics.LineSegment;
 import physics.Vect;
-import util.Observable;
 import util.Observer;
 
 import java.util.ArrayList;
@@ -57,15 +56,6 @@ public class AbsorberGizmo implements Gizmo {
         triggered = false;
     }
 
-    public void shootBall() {
-        if (balls.size() > 0 ) {
-            Ball ball = balls.remove();
-            ball.setInAbsorber(false);
-            ball.setY(this.y-(ball.getDiameter()/2));
-            ball.setVelocity(new Vect(0, -50*ONE_L));
-        }
-    }
-
     @Override
     public List<LineSegment> getLines() {
         sides.clear();
@@ -99,6 +89,11 @@ public class AbsorberGizmo implements Gizmo {
     }
 
     @Override
+    public Vect getCenter() {
+        return new Vect((x+width)/2, (y+height)/2);
+    }
+
+    @Override
     public double getRCoefficient() {
         return rCoefficient;
     }
@@ -116,6 +111,7 @@ public class AbsorberGizmo implements Gizmo {
 
     @Override
     public void trigger() {
+        shootBall();
         triggered = true;
     }
 
@@ -135,6 +131,21 @@ public class AbsorberGizmo implements Gizmo {
         return type;
     }
 
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public double getX() {
+        return x;
+    }
+
+    @Override
+    public double getY() {
+        return y;
+    }
+
     public void addBall(Ball ball) {
         ball.setVelocity(new Vect(0,0));
         ball.setX(x + width - 0.25*ONE_L);
@@ -151,7 +162,7 @@ public class AbsorberGizmo implements Gizmo {
         return height;
     }
 
-    public void setHeight(double height) {
+    public void setHeight(double height) { //TODO: remove unless we implement resizing of absorber
         this.height = height;
     }
 
@@ -159,17 +170,25 @@ public class AbsorberGizmo implements Gizmo {
         return width;
     }
 
-    public void setWidth(double width) {
+    public void setWidth(double width) { //TODO: remove unless we implement resizing of absorber
         this.width = width;
     }
 
-    public boolean isTriggered()
-    {
+    public boolean isTriggered() {
         return triggered;
     }
 
     @Override
     public List<Observer> getObservers() {
         return observers;
+    }
+
+    private void shootBall() {
+        if (balls.size() > 0 ) {
+            Ball ball = balls.remove();
+            ball.setInAbsorber(false);
+            ball.setY(this.y-(ball.getDiameter()/2));
+            ball.setVelocity(new Vect(0, -50*ONE_L));
+        }
     }
 }
