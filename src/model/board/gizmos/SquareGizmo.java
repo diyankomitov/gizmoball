@@ -21,6 +21,9 @@ public class SquareGizmo implements Gizmo {
     private String name;
     private List<Observer> observers;
 
+    private boolean triggered;
+    private double angle;
+
     public SquareGizmo(double x, double y, double width, String name) {
         this.x = x;
         this.y = y;
@@ -34,6 +37,9 @@ public class SquareGizmo implements Gizmo {
         sides = new ArrayList<>();
         corners = new ArrayList<>();
         observers = new ArrayList<>();
+
+        triggered = false;
+        angle = 0;
     }
 
     @Override
@@ -69,19 +75,37 @@ public class SquareGizmo implements Gizmo {
     }
 
     @Override
-    public double getRCoefficient() {
-        return rCoefficient;
-    }
-
-    @Override
-    public void setCoords(double x, double y) {
+    public void setCoordinates(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
     @Override
-    public String getName() {
-        return name;
+    public double getRCoefficient() {
+        return rCoefficient;
+    }
+
+    @Override
+    public void rotate() {
+        angle += 90;
+        if(angle>=360){
+            angle -= 360;
+        }
+    }
+
+    @Override
+    public double getAngle() {
+        return angle;
+    }
+
+    @Override
+    public void trigger() {
+        triggered = true;
+    }
+
+    @Override
+    public void sendTrigger() {
+        //TODO: implement this when we are adding collision
     }
 
     @Override
@@ -89,30 +113,6 @@ public class SquareGizmo implements Gizmo {
         return type;
     }
 
-    @Override
-    public double getXCoord() {
-        return x;
-    }
-
-    @Override
-    public double getYCoord() {
-        return y;
-    }
-
-    @Override
-    public boolean isRotating() {
-        return false;
-    }
-
-    @Override
-    public Vect getCenter() {
-        return new Vect(x+width, y+width);
-    }
-
-    @Override
-    public double getAngularVelocity() {
-        return 0;
-    }
 
     @Override
     public List<Observer> getObservers() {

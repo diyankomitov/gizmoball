@@ -18,6 +18,7 @@ public class TriangleGizmo implements Gizmo {
     private double angle = 0;
     private String name;
     private List<Observer> observers;
+    private boolean triggered;
 
     public TriangleGizmo(double x, double y, double side, String name) {
         this.x = x;
@@ -30,6 +31,8 @@ public class TriangleGizmo implements Gizmo {
         sides = new ArrayList<>();
         corners = new ArrayList<>();
         observers = new ArrayList<>();
+
+        triggered = false;
     }
 
     @Override
@@ -72,51 +75,24 @@ public class TriangleGizmo implements Gizmo {
     }
 
     @Override
-    public double getRCoefficient() {
-        return rCoefficient;
-    }
-
-    @Override
-    public void setCoords(double x, double y) {
+    public void setCoordinates(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
     @Override
-    public String getName() {
-        return name;
+    public double getRCoefficient() {
+        return rCoefficient;
     }
+
 
     @Override
     public BoardObjectType getType() {
         return type;
     }
 
-    @Override
-    public double getXCoord() {
-        return x;
-    }
 
     @Override
-    public double getYCoord() {
-        return y;
-    }
-
-    @Override
-    public boolean isRotating() {
-        return false;
-    }
-
-    @Override
-    public Vect getCenter() {
-        return new Vect(x+(side/2), y+(side/2));
-    }
-
-    @Override
-    public double getAngularVelocity() {
-        return 0;
-    }
-
     public void rotate(){
         angle += 90;
         if(angle>=360){
@@ -126,6 +102,16 @@ public class TriangleGizmo implements Gizmo {
 
     public double getAngle(){
         return angle;
+    }
+
+    @Override
+    public void trigger() {
+        triggered = true;
+    }
+
+    @Override
+    public void sendTrigger() {
+        //TODO: when we implement collision
     }
 
     @Override

@@ -14,7 +14,7 @@ public class CircleGizmo implements Gizmo {
     private double y;
     private final double diameter;
     private final double rCoefficient;
-    private Circle circle;
+    private List<Circle> circles;
     private BoardObjectType type = BoardObjectType.CIRCLE;
     private String name;
     private List<Observer> observers;
@@ -29,10 +29,11 @@ public class CircleGizmo implements Gizmo {
 
         this.diameter = diameter;
         rCoefficient = 1.0;
-        circle = new Circle();
+        circles = new ArrayList<>();
         observers = new ArrayList<>();
 
         triggered = false;
+        angle = 0;
     }
 
     @Override
@@ -61,12 +62,15 @@ public class CircleGizmo implements Gizmo {
 
     @Override
     public void rotate() {
-        //TODO
+        angle += 90;
+        if(angle>=360){
+            angle -= 360;
+        }
     }
 
     @Override
     public double getAngle() {
-        return 0;
+        return angle;
     }
 
     @Override
