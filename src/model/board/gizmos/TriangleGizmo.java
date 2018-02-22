@@ -1,5 +1,6 @@
 package model.board.gizmos;
 
+import model.BoundingBox;
 import model.board.BoardObjectType;
 import physics.*;
 import util.Observer;
@@ -130,6 +131,11 @@ public class TriangleGizmo implements Gizmo {
     @Override
     public void sendTrigger() {
         //TODO: when we implement collision
+    }
+
+    @Override
+    public BoundingBox getBoundingBox() {
+        return new BoundingBox(x,y,x+side, y+side);
     }
 
     @Override

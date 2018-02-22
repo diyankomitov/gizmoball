@@ -1,5 +1,6 @@
 package model.board.gizmos;
 
+import model.BoundingBox;
 import model.board.Ball;
 import model.board.BoardObjectType;
 import physics.Circle;
@@ -34,6 +35,7 @@ public class AbsorberGizmo implements Gizmo {
     private boolean triggered;
 
     private List<Observer> observers;
+    private double angle;
 
     public AbsorberGizmo(double x, double y, double x2, double y2, String name) {
 
@@ -100,13 +102,12 @@ public class AbsorberGizmo implements Gizmo {
 
     @Override
     public void rotate() {
-        //You cannot rotate an absorber
-        //TODO: return some dummy value?
+        angle = 0;
     }
 
     @Override
     public double getAngle() {
-        return 0;
+        return angle;
     }
 
     @Override
@@ -118,6 +119,11 @@ public class AbsorberGizmo implements Gizmo {
     @Override
     public void sendTrigger() {
         //TODO: implement this method when we implement the trigger system
+    }
+
+    @Override
+    public BoundingBox getBoundingBox() {
+        return new BoundingBox(x,y, x+width, y+height);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package model.board.gizmos;
 
+import model.BoundingBox;
 import model.board.BoardObject;
 import util.Observable;
 
@@ -17,4 +18,5 @@ public interface Gizmo extends BoardObject, Observable {
 
     void sendTrigger();
 
+    BoundingBox getBoundingBox();
 }

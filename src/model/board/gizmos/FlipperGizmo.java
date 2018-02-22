@@ -1,5 +1,6 @@
 package model.board.gizmos;
 
+import model.BoundingBox;
 import model.board.BoardObjectType;
 import physics.*;
 import util.Observer;
@@ -102,6 +103,11 @@ public class FlipperGizmo implements Gizmo{
     @Override
     public void sendTrigger() {
         //TODO: implement when working on the triggering system
+    }
+
+    @Override
+    public BoundingBox getBoundingBox() {
+        return new BoundingBox(x,y, x+length, y+length);
     }
 
     public void rotate(){

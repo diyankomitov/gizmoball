@@ -1,5 +1,6 @@
 package model.board.gizmos;
 
+import model.BoundingBox;
 import model.board.BoardObjectType;
 import physics.Circle;
 import physics.LineSegment;
@@ -108,6 +109,11 @@ public class SquareGizmo implements Gizmo {
     @Override
     public void sendTrigger() {
         //TODO: implement this when we are adding collision
+    }
+
+    @Override
+    public BoundingBox getBoundingBox() {
+        return new BoundingBox(x, y, x+width, y+width);
     }
 
     @Override
