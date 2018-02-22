@@ -1,6 +1,7 @@
 package test;
 import model.*;
 
+import model.board.BoardObjectType;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,14 +13,14 @@ public class testMoveGizmo {
     @Before
     public void setUp() {
         gizmoballModel = new GizmoballModel();
-        gizmoballModel.addGizmo(4.0, 20.0, GizmoType.CIRCLE, "C420");
+        gizmoballModel.addGizmo(4.0, 20.0, "C420", BoardObjectType.CIRCLE);
     }
 
     @Test
     public void testMove1Gizmo() {
         gizmoballModel.moveGizmo("C420", 1.0, 1.0);
-        assertTrue(gizmoballModel.getGizmoByName("C420").getXCoord()==1.0);
-        assertTrue(gizmoballModel.getGizmoByName("C420").getYCoord()== 1.0);
+        assertTrue(gizmoballModel.getGizmo("C420").getX()==1.0);
+        assertTrue(gizmoballModel.getGizmo("C420").getY()== 1.0);
     }
 
     @Test
@@ -29,21 +30,21 @@ public class testMoveGizmo {
 
     @Test
     public void testMoveTwoGizmos() {
-        gizmoballModel.addGizmo(3.0, 5.0, GizmoType.CIRCLE, "C35");
+        gizmoballModel.addGizmo(3.0, 5.0, "C35", BoardObjectType.CIRCLE);
         assertTrue(gizmoballModel.moveGizmo("C420", 1, 3));
         assertTrue(gizmoballModel.moveGizmo("C35", 4, 5));
     }
 
     @Test
     public void testMoveGizmoToOccupiedLocation() {
-        gizmoballModel.addGizmo(3.0, 5.0, GizmoType.CIRCLE, "C35");
+        gizmoballModel.addGizmo(3.0, 5.0, "C35", BoardObjectType.CIRCLE);
         assertFalse(gizmoballModel.moveGizmo("C420", 3, 5));
 
     }
 
     @Test
     public void testMoveToFlipperLocation() {
-        gizmoballModel.addGizmo(2, 2, GizmoType.LEFT_FLIPPER, "LF22");
+        gizmoballModel.addGizmo(2, 2, "LF22", BoardObjectType.LEFT_FLIPPER);
         assertFalse(gizmoballModel.moveGizmo("C420", 2, 2));
         assertFalse(gizmoballModel.moveGizmo("C420", 2, 3));
     }

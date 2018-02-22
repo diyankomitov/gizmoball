@@ -327,7 +327,7 @@ public class GizmoballModel{
         board.clear();
     }
 
-    public void moveGizmo(String name, double newX, double newY) { //TODO: check if new position is valid
+    public boolean moveGizmo(String name, double newX, double newY) { //TODO: check if new position is valid
         BoardState.add("Move " + name + " " + newX + " " + newY);
         getGizmo(name).setCoordinates(newX,newY);
     }
