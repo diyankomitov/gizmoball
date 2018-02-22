@@ -274,10 +274,21 @@ public class GizmoballModel implements Observable{
 //        return balls;
 //    }
 
-    public void moveGizmo(String name, int toX, int toY) {
-        BoardState.add("Move " + name + " " + toX + " " + toY + "\n");
+    public boolean moveGizmo(String name, double toX, double toY) {
+        if(getGizmoByName(name)==null){
+            return false;
+        }
+        for (Gizmo g:gizmos){
+            if((g.getXCoord()==toX)&&(g.getYCoord()==toY)){
+                return false;
+            }
+        }
+        BoardState.add("Move " + name + " " + (int)toX + " " + (int)toY + "\n");
         //add to that string array for file
-        //TODO actually remove gizmo
+        //TODO actually move gizmo
+        Gizmo gizmo = getGizmoByName(name);
+        gizmo.setCoords(toX, toY);
+        return true;
     }
 
     public void rotateGizmo(String  name) {

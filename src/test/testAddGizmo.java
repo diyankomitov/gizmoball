@@ -1,9 +1,7 @@
 package test;
 
 
-import controller.GizmoballController;
 import model.*;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -85,7 +83,23 @@ public class testAddGizmo {
         assertEquals(gizmoballModel.getGizmoByCoords(1, 1), gizmoballModel.getGizmos().get(0));
     }
 
+    @Test
+    public void testAddGizmoInFlipperXY() {
+        gizmoballModel.addGizmo(1,1, GizmoType.LEFT_FLIPPER, "LF11");
+        assertFalse(gizmoballModel.addGizmo(1,1, GizmoType.SQUARE, "S11"));
+    }
 
+    @Test
+    public void testAddGizmoInFlipperY2() {
+        gizmoballModel.addGizmo(1,1, GizmoType.LEFT_FLIPPER, "LF11");
+        assertFalse(gizmoballModel.addGizmo(1,2, GizmoType.CIRCLE, "C12"));
+//        assertFalse(gizmoballModel.addGizmo(2,2, GizmoType.TRIANGLE, "T22"));
+    }
+    @Test
+    public void testAddGizmoInFlipperXY2() {
+        gizmoballModel.addGizmo(1,1, GizmoType.LEFT_FLIPPER, "LF11");
+        assertFalse(gizmoballModel.addGizmo(2,2, GizmoType.TRIANGLE, "T22"));
+    }
 
 
 

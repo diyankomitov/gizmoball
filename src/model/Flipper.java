@@ -65,7 +65,7 @@ public class Flipper implements Gizmo, Observable{
         double radius = width/2;
         center = new Vect(xpos + radius, ypos + radius);
 
-
+        //TODO alter this so that flipper takes up appropriate grid space
 
 //        Circle corner1 = new Circle(xpos+width/2, y, width/2);
 //        corner2 = new Circle(xpos+width/2, y+length, width/2);
