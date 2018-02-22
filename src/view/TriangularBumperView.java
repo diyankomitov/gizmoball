@@ -14,7 +14,7 @@ public class TriangularBumperView extends GizmoView {
 
         double side = Constants.ONE_L_IN_PIXELS;
 
-        Polygon triangle = new Polygon(0.0, 0.0, 0.0, side, side, side);
+        Polygon triangle = new Polygon(0.0, 0.0, side, 0.0, 0.0, side);
         triangle.setFill(Color.GREEN); //TODO put in css
         rotate(triangleGizmo.getAngle());
 
@@ -25,7 +25,7 @@ public class TriangularBumperView extends GizmoView {
         super();
         double side = Constants.ONE_L_IN_PIXELS;
 
-        Polygon triangle = new Polygon(0.0, 0.0, 0.0, side, side, side);
+        Polygon triangle = new Polygon(0.0, 0.0, side, 0.0, 0.0, side);
         triangle.setFill(Color.GREEN); //TODO put in css
 
         this.getChildren().add(triangle);
