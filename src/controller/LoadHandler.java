@@ -22,7 +22,9 @@ public class LoadHandler implements EventHandler<ActionEvent> {
         this.model = model;
     }
 
-
+    //TODO add key connects
+    //TODO add default options if input is incorrect ie missing params or wrong name/type
+    //TODO add gravity and friction???
     @Override
     public void handle(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -95,57 +97,108 @@ public class LoadHandler implements EventHandler<ActionEvent> {
         double y2;
         switch(string[0]) {
             case "Triangle":
+                try {
                 x = Double.parseDouble(string[2]);
                 y = Double.parseDouble(string[3]);
                 model.addGizmo(x, y, string[1], BoardObjectType.TRIANGLE);
+                } catch(Exception e){
+                    System.out.println("Something has gone wrong...");
+                }
                 break;
             case "Square":
+                try {
                 x = Double.parseDouble(string[2]);
                 y = Double.parseDouble(string[3]);
                 model.addGizmo(x, y, string[1], BoardObjectType.SQUARE);
+                } catch(Exception e){
+                    System.out.println("Something has gone wrong...");
+                }
                 break;
             case "Circle":
-                x = Double.parseDouble(string[2]);
-                y = Double.parseDouble(string[3]);
-                model.addGizmo(x, y, string[1], BoardObjectType.CIRCLE);
+                try {
+                    x = Double.parseDouble(string[2]);
+                    y = Double.parseDouble(string[3]);
+                    model.addGizmo(x, y, string[1], BoardObjectType.CIRCLE);
+                } catch(Exception e){
+                    System.out.println("Something has gone wrong...");
+                }
                 break;
             case "LeftFlipper":
-                x = Double.parseDouble(string[2]);
-                y = Double.parseDouble(string[3]);
-                model.addGizmo(x, y, string[1], BoardObjectType.LEFT_FLIPPER);
+                try {
+                    x = Double.parseDouble(string[2]);
+                    y = Double.parseDouble(string[3]);
+                    model.addGizmo(x, y, string[1], BoardObjectType.LEFT_FLIPPER);
+                } catch(Exception e){
+                    System.out.println("Something has gone wrong...");
+                }
                 break;
             case "RightFlipper" :
-                x = Double.parseDouble(string[2]);
-                y = Double.parseDouble(string[3]);
-                model.addGizmo(x, y, string[1], BoardObjectType.RIGHT_FLIPPER);
+                try {
+                    x = Double.parseDouble(string[2]);
+                    y = Double.parseDouble(string[3]);
+                    model.addGizmo(x, y, string[1], BoardObjectType.RIGHT_FLIPPER);
+                } catch(Exception e){
+                    System.out.println("Something has gone wrong...");
+                }
                 break;
             case "Absorber" :
-                x = Double.parseDouble(string[2]);
-                y = Double.parseDouble(string[3]);
-                x2 = Double.parseDouble(string[4]);
-                y2 = Double.parseDouble(string[5]);
-                model.addAbsorber(x, y, x2, y2, string[1]);
+                try {
+                    x = Double.parseDouble(string[2]);
+                    y = Double.parseDouble(string[3]);
+                    x2 = Double.parseDouble(string[4]);
+                    y2 = Double.parseDouble(string[5]);
+                    model.addAbsorber(x, y, x2, y2, string[1]);
+                } catch(Exception e){
+                    System.out.println("Something has gone wrong...");
+                }
                 break;
             case "Ball":
-                x = Double.parseDouble(string[2]);
-                y = Double.parseDouble(string[3]);
-                x2 = Double.parseDouble(string[4]);
-                y2 = Double.parseDouble(string[5]);
-                model.addBall(x, y, x2, y2, string[1]);
+                try {
+                    x = Double.parseDouble(string[2]);
+                    y = Double.parseDouble(string[3]);
+                    x2 = Double.parseDouble(string[4]);
+                    y2 = Double.parseDouble(string[5]);
+                    model.addBall(x, y, x2, y2, string[1]);
+                } catch(Exception e){
+                    System.out.println("Something has gone wrong...");
+                }
                 break;
             case "Delete":
                 if(string[1].charAt(0)=='B') {
-                    model.removeBall(string[1]);
+                    model.removeBall();
                     board.removeBall();
                 }
                 model.removeGizmo(string[1]);
 
                 break;
             case "Rotate":
-                //TODO call rotate gizmo on string[2]
-                model.rotateGizmo(string[1]);
+                try{
+                    model.rotateGizmo(string[1]);
+                } catch(Exception e){
+                    System.out.println("Something has gone wrong...");
+                }
 
+                break;
+            case "KeyConnect":
+                try{
+
+                } catch(Exception e){
+                    System.out.println("Something has gone wrong...");
+                }
+
+                break;
+            case "Connect":
+                try{
+
+
+                } catch(Exception e) {
+                    System.out.println("Something has gone wrong...");
+                }
+                break;
+
+            //TODO add key connects
             default:
+                //todo add proper default
                 break;
         }
 

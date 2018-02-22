@@ -10,4 +10,7 @@ public class BoardState {
         stateList.add(state);
     }
 
+    public static List<String> getStateList() {
+        return stateList;
+    }
 }
