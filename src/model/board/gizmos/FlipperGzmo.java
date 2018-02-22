@@ -1,9 +1,7 @@
-package model.board.gizmos;
+package model;
 
 import javafx.scene.paint.Color;
-import model.board.BoardObjectType;
 import physics.*;
-import util.Observer;
 import view.FlipperDirection;
 import util.Observable;
 
@@ -11,17 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static util.Constants.DELTA_ANGLE;
-import static util.Constants.FLIPPER_ANGULAR_VELOCITY;
 import static util.Constants.ONE_L;
 import static view.FlipperDirection.LEFT;
 import static view.FlipperDirection.RIGHT;
 
-public class FlipperGzmo implements Gizmo{
+public class Flipper implements Gizmo, Observable{
 
     private double xpos;
     private double ypos;
     private final double width;
     private final double length;
+    private Circle corner2;
     private double angle; //Angle the flipper is at
     private FlipperDirection direction;
     private ArrayList<LineSegment> lineSegments; //2 line segments - could render separately?
@@ -32,10 +30,11 @@ public class FlipperGzmo implements Gizmo{
     private String name;
     private double offset;
 
+    public Vect getCenter() {
+        return center;
+    }
+
     private Vect center;
-    private boolean rotating;
-    private double angularVelocity;
-    private List<Observer> observers;
 
     /**
      * Constructor
@@ -43,7 +42,7 @@ public class FlipperGzmo implements Gizmo{
      * @param y
      * @param a
      */
-    public FlipperGzmo(double x, double y, double a, FlipperDirection direction, String name){
+    public Flipper(double x, double y, double a, FlipperDirection direction, String name){
         width = ONE_L/2;
         length = ONE_L*2;
 
@@ -65,8 +64,8 @@ public class FlipperGzmo implements Gizmo{
 
         double radius = width/2;
         center = new Vect(xpos + radius, ypos + radius);
-        observers = new ArrayList<>();
 
+        //TODO alter this so that flipper takes up appropriate grid space
 
 //        Circle corner1 = new Circle(xpos+width/2, y, width/2);
 //        corner2 = new Circle(xpos+width/2, y+length, width/2);
@@ -117,6 +116,8 @@ public class FlipperGzmo implements Gizmo{
                 moving = false;
             }
         }
+
+
 
         this.notifyObservers();
     }
@@ -175,12 +176,12 @@ public class FlipperGzmo implements Gizmo{
     }
 
     @Override
-    public BoardObjectType getType() {
+    public GizmoType getType() {
         switch (direction) {
             case RIGHT:
-                return BoardObjectType.RIGHT_FLIPPER;
+                return GizmoType.RIGHT_FLIPPER;
             case LEFT:
-                return BoardObjectType.LEFT_FLIPPER;
+                return GizmoType.LEFT_FLIPPER;
                 default: return null;
         }
     }
@@ -195,20 +196,6 @@ public class FlipperGzmo implements Gizmo{
         return ypos;
     }
 
-    @Override
-    public boolean isRotating() {
-        return rotating;
-    }
-
-    @Override
-    public Vect getCenter() {
-        return center;
-    }
-
-    @Override
-    public double getAngularVelocity() {
-        return Math.toRadians(FLIPPER_ANGULAR_VELOCITY);
-    }
 
     public double getXpos() {
         return xpos;
@@ -252,10 +239,5 @@ public class FlipperGzmo implements Gizmo{
 
     public boolean isMoving() {
         return moving;
-    }
-
-    @Override
-    public List<Observer> getObservers() {
-        return observers;
     }
 }

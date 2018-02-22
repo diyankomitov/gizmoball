@@ -97,7 +97,11 @@ public class BoardView extends Pane implements Observer{
             }
     }
 
+    public void removeGizmo(Gizmo gizmo) {
+        //TODO properly implement remove for later when placing and deleting gizmos
 
+        this.getChildren().remove(gizmo.getName());
+    }
 
     public void clearBoard() {
         this.getChildren().clear();

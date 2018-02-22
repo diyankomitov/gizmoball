@@ -4,8 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import model.board.gizmos.AbsorberGizmo;
-import model.board.BoardObjectType;
+import model.Flipper;
+import view.FlipperDirection;
+import model.GizmoType;
 import model.GizmoballModel;
 import view.BoardView;
 
@@ -15,14 +16,15 @@ public class LoadHandler implements EventHandler<ActionEvent> {
     private Stage stage;
     private GizmoballModel model; //Alistair thinks it might needs passed
     private BoardView board;
-    public LoadHandler(Stage stage, BoardView board, GizmoballModel model) {
+    public LoadHandler(Stage stage, BoardView board) {
         this.board = board;
 
         this.stage = stage;
-        this.model = model;
     }
 
-
+    //TODO add key connects
+    //TODO add default options if input is incorrect ie missing params or wrong name/type
+    //TODO add gravity and friction???
     @Override
     public void handle(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -47,6 +49,8 @@ public class LoadHandler implements EventHandler<ActionEvent> {
     public void loadGame(File file) {
         try {
             System.out.println("At top of loadGame");
+
+            model = new GizmoballModel();
 
             clearBoard();
 
@@ -79,23 +83,11 @@ public class LoadHandler implements EventHandler<ActionEvent> {
 
 
             );
-            model.getBalls().forEach(ball -> {
-                if(ball!=null){
-                    board.addBall(ball);
-                }
-            });
+            if(model.getBall()!=null){
+                board.addBall(model.getBall());
+            }
 
 
-
-
-            AbsorberGizmo absorber = (AbsorberGizmo) model.getGizmoByName("A");
-            board.getScene().setOnKeyPressed(keyEvent -> {
-                switch (keyEvent.getCode()) {
-                    case G:
-                        absorber.shootBall();
-                        break;
-                }
-            });
 
         } catch (FileNotFoundException e) {
             System.out.println("Error when trying to load the game. :(");
@@ -111,57 +103,113 @@ public class LoadHandler implements EventHandler<ActionEvent> {
         double y2;
         switch(string[0]) {
             case "Triangle":
-                x = Double.parseDouble(string[2]);
-                y = Double.parseDouble(string[3]);
-                model.addGizmo(x, y, string[1], BoardObjectType.TRIANGLE);
+                try {
+                    x = Double.parseDouble(string[2]);
+                    y = Double.parseDouble(string[3]);
+                    model.addGizmo(x, y, GizmoType.TRIANGLE, string[1]);
+                } catch(Exception e){
+                    System.out.println("Something has gone wrong...");
+                }
                 break;
             case "Square":
-                x = Double.parseDouble(string[2]);
-                y = Double.parseDouble(string[3]);
-                model.addGizmo(x, y, string[1], BoardObjectType.SQUARE);
+                try{
+                    x = Double.parseDouble(string[2]);
+                    y = Double.parseDouble(string[3]);
+                    model.addGizmo(x, y, GizmoType.SQUARE, string[1]);
+                } catch(Exception e){
+                    System.out.println("Something has gone wrong...");
+                }
                 break;
             case "Circle":
-                x = Double.parseDouble(string[2]);
-                y = Double.parseDouble(string[3]);
-                model.addGizmo(x, y, string[1], BoardObjectType.CIRCLE);
+                try{
+                    x = Double.parseDouble(string[2]);
+                    y = Double.parseDouble(string[3]);
+                    model.addGizmo(x, y, GizmoType.CIRCLE, string[1]);
+                } catch(Exception e){
+                    System.out.println("Something has gone wrong...");
+
+                }
                 break;
             case "LeftFlipper":
-                x = Double.parseDouble(string[2]);
-                y = Double.parseDouble(string[3]);
-                model.addGizmo(x, y, string[1], BoardObjectType.LEFT_FLIPPER);
+                try{
+                    x = Double.parseDouble(string[2]);
+                    y = Double.parseDouble(string[3]);
+                    model.addGizmo(x, y, GizmoType.LEFT_FLIPPER, string[1]);
+                } catch(Exception e){
+                    System.out.println("Something has gone wrong...");
+                }
                 break;
             case "RightFlipper" :
-                x = Double.parseDouble(string[2]);
-                y = Double.parseDouble(string[3]);
-                model.addGizmo(x, y, string[1], BoardObjectType.RIGHT_FLIPPER);
+                try{
+                    x = Double.parseDouble(string[2]);
+                    y = Double.parseDouble(string[3]);
+                    model.addGizmo(x, y, GizmoType.RIGHT_FLIPPER, string[1]);
+                } catch(Exception e){
+                    System.out.println("Something has gone wrong...");
+                }
                 break;
             case "Absorber" :
-                x = Double.parseDouble(string[2]);
-                y = Double.parseDouble(string[3]);
-                x2 = Double.parseDouble(string[4]);
-                y2 = Double.parseDouble(string[5]);
-                model.addAbsorber(x, y, x2, y2, string[1]);
+                try{
+                    x = Double.parseDouble(string[2]);
+                    y = Double.parseDouble(string[3]);
+                    x2 = Double.parseDouble(string[4]);
+                    y2 = Double.parseDouble(string[5]);
+                    model.addAbsorber(x, y, x2, y2, string[1]);
+                } catch(Exception e){
+                    System.out.println("Something has gone wrong...");
+                }
                 break;
             case "Ball":
-                x = Double.parseDouble(string[2]);
-                y = Double.parseDouble(string[3]);
-                x2 = Double.parseDouble(string[4]);
-                y2 = Double.parseDouble(string[5]);
-                model.addBall(x, y, x2, y2, string[1]);
+                try{
+                    x = Double.parseDouble(string[2]);
+                    y = Double.parseDouble(string[3]);
+                    x2 = Double.parseDouble(string[4]);
+                    y2 = Double.parseDouble(string[5]);
+                    model.addBall(x, y, x2, y2, string[1]);
+                } catch(Exception e){
+                    System.out.println("Something has gone wrong...");
+                }
+
                 break;
             case "Delete":
-                if(string[1].charAt(0)=='B') {
-                    model.removeBall();
-                    board.removeBall();
+                try{
+                    if(model.getBall()!=null && model.getBall().getName().equals(string[1])) {
+                        model.removeBall();
+                        board.removeBall();
+                    }
+                    model.removeGizmo(string[1]);
+                } catch(Exception e){
+                    System.out.println("Something has gone wrong...");
                 }
-                model.removeGizmo(string[1]);
-
                 break;
             case "Rotate":
-                //TODO call rotate gizmo on string[2]
-                model.rotateGizmo(string[1]);
+                try{
+                    model.rotateGizmo(string[1]);
+                } catch(Exception e){
+                    System.out.println("Something has gone wrong...");
+                }
 
+                break;
+            case "KeyConnect":
+                try{
+
+                } catch(Exception e){
+                    System.out.println("Something has gone wrong...");
+                }
+
+                break;
+            case "Connect":
+                try{
+
+
+                } catch(Exception e) {
+                    System.out.println("Something has gone wrong...");
+                }
+                break;
+
+            //TODO add key connects
             default:
+                //todo add proper default
                 break;
         }
 
