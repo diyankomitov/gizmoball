@@ -14,8 +14,8 @@ public class AbsorberView extends GizmoView implements Observer{
 
     public AbsorberView(AbsorberGizmo absorberModel) {
         super(absorberModel);
-        this.x = absorberModel.getXCoord() * ONE_L_IN_PIXELS;
-        this.y = absorberModel.getYCoord() * ONE_L_IN_PIXELS;
+        this.x = absorberModel.getX() * ONE_L_IN_PIXELS;
+        this.y = absorberModel.getY() * ONE_L_IN_PIXELS;
         this.absorberModel = absorberModel;
         Rectangle rectangle = new Rectangle(absorberModel.getWidth() * ONE_L_IN_PIXELS, absorberModel.getHeight() * ONE_L_IN_PIXELS);
         this.getChildren().add(rectangle);

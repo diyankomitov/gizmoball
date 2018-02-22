@@ -15,7 +15,7 @@ public class TriangleGizmo implements Gizmo {
     private final List<LineSegment> sides;
     private final List<Circle> corners;
     private BoardObjectType type = BoardObjectType.TRIANGLE;
-    private double angle = 0;
+    private double angle;
     private String name;
     private List<Observer> observers;
 
@@ -30,19 +30,20 @@ public class TriangleGizmo implements Gizmo {
         sides = new ArrayList<>();
         corners = new ArrayList<>();
         observers = new ArrayList<>();
+        angle = 0;
     }
 
     @Override
     public List<LineSegment> getLines() {
         sides.clear();
 
-        LineSegment ls1 = new LineSegment(x, y, x, y+side);
-        LineSegment ls2 = new LineSegment(x, y+side,x+side, y+side);
-        LineSegment ls3 = new LineSegment(x+side,y+side,x, y);
+        LineSegment ls1 = new LineSegment(x, y, x+side, y);
+        LineSegment ls2 = new LineSegment(x+side, y,x, y+side);
+        LineSegment ls3 = new LineSegment(x,y+side, x, y);
 
-        ls1 = Geometry.rotateAround(ls1, new Vect(x + side/2, y + side/2), new Angle(Math.toRadians(angle)));
-        ls2 = Geometry.rotateAround(ls2, new Vect(x + side/2, y + side/2), new Angle(Math.toRadians(angle)));
-        ls3 = Geometry.rotateAround(ls3, new Vect(x + side/2, y + side/2), new Angle(Math.toRadians(angle)));
+        ls1 = Geometry.rotateAround(ls1, getCenter(), new Angle(Math.toRadians(angle)));
+        ls2 = Geometry.rotateAround(ls2, getCenter(), new Angle(Math.toRadians(angle)));
+        ls3 = Geometry.rotateAround(ls3, getCenter(), new Angle(Math.toRadians(angle)));
 
         sides.add(ls1);
         sides.add(ls2);
@@ -56,13 +57,12 @@ public class TriangleGizmo implements Gizmo {
         corners.clear();
 
         Circle c1 = new Circle(x, y, 0);
-        Circle c2 = new Circle(x, y+side, 0);
-        Circle c3 = new Circle(x+side, y+side, 0);
+        Circle c2 = new Circle(x+side, y, 0);
+        Circle c3 = new Circle(x, y+side, 0);
 
         c1 = Geometry.rotateAround(c1, new Vect(x + side/2, y + side/2), new Angle(Math.toRadians(angle)));
         c2 = Geometry.rotateAround(c2, new Vect(x + side/2, y + side/2), new Angle(Math.toRadians(angle)));
         c3 = Geometry.rotateAround(c3, new Vect(x + side/2, y + side/2), new Angle(Math.toRadians(angle)));
-
 
         corners.add(c1);
         corners.add(c2);
@@ -72,14 +72,14 @@ public class TriangleGizmo implements Gizmo {
     }
 
     @Override
-    public double getRCoefficient() {
-        return rCoefficient;
+    public void setCoordinates(double x, double y) {
+        this.x = x;
+        this.y = y;
     }
 
     @Override
-    public void setCoords(double x, double y) {
-        this.x = x;
-        this.y = y;
+    public double getRCoefficient() {
+        return rCoefficient;
     }
 
     @Override
@@ -88,23 +88,18 @@ public class TriangleGizmo implements Gizmo {
     }
 
     @Override
-    public BoardObjectType getType() {
-        return type;
-    }
-
-    @Override
-    public double getXCoord() {
+    public double getX() {
         return x;
     }
 
     @Override
-    public double getYCoord() {
+    public double getY() {
         return y;
     }
 
     @Override
-    public boolean isRotating() {
-        return false;
+    public BoardObjectType getType() {
+        return type;
     }
 
     @Override
@@ -112,20 +107,25 @@ public class TriangleGizmo implements Gizmo {
         return new Vect(x+(side/2), y+(side/2));
     }
 
-    @Override
-    public double getAngularVelocity() {
-        return 0;
-    }
-
     public void rotate(){
-        angle += 90;
-        if(angle>=360){
-            angle -= 360;
+        angle = angle + 90;
+        if(angle==360){
+            angle = 0;
         }
     }
 
     public double getAngle(){
         return angle;
+    }
+
+    @Override
+    public void trigger() {
+
+    }
+
+    @Override
+    public void sendTrigger() {
+        //TODO: implement when making triggering system
     }
 
     @Override

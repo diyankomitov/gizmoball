@@ -1,8 +1,6 @@
 package model.board;
 
 import model.board.gizmos.Gizmo;
-import physics.Circle;
-import physics.LineSegment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,27 +29,27 @@ public class Board {
         return walls;
     }
 
-    public List<LineSegment> getLines() {
-        List<LineSegment> lines = new ArrayList<>();
+//    public List<LineSegment> getLines() {
+//        List<LineSegment> lines = new ArrayList<>();
+//
+//        gizmos.forEach(gizmo -> lines.addAll(gizmo.getLines()));
+//
+//        lines.addAll(walls.getLines());
+//
+//        return lines;
+//    }
 
-        gizmos.forEach(gizmo -> lines.addAll(gizmo.getLines()));
-
-        lines.addAll(walls.getLines());
-
-        return lines;
-    }
-
-    public List<Circle> getCircles() {
-        List<Circle> circles = new ArrayList<>();
-
-        gizmos.forEach(gizmo -> circles.addAll(gizmo.getCircles()));
-
-        balls.forEach(ball -> circles.add(ball.getCircle()));
-
-        circles.addAll(walls.getCircles());
-
-        return circles;
-    }
+//    public List<Circle> getCircles() {
+//        List<Circle> circles = new ArrayList<>();
+//
+//        gizmos.forEach(gizmo -> circles.addAll(gizmo.getCircles()));
+//
+//        balls.forEach(ball -> circles.add(ball.getCircle()));
+//
+//        circles.addAll(walls.getCircles());
+//
+//        return circles;
+//    }
 
     public boolean addGizmo(Gizmo gizmo) {
         return gizmos.add(gizmo);
@@ -70,5 +68,7 @@ public class Board {
         gizmos.remove(gizmo);
     }
 
-    public void removeBall(Ball ball) { balls.remove(ball); }
+    public void removeBall(Ball ball) {
+        balls.remove(ball);
+    }
 }

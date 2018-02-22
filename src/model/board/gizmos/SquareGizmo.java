@@ -9,7 +9,7 @@ import util.Observer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SquareGizmo implements Gizmo { //TODO: maybe add an abstract class to avoid duplication
+public class SquareGizmo implements Gizmo { //TODO: maybe add an abstract class to avoid duplication?
     private double x;
     private double y;
     private double width;
@@ -61,7 +61,7 @@ public class SquareGizmo implements Gizmo { //TODO: maybe add an abstract class 
 
         LineSegment ls1 = new LineSegment(x,y,x+width, y);
         LineSegment ls2 = new LineSegment(x+width,y,x+width, y+width);
-        LineSegment ls3 = new LineSegment(x+width,y+width,x, y+width);
+        LineSegment ls3 = new LineSegment(x+width,y+width, x, y+width);
         LineSegment ls4 = new LineSegment(x,y+width,x, y);
         sides.add(ls1);
         sides.add(ls2);
@@ -89,7 +89,7 @@ public class SquareGizmo implements Gizmo { //TODO: maybe add an abstract class 
 
     @Override
     public Vect getCenter() {
-        return new Vect(x+width, y+width);
+        return new Vect(x+(width/2), y+(width/2));
     }
 
     @Override

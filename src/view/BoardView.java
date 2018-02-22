@@ -67,8 +67,8 @@ public class BoardView extends Pane implements Observer{
     }
 
     public void addGizmo(Gizmo gizmo){
-        int x = (int) gizmo.getXCoord();
-        int y = (int) gizmo.getYCoord();
+        int x = (int) gizmo.getX();
+        int y = (int) gizmo.getY();
 
             switch(gizmo.getType()){
                 case CIRCLE:
