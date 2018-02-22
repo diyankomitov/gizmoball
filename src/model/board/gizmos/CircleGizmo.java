@@ -14,9 +14,12 @@ public class CircleGizmo implements Gizmo {
     private double y;
     private final double diameter;
     private final double rCoefficient;
+    private List<Circle> circles;
     private BoardObjectType type = BoardObjectType.CIRCLE;
     private String name;
     private List<Observer> observers;
+    private double angle;
+    private boolean triggered;
 
     public CircleGizmo(double x, double y, double diameter, String name) {
         this.x = x;
@@ -26,7 +29,11 @@ public class CircleGizmo implements Gizmo {
 
         this.diameter = diameter;
         rCoefficient = 1.0;
+        circles = new ArrayList<>();
         observers = new ArrayList<>();
+
+        triggered = false;
+        angle = 0;
     }
 
     @Override
@@ -36,8 +43,8 @@ public class CircleGizmo implements Gizmo {
 
     @Override
     public List<Circle> getCircles() {
+        circles.clear();
         Circle circle = new Circle(x+diameter/2,y+diameter/2,diameter/2);
-        List<Circle> circles = new ArrayList<>();
         circles.add(circle);
         return circles;
     }
@@ -55,35 +62,25 @@ public class CircleGizmo implements Gizmo {
 
     @Override
     public void rotate() {
+        angle += 90;
+        if(angle>=360){
+            angle -= 360;
+        }
     }
 
     @Override
     public double getAngle() {
-        return 0;
+        return angle;
     }
 
     @Override
     public void trigger() {
+        triggered = true;
     }
 
     @Override
     public void sendTrigger() {
-        //TODO: implement when making triggering system
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public double getX() {
-        return x;
-    }
-
-    @Override
-    public double getY() {
-        return y;
+        //TODO: implement this as we implement collision
     }
 
     @Override
@@ -91,10 +88,6 @@ public class CircleGizmo implements Gizmo {
         return type;
     }
 
-    @Override
-    public Vect getCenter() {
-        return new Vect(x+(diameter/2), y+(diameter/2));
-    }
 
     @Override
     public List<Observer> getObservers() {

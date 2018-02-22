@@ -9,7 +9,7 @@ import util.Observer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SquareGizmo implements Gizmo { //TODO: maybe add an abstract class to avoid duplication?
+public class SquareGizmo implements Gizmo {
     private double x;
     private double y;
     private double width;
@@ -17,8 +17,12 @@ public class SquareGizmo implements Gizmo { //TODO: maybe add an abstract class 
     private final List<LineSegment> sides;
     private final List<Circle> corners;
     private BoardObjectType type = BoardObjectType.SQUARE;
+
     private String name;
     private List<Observer> observers;
+
+    private boolean triggered;
+    private double angle;
 
     public SquareGizmo(double x, double y, double width, String name) {
         this.x = x;
@@ -33,26 +37,9 @@ public class SquareGizmo implements Gizmo { //TODO: maybe add an abstract class 
         sides = new ArrayList<>();
         corners = new ArrayList<>();
         observers = new ArrayList<>();
-    }
 
-    @Override
-    public BoardObjectType getType() {
-        return type;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public double getX() {
-        return x;
-    }
-
-    @Override
-    public double getY() {
-        return y;
+        triggered = false;
+        angle = 0;
     }
 
     @Override
@@ -61,7 +48,7 @@ public class SquareGizmo implements Gizmo { //TODO: maybe add an abstract class 
 
         LineSegment ls1 = new LineSegment(x,y,x+width, y);
         LineSegment ls2 = new LineSegment(x+width,y,x+width, y+width);
-        LineSegment ls3 = new LineSegment(x+width,y+width, x, y+width);
+        LineSegment ls3 = new LineSegment(x+width,y+width,x, y+width);
         LineSegment ls4 = new LineSegment(x,y+width,x, y);
         sides.add(ls1);
         sides.add(ls2);
@@ -88,11 +75,6 @@ public class SquareGizmo implements Gizmo { //TODO: maybe add an abstract class 
     }
 
     @Override
-    public Vect getCenter() {
-        return new Vect(x+(width/2), y+(width/2));
-    }
-
-    @Override
     public void setCoordinates(double x, double y) {
         this.x = x;
         this.y = y;
@@ -105,21 +87,32 @@ public class SquareGizmo implements Gizmo { //TODO: maybe add an abstract class 
 
     @Override
     public void rotate() {
+        angle += 90;
+        if(angle>=360){
+            angle -= 360;
+        }
     }
 
     @Override
     public double getAngle() {
-        return 0;
+        return angle;
     }
 
     @Override
     public void trigger() {
+        triggered = true;
     }
 
     @Override
     public void sendTrigger() {
-        //TODO: implement when doing triggering system
+        //TODO: implement this when we are adding collision
     }
+
+    @Override
+    public BoardObjectType getType() {
+        return type;
+    }
+
 
     @Override
     public List<Observer> getObservers() {
