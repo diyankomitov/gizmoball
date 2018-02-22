@@ -165,7 +165,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                 break;
             case "Delete":
                 if(string[1].charAt(0)=='B') {
-                    model.removeBall();
+                    model.removeBall(string[1]);
                     board.removeBall();
                 }
                 model.removeGizmo(string[1]);
