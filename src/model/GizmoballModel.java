@@ -328,16 +328,17 @@ public class GizmoballModel{
     }
 
     public boolean moveGizmo(String name, double newX, double newY) {
-        BoardState.add("Move " + name + " " + newX + " " + newY);
-        Gizmo gizmo = getGizmo(name);
-        gizmo.setCoordinates(newX,newY);
-
-
-        for (Gizmo g : board.getGizmos()) {
-            if (g.getBoundingBox().isIntersecting(gizmo.getBoundingBox())){
-                return false;
+        for(Gizmo g: board.getGizmos()){
+            if(g.getName().equals(name)){
+                BoardState.add("Move " + name + " " + newX + " " + newY);
+                Gizmo gizmo = getGizmo(name);
+                gizmo.setCoordinates(newX,newY);
+                if (g.getBoundingBox().isIntersecting(gizmo.getBoundingBox())){
+                    return false;
+                }
             }
         }
+
         return true;
     }
 

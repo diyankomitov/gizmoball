@@ -26,13 +26,20 @@ public class testMoveGizmo {
     @Test
     public void testMoveWrongGizmo() {
         assertFalse(gizmoballModel.moveGizmo("T", 2.0, 2.0));
+
     }
 
     @Test
     public void testMoveTwoGizmos() {
         gizmoballModel.addGizmo(3.0, 5.0, "C35", BoardObjectType.CIRCLE);
-        assertTrue(gizmoballModel.moveGizmo("C420", 1, 3));
-        assertTrue(gizmoballModel.moveGizmo("C35", 4, 5));
+        gizmoballModel.moveGizmo("C420", 1, 3);
+        assertTrue(gizmoballModel.getGizmo("C420").getX()==1);
+        assertTrue(gizmoballModel.getGizmo("C420").getY()==3);
+        gizmoballModel.moveGizmo("C35", 5, 6);
+        assertTrue(gizmoballModel.getGizmo("C35").getX()==5);
+        assertTrue(gizmoballModel.getGizmo("C35").getY()==6);
+
+
     }
 
     @Test

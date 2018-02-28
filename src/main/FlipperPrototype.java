@@ -1,6 +1,6 @@
 package main;
 
-import controller.KeyEventFilter;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -82,7 +82,7 @@ public class  FlipperPrototype extends Application {
 //        timeline.setCycleCount(Timeline.INDEFINITE); //keeps running until stop is called
 
 
-        scene.addEventFilter(KeyEvent.ANY, new KeyEventFilter());
+        //scene.addEventFilter(KeyEvent.ANY);
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
                 case LEFT:
