@@ -299,8 +299,13 @@ public class GizmoballModel{
                 if(b.getX()==x &&b.getY()==y) {
                     return false;
                 }
-                Ball ball = new Ball(x, y, xv, yv, name); //TODO: Think this is done... (check if ball with same name already exists)
-                //TODO: Think this is done too... (Detect if ball is within a gizmo)
+                for(Gizmo g: board.getGizmos()){
+                    if(g.getX()==x && g.getY()==y) {
+                        return false;
+                    }
+                }
+                Ball ball = new Ball(x, y, xv, yv, name);
+
                 board.addBall(ball);
                 details.addBall(ball);
                 BoardState.add("Add " + name + " " + x + " " + y + " " + xv + " " + yv);
@@ -325,7 +330,7 @@ public class GizmoballModel{
         for(Ball b: board.getBalls()) {
             if (b.getName().equals(name)) {
                 BoardState.add("Delete " + name);
-                board.removeBall(getBall(name));
+                board.removeBall(getBall(name)); //TODO: check this method of getting the ball as returns null
                 return true;
             }
         }
@@ -354,13 +359,15 @@ public class GizmoballModel{
                 BoardState.add("Move " + name + " " + newX + " " + newY);
                 Gizmo gizmo = getGizmo(name);
                 gizmo.setCoordinates(newX,newY);
+
                 if (g.getBoundingBox().isIntersecting(gizmo.getBoundingBox())){
                     return false;
                 }
+                return true;
             }
         }
 
-        return true;
+        return false;
     }
 
     public void moveGizmo(double x, double y, double newX, double newY) { //TODO: check if new position is valid
@@ -436,6 +443,7 @@ public class GizmoballModel{
         return null;
     }
 
+    //TODO: This method is what is currently failing the remove gizmo tests etc as its returning null
     public Ball getBall(String name) {
         for(Ball ball : board.getBalls()) {
             if(ball.getName().equals(name)){

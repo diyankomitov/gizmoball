@@ -18,6 +18,7 @@ public class TestAddRemoveBall {
 
     @Test
     public void testBallLocation() {
+        System.out.println(gizmoballModel.getBall("B1"));
         assertTrue(gizmoballModel.getBall("B1").getX()== 5);
         assertTrue(gizmoballModel.getBall("B1").getY()== 5);
 
@@ -38,5 +39,15 @@ public class TestAddRemoveBall {
     public void testAddBallOccupiedLocation() {
         gizmoballModel.addGizmo(7,7,"C77", BoardObjectType.CIRCLE);
         assertFalse(gizmoballModel.addBall(7,7,5,5, "B2"));
+    }
+
+    @Test
+    public void testAddSecondBall() {
+        assertTrue(gizmoballModel.addBall(8,9, 10,10, "B3"));
+    }
+
+    @Test
+    public void testAddBallSameName() {
+        assertFalse(gizmoballModel.addBall(1,1, 10, 10, "B1"));
     }
 }
