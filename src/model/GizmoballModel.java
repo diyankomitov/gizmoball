@@ -294,19 +294,31 @@ public class GizmoballModel{
     //TODO: probably return booleans  for all of the bellow
 
     public boolean addBall(double x, double y, double xv, double yv, String name) {
+        //TODO: never enters for loop - problem to fix
         for(Ball b : board.getBalls()){
+            System.out.println("for loop");
             if(!b.getName().equals(name)){
+                System.out.println("first if statement");
                 if(b.getX()==x &&b.getY()==y) {
+                    System.out.println("nested if one");
                     return false;
                 }
                 for(Gizmo g: board.getGizmos()){
+                    System.out.println("nested for loop one");
                     if(g.getX()==x && g.getY()==y) {
+                        System.out.println("nested if two");
                         return false;
                     }
                 }
                 Ball ball = new Ball(x, y, xv, yv, name);
+                System.out.println(ball);
 
                 board.addBall(ball);
+
+                for (Ball someBall : board.getBalls()) {
+                    System.out.println(someBall);
+                }
+
                 details.addBall(ball);
                 BoardState.add("Add " + name + " " + x + " " + y + " " + xv + " " + yv);
                 return true;
@@ -337,17 +349,17 @@ public class GizmoballModel{
         return false;
     }
 
-    public boolean removeBall(double x, double y) { //TODO: check if exists
-        for(Ball b: board.getBalls()) {
-            if (b.getX() == x && b.getY() == y){
-                Ball ball = getBall(x, y);
-                BoardState.add("Delete " + ball.getName());
-                board.removeBall(ball);
-                return true;
-            }
-        }
-        return false;
-    }
+//    public boolean removeBall(double x, double y) { //TODO: check if exists
+//        for(Ball b: board.getBalls()) {
+//            if (b.getX() == x && b.getY() == y){
+//                Ball ball = getBall(x, y);
+//                BoardState.add("Delete " + ball.getName());
+//                board.removeBall(ball);
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     public void clearBoard() {
         board.clear();
@@ -446,6 +458,7 @@ public class GizmoballModel{
     //TODO: This method is what is currently failing the remove gizmo tests etc as its returning null
     public Ball getBall(String name) {
         for(Ball ball : board.getBalls()) {
+            System.out.println(ball.getName());
             if(ball.getName().equals(name)){
                 return ball;
             }

@@ -1,6 +1,7 @@
 package test;
 import model.*;
 
+import model.board.Ball;
 import model.board.BoardObjectType;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,8 +26,24 @@ public class TestAddRemoveBall {
     }
 
     @Test
+    public void actuallyHasBall() {
+//        assertNotNull(gizmoballModel.getBall("B1"));
+        gizmoballModel.getBall("B1");
+    }
+
+    @Test
     public void testRemoveBall() {
+//        gizmoballModel = new GizmoballModel();
+//        gizmoballModel.addBall(5, 5, 10, 10, "B1");
         assertTrue(gizmoballModel.removeBall("B1" ));
+
+    }
+
+    @Test
+    public void testRemoveBallNotNull() {
+        gizmoballModel = new GizmoballModel();
+        gizmoballModel.addBall(5, 5, 10, 10, "B1");
+        assertTrue(gizmoballModel.removeBall("B1"));
     }
 
     @Test
