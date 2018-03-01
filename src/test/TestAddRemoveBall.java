@@ -33,10 +33,7 @@ public class TestAddRemoveBall {
 
     @Test
     public void testRemoveBall() {
-//        gizmoballModel = new GizmoballModel();
-//        gizmoballModel.addBall(5, 5, 10, 10, "B1");
         assertTrue(gizmoballModel.removeBall("B1" ));
-
     }
 
     @Test

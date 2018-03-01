@@ -295,36 +295,55 @@ public class GizmoballModel{
 
     public boolean addBall(double x, double y, double xv, double yv, String name) {
         //TODO: never enters for loop - problem to fix
-        for(Ball b : board.getBalls()){
-            System.out.println("for loop");
-            if(!b.getName().equals(name)){
-                System.out.println("first if statement");
-                if(b.getX()==x &&b.getY()==y) {
-                    System.out.println("nested if one");
-                    return false;
-                }
-                for(Gizmo g: board.getGizmos()){
-                    System.out.println("nested for loop one");
-                    if(g.getX()==x && g.getY()==y) {
-                        System.out.println("nested if two");
+        if (board.getBalls().isEmpty()){
+            System.out.println("Empty ball list");
+
+            Ball ball = new Ball(x, y, xv, yv, name);
+            System.out.println(ball);
+
+            board.addBall(ball);
+
+            for (Ball someBall : board.getBalls()) {
+                System.out.println(someBall);
+            }
+
+            details.addBall(ball);
+            BoardState.add("Add " + name + " " + x + " " + y + " " + xv + " " + yv);
+            return true;
+        }
+        else {
+            for (Ball b : board.getBalls()) {
+                System.out.println("for loop");
+                if (!b.getName().equals(name)) {
+                    System.out.println("first if statement");
+                    if (b.getX() == x && b.getY() == y) {
+                        System.out.println("nested if one");
                         return false;
                     }
+                    for (Gizmo g : board.getGizmos()) {
+                        System.out.println("nested for loop one");
+                        if (g.getX() == x && g.getY() == y) {
+                            System.out.println("nested if two");
+                            return false;
+                        }
+                    }
+
                 }
-                Ball ball = new Ball(x, y, xv, yv, name);
-                System.out.println(ball);
-
-                board.addBall(ball);
-
-                for (Ball someBall : board.getBalls()) {
-                    System.out.println(someBall);
-                }
-
-                details.addBall(ball);
-                BoardState.add("Add " + name + " " + x + " " + y + " " + xv + " " + yv);
-                return true;
             }
+            Ball ball = new Ball(x, y, xv, yv, name);
+            System.out.println(ball);
+
+            board.addBall(ball);
+
+            for (Ball someBall : board.getBalls()) {
+                System.out.println(someBall);
+            }
+
+            details.addBall(ball);
+            BoardState.add("Add " + name + " " + x + " " + y + " " + xv + " " + yv);
+            return true;
         }
-        return false;
+       // return false; UNREACHABLE STATEMENT - NECESSARY?
     }
 
     public void removeGizmo(String name) { //TODO: check if exists
