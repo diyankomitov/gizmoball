@@ -312,15 +312,27 @@ public class GizmoballModel{
         board.removeGizmo(gizmo);
     }
 
-    public void removeBall(String name) { //TODO: check if exists
-        BoardState.add("Delete " + name);
-        board.removeBall(getBall(name));
+    public boolean removeBall(String name) {
+        for(Ball b: board.getBalls()) {
+            if (b.getName().equals(name)) {
+                BoardState.add("Delete " + name);
+                board.removeBall(getBall(name));
+                return true;
+            }
+        }
+        return false;
     }
 
-    public void removeBall(double x, double y) { //TODO: check if exists
-        Ball ball = getBall(x, y);
-        BoardState.add("Delete " + ball.getName());
-        board.removeBall(ball);
+    public boolean removeBall(double x, double y) { //TODO: check if exists
+        for(Ball b: board.getBalls()) {
+            if (b.getX() == x && b.getY() == y){
+                Ball ball = getBall(x, y);
+                BoardState.add("Delete " + ball.getName());
+                board.removeBall(ball);
+                return true;
+            }
+        }
+        return false;
     }
 
     public void clearBoard() {
