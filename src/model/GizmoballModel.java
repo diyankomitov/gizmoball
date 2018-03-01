@@ -293,12 +293,21 @@ public class GizmoballModel{
 
     //TODO: probably return booleans  for all of the bellow
 
-    public void addBall(double x, double y, double xv, double yv, String name) {
-        Ball ball = new Ball(x, y, xv, yv, name); //TODO: check if ball with same name already exists
-        //TODO: Detect if ball is within a gizmo
-        board.addBall(ball);
-        details.addBall(ball);
-        BoardState.add("Add " + name + " " + x + " " + y + " " + xv + " " + yv);
+    public boolean addBall(double x, double y, double xv, double yv, String name) {
+        for(Ball b : board.getBalls()){
+            if(!b.getName().equals(name)){
+                if(b.getX()==x &&b.getY()==y) {
+                    return false;
+                }
+                Ball ball = new Ball(x, y, xv, yv, name); //TODO: Think this is done... (check if ball with same name already exists)
+                //TODO: Think this is done too... (Detect if ball is within a gizmo)
+                board.addBall(ball);
+                details.addBall(ball);
+                BoardState.add("Add " + name + " " + x + " " + y + " " + xv + " " + yv);
+                return true;
+            }
+        }
+        return false;
     }
 
     public void removeGizmo(String name) { //TODO: check if exists
