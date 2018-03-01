@@ -291,58 +291,36 @@ public class GizmoballModel{
         return true;
     }
 
-    //TODO: probably return booleans  for all of the bellow
-
+    
     public boolean addBall(double x, double y, double xv, double yv, String name) {
-        //TODO: never enters for loop - problem to fix
         if (board.getBalls().isEmpty()){
-            System.out.println("Empty ball list");
-
             Ball ball = new Ball(x, y, xv, yv, name);
-            System.out.println(ball);
-
             board.addBall(ball);
-
-            for (Ball someBall : board.getBalls()) {
-                System.out.println(someBall);
-            }
-
             details.addBall(ball);
             BoardState.add("Add " + name + " " + x + " " + y + " " + xv + " " + yv);
             return true;
         }
         else {
             for (Ball b : board.getBalls()) {
-                System.out.println("for loop");
+                //if name of ball being added is NOT equal to the name of some other ball
                 if (!b.getName().equals(name)) {
-                    System.out.println("if name of this ball is not equal to the name passed in");
                     if (b.getX() == x && b.getY() == y) {
-                        System.out.println("nested if one");
                         return false;
                     }
                     for (Gizmo g : board.getGizmos()) {
-                        System.out.println("nested for loop one");
                         if (g.getX() == x && g.getY() == y) {
-                            System.out.println("nested if two");
                             return false;
                         }
                     }
 
                 }
                 else {
-                    System.out.println("the names are equal");
+                    //if the names are equal
                     return false;
                 }
             }
             Ball ball = new Ball(x, y, xv, yv, name);
-            System.out.println(ball);
-
             board.addBall(ball);
-
-            for (Ball someBall : board.getBalls()) {
-                System.out.println(someBall);
-            }
-
             details.addBall(ball);
             BoardState.add("Add " + name + " " + x + " " + y + " " + xv + " " + yv);
             return true;
