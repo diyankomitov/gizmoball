@@ -456,7 +456,7 @@ public class GizmoballModel{
         return null;
     }
 
-    //TODO: This method is what is currently failing the remove gizmo tests etc as its returning null
+
     public Ball getBall(String name) {
         for(Ball ball : board.getBalls()) {
             System.out.println(ball.getName());
