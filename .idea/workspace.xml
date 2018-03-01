@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b68b6b0d-8203-4a49-99bd-24ea82f7b4c1" name="Default" comment="Issues with addBall - for loop is never entered, so ball may never be added. Thoughts: must check if list of balls is empty - addBall assumes we already have a ball">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/GizmoballModel.java" afterPath="$PROJECT_DIR$/src/model/GizmoballModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/testAbsorber.java" afterPath="$PROJECT_DIR$/src/test/testAbsorber.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,7 +20,7 @@
             <file leaf-file-name="testAbsorber.java" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/test/testAbsorber.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="1004">
+                  <state relative-caret-position="1782">
                     <caret line="68" column="48" lean-forward="false" selection-start-line="68" selection-start-column="48" selection-end-line="68" selection-end-column="48" />
                     <folding>
                       <element signature="imports" expanded="true" />
@@ -37,55 +36,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="21" column="0" lean-forward="true" selection-start-line="18" selection-start-column="4" selection-end-line="21" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FlipperPrototype.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/FlipperPrototype.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="55" column="16" lean-forward="false" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CollisionPrototype.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/CollisionPrototype.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1350">
-              <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="testAddGizmo.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/testAddGizmo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-459">
-              <caret line="54" column="36" lean-forward="false" selection-start-line="54" selection-start-column="36" selection-end-line="54" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GizmoballModel.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GizmoballModel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/model/GizmoballModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="458" column="0" lean-forward="false" selection-start-line="458" selection-start-column="0" selection-end-line="458" selection-end-column="0" />
+            <state relative-caret-position="-81">
+              <caret line="274" column="86" lean-forward="false" selection-start-line="274" selection-start-column="86" selection-end-line="274" selection-end-column="86" />
               <folding />
             </state>
           </provider>
@@ -152,8 +107,8 @@
         <option value="$PROJECT_DIR$/src/main/gatBallTester.java" />
         <option value="$PROJECT_DIR$/src/main/getBallTester.java" />
         <option value="$PROJECT_DIR$/src/test/TestAddRemoveBall.java" />
-        <option value="$PROJECT_DIR$/src/model/GizmoballModel.java" />
         <option value="$PROJECT_DIR$/src/test/testAbsorber.java" />
+        <option value="$PROJECT_DIR$/src/model/GizmoballModel.java" />
       </list>
     </option>
   </component>
@@ -165,8 +120,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="1070" />
-    <option name="width" value="1100" />
+    <option name="x" value="920" />
+    <option name="width" value="1250" />
     <option name="height" value="1390" />
   </component>
   <component name="ProjectView">
@@ -245,7 +200,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.testAbsorber.testAddAbsorberOverGizmos">
+  <component name="RunManager" selected="JUnit.testAbsorber">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -326,6 +281,31 @@
       <envs />
       <properties />
       <listeners />
+    </configuration>
+    <configuration name="testAbsorber" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="cs308-gizmoball" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.testAbsorber" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
     </configuration>
     <configuration name="testAbsorber.testAddAbsorberOnGizmo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
@@ -427,45 +407,20 @@
       <envs />
       <patterns />
     </configuration>
-    <configuration name="testAbsorber.testTwoAbsorbersOverLapping" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="cs308-gizmoball" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.testAbsorber" />
-      <option name="METHOD_NAME" value="testTwoAbsorbersOverLapping" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-    </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.testAbsorber.testTwoAbsorbersOverLapping" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.testAbsorber.testRemoveAbsorber" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.testAbsorber.testAddAbsorberOnGizmo" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.testAbsorber.testAddAbsorberOverGizmo" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.testAbsorber.testAddAbsorberOverGizmos" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.testAbsorber.testRemoveAbsorber" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.testAbsorber.testAddAbsorberOnGizmo" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.testAbsorber.testAddAbsorberOverGizmo" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.testAbsorber.testAddAbsorberOverGizmos" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.testAbsorber" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.testAbsorber.testAddAbsorberOverGizmos" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.testAbsorber.testAddAbsorberOverGizmo" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.testAbsorber.testAddAbsorberOnGizmo" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.testAbsorber.testRemoveAbsorber" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.testAbsorber.testTwoAbsorbersOverLapping" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.testAbsorber" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.testAbsorber.testAddAbsorberOverGizmos" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.testAbsorber.testAddAbsorberOverGizmo" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.testAbsorber.testAddAbsorberOnGizmo" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.testAbsorber.testRemoveAbsorber" />
       </list>
     </recent_temporary>
   </component>
@@ -479,11 +434,14 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1519924631155</updated>
-      <workItem from="1519924635853" duration="9724000" />
+      <workItem from="1519924635853" duration="11186000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
+    <history-entry file="testAbsorber - 2018.03.01 at 22h 06m 38s.xml">
+      <configuration name="testAbsorber" configurationId="JUnit" />
+    </history-entry>
     <history-entry file="testAbsorber_testAddAbsorber - 2018.03.01 at 19h 50m 49s.xml">
       <configuration name="testAbsorber.testAddAbsorber" configurationId="JUnit" />
     </history-entry>
@@ -508,15 +466,12 @@
     <history-entry file="testAbsorber_testTwoAbsorbersSameLocation - 2018.03.01 at 20h 21m 18s.xml">
       <configuration name="testAbsorber.testTwoAbsorbersSameLocation" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="testMoveGizmo - 2018.03.01 at 19h 37m 36s.xml">
-      <configuration name="testMoveGizmo" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="testRotateGizmo - 2018.03.01 at 19h 37m 43s.xml">
       <configuration name="testRotateGizmo" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9724000" />
+    <option name="totallyTimeSpent" value="11186000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -528,7 +483,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1070" y="0" width="1100" height="1390" extended-state="0" />
+    <frame x="920" y="0" width="1250" height="1390" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -539,7 +494,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33333334" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3299578" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32999164" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32999164" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -611,32 +566,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/CollisionPrototype.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1350">
-          <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="21" column="0" lean-forward="true" selection-start-line="18" selection-start-column="4" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/FlipperPrototype.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="55" column="16" lean-forward="false" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Notes/testboard.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1161">
@@ -667,14 +596,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/GizmoballModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="458" column="0" lean-forward="false" selection-start-line="458" selection-start-column="0" selection-end-line="458" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/testAddGizmo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-459">
@@ -685,13 +606,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/CollisionPrototype.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1350">
+          <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/FlipperPrototype.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="55" column="16" lean-forward="false" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="18" selection-start-column="4" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/testAbsorber.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1004">
+        <state relative-caret-position="1782">
           <caret line="68" column="48" lean-forward="false" selection-start-line="68" selection-start-column="48" selection-end-line="68" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/GizmoballModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-81">
+          <caret line="274" column="86" lean-forward="false" selection-start-line="274" selection-start-column="86" selection-end-line="274" selection-end-column="86" />
+          <folding />
         </state>
       </provider>
     </entry>

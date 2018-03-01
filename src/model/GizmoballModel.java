@@ -273,22 +273,30 @@ public class GizmoballModel{
     }
 
     public boolean addAbsorber(double x, double y, double x2, double y2, String name){
-        String absorberName = name; //TODO: check if absorber with same name already exists
-
         if(name.equals("")) {
-            absorberName = "A" + (int)x + (int)y;
+            name = "A" + (int)x + (int)y;
         }
-
-        Gizmo absorber = new AbsorberGizmo(x, y, x2, y2, absorberName);
-        for (Gizmo gizmo : board.getGizmos()) {
-            if (absorber.getBoundingBox().isIntersecting(gizmo.getBoundingBox())){
-                return false;
+        if (board.getGizmos().isEmpty()){
+            Gizmo absorber = new AbsorberGizmo(x, y, x2, y2, name);
+            board.addGizmo(absorber);
+            //TODO: should we add a details.addGizmo(?) here?
+            BoardState.add(ABSORBER.toString() + " " + name + " " + x + " " + y);
+            return true;
+        }
+        else{
+            Gizmo absorber = new AbsorberGizmo(x, y, x2, y2, name);
+            for (Gizmo gizmo : board.getGizmos()) {
+                if (absorber.getBoundingBox().isIntersecting(gizmo.getBoundingBox())){
+                    return false;
+                }
+                if (gizmo.getName().equals(name)){
+                    return false;
+                }
             }
+            board.addGizmo(absorber);
+            BoardState.add(ABSORBER.toString() + " " + name + " " + x + " " + y);
+            return true;
         }
-
-        BoardState.add(ABSORBER.toString() + " " + name + " " + x + " " + y);
-        board.addGizmo(absorber);
-        return true;
     }
 
 
