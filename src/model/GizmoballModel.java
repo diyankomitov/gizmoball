@@ -291,7 +291,7 @@ public class GizmoballModel{
         return true;
     }
 
-    
+
     public boolean addBall(double x, double y, double xv, double yv, String name) {
         if (board.getBalls().isEmpty()){
             Ball ball = new Ball(x, y, xv, yv, name);
