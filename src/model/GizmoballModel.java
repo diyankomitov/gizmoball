@@ -315,7 +315,7 @@ public class GizmoballModel{
             for (Ball b : board.getBalls()) {
                 System.out.println("for loop");
                 if (!b.getName().equals(name)) {
-                    System.out.println("first if statement");
+                    System.out.println("if name of this ball is not equal to the name passed in");
                     if (b.getX() == x && b.getY() == y) {
                         System.out.println("nested if one");
                         return false;
@@ -328,6 +328,10 @@ public class GizmoballModel{
                         }
                     }
 
+                }
+                else {
+                    System.out.println("the names are equal");
+                    return false;
                 }
             }
             Ball ball = new Ball(x, y, xv, yv, name);
