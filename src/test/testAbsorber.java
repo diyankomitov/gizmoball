@@ -34,14 +34,14 @@ public class testAbsorber {
 
     @Test
     public void testTwoAbsorbersSameLocation(){
-        gizmoballModel.addAbsorber(1.0, 20.0, 3.0, 17.0, "A1");
-        assertFalse(gizmoballModel.addAbsorber(1.0, 20.0, 3.0, 17.0, "A2"));
+        gizmoballModel.addAbsorber(1.0, 17.0, 3.0, 20.0, "A1");
+        assertFalse(gizmoballModel.addAbsorber(1.0, 17.0, 3.0, 20.0, "A2"));
     }
 
     @Test
     public void testTwoAbsorbersOverLapping(){
-        gizmoballModel.addAbsorber(1.0, 20.0, 3.0, 17.0, "A1");
-        assertFalse(gizmoballModel.addAbsorber(2.0, 20.0, 4.0, 17.0, "A2"));
+        gizmoballModel.addAbsorber(1.0, 17.0, 3.0, 20.0, "A1");
+        assertFalse(gizmoballModel.addAbsorber(2.0, 17.0, 4.0, 20.0, "A2"));
     }
 
     @Test
@@ -53,20 +53,20 @@ public class testAbsorber {
 
     @Test
     public void testAddAbsorberOnGizmo() {
-        gizmoballModel.addGizmo(1.0, 20.0, "C120", BoardObjectType.CIRCLE);
-        assertFalse(gizmoballModel.addAbsorber(1.0, 20.0, 3.0, 17.0, "A1"));
+        gizmoballModel.addGizmo(1.0, 17.0, "C120", BoardObjectType.CIRCLE);
+        assertFalse(gizmoballModel.addAbsorber(1.0, 17.0, 3.0, 20.0, "A1"));
     }
 
     @Test
     public void testAddAbsorberOverGizmo() {
         gizmoballModel.addGizmo(2.0, 18.0, "C218", BoardObjectType.CIRCLE);
-        assertFalse(gizmoballModel.addAbsorber(1.0, 20.0, 3.0, 17.0, "A1"));
+        assertFalse(gizmoballModel.addAbsorber(1.0, 17.0, 3.0, 20.0, "A1"));
     }
 
     @Test
     public void testAddAbsorberOverGizmos() {
         gizmoballModel.addGizmo(2.0, 18.0, "C218", BoardObjectType.CIRCLE);
         gizmoballModel.addGizmo(2.0, 19.0, "C219", BoardObjectType.CIRCLE);
-        assertFalse(gizmoballModel.addAbsorber(1.0, 20.0, 3.0, 17.0, "A1"));
+        assertFalse(gizmoballModel.addAbsorber(1.0, 17.0, 3.0, 20.0, "A1"));
     }
 }
