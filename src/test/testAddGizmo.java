@@ -103,6 +103,10 @@ public class testAddGizmo {
         assertFalse(gizmoballModel.addGizmo(2,2, "T22", BoardObjectType.TRIANGLE));
     }
 
-
+    @Test
+    public void testAddGizmoSameName() {
+        gizmoballModel.addGizmo(1, 1, "S11", BoardObjectType.SQUARE);
+        assertFalse(gizmoballModel.addGizmo(2,3, "S11", BoardObjectType.SQUARE));
+    }
 
 }

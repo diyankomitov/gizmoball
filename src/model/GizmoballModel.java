@@ -216,7 +216,13 @@ public class GizmoballModel{
     //TODO: Maybe move position checking of add and move to the board, or at least a private method
     public boolean addGizmo(double x, double y, String name, BoardObjectType type) {
         Gizmo gizmo;
-        String gizmoName = name; //TODO: check if gizmo with same name already exists
+        String gizmoName = name;
+        for(Gizmo g: getGizmos()) {
+            if(g.getName()==name) {
+                return false;
+            }
+
+        }
 
         switch (type) {
             case CIRCLE:
@@ -267,7 +273,7 @@ public class GizmoballModel{
 
         board.addGizmo(gizmo);
 
-        BoardState.add(type + " " + name + " " + x + " " + y);
+        BoardState.add(type + " " + gizmoName + " " + x + " " + y);
 
         return true;
     }
@@ -337,6 +343,7 @@ public class GizmoballModel{
     }
 
     public void removeGizmo(String name) { //TODO: check if exists
+      
         BoardState.add("Delete " + name);
         board.removeGizmo(getGizmo(name));
     }
