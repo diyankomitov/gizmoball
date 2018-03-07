@@ -19,6 +19,7 @@ public class Ball implements BoardObject, Observable{
     private Vect potentialVelocity;
     private boolean inAbsorber = false;
     private List<Observer> observers = new ArrayList<>();
+    private double oldTime;
 
     public Ball(double x, double y, double xv, double yv, String name) {
         this.x = x;
@@ -31,8 +32,17 @@ public class Ball implements BoardObject, Observable{
     }
 
     public void moveForTime(double moveTime) {
-        x += (velocity.x() * moveTime);
-        y += (velocity.y() * moveTime);
+        System.out.println(moveTime);
+        if(moveTime > 0.01) {
+            x += (velocity.x() * moveTime);
+            y += (velocity.y() * moveTime);
+            oldTime = moveTime;
+        }
+        else {
+            x -= (velocity.x() * oldTime);
+            y -= (velocity.y() * oldTime);
+//            System.out.println(oldTime);
+        }
 
         notifyObservers();
     }
@@ -52,6 +62,15 @@ public class Ball implements BoardObject, Observable{
     }
 
     public void setVelocity(Vect velocity) {
+        double x = velocity.x();
+        double y = velocity.y();
+//        if(Math.abs(x) < 0.01){
+//            x = Math.signum(x) * 0.01;
+//        }
+//        if(Math.abs(y) < 0.01){
+//            y = Math.signum(y) * 0.01;
+//        }
+//        this.velocity = new Vect(x,y);
         this.velocity = velocity;
     }
 

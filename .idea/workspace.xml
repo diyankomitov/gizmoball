@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b68b6b0d-8203-4a49-99bd-24ea82f7b4c1" name="Default" comment="doing fixes for boundingbox.isintersecting (see TODO)">
+    <list default="true" id="b68b6b0d-8203-4a49-99bd-24ea82f7b4c1" name="Default" comment="Working with ball velocity">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/BoundingBox.java" afterPath="$PROJECT_DIR$/src/model/BoundingBox.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/testAbsorber.java" afterPath="$PROJECT_DIR$/src/test/testAbsorber.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/AbsorberPrototype.java" afterPath="$PROJECT_DIR$/src/main/AbsorberPrototype.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/CollisionPrototype.java" afterPath="$PROJECT_DIR$/src/main/CollisionPrototype.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/GizmoballModel.java" afterPath="$PROJECT_DIR$/src/model/GizmoballModel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/board/Ball.java" afterPath="$PROJECT_DIR$/src/model/board/Ball.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,21 +21,11 @@
       <file leaf-file-name="testAbsorber.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/testAbsorber.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="718">
+            <state relative-caret-position="494">
               <caret line="69" column="65" lean-forward="false" selection-start-line="69" selection-start-column="65" selection-end-line="69" selection-end-column="65" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BoundingBox.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/BoundingBox.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -48,110 +40,83 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testAddGizmo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/testAddGizmo.java">
+      <file leaf-file-name="AbsorberPrototype.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/AbsorberPrototype.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="54" column="36" lean-forward="false" selection-start-line="54" selection-start-column="36" selection-end-line="54" selection-end-column="36" />
+            <state relative-caret-position="270">
+              <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Board.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/board/Board.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="686">
-              <caret line="37" column="2" lean-forward="false" selection-start-line="37" selection-start-column="2" selection-end-line="37" selection-end-column="2" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Gizmo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/board/gizmos/Gizmo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GizmoballModel.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GizmoballModel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/GizmoballModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="290" column="17" lean-forward="true" selection-start-line="290" selection-start-column="17" selection-end-line="290" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BoardObject.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/board/BoardObject.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FlipperGizmo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/board/gizmos/FlipperGizmo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="647">
-              <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+            <state relative-caret-position="203">
+              <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
               <folding>
-                <marker date="1520004012448" expanded="false" signature="2616:2622" ph=" }" />
-                <marker date="1520004012448" expanded="true" signature="2648:2656" ph="{}" />
-                <marker date="1520004012448" expanded="true" signature="2712:3315" ph="{...}" />
-                <marker date="1520004012448" expanded="true" signature="3354:3941" ph="{...}" />
-                <marker date="1520004012448" expanded="true" signature="4008:4055" ph="{...}" />
-                <marker date="1520004012448" expanded="false" signature="4106:4117" ph=" { " />
-                <marker date="1520004012448" expanded="false" signature="4137:4143" ph=" }" />
-                <marker date="1520004012448" expanded="false" signature="4186:4197" ph=" { " />
-                <marker date="1520004012448" expanded="false" signature="4209:4215" ph=" }" />
-                <marker date="1520004012448" expanded="false" signature="4255:4266" ph=" { " />
-                <marker date="1520004012448" expanded="false" signature="4275:4281" ph=" }" />
-                <marker date="1520004012448" expanded="false" signature="4321:4332" ph=" { " />
-                <marker date="1520004012448" expanded="false" signature="4341:4347" ph=" }" />
-                <marker date="1520004012448" expanded="false" signature="4399:4410" ph=" { " />
-                <marker date="1520004012448" expanded="false" signature="4422:4428" ph=" }" />
-                <marker date="1520004012448" expanded="false" signature="4471:4482" ph=" { " />
-                <marker date="1520004012448" expanded="false" signature="4495:4501" ph=" }" />
-                <marker date="1520004012448" expanded="false" signature="4541:4552" ph=" { " />
-                <marker date="1520004012448" expanded="false" signature="4575:4581" ph=" }" />
-                <marker date="1520004012448" expanded="false" signature="4615:4626" ph=" { " />
-                <marker date="1520004012448" expanded="false" signature="4643:4649" ph=" }" />
-                <marker date="1520004012448" expanded="false" signature="4680:4691" ph=" { " />
-                <marker date="1520004012448" expanded="false" signature="4705:4711" ph=" }" />
-                <marker date="1520004012448" expanded="false" signature="4767:4778" ph=" { " />
-                <marker date="1520004012448" expanded="false" signature="4795:4801" ph=" }" />
+                <marker date="1520427058947" expanded="false" signature="14436:14447" ph=" { " />
+                <marker date="1520427058947" expanded="false" signature="14461:14467" ph=" }" />
+                <marker date="1520427058947" expanded="false" signature="16145:16156" ph=" { " />
+                <marker date="1520427058947" expanded="false" signature="16181:16187" ph=" }" />
+                <marker date="1520427058947" expanded="false" signature="16237:16248" ph=" { " />
+                <marker date="1520427058947" expanded="false" signature="16273:16279" ph=" }" />
+                <marker date="1520427058947" expanded="false" signature="16325:16382" ph=" { " />
+                <marker date="1520427058947" expanded="false" signature="16420:16426" ph=" }" />
+                <marker date="1520427058947" expanded="false" signature="16629:16675" ph=" { " />
+                <marker date="1520427058947" expanded="false" signature="16700:16706" ph=" }" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SquareGizmo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/board/gizmos/SquareGizmo.java">
+      <file leaf-file-name="Ball.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/board/Ball.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
-              <caret line="41" column="22" lean-forward="false" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
-              <folding>
-                <marker date="1520004012463" expanded="false" signature="2632:2638" ph=" }" />
-                <marker date="1520004012463" expanded="false" signature="2690:2701" ph=" { " />
-                <marker date="1520004012463" expanded="false" signature="2713:2719" ph=" }" />
-                <marker date="1520004012463" expanded="false" signature="2762:2773" ph=" { " />
-                <marker date="1520004012463" expanded="false" signature="2785:2791" ph=" }" />
-                <marker date="1520004012463" expanded="false" signature="2831:2842" ph=" { " />
-                <marker date="1520004012463" expanded="false" signature="2851:2857" ph=" }" />
-                <marker date="1520004012463" expanded="false" signature="2897:2908" ph=" { " />
-                <marker date="1520004012463" expanded="false" signature="2917:2923" ph=" }" />
-                <marker date="1520004012463" expanded="false" signature="2979:2990" ph=" { " />
-                <marker date="1520004012463" expanded="false" signature="3007:3013" ph=" }" />
-              </folding>
+            <state relative-caret-position="432">
+              <caret line="41" column="15" lean-forward="false" selection-start-line="41" selection-start-column="15" selection-end-line="41" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CollisionPrototype.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/CollisionPrototype.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="513">
+              <caret line="112" column="30" lean-forward="false" selection-start-line="112" selection-start-column="30" selection-end-line="112" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NativeMethodAccessorImpl.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk-9/lib/src.zip!/java.base/jdk/internal/reflect/NativeMethodAccessorImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="418">
+              <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DelegatingMethodAccessorImpl.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk-9/lib/src.zip!/java.base/jdk/internal/reflect/DelegatingMethodAccessorImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Constants.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/util/Constants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -172,6 +137,9 @@
       <find>addBall</find>
       <find>getBall</find>
       <find>remove</find>
+      <find>set</find>
+      <find>moveBa</find>
+      <find>moveBalls</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -181,7 +149,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="BoundingBoxIntersections" />
+        <entry key="$PROJECT_DIR$" value="refactorization" />
       </map>
     </option>
   </component>
@@ -201,9 +169,12 @@
         <option value="$PROJECT_DIR$/src/model/board/gizmos/TriangleGizmo.java" />
         <option value="$PROJECT_DIR$/src/model/board/gizmos/CircleGizmo.java" />
         <option value="$PROJECT_DIR$/src/model/board/gizmos/AbsorberGizmo.java" />
-        <option value="$PROJECT_DIR$/src/model/GizmoballModel.java" />
         <option value="$PROJECT_DIR$/src/test/testAbsorber.java" />
         <option value="$PROJECT_DIR$/src/model/BoundingBox.java" />
+        <option value="$PROJECT_DIR$/src/model/GizmoballModel.java" />
+        <option value="$PROJECT_DIR$/src/main/AbsorberPrototype.java" />
+        <option value="$PROJECT_DIR$/src/model/board/Ball.java" />
+        <option value="$PROJECT_DIR$/src/main/CollisionPrototype.java" />
       </list>
     </option>
   </component>
@@ -215,9 +186,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="508" />
-    <option name="y" value="-26" />
-    <option name="width" value="2174" />
+    <option name="x" value="561" />
+    <option name="y" value="-27" />
+    <option name="width" value="1100" />
     <option name="height" value="1390" />
   </component>
   <component name="ProjectView">
@@ -235,6 +206,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -270,24 +242,15 @@
               <item name="cs308-gizmoball" type="b2602c69:ProjectViewProjectNode" />
               <item name="cs308-gizmoball" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="board" type="462c0819:PsiDirectoryNode" />
-              <item name="gizmos" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cs308-gizmoball" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cs308-gizmoball" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="physics" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -306,7 +269,45 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.testRotateGizmo">
+  <component name="RunManager" selected="Application.CollisionPrototype">
+    <configuration name="AbsorberPrototype" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="main.AbsorberPrototype" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="cs308-gizmoball" />
+      <envs />
+    </configuration>
+    <configuration name="CollisionPrototype" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="main.CollisionPrototype" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="cs308-gizmoball" />
+      <envs />
+    </configuration>
     <configuration name="TestAddRemoveBall" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -413,56 +414,6 @@
       <properties />
       <listeners />
     </configuration>
-    <configuration name="testAbsorber.testAddAbsorberOverGizmos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="cs308-gizmoball" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.testAbsorber" />
-      <option name="METHOD_NAME" value="testAddAbsorberOverGizmos" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-    </configuration>
-    <configuration name="testAddGizmo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="cs308-gizmoball" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.testAddGizmo" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-    </configuration>
     <configuration name="testMoveGizmo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -514,19 +465,19 @@
       <patterns />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.testAbsorber.testAddAbsorberOverGizmos" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.testAddGizmo" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.TestAddRemoveBall" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.testMoveGizmo" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.testRotateGizmo" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.TestAddRemoveBall" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.testMoveGizmo" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.testRotateGizmo" />
+      <item index="3" class="java.lang.String" itemvalue="Application.AbsorberPrototype" />
+      <item index="4" class="java.lang.String" itemvalue="Application.CollisionPrototype" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.testRotateGizmo" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.testMoveGizmo" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.TestAddRemoveBall" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.testAddGizmo" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.testAbsorber.testAddAbsorberOverGizmos" />
+        <item index="0" class="java.lang.String" itemvalue="Application.CollisionPrototype" />
+        <item index="1" class="java.lang.String" itemvalue="Application.AbsorberPrototype" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.testRotateGizmo" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.testMoveGizmo" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.TestAddRemoveBall" />
       </list>
     </recent_temporary>
   </component>
@@ -541,7 +492,9 @@
       <option name="presentableId" value="Default" />
       <updated>1519924631155</updated>
       <workItem from="1519924635853" duration="18121000" />
-      <workItem from="1519993141405" duration="3377000" />
+      <workItem from="1519993141405" duration="5492000" />
+      <workItem from="1520092335138" duration="35000" />
+      <workItem from="1520426025885" duration="6065000" />
     </task>
     <task id="LOCAL-00001" summary="doing fixes for boundingbox.isintersecting (see TODO)">
       <created>1519950029623</created>
@@ -586,7 +539,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21498000" />
+    <option name="totallyTimeSpent" value="29713000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -603,18 +556,18 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32999164" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3283208" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32664996" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915622" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32999164" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32999164" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.51578945" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27177033" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -638,13 +591,136 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="doing fixes for boundingbox.isintersecting (see TODO)" />
-    <option name="LAST_COMMIT_MESSAGE" value="doing fixes for boundingbox.isintersecting (see TODO)" />
+    <MESSAGE value="Working with ball velocity" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working with ball velocity" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/model/board/gizmos/FlipperGizmo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1566">
+          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/board/gizmos/SquareGizmo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="891">
+          <caret line="41" column="22" lean-forward="false" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/GizmoballModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9315">
+          <caret line="360" column="0" lean-forward="false" selection-start-line="360" selection-start-column="0" selection-end-line="370" selection-end-column="5" />
+          <folding>
+            <marker date="1520427058947" expanded="false" signature="14436:14447" ph=" { " />
+            <marker date="1520427058947" expanded="false" signature="14461:14467" ph=" }" />
+            <marker date="1520427058947" expanded="false" signature="16145:16156" ph=" { " />
+            <marker date="1520427058947" expanded="false" signature="16181:16187" ph=" }" />
+            <marker date="1520427058947" expanded="false" signature="16237:16248" ph=" { " />
+            <marker date="1520427058947" expanded="false" signature="16273:16279" ph=" }" />
+            <marker date="1520427058947" expanded="false" signature="16325:16382" ph=" { " />
+            <marker date="1520427058947" expanded="false" signature="16420:16426" ph=" }" />
+            <marker date="1520427058947" expanded="false" signature="16629:16675" ph=" { " />
+            <marker date="1520427058947" expanded="false" signature="16700:16706" ph=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/testAbsorber.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1620">
+          <caret line="69" column="65" lean-forward="false" selection-start-line="69" selection-start-column="65" selection-end-line="69" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/BoundingBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/CollisionDetails.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/board/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="37" column="2" lean-forward="false" selection-start-line="37" selection-start-column="2" selection-end-line="37" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/board/gizmos/Gizmo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/board/BoardObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/board/gizmos/FlipperGizmo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1782">
+          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/board/gizmos/SquareGizmo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="891">
+          <caret line="41" column="22" lean-forward="false" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/GizmoballModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9720">
+          <caret line="360" column="0" lean-forward="false" selection-start-line="360" selection-start-column="0" selection-end-line="370" selection-end-column="5" />
+          <folding>
+            <marker date="1520427058947" expanded="false" signature="14436:14447" ph=" { " />
+            <marker date="1520427058947" expanded="false" signature="14461:14467" ph=" }" />
+            <marker date="1520427058947" expanded="false" signature="16145:16156" ph=" { " />
+            <marker date="1520427058947" expanded="false" signature="16181:16187" ph=" }" />
+            <marker date="1520427058947" expanded="false" signature="16237:16248" ph=" { " />
+            <marker date="1520427058947" expanded="false" signature="16273:16279" ph=" }" />
+            <marker date="1520427058947" expanded="false" signature="16325:16382" ph=" { " />
+            <marker date="1520427058947" expanded="false" signature="16420:16426" ph=" }" />
+            <marker date="1520427058947" expanded="false" signature="16629:16675" ph=" { " />
+            <marker date="1520427058947" expanded="false" signature="16700:16706" ph=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/BoundingBox.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -681,7 +757,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -697,33 +772,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1593">
           <caret line="67" column="63" lean-forward="false" selection-start-line="67" selection-start-column="63" selection-end-line="67" selection-end-column="63" />
-          <folding>
-            <marker date="1520004012448" expanded="false" signature="2616:2622" ph=" }" />
-            <marker date="1520004012448" expanded="true" signature="2648:2656" ph="{}" />
-            <marker date="1520004012448" expanded="true" signature="2712:3315" ph="{...}" />
-            <marker date="1520004012448" expanded="true" signature="3354:3941" ph="{...}" />
-            <marker date="1520004012448" expanded="true" signature="4008:4055" ph="{...}" />
-            <marker date="1520004012448" expanded="false" signature="4106:4117" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="4137:4143" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="4186:4197" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="4209:4215" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="4255:4266" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="4275:4281" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="4321:4332" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="4341:4347" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="4399:4410" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="4422:4428" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="4471:4482" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="4495:4501" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="4541:4552" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="4575:4581" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="4615:4626" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="4643:4649" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="4680:4691" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="4705:4711" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="4767:4778" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="4795:4801" ph=" }" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -731,19 +780,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="945">
           <caret line="43" column="22" lean-forward="false" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
-          <folding>
-            <marker date="1520004012463" expanded="false" signature="2632:2638" ph=" }" />
-            <marker date="1520004012463" expanded="false" signature="2690:2701" ph=" { " />
-            <marker date="1520004012463" expanded="false" signature="2713:2719" ph=" }" />
-            <marker date="1520004012463" expanded="false" signature="2762:2773" ph=" { " />
-            <marker date="1520004012463" expanded="false" signature="2785:2791" ph=" }" />
-            <marker date="1520004012463" expanded="false" signature="2831:2842" ph=" { " />
-            <marker date="1520004012463" expanded="false" signature="2851:2857" ph=" }" />
-            <marker date="1520004012463" expanded="false" signature="2897:2908" ph=" { " />
-            <marker date="1520004012463" expanded="false" signature="2917:2923" ph=" }" />
-            <marker date="1520004012463" expanded="false" signature="2979:2990" ph=" { " />
-            <marker date="1520004012463" expanded="false" signature="3007:3013" ph=" }" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -751,19 +788,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="756">
           <caret line="36" column="22" lean-forward="false" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
-          <folding>
-            <marker date="1520004012448" expanded="false" signature="2015:2021" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="2073:2084" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="2096:2102" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="2145:2156" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="2168:2174" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="2214:2225" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="2234:2240" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="2280:2291" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="2300:2306" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="2362:2373" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="2390:2396" ph=" }" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -771,7 +795,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1242">
           <caret line="59" column="22" lean-forward="false" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -783,19 +806,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/board/Ball.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1269">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/testRotateGizmo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -810,7 +824,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
           <caret line="9" column="33" lean-forward="false" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -828,21 +841,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/CollisionPrototype.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1350">
-          <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/FlipperPrototype.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="256">
           <caret line="55" column="16" lean-forward="false" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -850,22 +852,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="21" column="0" lean-forward="true" selection-start-line="18" selection-start-column="4" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9/lib/src.zip!/java.base/jdk/internal/reflect/NativeMethodAccessorImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/AbsorberPrototype.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="42" column="14" lean-forward="false" selection-start-line="42" selection-start-column="14" selection-end-line="42" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -873,7 +859,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="40" column="19" lean-forward="false" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -881,7 +866,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2862">
           <caret line="140" column="27" lean-forward="false" selection-start-line="140" selection-start-column="27" selection-end-line="140" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -889,7 +873,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -897,7 +880,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
           <caret line="126" column="55" lean-forward="false" selection-start-line="126" selection-start-column="8" selection-end-line="126" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -905,73 +887,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="35" column="22" lean-forward="false" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
-          <folding>
-            <marker date="1520004012448" expanded="false" signature="2015:2021" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="2073:2084" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="2096:2102" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="2145:2156" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="2168:2174" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="2214:2225" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="2234:2240" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="2280:2291" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="2300:2306" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="2362:2373" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="2390:2396" ph=" }" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/board/gizmos/SquareGizmo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
+        <state relative-caret-position="891">
           <caret line="41" column="22" lean-forward="false" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
-          <folding>
-            <marker date="1520004012463" expanded="false" signature="2632:2638" ph=" }" />
-            <marker date="1520004012463" expanded="false" signature="2690:2701" ph=" { " />
-            <marker date="1520004012463" expanded="false" signature="2713:2719" ph=" }" />
-            <marker date="1520004012463" expanded="false" signature="2762:2773" ph=" { " />
-            <marker date="1520004012463" expanded="false" signature="2785:2791" ph=" }" />
-            <marker date="1520004012463" expanded="false" signature="2831:2842" ph=" { " />
-            <marker date="1520004012463" expanded="false" signature="2851:2857" ph=" }" />
-            <marker date="1520004012463" expanded="false" signature="2897:2908" ph=" { " />
-            <marker date="1520004012463" expanded="false" signature="2917:2923" ph=" }" />
-            <marker date="1520004012463" expanded="false" signature="2979:2990" ph=" { " />
-            <marker date="1520004012463" expanded="false" signature="3007:3013" ph=" }" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/board/gizmos/FlipperGizmo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="647">
+        <state relative-caret-position="1566">
           <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-          <folding>
-            <marker date="1520004012448" expanded="false" signature="2616:2622" ph=" }" />
-            <marker date="1520004012448" expanded="true" signature="2648:2656" ph="{}" />
-            <marker date="1520004012448" expanded="true" signature="2712:3315" ph="{...}" />
-            <marker date="1520004012448" expanded="true" signature="3354:3941" ph="{...}" />
-            <marker date="1520004012448" expanded="true" signature="4008:4055" ph="{...}" />
-            <marker date="1520004012448" expanded="false" signature="4106:4117" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="4137:4143" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="4186:4197" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="4209:4215" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="4255:4266" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="4275:4281" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="4321:4332" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="4341:4347" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="4399:4410" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="4422:4428" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="4471:4482" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="4495:4501" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="4541:4552" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="4575:4581" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="4615:4626" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="4643:4649" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="4680:4691" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="4705:4711" ph=" }" />
-            <marker date="1520004012448" expanded="false" signature="4767:4778" ph=" { " />
-            <marker date="1520004012448" expanded="false" signature="4795:4801" ph=" }" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -991,9 +922,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/BoundingBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Notes/CompletedTasks">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/board/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="686">
+        <state relative-caret-position="756">
           <caret line="37" column="2" lean-forward="false" selection-start-line="37" selection-start-column="2" selection-end-line="37" selection-end-column="2" />
           <folding />
         </state>
@@ -1001,9 +956,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/testAddGizmo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
+        <state relative-caret-position="1188">
           <caret line="54" column="36" lean-forward="false" selection-start-line="54" selection-start-column="36" selection-end-line="54" selection-end-column="36" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/GizmoballModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding>
+            <marker date="1520427058947" expanded="false" signature="14436:14447" ph=" { " />
+            <marker date="1520427058947" expanded="false" signature="14461:14467" ph=" }" />
+            <marker date="1520427058947" expanded="false" signature="16145:16156" ph=" { " />
+            <marker date="1520427058947" expanded="false" signature="16181:16187" ph=" }" />
+            <marker date="1520427058947" expanded="false" signature="16237:16248" ph=" { " />
+            <marker date="1520427058947" expanded="false" signature="16273:16279" ph=" }" />
+            <marker date="1520427058947" expanded="false" signature="16325:16382" ph=" { " />
+            <marker date="1520427058947" expanded="false" signature="16420:16426" ph=" }" />
+            <marker date="1520427058947" expanded="false" signature="16629:16675" ph=" { " />
+            <marker date="1520427058947" expanded="false" signature="16700:16706" ph=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/testAbsorber.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="69" column="65" lean-forward="false" selection-start-line="69" selection-start-column="65" selection-end-line="69" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1015,28 +999,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/testAbsorber.java">
+    <entry file="jar://C:/Program Files/Java/jdk-9/lib/src.zip!/java.base/jdk/internal/reflect/NativeMethodAccessorImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="718">
-          <caret line="69" column="65" lean-forward="false" selection-start-line="69" selection-start-column="65" selection-end-line="69" selection-end-column="65" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/BoundingBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state relative-caret-position="418">
+          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/GizmoballModel.java">
+    <entry file="jar://C:/Program Files/Java/jdk-9/lib/src.zip!/java.base/jdk/internal/reflect/DelegatingMethodAccessorImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="290" column="17" lean-forward="true" selection-start-line="290" selection-start-column="17" selection-end-line="290" selection-end-column="17" />
+        <state relative-caret-position="459">
+          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/board/Ball.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="41" column="15" lean-forward="false" selection-start-line="41" selection-start-column="15" selection-end-line="41" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/AbsorberPrototype.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/CollisionPrototype.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="112" column="30" lean-forward="false" selection-start-line="112" selection-start-column="30" selection-end-line="112" selection-end-column="30" />
           <folding />
         </state>
       </provider>

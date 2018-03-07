@@ -279,6 +279,17 @@ public class GizmoballModel{
     }
 
     public boolean addAbsorber(double x, double y, double x2, double y2, String name){
+        //TODO: Validation Test This First
+//        if(x2 < x){
+//            double newX2 = x;
+//            x = x2;
+//            x2 = newX2;
+//        }
+//        if(y2 < y){
+//            double newY2 = y;
+//            y = y2;
+//            y2 = newY2;
+//        }
         if(name.equals("")) {
             name = "A" + (int)x + (int)y;
         }

@@ -32,8 +32,8 @@ public class AbsorberPrototype extends Application {
 
         pane.setPrefSize(ONE_L_IN_PIXELS*20, ONE_L_IN_PIXELS*20);
 
-        AbsorberGizmo absorber = new AbsorberGizmo(0,19, 20,20, "A");
-        AbsorberView absorberView = new AbsorberView(absorber);
+        //AbsorberGizmo absorber = new AbsorberGizmo(0,19, 20,20, "A");
+        //AbsorberView absorberView = new AbsorberView(absorber);
 
         GizmoballModel model = new GizmoballModel();
 //        model.addGizmo(absorber);
@@ -45,7 +45,7 @@ public class AbsorberPrototype extends Application {
             pane.getChildren().add(ballView);
         });
 
-        pane.getChildren().add(absorberView);
+       // pane.getChildren().add(/*absorberView*/);
 
         Timeline timeline = new Timeline(
                 new KeyFrame(   //keyframes allow for something to happen at a given time

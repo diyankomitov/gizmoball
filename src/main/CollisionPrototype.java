@@ -46,17 +46,34 @@ public class CollisionPrototype extends Application {
         model.addGizmo(2,4, "t2" , TRIANGLE);
         model.addGizmo(6,15, "t3" , TRIANGLE);
         model.addGizmo(17,11, "t4" , TRIANGLE);
-        model.addGizmo(3,15, "c1" , CIRCLE);
-        model.addGizmo(6,14, "c2" , CIRCLE);
-        model.addGizmo(11,2, "c3" , CIRCLE);
-        model.addGizmo(17,15, "c4" , CIRCLE);
+        model.addGizmo(0,15, "c1" , CIRCLE);
+        model.addGizmo(1,15, "c2" , CIRCLE);
+        model.addGizmo(2,15, "c3" , CIRCLE);
+        model.addGizmo(3,15, "c4" , CIRCLE);
+//        model.addGizmo(4,15, "c5" , CIRCLE);
+//        model.addGizmo(5,15, "c6" , CIRCLE);
+//        model.addGizmo(6,15, "c7" , CIRCLE);
+//        model.addGizmo(7,15, "c8" , CIRCLE);
+//        model.addGizmo(8,15, "c9" , CIRCLE);
+//        model.addGizmo(9,15, "c10" , CIRCLE);
+//        model.addGizmo(10,15, "c11" , CIRCLE);
+//        model.addGizmo(11,15, "c12" , CIRCLE);
+//        model.addGizmo(12,15, "c13" , CIRCLE);
+//        model.addGizmo(13,15, "c14" , CIRCLE);
+//        model.addGizmo(14,15, "c15" , CIRCLE);
+//        model.addGizmo(15,15, "c16" , CIRCLE);
+//        model.addGizmo(16,15, "c17" , CIRCLE);
+//        model.addGizmo(17,15, "c18" , CIRCLE);
+//        model.addGizmo(18,15, "c19" , CIRCLE);
+//        model.addGizmo(19,15, "c20" , CIRCLE);
+//        model.addGizmo(20,15, "c21" , CIRCLE);
 
-        model.rotateGizmo("t1");
-        model.rotateGizmo("t1");
-        model.rotateGizmo("t2");
-        model.rotateGizmo("t4");
-        model.rotateGizmo("t4");
-        model.rotateGizmo("t4");
+//        model.rotateGizmo("t1");
+//        model.rotateGizmo("t1");
+//        model.rotateGizmo("t2");
+//        model.rotateGizmo("t4");
+//        model.rotateGizmo("t4");
+//        model.rotateGizmo("t4");
 
         GizmoView squareView1 = new SquareBumperView((SquareGizmo) model.getGizmo("s1"));
         GizmoView squareView2 = new SquareBumperView((SquareGizmo) model.getGizmo("s2"));
@@ -70,6 +87,25 @@ public class CollisionPrototype extends Application {
         GizmoView circleView2 = new CircularBumperView((CircleGizmo) model.getGizmo("c2"));
         GizmoView circleView3 = new CircularBumperView((CircleGizmo) model.getGizmo("c3"));
         GizmoView circleView4 = new CircularBumperView((CircleGizmo) model.getGizmo("c4"));
+//        GizmoView circleView5 = new CircularBumperView((CircleGizmo) model.getGizmo("c5"));
+//        GizmoView circleView6 = new CircularBumperView((CircleGizmo) model.getGizmo("c6"));
+//        GizmoView circleView7 = new CircularBumperView((CircleGizmo) model.getGizmo("c7"));
+//        GizmoView circleView8 = new CircularBumperView((CircleGizmo) model.getGizmo("c8"));
+//        GizmoView circleView9 = new CircularBumperView((CircleGizmo) model.getGizmo("c9"));
+//        GizmoView circleView10 = new CircularBumperView((CircleGizmo) model.getGizmo("c10"));
+//        GizmoView circleView11 = new CircularBumperView((CircleGizmo) model.getGizmo("c11"));
+//        GizmoView circleView12 = new CircularBumperView((CircleGizmo) model.getGizmo("c12"));
+//        GizmoView circleView13 = new CircularBumperView((CircleGizmo) model.getGizmo("c13"));
+//        GizmoView circleView14 = new CircularBumperView((CircleGizmo) model.getGizmo("c14"));
+//        GizmoView circleView15 = new CircularBumperView((CircleGizmo) model.getGizmo("c15"));
+//        GizmoView circleView16 = new CircularBumperView((CircleGizmo) model.getGizmo("c16"));
+//        GizmoView circleView17 = new CircularBumperView((CircleGizmo) model.getGizmo("c17"));
+//        GizmoView circleView18 = new CircularBumperView((CircleGizmo) model.getGizmo("c18"));
+//        GizmoView circleView19 = new CircularBumperView((CircleGizmo) model.getGizmo("c19"));
+//        GizmoView circleView20 = new CircularBumperView((CircleGizmo) model.getGizmo("c20"));
+//        GizmoView circleView21 = new CircularBumperView((CircleGizmo) model.getGizmo("c21"));
+
+//        pane.getChildren().addAll(circleView1,circleView2,circleView3,circleView4,circleView5,circleView6,circleView7,circleView8,circleView9,circleView10,circleView11,circleView12,circleView13,circleView14,circleView15,circleView16,circleView17,circleView18,circleView19,circleView20,circleView21);
 
         pane.getChildren().addAll(squareView1, squareView2, squareView3, squareView4, triangleView1, triangleView2, triangleView3, triangleView4, circleView1, circleView2, circleView3, circleView4);
 
@@ -93,8 +129,8 @@ public class CollisionPrototype extends Application {
             pane.getChildren().add(ballView);
         });
 
-        model.setGravity(0);
-        model.setFriction(0,0);
+//        model.setGravity(0);
+//        model.setFriction(0,0);
 
         Scene scene = new Scene(pane);
 
