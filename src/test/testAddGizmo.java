@@ -76,9 +76,25 @@ public class testAddGizmo {
     @Test
     public void testRemoveGizmo () {
         gizmoballModel.addGizmo(1, 1, "", BoardObjectType.SQUARE);
-        gizmoballModel.removeGizmo("S11");
-        assertEquals(gizmoballModel.getGizmo("S11"), null);
+        System.out.println("Name is : "+gizmoballModel.getGizmo(1, 1).getName());
+       assertTrue(gizmoballModel.removeGizmo("S11"));
+
     }
+    @Test
+    public void testRemoveGizmoNotExists () {
+       assertFalse(gizmoballModel.removeGizmo("S11"));
+    }
+
+    @Test
+    public void testRemoveGizmoCoords() {
+        gizmoballModel.addGizmo(5, 5, "T2", BoardObjectType.TRIANGLE);
+        assertTrue(gizmoballModel.removeGizmo(5,5));
+    }
+    @Test
+    public void testRemoveNoGizmoCoords() {
+        assertFalse(gizmoballModel.removeGizmo(5,5));
+    }
+
     @Test
     public void testGetCoordGizmo () {
         gizmoballModel.addGizmo(1, 1, "", BoardObjectType.SQUARE);

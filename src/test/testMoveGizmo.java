@@ -71,4 +71,15 @@ public class testMoveGizmo {
         assertFalse(gizmoballModel.moveGizmo("C420", 1, 19));
 
     }
+
+    @Test
+    public void testMoveCoords() {
+        assertTrue(gizmoballModel.moveGizmo(4,20, 5,5));
+    }
+
+    @Test
+    public void testMoveCoordsOccupied() {
+        gizmoballModel.addGizmo(5,5, "", BoardObjectType.TRIANGLE);
+        assertFalse(gizmoballModel.moveGizmo(5,5, 4,20));
+    }
 }

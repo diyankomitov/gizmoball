@@ -218,10 +218,9 @@ public class GizmoballModel{
         Gizmo gizmo;
         String gizmoName = name;
         for(Gizmo g: getGizmos()) {
-            if(g.getName()==name) {
+            if(g.getName().equals(name)) {
                 return false;
             }
-
         }
 
         switch (type) {
@@ -265,16 +264,11 @@ public class GizmoballModel{
         }
 
 
-        for (Gizmo g : board.getGizmos()){
-            if (gizmo.getBoundingBox().isIntersecting(g.getBoundingBox())){
-                return false;
-            }
+        if(!checkIntersecting(gizmo)) {
+            return false;
         }
-
         board.addGizmo(gizmo);
-
         BoardState.add(type + " " + gizmoName + " " + x + " " + y);
-
         return true;
     }
 
@@ -339,19 +333,30 @@ public class GizmoballModel{
             BoardState.add("Add " + name + " " + x + " " + y + " " + xv + " " + yv);
             return true;
         }
-       // return false; UNREACHABLE STATEMENT - NECESSARY?
+        // return false; UNREACHABLE STATEMENT - NECESSARY?
     }
 
-    public void removeGizmo(String name) { //TODO: check if exists
-      
-        BoardState.add("Delete " + name);
-        board.removeGizmo(getGizmo(name));
+    public boolean removeGizmo(String name) {
+        for(Gizmo g: getGizmos()) {
+            if(g.getName().equals(name)){
+                BoardState.add("Delete " + name);
+                board.removeGizmo(getGizmo(name));
+                return true;
+            }
+        }
+        return false;
     }
 
-    public void removeGizmo(double x, double y) {  //TODO: check if exists
-        Gizmo gizmo = getGizmo(x, y);
-        BoardState.add("Delete " + gizmo.getName());
-        board.removeGizmo(gizmo);
+    public boolean removeGizmo(double x, double y) {
+        for(Gizmo g: getGizmos()){
+            if(g.getX()==x && g.getY()==y) {
+                Gizmo gizmo = getGizmo(x, y);
+                BoardState.add("Delete " + gizmo.getName());
+                board.removeGizmo(gizmo);
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean removeBall(String name) {
@@ -382,26 +387,42 @@ public class GizmoballModel{
     }
 
     public boolean moveGizmo(String name, double newX, double newY) {
-        for(Gizmo g: board.getGizmos()){
-            if(g.getName().equals(name)){
-                BoardState.add("Move " + name + " " + newX + " " + newY);
-                Gizmo gizmo = getGizmo(name);
-                gizmo.setCoordinates(newX,newY);
-
-                if (g.getBoundingBox().isIntersecting(gizmo.getBoundingBox())){
-                    return false;
-                }
+        Gizmo gizmo = getGizmo(name);
+        if(gizmo != null) {
+            double x = gizmo.getX();
+            double y = gizmo.getY();
+            gizmo.setCoordinates(newX, newY);
+            if (checkIntersecting(gizmo)) {
+                BoardState.add("Move " + gizmo.getName() + " " + newX + " " + newY);
                 return true;
             }
+            gizmo.setCoordinates(x, y);
         }
-
         return false;
     }
 
-    public void moveGizmo(double x, double y, double newX, double newY) { //TODO: check if new position is valid
+    public boolean moveGizmo(double x, double y, double newX, double newY) { //TODO: check if new position is valid
         Gizmo gizmo = getGizmo(x,y);
-        BoardState.add("Move " + gizmo.getName() + " " + newX + " " + newY);
-        gizmo.setCoordinates(newX, newY);
+        if(gizmo != null) {
+            gizmo.setCoordinates(newX, newY);
+            if (checkIntersecting(gizmo)) {
+                BoardState.add("Move " + gizmo.getName() + " " + newX + " " + newY);
+                return true;
+            }
+            gizmo.setCoordinates(x, y);
+        }
+        return false;
+    }
+
+    public boolean checkIntersecting(Gizmo gizmo) {
+        for (Gizmo g : getGizmos()){
+            if (gizmo.getBoundingBox().isIntersecting(g.getBoundingBox())) {
+                if (gizmo != g) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public void moveBall(String name, double newX, double newY) { //TODO: check if new position is valid
