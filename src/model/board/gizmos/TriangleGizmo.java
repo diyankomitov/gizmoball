@@ -139,6 +139,11 @@ public class TriangleGizmo implements Gizmo {
     }
 
     @Override
+    public void getTimeUntilCollision() {
+
+    }
+
+    @Override
     public List<Observer> getObservers() {
         return observers;
     }

@@ -117,6 +117,11 @@ public class SquareGizmo implements Gizmo {
     }
 
     @Override
+    public void getTimeUntilCollision() {
+
+    }
+
+    @Override
     public BoardObjectType getType() {
         return type;
     }

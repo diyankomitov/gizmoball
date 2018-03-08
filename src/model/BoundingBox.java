@@ -22,10 +22,10 @@ public class BoundingBox {
         System.out.println("this y2:" + this.y2 + " other y2:" + other.y2);
         System.out.println("");
 
-        if(this.x1 <= other.x2
-                && other.x1 <= this.x2
-                && this.y1 <= other.y2
-                && other.y1 <= this.y2){
+        if(this.x1 < other.x2
+                && other.x1 < this.x2
+                && this.y1 < other.y2
+                && other.y1 < this.y2){
             return true;
         }
 
