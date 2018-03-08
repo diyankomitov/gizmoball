@@ -3,13 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b68b6b0d-8203-4a49-99bd-24ea82f7b4c1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/GizmoballModel.java" afterPath="$PROJECT_DIR$/src/model/GizmoballModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/board/gizmos/AbsorberGizmo.java" afterPath="$PROJECT_DIR$/src/model/board/gizmos/AbsorberGizmo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/board/gizmos/CircleGizmo.java" afterPath="$PROJECT_DIR$/src/model/board/gizmos/CircleGizmo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/board/gizmos/FlipperGizmo.java" afterPath="$PROJECT_DIR$/src/model/board/gizmos/FlipperGizmo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/board/gizmos/Gizmo.java" afterPath="$PROJECT_DIR$/src/model/board/gizmos/Gizmo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/board/gizmos/SquareGizmo.java" afterPath="$PROJECT_DIR$/src/model/board/gizmos/SquareGizmo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/board/gizmos/TriangleGizmo.java" afterPath="$PROJECT_DIR$/src/model/board/gizmos/TriangleGizmo.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,10 +20,9 @@
             <file leaf-file-name="testConnectors.java" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/test/testConnectors.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="729">
-                    <caret line="27" column="74" lean-forward="false" selection-start-line="27" selection-start-column="74" selection-end-line="27" selection-end-column="74" />
+                  <state relative-caret-position="216">
+                    <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
                     <folding>
-                      <element signature="imports" expanded="true" />
                       <element signature="e#737#738#0" expanded="true" />
                       <element signature="e#819#820#0" expanded="true" />
                     </folding>
@@ -238,9 +230,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="417" />
-    <option name="y" value="-23" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-10" />
     <option name="width" value="1100" />
     <option name="height" value="1390" />
   </component>
@@ -569,7 +560,7 @@
       <workItem from="1520092335138" duration="35000" />
       <workItem from="1520426025885" duration="6220000" />
       <workItem from="1520434519342" duration="33000" />
-      <workItem from="1520512304711" duration="5545000" />
+      <workItem from="1520512304711" duration="5933000" />
     </task>
     <task id="LOCAL-00001" summary="doing fixes for boundingbox.isintersecting (see TODO)">
       <created>1519950029623</created>
@@ -585,7 +576,14 @@
       <option name="project" value="LOCAL" />
       <updated>1520432124738</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Giving gizmos a list of connected keys.&#10;Current passing tests:&#10;1.) Add trigger to an existing gizmo&#10;2.) Do not add trigger to a non-existing gizmo">
+      <created>1520518554712</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1520518554712</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -621,7 +619,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35446000" />
+    <option name="totallyTimeSpent" value="35834000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -633,7 +631,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="2182" height="1402" extended-state="6" />
+    <frame x="-10" y="0" width="1100" height="1390" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -644,7 +642,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42105263" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42531645" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32999164" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32999164" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -674,7 +672,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="doing fixes for boundingbox.isintersecting (see TODO)" />
     <MESSAGE value="Working with ball velocity" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working with ball velocity" />
+    <MESSAGE value="Giving gizmos a list of connected keys.&#10;Current passing tests:&#10;1.) Add trigger to an existing gizmo&#10;2.) Do not add trigger to a non-existing gizmo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Giving gizmos a list of connected keys.&#10;Current passing tests:&#10;1.) Add trigger to an existing gizmo&#10;2.) Do not add trigger to a non-existing gizmo" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1123,10 +1122,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/testConnectors.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="729">
-          <caret line="27" column="74" lean-forward="false" selection-start-line="27" selection-start-column="74" selection-end-line="27" selection-end-column="74" />
+        <state relative-caret-position="216">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#737#738#0" expanded="true" />
             <element signature="e#819#820#0" expanded="true" />
           </folding>
