@@ -8,6 +8,7 @@ import model.board.gizmos.*;
 import physics.*;
 import util.BoardState;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -450,6 +451,20 @@ public class GizmoballModel{
         Gizmo gizmo = getGizmo(x,y);
         BoardState.add("Rotate " + gizmo.getName());
         gizmo.rotate();
+    }
+
+    public boolean connectGizmo(double x, double y, int eventCode) {
+        Gizmo gizmo = getGizmo(x,y);
+        if(gizmo != null) {
+            gizmo.setConnector(eventCode);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public void disconnectGizmo(double x, double y) {
     }
 
     public void triggerGizmo(String name) {

@@ -35,6 +35,7 @@ public class AbsorberGizmo implements Gizmo {
     private boolean triggered;
 
     private List<Observer> observers;
+    private List<Integer> connectors;
     private double angle;
 
     public AbsorberGizmo(double x, double y, double x2, double y2, String name) {
@@ -52,6 +53,7 @@ public class AbsorberGizmo implements Gizmo {
         sides = new ArrayList<>();
         corners = new ArrayList<>();
         observers = new ArrayList<>();
+        connectors = new ArrayList<Integer>();
 
         balls = new LinkedList<>();
 
@@ -124,6 +126,16 @@ public class AbsorberGizmo implements Gizmo {
     @Override
     public BoundingBox getBoundingBox() {
         return new BoundingBox(x,y, x+width, y+height);
+    }
+
+    @Override
+    public void setConnector(int eventCode) {
+        connectors.add(eventCode);
+    }
+
+    @Override
+    public List getConnectors() {
+        return connectors;
     }
 
     @Override

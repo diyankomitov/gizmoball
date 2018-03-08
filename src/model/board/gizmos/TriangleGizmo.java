@@ -20,6 +20,7 @@ public class TriangleGizmo implements Gizmo {
     private String name;
     private List<Observer> observers;
     private boolean triggered;
+    private List<Integer> connectors;
 
     public TriangleGizmo(double x, double y, double side, String name) {
         this.x = x;
@@ -32,6 +33,7 @@ public class TriangleGizmo implements Gizmo {
         sides = new ArrayList<>();
         corners = new ArrayList<>();
         observers = new ArrayList<>();
+        connectors = new ArrayList<Integer>();
 
         triggered = false;
     }
@@ -136,6 +138,16 @@ public class TriangleGizmo implements Gizmo {
     @Override
     public BoundingBox getBoundingBox() {
         return new BoundingBox(x,y,x+side, y+side);
+    }
+
+    @Override
+    public void setConnector(int eventCode) {
+        connectors.add(eventCode);
+    }
+
+    @Override
+    public List getConnectors() {
+        return connectors;
     }
 
     @Override

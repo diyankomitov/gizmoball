@@ -4,6 +4,10 @@ import model.BoundingBox;
 import model.board.BoardObject;
 import util.Observable;
 
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
+
 public interface Gizmo extends BoardObject, Observable {
 
     void setCoordinates(double x, double y);
@@ -19,4 +23,8 @@ public interface Gizmo extends BoardObject, Observable {
     void sendTrigger();
 
     BoundingBox getBoundingBox();
+
+    void setConnector(int eventCode);
+
+    List getConnectors();
 }

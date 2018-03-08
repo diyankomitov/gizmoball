@@ -28,6 +28,7 @@ public class FlipperGizmo implements Gizmo{
     private boolean moving;
 //    private double offset;
     private List<Observer> observers;
+    private List<Integer> connectors;
 
     /**
      * Constructor
@@ -63,6 +64,7 @@ public class FlipperGizmo implements Gizmo{
         double radius = width/2;
         pivot = new Vect(this.x + radius, this.y + radius);
         observers = new ArrayList<>();
+        connectors = new ArrayList<Integer>();
 
 
     }
@@ -108,6 +110,16 @@ public class FlipperGizmo implements Gizmo{
     @Override
     public BoundingBox getBoundingBox() {
         return new BoundingBox(x,y, x+length, y+length);
+    }
+
+    @Override
+    public void setConnector(int eventCode) {
+        connectors.add(eventCode);
+    }
+
+    @Override
+    public List getConnectors() {
+        return connectors;
     }
 
     public void rotate(){

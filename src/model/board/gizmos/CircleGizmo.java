@@ -21,6 +21,7 @@ public class CircleGizmo implements Gizmo {
     private List<Observer> observers;
     private double angle;
     private boolean triggered;
+    private List<Integer> connectors;
 
     public CircleGizmo(double x, double y, double diameter, String name) {
         this.x = x;
@@ -32,6 +33,7 @@ public class CircleGizmo implements Gizmo {
         rCoefficient = 1.0;
         circles = new ArrayList<>();
         observers = new ArrayList<>();
+        connectors = new ArrayList<Integer>();
 
         triggered = false;
         angle = 0;
@@ -89,6 +91,16 @@ public class CircleGizmo implements Gizmo {
     @Override
     public BoundingBox getBoundingBox() {
         return new BoundingBox(x, y, x+diameter, y+diameter);
+    }
+
+    @Override
+    public void setConnector(int eventCode) {
+        connectors.add(eventCode);
+    }
+
+    @Override
+    public List getConnectors() {
+        return connectors;
     }
 
     @Override

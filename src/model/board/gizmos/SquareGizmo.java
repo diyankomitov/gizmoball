@@ -21,6 +21,7 @@ public class SquareGizmo implements Gizmo {
 
     private String name;
     private List<Observer> observers;
+    private List<Integer> connectors;
 
     private boolean triggered;
     private double angle;
@@ -38,6 +39,7 @@ public class SquareGizmo implements Gizmo {
         sides = new ArrayList<>();
         corners = new ArrayList<>();
         observers = new ArrayList<>();
+        connectors = new ArrayList<Integer>();
 
         triggered = false;
         angle = 0;
@@ -114,6 +116,16 @@ public class SquareGizmo implements Gizmo {
     @Override
     public BoundingBox getBoundingBox() {
         return new BoundingBox(x, y, x+width, y+width);
+    }
+
+    @Override
+    public void setConnector(int eventCode) {
+        connectors.add(eventCode);
+    }
+
+    @Override
+    public List getConnectors() {
+        return connectors;
     }
 
     @Override
