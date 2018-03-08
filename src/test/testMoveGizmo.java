@@ -58,17 +58,17 @@ public class testMoveGizmo {
 
     @Test
     public void testMoveToAbsorberLocation() {
-        gizmoballModel.addAbsorber(1, 19, 19, 20, "A1");
-        assertFalse(gizmoballModel.moveGizmo("C420", 1, 19));
-        assertFalse(gizmoballModel.moveGizmo("C420", 2, 19));
-        assertFalse(gizmoballModel.moveGizmo("C420", 19, 20));
-        assertFalse(gizmoballModel.moveGizmo("C420", 6, 20));
+        gizmoballModel.addAbsorber(1, 12, 20, 14, "A1");
+        assertFalse(gizmoballModel.moveGizmo("C420", 1, 13));
+        assertFalse(gizmoballModel.moveGizmo("C420", 2, 14));
+        assertFalse(gizmoballModel.moveGizmo("C420", 10, 13));
+        assertFalse(gizmoballModel.moveGizmo("C420", 19, 13));
     }
 
     @Test
     public void testMoveToAbsorberX() {
-        gizmoballModel.addAbsorber(1, 19, 19, 20, "A1");
-        assertFalse(gizmoballModel.moveGizmo("C420", 1, 19));
+        gizmoballModel.addAbsorber(1, 12, 20, 14, "A1");
+        assertFalse(gizmoballModel.moveGizmo("C420", 1, 12));
 
     }
 

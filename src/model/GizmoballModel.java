@@ -7,7 +7,6 @@ import model.board.Walls;
 import model.board.gizmos.*;
 import physics.*;
 import util.BoardState;
-import view.FlipperDirection;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -264,7 +263,7 @@ public class GizmoballModel{
         }
 
 
-        if(!checkIntersecting(gizmo)) {
+        if(isIntersecting(gizmo)) {
             return false;
         }
         board.addGizmo(gizmo);
@@ -285,14 +284,17 @@ public class GizmoballModel{
         }
         else{
             Gizmo absorber = new AbsorberGizmo(x, y, x2, y2, name);
-            for (Gizmo gizmo : board.getGizmos()) {
-                if (absorber.getBoundingBox().isIntersecting(gizmo.getBoundingBox())){
-                    return false;
-                }
-                if (gizmo.getName().equals(name)){
-                    return false;
-                }
+            if (isIntersecting(absorber)) {
+                return false;
             }
+//            for (Gizmo gizmo : board.getGizmos()) {
+//                if (absorber.getBoundingBox().isIntersecting(gizmo.getBoundingBox())){
+//                    return false;
+//                }
+//                if (gizmo.getName().equals(name)){
+//                    return false;
+//                }
+//            }
             board.addGizmo(absorber);
             BoardState.add(ABSORBER.toString() + " " + name + " " + x + " " + y);
             return true;
@@ -392,7 +394,7 @@ public class GizmoballModel{
             double x = gizmo.getX();
             double y = gizmo.getY();
             gizmo.setCoordinates(newX, newY);
-            if (checkIntersecting(gizmo)) {
+            if (!isIntersecting(gizmo)) {
                 BoardState.add("Move " + gizmo.getName() + " " + newX + " " + newY);
                 return true;
             }
@@ -401,11 +403,11 @@ public class GizmoballModel{
         return false;
     }
 
-    public boolean moveGizmo(double x, double y, double newX, double newY) { //TODO: check if new position is valid
+    public boolean moveGizmo(double x, double y, double newX, double newY) {
         Gizmo gizmo = getGizmo(x,y);
         if(gizmo != null) {
             gizmo.setCoordinates(newX, newY);
-            if (checkIntersecting(gizmo)) {
+            if (!isIntersecting(gizmo)) {
                 BoardState.add("Move " + gizmo.getName() + " " + newX + " " + newY);
                 return true;
             }
@@ -414,18 +416,19 @@ public class GizmoballModel{
         return false;
     }
 
-    public boolean checkIntersecting(Gizmo gizmo) {
+    public boolean isIntersecting(Gizmo gizmo) {
         for (Gizmo g : getGizmos()){
             if (gizmo.getBoundingBox().isIntersecting(g.getBoundingBox())) {
                 if (gizmo != g) {
-                    return false;
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
     }
 
     public void moveBall(String name, double newX, double newY) { //TODO: check if new position is valid
+        
         BoardState.add("Move " + name + " " + newX + " " + newY);
         getBall(name).setX(newX);
         getBall(name).setY(newY);

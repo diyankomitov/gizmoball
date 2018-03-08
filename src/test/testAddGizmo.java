@@ -62,9 +62,7 @@ public class testAddGizmo {
         gizmoballModel.addGizmo(2.0, 2.0, "", BoardObjectType.CIRCLE);
         List<Gizmo> gl = gizmoballModel.getGizmos();
         assertTrue(gizmoballModel.getGizmo("C22").equals(gl.get(0)));
-        gizmoballModel.addGizmo(3.0, 2.0, "", BoardObjectType.CIRCLE);
-        gl = gizmoballModel.getGizmos();
-        assertTrue(gizmoballModel.getGizmo("C32").equals(gl.get(1)));
+
     }
 
     @Test
@@ -125,4 +123,9 @@ public class testAddGizmo {
         assertFalse(gizmoballModel.addGizmo(2,3, "S11", BoardObjectType.SQUARE));
     }
 
+    @Test
+    public void testAddGizmoInAbsorber() {
+        gizmoballModel.addAbsorber(0,16,19, 19, "A1");
+        assertFalse(gizmoballModel.addGizmo(4,17, "C417", BoardObjectType.CIRCLE));
+    }
 }
