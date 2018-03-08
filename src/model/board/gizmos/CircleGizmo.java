@@ -94,16 +94,6 @@ public class CircleGizmo implements Gizmo {
     }
 
     @Override
-    public void setConnector(int eventCode) {
-        connectors.add(eventCode);
-    }
-
-    @Override
-    public List getConnectors() {
-        return connectors;
-    }
-
-    @Override
     public BoardObjectType getType() {
         return type;
     }

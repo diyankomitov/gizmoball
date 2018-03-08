@@ -112,15 +112,6 @@ public class FlipperGizmo implements Gizmo{
         return new BoundingBox(x,y, x+length, y+length);
     }
 
-    @Override
-    public void setConnector(int eventCode) {
-        connectors.add(eventCode);
-    }
-
-    @Override
-    public List getConnectors() {
-        return connectors;
-    }
 
     public void rotate(){
 

@@ -23,8 +23,4 @@ public interface Gizmo extends BoardObject, Observable {
     void sendTrigger();
 
     BoundingBox getBoundingBox();
-
-    void setConnector(int eventCode);
-
-    List getConnectors();
 }

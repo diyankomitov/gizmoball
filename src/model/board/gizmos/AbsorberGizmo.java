@@ -128,15 +128,6 @@ public class AbsorberGizmo implements Gizmo {
         return new BoundingBox(x,y, x+width, y+height);
     }
 
-    @Override
-    public void setConnector(int eventCode) {
-        connectors.add(eventCode);
-    }
-
-    @Override
-    public List getConnectors() {
-        return connectors;
-    }
 
     @Override
     public void setCoordinates(double x, double y) {

@@ -453,20 +453,6 @@ public class GizmoballModel{
         gizmo.rotate();
     }
 
-    public boolean connectGizmo(double x, double y, int eventCode) {
-        Gizmo gizmo = getGizmo(x,y);
-        if(gizmo != null) {
-            gizmo.setConnector(eventCode);
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
-    public void disconnectGizmo(double x, double y) {
-    }
-
     public void triggerGizmo(String name) {
         getGizmo(name).trigger();
     }
