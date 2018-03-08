@@ -60,7 +60,7 @@ public class testMoveGizmo {
     public void testMoveToAbsorberLocation() {
         gizmoballModel.addAbsorber(1, 12, 20, 14, "A1");
         assertFalse(gizmoballModel.moveGizmo("C420", 1, 13));
-        assertFalse(gizmoballModel.moveGizmo("C420", 2, 14));
+        assertFalse(gizmoballModel.moveGizmo("C420", 2, 12));
         assertFalse(gizmoballModel.moveGizmo("C420", 10, 13));
         assertFalse(gizmoballModel.moveGizmo("C420", 19, 13));
     }

@@ -1,8 +1,6 @@
 package main;
 
 import controller.GizmoballController;
-import controller.handlers.LoadHandler;
-import controller.handlers.SaveHandler;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -159,7 +157,7 @@ public class LoadPrototype extends Application {
 //        Scene scene = new Scene(root);
 
 //        FXMLLoader buildFXML = new FXMLLoader(getClass().getResource("../view/fxml/BuildView.fxml"));
-//        FXMLLoader playFXML = new FXMLLoader(getClass().getResource("../view/fxml/PlayView.fxml"));
+//        FXMLLoader playFXML = new FXMLLoader(getClass().getResource("../view/fxml/RunView.fxml"));
 //
 //
 //        BuildController buildController = new BuildController();

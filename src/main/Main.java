@@ -10,6 +10,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.GizmoballModel;
+import physics.Circle;
+import physics.Geometry;
+import physics.LineSegment;
+import physics.Vect;
 
 import java.lang.reflect.Constructor;
 

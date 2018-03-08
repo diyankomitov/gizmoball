@@ -1,20 +1,19 @@
 package controller;
 
-import controller.handlers.DoNothingHandler;
-import controller.handlers.SwitchModeHandler;
-import javafx.event.ActionEvent;
+import controller.handlers.boardhandlers.*;
+import controller.handlers.generalhandlers.DoNothingHandler;
+import controller.handlers.generalhandlers.SwitchModeHandler;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.util.Callback;
 import javafx.util.converter.NumberStringConverter;
 import model.GizmoballModel;
+import model.board.BoardObjectType;
 import view.*;
+
+import static model.board.BoardObjectType.*;
 
 public class BuildController {
     @FXML
@@ -69,31 +68,41 @@ public class BuildController {
     private DoNothingHandler doNothingHandler;
     private SwitchModeHandler switchToPlay;
 
-    public void setup(GizmoballModel model, BoardController boardController) {
+    public void setup(GizmoballModel model, BoardController boardController, SwitchModeHandler switchToPlay) {
         this.model = model;
         this.boardController = boardController;
         this.doNothingHandler = new DoNothingHandler();
+        this.switchToPlay = switchToPlay;
 
         buildRoot.setCenter(boardController.getBoardView());
 
-        toggleGrid.setOnAction(event -> {
-            boardController.getBoardView().toggleGrid();
-        });
+        toggleGrid.setOnAction(event -> boardController.getBoardView().toggleGrid());
 
-        switchButton.setOnAction(switchToPlay);
+        switchButton.setOnAction(this.switchToPlay);
 
         ballSpeedField.textProperty().bindBidirectional(ballSpeedSlider.valueProperty(), new NumberStringConverter());
         gravityField.textProperty().bindBidirectional(gravitySlider.valueProperty(), new NumberStringConverter());
         frictionField.textProperty().bindBidirectional(frictionSlider.valueProperty(), new NumberStringConverter());
 
-        squareButton.setOnMouseClicked(event -> {
-            squareButton.toggle();
-            squareButton.requestFocus();
-        });
+        setupHandlers();
     }
 
-    public void setSwitchHandler(SwitchModeHandler switchToPlay) {
-       this.switchToPlay = switchToPlay;
+    private void setupHandlers() {
+
+        squareButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(SQUARE)));
+        triangleButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(TRIANGLE)));
+        circleButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(CIRCLE)));
+        leftFlipperButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(LEFT_FLIPPER)));
+        rightFlipperButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(RIGHT_FLIPPER)));
+        absorberButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddAbsorberHandler()));
+        ballButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddBallHandler()));
+
+        moveButton.setOnAction(event -> boardController.setBoardHandler(new MoveHandler()));
+        rotateButton.setOnAction(event -> boardController.setBoardHandler(new RotateHandler()));
+        deleteButton.setOnAction(event -> boardController.setBoardHandler(new DeleteHandler()));
+        connectButton.setOnAction(event -> boardController.setBoardHandler(new ConnectTriggerHandler()));
+        disconnectButton.setOnAction(event -> boardController.setBoardHandler(new DisconnectTriggerHandler()));
+        clearBoardButton.setOnAction(event -> boardController.setBoardHandler(new ClearBoardHandler()));
     }
 
     public void setDoNothing(boolean doNothing) {
@@ -107,5 +116,10 @@ public class BuildController {
 
     public Pane getRoot() {
         return buildRoot;
+    }
+
+    public void toggleBoard() {
+        buildRoot.setCenter(boardController.getBoardView());
+        boardController.getBoardView().toggleGrid();
     }
 }

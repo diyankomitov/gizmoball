@@ -1,10 +1,9 @@
 package controller;
 
-import controller.handlers.ExitHandler;
-import controller.handlers.LoadHandler;
-import controller.handlers.SaveHandler;
-import controller.handlers.SwitchModeHandler;
-import javafx.event.Event;
+import controller.handlers.generalhandlers.ExitHandler;
+import controller.handlers.generalhandlers.LoadHandler;
+import controller.handlers.generalhandlers.SaveHandler;
+import controller.handlers.generalhandlers.SwitchModeHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
@@ -25,14 +24,14 @@ public class GizmoballController {
     @FXML
     private MenuItem exit;
     @FXML
-    private BorderPane playView;
+    private BorderPane runView;
     @FXML
     private BorderPane buildView;
 
     @FXML
     private BuildController buildViewController;
     @FXML
-    private PlayController playViewController;
+    private RunController runViewController;
 
     private GizmoballModel model;
     private Stage stage;
@@ -46,19 +45,16 @@ public class GizmoballController {
         this.stage = stage;
         this.model = model;
 
+        SwitchModeHandler switchToRun = new SwitchModeHandler(buildViewController, runViewController, RIGHT);
+        SwitchModeHandler switchToBuild = new SwitchModeHandler(buildViewController, runViewController, LEFT);
+
         BoardController boardController = new BoardController();
-        buildViewController.setup(model, boardController);
-        playViewController.setup(model, boardController);
+        buildViewController.setup(model, boardController, switchToRun);
+        runViewController.setup(model, boardController, switchToBuild);
 
         saveHandler = new SaveHandler(stage);
         loadHandler = new LoadHandler(stage, boardController.getBoardView(), model); //TODO: maybe change getBoard to getBoardController
         exitHandler = new ExitHandler();
-
-        SwitchModeHandler switchToPlay = new SwitchModeHandler(buildViewController, playViewController, RIGHT);
-        SwitchModeHandler switchToBuild = new SwitchModeHandler(buildViewController, playViewController, LEFT);
-
-        buildViewController.setSwitchHandler(switchToPlay);
-        playViewController.setSwitchHandler(switchToBuild);
 
         setupHandlers();
     }

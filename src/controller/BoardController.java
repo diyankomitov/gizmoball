@@ -1,6 +1,6 @@
 package controller;
 
-import controller.handlers.BoardHandler;
+import controller.handlers.boardhandlers.BoardHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import view.BoardView;

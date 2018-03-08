@@ -6,7 +6,7 @@
 <?import view.BoardView?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controller.PlayController"
+            fx:controller="controller.RunController"
             fx:id="playRoot"
             style="-fx-background-color: white; -fx-padding: 10">
 

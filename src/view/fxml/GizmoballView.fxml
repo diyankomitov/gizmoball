@@ -21,7 +21,7 @@
     </top>
     <center>
         <StackPane fx:id="centerPane">
-            <fx:include fx:id="playView" source="PlayView.fxml"/>
+            <fx:include fx:id="runView" source="RunView.fxml"/>
             <fx:include fx:id="buildView" source="BuildView.fxml"/>
         </StackPane>
     </center>

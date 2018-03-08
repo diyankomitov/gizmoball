@@ -29,6 +29,16 @@ public class BoundingBox {
             return true;
         }
 
+//        if (this.x1 > other.x2
+//                && this.x2 < other.x1
+//                && this.y1 > other.y2
+//                && this.y2 < other.y1) {
+//            return true;
+//
+//        }
+//        return false;
+
+
         return false;
     }
 

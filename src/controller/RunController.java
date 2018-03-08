@@ -1,7 +1,11 @@
 package controller;
 
-import controller.handlers.DoNothingHandler;
-import controller.handlers.SwitchModeHandler;
+import controller.handlers.generalhandlers.DoNothingHandler;
+import controller.handlers.generalhandlers.SwitchModeHandler;
+import controller.handlers.runhandlers.TickLoopHandler;
+import controller.handlers.runhandlers.ResetGameHandler;
+import controller.handlers.runhandlers.StartLoopHandler;
+import controller.handlers.runhandlers.StopLoopHandler;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.Event;
@@ -15,8 +19,12 @@ import view.BoardView;
 
 import static util.Constants.MILLIS_PER_FRAME;
 
-public class PlayController {
+public class RunController {
 
+    @FXML
+    public Button tickButton;
+    @FXML
+    public Button resetButton;
     private BoardController boardController;
     private DoNothingHandler doNothingHandler;
     private GizmoballModel model;
@@ -33,10 +41,12 @@ public class PlayController {
     private Button stopButton;
     private SwitchModeHandler switchToBuild;
 
-    public void setup(GizmoballModel model, BoardController boardController) {
+    public void setup(GizmoballModel model, BoardController boardController, SwitchModeHandler switchToBuild) {
         this.model = model;
         this.boardController = boardController;
         this.doNothingHandler = new DoNothingHandler();
+        this.switchToBuild = switchToBuild;
+
 
         this.timeline = new Timeline(
                 new KeyFrame(   //keyframes allow for something to happen at a given time
@@ -46,20 +56,11 @@ public class PlayController {
         );
         this.timeline.setCycleCount(Timeline.INDEFINITE); //keeps running until stop is called
 
-        playRoot.setCenter(boardController.getBoardView());
-
-        startButton.setOnAction(event -> {
-            timeline.play();
-        });
-        stopButton.setOnAction(event -> {
-            timeline.stop();
-        });
-
-        switchButton.setOnAction(switchToBuild);
-    }
-
-    public void setSwitchHandler(SwitchModeHandler switchToBuild) {
-        this.switchToBuild = switchToBuild;
+        startButton.setOnAction(new StartLoopHandler(timeline));
+        stopButton.setOnAction(new StopLoopHandler(timeline));
+        resetButton.setOnAction(new ResetGameHandler(model));
+        tickButton.setOnAction(new TickLoopHandler(model));
+        switchButton.setOnAction(this.switchToBuild);
     }
 
     public void setDoNothing(boolean doNothing) {
@@ -73,5 +74,10 @@ public class PlayController {
 
     public Pane getRoot() {
         return playRoot;
+    }
+
+    public void toggleBoard() {
+        playRoot.setCenter(boardController.getBoardView());
+        boardController.getBoardView().toggleGrid();
     }
 }
