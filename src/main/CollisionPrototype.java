@@ -74,7 +74,7 @@ public class CollisionPrototype extends Application {
         pane.getChildren().addAll(squareView1, squareView2, squareView3, squareView4, triangleView1, triangleView2, triangleView3, triangleView4, circleView1, circleView2, circleView3, circleView4);
 
 //        model.addBall(6.5,2,0,0);
-        model.addBall(2, 2, 50, 50, "B1");
+        model.addBall(1, 1, 1, 1, "B1");
 //        model.addBall(2, 3, 4, 0, "B2");
 //        model.addBall(2, 4, 4, 0, "B3");
 //        model.addBall(2, 5, 4, 0, "B4");
@@ -92,9 +92,9 @@ public class CollisionPrototype extends Application {
             BallView ballView = new BallView(ball);
             pane.getChildren().add(ballView);
         });
-
-        model.setGravity(0);
-        model.setFriction(0,0);
+//
+//        model.setGravity(0);
+//        model.setFriction(0,0);
 
         Scene scene = new Scene(pane);
 

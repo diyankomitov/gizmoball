@@ -4,10 +4,10 @@
 <?import javafx.scene.layout.*?>
 <?import util.Constants?>
 <?import view.*?>
-<?import javafx.geometry.Insets?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="controller.BuildController"
+            fx:id="buildRoot"
             style="-fx-background-color: white; -fx-padding: 10">
 
     <fx:define>
@@ -83,11 +83,7 @@
     </left>
 
     <center>
-        <BoardView fx:id="board">
-            <BorderPane.margin>
-                <Insets topRightBottomLeft="10"/>
-            </BorderPane.margin>
-        </BoardView>
+        <!--Reserved for the BoardPane-->
     </center>
 
     <bottom>

@@ -1,42 +1,86 @@
 package controller;
 
+import controller.handlers.DoNothingHandler;
+import controller.handlers.SwitchModeHandler;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.util.Callback;
 import javafx.util.converter.NumberStringConverter;
+import model.GizmoballModel;
 import view.*;
 
 public class BuildController {
-    public Button switchButton;
-    public BoardView board;
-    public Button toggleGrid;
-    public Slider frictionSlider;
-    public TextField frictionField;
-    public Slider gravitySlider;
-    public TextField gravityField;
-    public Slider ballSpeedSlider;
-    public TextField ballSpeedField;
-    public SquareBumperView squareButton;
-    public TriangularBumperView triangleButton;
-    public CircularBumperView circleButton;
-    public FlipperView leftFlipperButton;
-    public FlipperView rightFlipperButton;
-    public AbsorberView absorberButton;
-    public BallView ballButton;
-    public Button connectButton;
-    public Button disconnectButton;
-    public Button clearBoardButton;
-    public Button moveButton;
-    public Button rotateButton;
-    public Button deleteButton;
-
-    public BuildController() {
-    }
-
     @FXML
-    public void initialize() {
+    private BorderPane buildRoot;
+    @FXML
+    private Button switchButton;
+    @FXML
+    private Button toggleGrid;
+    @FXML
+    private Slider frictionSlider;
+    @FXML
+    private TextField frictionField;
+    @FXML
+    private Slider gravitySlider;
+    @FXML
+    private TextField gravityField;
+    @FXML
+    private Slider ballSpeedSlider;
+    @FXML
+    private TextField ballSpeedField;
+    @FXML
+    private SquareBumperView squareButton;
+    @FXML
+    private TriangularBumperView triangleButton;
+    @FXML
+    private CircularBumperView circleButton;
+    @FXML
+    private FlipperView leftFlipperButton;
+    @FXML
+    private FlipperView rightFlipperButton;
+    @FXML
+    private AbsorberView absorberButton;
+    @FXML
+    private BallView ballButton;
+    @FXML
+    private Button connectButton;
+    @FXML
+    private Button disconnectButton;
+    @FXML
+    private Button clearBoardButton;
+    @FXML
+    private Button moveButton;
+    @FXML
+    private Button rotateButton;
+    @FXML
+    private Button deleteButton;
+    @FXML
+    private Label information;
+
+    private GizmoballModel model;
+    private BoardController boardController;
+    private DoNothingHandler doNothingHandler;
+    private SwitchModeHandler switchToPlay;
+
+    public void setup(GizmoballModel model, BoardController boardController) {
+        this.model = model;
+        this.boardController = boardController;
+        this.doNothingHandler = new DoNothingHandler();
+
+        buildRoot.setCenter(boardController.getBoardView());
+
         toggleGrid.setOnAction(event -> {
-            toggleGrid();
+            boardController.getBoardView().toggleGrid();
         });
+
+        switchButton.setOnAction(switchToPlay);
 
         ballSpeedField.textProperty().bindBidirectional(ballSpeedSlider.valueProperty(), new NumberStringConverter());
         gravityField.textProperty().bindBidirectional(gravitySlider.valueProperty(), new NumberStringConverter());
@@ -48,19 +92,20 @@ public class BuildController {
         });
     }
 
-    public BoardView getBoard() {
-        return board;
-    }
-
-    public void toggleGrid() {
-        board.toggleGrid();
-    }
-
     public void setSwitchHandler(SwitchModeHandler switchToPlay) {
-        switchButton.setOnAction(switchToPlay);
+       this.switchToPlay = switchToPlay;
     }
 
-    public void setBoard(BoardView board) {
-        this.board = board;
+    public void setDoNothing(boolean doNothing) {
+        if (doNothing) {
+            buildRoot.addEventFilter(Event.ANY, doNothingHandler);
+        }
+        else {
+            buildRoot.removeEventFilter(Event.ANY, doNothingHandler);
+        }
+    }
+
+    public Pane getRoot() {
+        return buildRoot;
     }
 }
