@@ -8,7 +8,7 @@ import util.Observer;
 
 import static util.Constants.ONE_L_IN_PIXELS;
 
-public class BoardView extends Pane implements Observer{
+public class BoardView extends Pane{
     private int curCol;
     private int curRow;
     private Pane[][] cells;
@@ -132,22 +132,5 @@ public class BoardView extends Pane implements Observer{
 
     public int getCurCol() {
         return curCol;
-    }
-
-//    public void setModel(GizmoballModel model) {
-//        this.model = model;
-//        model.subscribe(this);
-//        ballView.setTranslateX(model.getBall().getX() * cellSize);
-//        ballView.setTranslateY(model.getBall().getY() * cellSize);
-//    }
-
-    @Override
-    public void update() {
-        model.getBalls().forEach(ball -> {
-
-            ballView.setTranslateX(ball.getX() * cellSize);
-            ballView.setTranslateY(ball.getY() * cellSize);
-        });
-
     }
 }

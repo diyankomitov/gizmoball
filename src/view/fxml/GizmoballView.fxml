@@ -6,6 +6,7 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="controller.GizmoballController"
+            fx:id="mainRoot"
             prefHeight="500.0" prefWidth="500.0">
 
     <top>
@@ -19,8 +20,8 @@
         </MenuBar>
     </top>
     <center>
-        <StackPane>
-            <fx:include fx:id="playView" source="PlayView.fxml"/>
+        <StackPane fx:id="centerPane">
+            <fx:include fx:id="runView" source="RunView.fxml"/>
             <fx:include fx:id="buildView" source="BuildView.fxml"/>
         </StackPane>
     </center>

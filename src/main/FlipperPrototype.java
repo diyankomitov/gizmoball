@@ -1,24 +1,9 @@
 package main;
 
-
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.event.EventType;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import model.board.gizmos.FlipperGizmo;
-import model.GizmoballModel;
-import view.BallView;
-import view.FlipperView;
-
-import static util.Constants.MILLIS_PER_FRAME;
-import static util.Constants.ONE_L_IN_PIXELS;
-import static view.FlipperDirection.LEFT;
-import static view.FlipperDirection.RIGHT;
 
 
 public class  FlipperPrototype extends Application {
@@ -82,7 +67,6 @@ public class  FlipperPrototype extends Application {
 //        timeline.setCycleCount(Timeline.INDEFINITE); //keeps running until stop is called
 
 
-        //scene.addEventFilter(KeyEvent.ANY);
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
                 case LEFT:

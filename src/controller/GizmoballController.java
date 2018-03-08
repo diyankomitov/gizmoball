@@ -1,65 +1,67 @@
 package controller;
 
+import controller.handlers.generalhandlers.ExitHandler;
+import controller.handlers.generalhandlers.LoadHandler;
+import controller.handlers.generalhandlers.SaveHandler;
+import controller.handlers.generalhandlers.SwitchModeHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.HorizontalDirection;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.FileChooser;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import model.GizmoballModel;
-import view.BoardView;
-
-import java.io.File;
 
 import static javafx.geometry.HorizontalDirection.LEFT;
 import static javafx.geometry.HorizontalDirection.RIGHT;
 
 public class GizmoballController {
-    public MenuItem save;
-    public MenuItem load;
-    public MenuItem exit;
+    public StackPane centerPane;
+    public BorderPane mainRoot;
     @FXML
-    private BorderPane playView;
+    private MenuItem save;
+    @FXML
+    private MenuItem load;
+    @FXML
+    private MenuItem exit;
+    @FXML
+    private BorderPane runView;
     @FXML
     private BorderPane buildView;
+
     @FXML
     private BuildController buildViewController;
     @FXML
-    private PlayController playViewController;
+    private RunController runViewController;
+
     private GizmoballModel model;
+    private Stage stage;
 
 
-    public GizmoballController() {
-    }
+    private SaveHandler saveHandler;
+    private LoadHandler loadHandler;
+    private ExitHandler exitHandler;
 
-    @FXML
-    public void initialize() {
-        //TODO: make proper handler and exit properly
-        exit.setOnAction(event -> {
-            System.exit(0);
-        });
-
-
-        SwitchModeHandler switchToPlay = new SwitchModeHandler(buildView, playView, buildViewController, playViewController, RIGHT);
-        SwitchModeHandler switchToBuild = new SwitchModeHandler(playView, buildView,  buildViewController, playViewController, LEFT);
-
-        buildViewController.setSwitchHandler(switchToPlay);
-        playViewController.setSwitchHandler(switchToBuild);
-    }
-
-    public BoardView getBoard() {
-        return buildViewController.getBoard();
-    }
-
-    public void setSaveHandler(SaveHandler saveHandler) {
-        save.setOnAction(saveHandler);
-    }
-
-    public void setLoadHandler(LoadHandler loadHandler) {
-        load.setOnAction(loadHandler);
-    }
-
-    public void setModel(GizmoballModel model) {
+    public void setup(Stage stage, GizmoballModel model) {
+        this.stage = stage;
         this.model = model;
-        playViewController.setModel(model);
+
+        SwitchModeHandler switchToRun = new SwitchModeHandler(buildViewController, runViewController, RIGHT);
+        SwitchModeHandler switchToBuild = new SwitchModeHandler(buildViewController, runViewController, LEFT);
+
+        BoardController boardController = new BoardController();
+        buildViewController.setup(model, boardController, switchToRun);
+        runViewController.setup(model, boardController, switchToBuild);
+
+        saveHandler = new SaveHandler(stage);
+        loadHandler = new LoadHandler(stage, boardController.getBoardView(), model); //TODO: maybe change getBoard to getBoardController
+        exitHandler = new ExitHandler();
+
+        setupHandlers();
+    }
+
+    private void setupHandlers() {
+        save.setOnAction(saveHandler);
+        load.setOnAction(loadHandler);
+        exit.setOnAction(exitHandler);
     }
 }

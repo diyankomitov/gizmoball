@@ -1,4 +1,4 @@
-package controller;
+package controller.handlers.generalhandlers;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
