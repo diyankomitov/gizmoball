@@ -19,7 +19,7 @@ public class testRotateGizmo {
     public void testRotate90(){
         gizmoballModel.addGizmo(1, 1, "T", BoardObjectType.TRIANGLE);
         gizmoballModel.rotateGizmo("T");
-        assertEquals((gizmoballModel.getGizmo("T")).getAngle(), 180.0, 0);
+        assertEquals((gizmoballModel.getGizmo("T")).getAngle(), 90.0, 0);
     }
 
     @Test
@@ -29,7 +29,7 @@ public class testRotateGizmo {
         gizmoballModel.rotateGizmo("T");
         gizmoballModel.rotateGizmo("T");
         gizmoballModel.rotateGizmo("T");
-        assertEquals((gizmoballModel.getGizmo("T")).getAngle(), 90, 0);
+        assertEquals((gizmoballModel.getGizmo("T")).getAngle(), 0, 0);
     }
 
     @Test
@@ -42,6 +42,6 @@ public class testRotateGizmo {
         gizmoballModel.rotateGizmo("T");
         gizmoballModel.rotateGizmo("T");
         gizmoballModel.rotateGizmo("T");
-        assertEquals((gizmoballModel.getGizmo("T")).getAngle(), 0, 0);
+        assertEquals((gizmoballModel.getGizmo("T")).getAngle(), 270, 0);
     }
 }

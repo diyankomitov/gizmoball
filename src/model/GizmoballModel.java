@@ -7,7 +7,6 @@ import model.board.Walls;
 import model.board.gizmos.*;
 import physics.*;
 import util.BoardState;
-import view.FlipperDirection;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -216,7 +215,12 @@ public class GizmoballModel{
     //TODO: Maybe move position checking of add and move to the board, or at least a private method
     public boolean addGizmo(double x, double y, String name, BoardObjectType type) {
         Gizmo gizmo;
-        String gizmoName = name; //TODO: check if gizmo with same name already exists
+        String gizmoName = name;
+        for(Gizmo g: getGizmos()) {
+            if(g.getName().equals(name)) {
+                return false;
+            }
+        }
 
         switch (type) {
             case CIRCLE:
@@ -259,95 +263,172 @@ public class GizmoballModel{
         }
 
 
-        for (Gizmo g : board.getGizmos()){
-            if (gizmo.getBoundingBox().isIntersecting(g.getBoundingBox())){
-                return false;
-            }
+        if(isIntersecting(gizmo)) {
+            return false;
         }
-
         board.addGizmo(gizmo);
-
-        BoardState.add(type + " " + name + " " + x + " " + y);
-
+        BoardState.add(type + " " + gizmoName + " " + x + " " + y);
         return true;
     }
 
     public boolean addAbsorber(double x, double y, double x2, double y2, String name){
-        String absorberName = name; //TODO: check if absorber with same name already exists
-
         if(name.equals("")) {
-            absorberName = "A" + (int)x + (int)y;
+            name = "A" + (int)x + (int)y;
         }
-
-        Gizmo absorber = new AbsorberGizmo(x, y, x2, y2, absorberName);
-        for (Gizmo gizmo : board.getGizmos()) {
-            if (absorber.getBoundingBox().isIntersecting(gizmo.getBoundingBox())){
+        if (board.getGizmos().isEmpty()){
+            Gizmo absorber = new AbsorberGizmo(x, y, x2, y2, name);
+            board.addGizmo(absorber);
+            //TODO: should we add a details.addGizmo(?) here?
+            BoardState.add(ABSORBER.toString() + " " + name + " " + x + " " + y);
+            return true;
+        }
+        else{
+            Gizmo absorber = new AbsorberGizmo(x, y, x2, y2, name);
+            if (isIntersecting(absorber)) {
                 return false;
             }
+//            for (Gizmo gizmo : board.getGizmos()) {
+//                if (absorber.getBoundingBox().isIntersecting(gizmo.getBoundingBox())){
+//                    return false;
+//                }
+//                if (gizmo.getName().equals(name)){
+//                    return false;
+//                }
+//            }
+            board.addGizmo(absorber);
+            BoardState.add(ABSORBER.toString() + " " + name + " " + x + " " + y);
+            return true;
         }
-
-        BoardState.add(ABSORBER.toString() + " " + name + " " + x + " " + y);
-        board.addGizmo(absorber);
-        return true;
     }
 
-    //TODO: probably return booleans  for all of the bellow
 
-    public void addBall(double x, double y, double xv, double yv, String name) {
-        Ball ball = new Ball(x, y, xv, yv, name); //TODO: check if ball with same name already exists
-        //TODO: Detect if ball is within a gizmo
-        board.addBall(ball);
-        details.addBall(ball);
-        BoardState.add("Add " + name + " " + x + " " + y + " " + xv + " " + yv);
+    public boolean addBall(double x, double y, double xv, double yv, String name) {
+        if (board.getBalls().isEmpty()){
+            Ball ball = new Ball(x, y, xv, yv, name);
+            board.addBall(ball);
+            details.addBall(ball);
+            BoardState.add("Add " + name + " " + x + " " + y + " " + xv + " " + yv);
+            return true;
+        }
+        else {
+            for (Ball b : board.getBalls()) {
+                //if name of ball being added is NOT equal to the name of some other ball
+                if (!b.getName().equals(name)) {
+                    if (b.getX() == x && b.getY() == y) {
+                        return false;
+                    }
+                    for (Gizmo g : board.getGizmos()) {
+                        if (g.getX() == x && g.getY() == y) {
+                            return false;
+                        }
+                    }
+
+                }
+                else {
+                    //if the names are equal
+                    return false;
+                }
+            }
+            Ball ball = new Ball(x, y, xv, yv, name);
+            board.addBall(ball);
+            details.addBall(ball);
+            BoardState.add("Add " + name + " " + x + " " + y + " " + xv + " " + yv);
+            return true;
+        }
+        // return false; UNREACHABLE STATEMENT - NECESSARY?
     }
 
-    public void removeGizmo(String name) { //TODO: check if exists
-        BoardState.add("Delete " + name);
-        board.removeGizmo(getGizmo(name));
+    public boolean removeGizmo(String name) {
+        for(Gizmo g: getGizmos()) {
+            if(g.getName().equals(name)){
+                BoardState.add("Delete " + name);
+                board.removeGizmo(getGizmo(name));
+                return true;
+            }
+        }
+        return false;
     }
 
-    public void removeGizmo(double x, double y) {  //TODO: check if exists
-        Gizmo gizmo = getGizmo(x, y);
-        BoardState.add("Delete " + gizmo.getName());
-        board.removeGizmo(gizmo);
+    public boolean removeGizmo(double x, double y) {
+        for(Gizmo g: getGizmos()){
+            if(g.getX()==x && g.getY()==y) {
+                Gizmo gizmo = getGizmo(x, y);
+                BoardState.add("Delete " + gizmo.getName());
+                board.removeGizmo(gizmo);
+                return true;
+            }
+        }
+        return false;
     }
 
-    public void removeBall(String name) { //TODO: check if exists
-        BoardState.add("Delete " + name);
-        board.removeBall(getBall(name));
+    public boolean removeBall(String name) {
+        for(Ball b: board.getBalls()) {
+            if (b.getName().equals(name)) {
+                BoardState.add("Delete " + name);
+                board.removeBall(getBall(name)); //TODO: check this method of getting the ball as returns null
+                return true;
+            }
+        }
+        return false;
     }
 
-    public void removeBall(double x, double y) { //TODO: check if exists
-        Ball ball = getBall(x, y);
-        BoardState.add("Delete " + ball.getName());
-        board.removeBall(ball);
-    }
+//    public boolean removeBall(double x, double y) { //TODO: check if exists
+//        for(Ball b: board.getBalls()) {
+//            if (b.getX() == x && b.getY() == y){
+//                Ball ball = getBall(x, y);
+//                BoardState.add("Delete " + ball.getName());
+//                board.removeBall(ball);
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     public void clearBoard() {
         board.clear();
     }
 
     public boolean moveGizmo(String name, double newX, double newY) {
-        BoardState.add("Move " + name + " " + newX + " " + newY);
         Gizmo gizmo = getGizmo(name);
-        gizmo.setCoordinates(newX,newY);
-
-
-        for (Gizmo g : board.getGizmos()) {
-            if (g.getBoundingBox().isIntersecting(gizmo.getBoundingBox())){
-                return false;
+        if(gizmo != null) {
+            double x = gizmo.getX();
+            double y = gizmo.getY();
+            gizmo.setCoordinates(newX, newY);
+            if (!isIntersecting(gizmo)) {
+                BoardState.add("Move " + gizmo.getName() + " " + newX + " " + newY);
+                return true;
             }
+            gizmo.setCoordinates(x, y);
         }
-        return true;
+        return false;
     }
 
-    public void moveGizmo(double x, double y, double newX, double newY) { //TODO: check if new position is valid
+    public boolean moveGizmo(double x, double y, double newX, double newY) {
         Gizmo gizmo = getGizmo(x,y);
-        BoardState.add("Move " + gizmo.getName() + " " + newX + " " + newY);
-        gizmo.setCoordinates(newX, newY);
+        if(gizmo != null) {
+            gizmo.setCoordinates(newX, newY);
+            if (!isIntersecting(gizmo)) {
+                BoardState.add("Move " + gizmo.getName() + " " + newX + " " + newY);
+                return true;
+            }
+            gizmo.setCoordinates(x, y);
+        }
+        return false;
+    }
+
+    public boolean isIntersecting(Gizmo gizmo) {
+        for (Gizmo g : getGizmos()){
+            if (gizmo.getBoundingBox().isIntersecting(g.getBoundingBox())) {
+                if (gizmo != g) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public void moveBall(String name, double newX, double newY) { //TODO: check if new position is valid
+        
         BoardState.add("Move " + name + " " + newX + " " + newY);
         getBall(name).setX(newX);
         getBall(name).setY(newY);
@@ -414,8 +495,10 @@ public class GizmoballModel{
         return null;
     }
 
+
     public Ball getBall(String name) {
         for(Ball ball : board.getBalls()) {
+            System.out.println(ball.getName());
             if(ball.getName().equals(name)){
                 return ball;
             }

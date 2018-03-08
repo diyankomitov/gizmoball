@@ -26,13 +26,20 @@ public class testMoveGizmo {
     @Test
     public void testMoveWrongGizmo() {
         assertFalse(gizmoballModel.moveGizmo("T", 2.0, 2.0));
+
     }
 
     @Test
     public void testMoveTwoGizmos() {
         gizmoballModel.addGizmo(3.0, 5.0, "C35", BoardObjectType.CIRCLE);
-        assertTrue(gizmoballModel.moveGizmo("C420", 1, 3));
-        assertTrue(gizmoballModel.moveGizmo("C35", 4, 5));
+        gizmoballModel.moveGizmo("C420", 1, 3);
+        assertTrue(gizmoballModel.getGizmo("C420").getX()==1);
+        assertTrue(gizmoballModel.getGizmo("C420").getY()==3);
+        gizmoballModel.moveGizmo("C35", 5, 6);
+        assertTrue(gizmoballModel.getGizmo("C35").getX()==5);
+        assertTrue(gizmoballModel.getGizmo("C35").getY()==6);
+
+
     }
 
     @Test
@@ -51,17 +58,28 @@ public class testMoveGizmo {
 
     @Test
     public void testMoveToAbsorberLocation() {
-        gizmoballModel.addAbsorber(1, 19, 19, 20, "A1");
-        assertFalse(gizmoballModel.moveGizmo("C420", 1, 19));
-        assertFalse(gizmoballModel.moveGizmo("C420", 2, 19));
-        assertFalse(gizmoballModel.moveGizmo("C420", 19, 20));
-        assertFalse(gizmoballModel.moveGizmo("C420", 6, 20));
+        gizmoballModel.addAbsorber(1, 12, 20, 14, "A1");
+        assertFalse(gizmoballModel.moveGizmo("C420", 1, 13));
+        assertFalse(gizmoballModel.moveGizmo("C420", 2, 14));
+        assertFalse(gizmoballModel.moveGizmo("C420", 10, 13));
+        assertFalse(gizmoballModel.moveGizmo("C420", 19, 13));
     }
 
     @Test
     public void testMoveToAbsorberX() {
-        gizmoballModel.addAbsorber(1, 19, 19, 20, "A1");
-        assertFalse(gizmoballModel.moveGizmo("C420", 1, 19));
+        gizmoballModel.addAbsorber(1, 12, 20, 14, "A1");
+        assertFalse(gizmoballModel.moveGizmo("C420", 1, 12));
 
+    }
+
+    @Test
+    public void testMoveCoords() {
+        assertTrue(gizmoballModel.moveGizmo(4,20, 5,5));
+    }
+
+    @Test
+    public void testMoveCoordsOccupied() {
+        gizmoballModel.addGizmo(5,5, "", BoardObjectType.TRIANGLE);
+        assertFalse(gizmoballModel.moveGizmo(5,5, 4,20));
     }
 }
