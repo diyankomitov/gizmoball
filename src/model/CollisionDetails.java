@@ -16,7 +16,7 @@ public class CollisionDetails {
         details.put(ball, timeUntilCollission);
     }
 
-    public double getTimeUntilCollission(Ball ball) {
+    public double getTimeUntilCollision(Ball ball) {
         return details.get(ball);
     }
 

@@ -64,4 +64,47 @@ public class TestAddRemoveBall {
     public void testAddBallSameName() {
         assertFalse(gizmoballModel.addBall(1,1, 10, 10, "B1"));
     }
+
+    @Test
+    public void testMoveBall1() {
+        gizmoballModel.addBall(1, 1, 0, 0, "B1");
+        gizmoballModel.addGizmo(5, 5, "", BoardObjectType.TRIANGLE);
+
+        assertTrue(gizmoballModel.moveBall("B1", 6, 6));
+    }
+
+    @Test
+    public void testMoveBall2() {
+        gizmoballModel.addBall(1, 1, 0, 0, "B1");
+        gizmoballModel.addGizmo(5, 5, "", BoardObjectType.TRIANGLE);
+
+        assertTrue(gizmoballModel.moveBall("B1", 5.7, 5.7));
+    }
+
+    @Test
+    public void testMoveBallWrong1() {
+        gizmoballModel.addBall(1, 1, 0, 0, "B1");
+        gizmoballModel.addGizmo(5, 5, "", BoardObjectType.TRIANGLE);
+        assertFalse(gizmoballModel.moveBall("B1", 5.5, 5.5));
+    }
+    @Test
+    public void testMoveBallWrong2() {
+        gizmoballModel.addBall(1, 1, 0, 0, "B1");
+        gizmoballModel.addGizmo(5, 5, "", BoardObjectType.TRIANGLE);
+        assertFalse(gizmoballModel.moveBall("B1", 5.6, 5.6));
+    }
+    @Test
+    public void testMoveBallWrong3() {
+        gizmoballModel.addBall(1, 1, 0, 0, "B1");
+        gizmoballModel.addGizmo(5, 5, "", BoardObjectType.TRIANGLE);
+        assertFalse(gizmoballModel.moveBall("B1", 5.4, 5.4));
+    }
+    @Test
+    public void testMoveBallCircle() {
+        gizmoballModel.addBall(1, 1, 0, 0, "B1");
+        gizmoballModel.addGizmo(5, 5, "", BoardObjectType.CIRCLE);
+        gizmoballModel.addGizmo(4, 4, "", BoardObjectType.TRIANGLE);
+        assertFalse(gizmoballModel.moveBall("B1", 5, 5));
+    }
+
 }

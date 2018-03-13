@@ -112,6 +112,11 @@ public class FlipperGizmo implements Gizmo{
         return new BoundingBox(x,y, x+length, y+length);
     }
 
+    @Override
+    public void getTimeUntilCollision() {
+
+    }
+
     public void rotate(){
 
     }

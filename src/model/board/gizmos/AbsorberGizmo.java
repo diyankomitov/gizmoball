@@ -4,6 +4,7 @@ import model.BoundingBox;
 import model.board.Ball;
 import model.board.BoardObjectType;
 import physics.Circle;
+import physics.Geometry;
 import physics.LineSegment;
 import physics.Vect;
 import util.Observer;
@@ -124,6 +125,11 @@ public class AbsorberGizmo implements Gizmo {
     @Override
     public BoundingBox getBoundingBox() {
         return new BoundingBox(x,y, x+width, y+height);
+    }
+
+    @Override
+    public void getTimeUntilCollision() {
+
     }
 
     @Override

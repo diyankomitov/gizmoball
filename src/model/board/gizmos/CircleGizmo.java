@@ -93,6 +93,11 @@ public class CircleGizmo implements Gizmo {
     }
 
     @Override
+    public void getTimeUntilCollision() {
+
+    }
+
+    @Override
     public BoardObjectType getType() {
         return type;
     }
