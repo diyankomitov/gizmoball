@@ -8,11 +8,14 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.*;
-import model.board.BoardObjectType;
 import model.board.gizmos.CircleGizmo;
 import model.board.gizmos.SquareGizmo;
 import model.board.gizmos.TriangleGizmo;
 import view.*;
+import view.gizmoviews.CircleGizmoView;
+import view.gizmoviews.GizmoView;
+import view.gizmoviews.SquareGizmoView;
+import view.gizmoviews.TriangleGizmoView;
 
 import static model.board.BoardObjectType.*;
 import static util.Constants.*;
@@ -58,20 +61,20 @@ public class CollisionPrototype extends Application {
         model.rotateGizmo("t4");
         model.rotateGizmo("t4");
 
-        GizmoView squareView1 = new SquareBumperView((SquareGizmo) model.getGizmo("s1"));
-        GizmoView squareView2 = new SquareBumperView((SquareGizmo) model.getGizmo("s2"));
-        GizmoView squareView3 = new SquareBumperView((SquareGizmo) model.getGizmo("s3"));
-        GizmoView squareView4 = new SquareBumperView((SquareGizmo) model.getGizmo("s4"));
-        GizmoView triangleView1 = new TriangularBumperView((TriangleGizmo) model.getGizmo("t1"));
-        GizmoView triangleView2 = new TriangularBumperView((TriangleGizmo) model.getGizmo("t2"));
-        GizmoView triangleView3 = new TriangularBumperView((TriangleGizmo) model.getGizmo("t3"));
-        GizmoView triangleView4 = new TriangularBumperView((TriangleGizmo) model.getGizmo("t4"));
-        GizmoView circleView1 = new CircularBumperView((CircleGizmo) model.getGizmo("c1"));
-        GizmoView circleView2 = new CircularBumperView((CircleGizmo) model.getGizmo("c2"));
-        GizmoView circleView3 = new CircularBumperView((CircleGizmo) model.getGizmo("c3"));
-        GizmoView circleView4 = new CircularBumperView((CircleGizmo) model.getGizmo("c4"));
+        GizmoView squareView1 = new SquareGizmoView((SquareGizmo) model.getGizmo("s1"));
+        GizmoView squareView2 = new SquareGizmoView((SquareGizmo) model.getGizmo("s2"));
+        GizmoView squareView3 = new SquareGizmoView((SquareGizmo) model.getGizmo("s3"));
+        GizmoView squareView4 = new SquareGizmoView((SquareGizmo) model.getGizmo("s4"));
+        GizmoView triangleView1 = new TriangleGizmoView((TriangleGizmo) model.getGizmo("t1"));
+        GizmoView triangleView2 = new TriangleGizmoView((TriangleGizmo) model.getGizmo("t2"));
+        GizmoView triangleView3 = new TriangleGizmoView((TriangleGizmo) model.getGizmo("t3"));
+        GizmoView triangleView4 = new TriangleGizmoView((TriangleGizmo) model.getGizmo("t4"));
+        GizmoView circleView1 = new CircleGizmoView((CircleGizmo) model.getGizmo("c1"));
+        GizmoView circleView2 = new CircleGizmoView((CircleGizmo) model.getGizmo("c2"));
+        GizmoView circleView3 = new CircleGizmoView((CircleGizmo) model.getGizmo("c3"));
+        GizmoView circleView4 = new CircleGizmoView((CircleGizmo) model.getGizmo("c4"));
 
-        pane.getChildren().addAll(squareView1, squareView2, squareView3, squareView4, triangleView1, triangleView2, triangleView3, triangleView4, circleView1, circleView2, circleView3, circleView4);
+//        pane.getChildren().addAll(squareView1, squareView2, squareView3, squareView4, triangleView1, triangleView2, triangleView3, triangleView4, circleView1, circleView2, circleView3, circleView4);
 
 //        model.addBall(6.5,2,0,0);
         model.addBall(1, 1, 1, 1, "B1");

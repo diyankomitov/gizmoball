@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.board.gizmos.AbsorberGizmo;
 import model.GizmoballModel;
-import view.AbsorberView;
+import view.gizmoviews.AbsorberGizmoView;
 import view.BallView;
 
 import static util.Constants.MILLIS_PER_FRAME;
@@ -33,7 +33,7 @@ public class AbsorberPrototype extends Application {
         pane.setPrefSize(ONE_L_IN_PIXELS*20, ONE_L_IN_PIXELS*20);
 
         AbsorberGizmo absorber = new AbsorberGizmo(0,19, 20,20, "A");
-        AbsorberView absorberView = new AbsorberView(absorber);
+        AbsorberGizmoView absorberView = new AbsorberGizmoView(absorber);
 
         GizmoballModel model = new GizmoballModel();
 //        model.addGizmo(absorber);
