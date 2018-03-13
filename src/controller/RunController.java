@@ -78,6 +78,6 @@ public class RunController {
 
     public void toggleBoard() {
         playRoot.setCenter(boardController.getBoardView());
-        boardController.getBoardView().toggleGrid();
+        boardController.getBoardView().setGrid(false);
     }
 }

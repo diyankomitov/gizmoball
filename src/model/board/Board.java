@@ -65,6 +65,7 @@ public class Board {
     }
 
     public void removeGizmo(Gizmo gizmo) {
+        System.out.println(gizmos);
         gizmos.remove(gizmo);
     }
 

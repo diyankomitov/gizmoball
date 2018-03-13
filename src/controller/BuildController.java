@@ -10,8 +10,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.util.converter.NumberStringConverter;
 import model.GizmoballModel;
-import model.board.BoardObjectType;
 import view.*;
+import view.gizmoviews.*;
 
 import static model.board.BoardObjectType.*;
 
@@ -35,17 +35,17 @@ public class BuildController {
     @FXML
     private TextField ballSpeedField;
     @FXML
-    private SquareBumperView squareButton;
+    private SquareGizmoView squareButton;
     @FXML
-    private TriangularBumperView triangleButton;
+    private TriangleGizmoView triangleButton;
     @FXML
-    private CircularBumperView circleButton;
+    private CircleGizmoView circleButton;
     @FXML
-    private FlipperView leftFlipperButton;
+    private FlipperGizmoView leftFlipperButton;
     @FXML
-    private FlipperView rightFlipperButton;
+    private FlipperGizmoView rightFlipperButton;
     @FXML
-    private AbsorberView absorberButton;
+    private AbsorberGizmoView absorberButton;
     @FXML
     private BallView ballButton;
     @FXML
@@ -89,29 +89,35 @@ public class BuildController {
 
     private void setupHandlers() {
 
-        squareButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(SQUARE)));
-        triangleButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(TRIANGLE)));
-        circleButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(CIRCLE)));
-        leftFlipperButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(LEFT_FLIPPER)));
-        rightFlipperButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(RIGHT_FLIPPER)));
-        absorberButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddAbsorberHandler()));
-        ballButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddBallHandler()));
+        squareButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController, SQUARE)));
+        triangleButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController, TRIANGLE)));
+        circleButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController, CIRCLE)));
+        leftFlipperButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController, LEFT_FLIPPER)));
+        rightFlipperButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController, RIGHT_FLIPPER)));
+        absorberButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddAbsorberHandler(model, boardController)));
+        ballButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddBallHandler(model, boardController)));
 
-        moveButton.setOnAction(event -> boardController.setBoardHandler(new MoveHandler()));
-        rotateButton.setOnAction(event -> boardController.setBoardHandler(new RotateHandler()));
-        deleteButton.setOnAction(event -> boardController.setBoardHandler(new DeleteHandler()));
+        moveButton.setOnAction(event -> boardController.setBoardHandler(new MoveHandler(model)));
+        rotateButton.setOnAction(event -> boardController.setBoardHandler(new RotateHandler(model)));
+        deleteButton.setOnAction(event -> boardController.setBoardHandler(new DeleteHandler(boardController, model)));
         connectButton.setOnAction(event -> boardController.setBoardHandler(new ConnectTriggerHandler()));
         disconnectButton.setOnAction(event -> boardController.setBoardHandler(new DisconnectTriggerHandler()));
-        clearBoardButton.setOnAction(event -> boardController.setBoardHandler(new ClearBoardHandler()));
+        clearBoardButton.setOnAction(event -> {
+            boardController.setBoardHandler(new ClearBoardHandler(boardController, model));
+            boardController.handle(event);
+        });
     }
 
     public void setDoNothing(boolean doNothing) {
         if (doNothing) {
             buildRoot.addEventFilter(Event.ANY, doNothingHandler);
+
         }
         else {
             buildRoot.removeEventFilter(Event.ANY, doNothingHandler);
         }
+
+        boardController.setDoNothing();
     }
 
     public Pane getRoot() {
@@ -120,6 +126,6 @@ public class BuildController {
 
     public void toggleBoard() {
         buildRoot.setCenter(boardController.getBoardView());
-        boardController.getBoardView().toggleGrid();
+        boardController.getBoardView().setGrid(true);
     }
 }

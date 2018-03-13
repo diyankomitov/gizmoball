@@ -53,7 +53,7 @@ public class GizmoballController {
         runViewController.setup(model, boardController, switchToBuild);
 
         saveHandler = new SaveHandler(stage);
-        loadHandler = new LoadHandler(stage, boardController.getBoardView(), model); //TODO: maybe change getBoard to getBoardController
+        loadHandler = new LoadHandler(stage, boardController, model);
         exitHandler = new ExitHandler();
 
         setupHandlers();

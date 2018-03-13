@@ -59,6 +59,7 @@ public class CircleGizmo implements Gizmo {
     public void setCoordinates(double x, double y) {
         this.x = x;
         this.y = y;
+        notifyObservers();
     }
 
     @Override

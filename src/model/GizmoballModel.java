@@ -23,7 +23,7 @@ public class GizmoballModel{
     private double frictionMU;
     private double frictionMU2;
 
-    private BoardObjectType collidedGizmo;
+    private Gizmo collidedGizmo;
 
 
     public GizmoballModel() {
@@ -51,22 +51,21 @@ public class GizmoballModel{
 
         findTimeUntilCollision();
 
-        board.getBalls().forEach(ball -> {
+        for (Ball ball : board.getBalls()) {
             if (!ball.isInAbsorber()) {
                 if (details.getTimeUntilCollission(ball) > moveTime) {
                     ball.moveForTime(moveTime);
-                }
-                else {
+                } else {
                     if (collidedGizmo != null) {
-                        if (collidedGizmo == ABSORBER) {
-                            ((AbsorberGizmo) getGizmo("A")).addBall(ball);
+                        if (collidedGizmo.getType() == ABSORBER) {
+                            ((AbsorberGizmo)collidedGizmo).addBall(ball);
                         }
                     }
                     ball.moveForTime(details.getTimeUntilCollission(ball)); //TODO: Fix issue where ball velocity becomes too low and stops abruptly
                     ball.applyPotentialVelocity();
                 }
             }
-        });
+        }
 
     }
 
@@ -90,7 +89,7 @@ public class GizmoballModel{
                     timeUntilCollision = time;
                     velocity = Geometry.reflectRotatingWall(line, gizmo.getCenter(), ((FlipperGizmo)gizmo).getAngularVelocity(), ballCircle, ball.getVelocity(), gizmo.getRCoefficient());
                     ball.setPotentialVelocity(velocity);
-                    collidedGizmo = gizmo.getType();
+                    collidedGizmo = gizmo;
                 }
             }
 
@@ -100,7 +99,7 @@ public class GizmoballModel{
                     timeUntilCollision = time;
                     velocity = Geometry.reflectRotatingCircle(circle, gizmo.getCenter(), ((FlipperGizmo)gizmo).getAngularVelocity(), ballCircle, ball.getVelocity(), gizmo.getRCoefficient());
                     ball.setPotentialVelocity(velocity);
-                    collidedGizmo = gizmo.getType();
+                    collidedGizmo = gizmo;
                 }
             }
         }
@@ -111,7 +110,7 @@ public class GizmoballModel{
                     timeUntilCollision = time;
                     velocity = Geometry.reflectWall(line, ball.getVelocity(), gizmo.getRCoefficient());
                     ball.setPotentialVelocity(velocity);
-                    collidedGizmo = gizmo.getType();
+                    collidedGizmo = gizmo;
                 }
             }
 
@@ -121,7 +120,7 @@ public class GizmoballModel{
                     timeUntilCollision = time;
                     velocity = Geometry.reflectCircle(circle.getCenter(), ball.getCenter(), ball.getVelocity(), gizmo.getRCoefficient());
                     ball.setPotentialVelocity(velocity);
-                    collidedGizmo = gizmo.getType();
+                    collidedGizmo = gizmo;
                 }
             }
         }
@@ -372,17 +371,18 @@ public class GizmoballModel{
         return false;
     }
 
-//    public boolean removeBall(double x, double y) { //TODO: check if exists
-//        for(Ball b: board.getBalls()) {
-//            if (b.getX() == x && b.getY() == y){
-//                Ball ball = getBall(x, y);
-//                BoardState.add("Delete " + ball.getName());
-//                board.removeBall(ball);
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
+    public boolean removeBall(double x, double y) { //TODO: check if exists
+        for(Ball b: board.getBalls()) {
+            double radius = b.getDiameter()/2;
+            if (Math.pow(x - b.getX(),2) + Math.pow(y - b.getY(), 2) < Math.pow(radius, 2)){
+                Ball ball = getBall(b.getX(), b.getY());
+                BoardState.add("Delete " + ball.getName());
+                board.removeBall(ball);
+                return true;
+            }
+        }
+        return false;
+    }
 
     public void clearBoard() {
         board.clear();

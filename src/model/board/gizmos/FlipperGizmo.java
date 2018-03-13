@@ -14,6 +14,7 @@ public class FlipperGizmo implements Gizmo{
 
     private double x;
     private double y;
+    private double xWithOffset;
     private final double width;
     private final double length;
     private final double rCoefficient;
@@ -48,7 +49,8 @@ public class FlipperGizmo implements Gizmo{
             this.type = BoardObjectType.LEFT_FLIPPER;
         }
 
-        this.x = x + offset;
+        this.x = x;
+        this.xWithOffset = x + offset;
         this.y = y;
 
         this.name=name;
@@ -61,7 +63,7 @@ public class FlipperGizmo implements Gizmo{
         angularVelocity = Math.toRadians(FLIPPER_ANGULAR_VELOCITY);
 
         double radius = width/2;
-        pivot = new Vect(this.x + radius, this.y + radius);
+        pivot = new Vect(this.xWithOffset + radius, this.y + radius);
         observers = new ArrayList<>();
 
 
@@ -119,8 +121,8 @@ public class FlipperGizmo implements Gizmo{
         double lineLength = length - width;
         double radianAngle = Math.toRadians(angle);
 
-        LineSegment leftSide = new LineSegment(x, pivot.y(), x, pivot.y() + lineLength);
-        LineSegment rightSide = new LineSegment(x +width, pivot.y(), x + width, pivot.y() + lineLength);
+        LineSegment leftSide = new LineSegment(xWithOffset, pivot.y(), xWithOffset, pivot.y() + lineLength);
+        LineSegment rightSide = new LineSegment(xWithOffset +width, pivot.y(), xWithOffset + width, pivot.y() + lineLength);
 
         leftSide = Geometry.rotateAround(leftSide, pivot, new Angle(radianAngle));
         rightSide = Geometry.rotateAround(rightSide, pivot, new Angle(radianAngle));
@@ -155,6 +157,7 @@ public class FlipperGizmo implements Gizmo{
     public void setCoordinates(double x, double y) {
         this.x = x;
         this.y = y;
+        notifyObservers();
     }
 
     @Override

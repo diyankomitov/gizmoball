@@ -4,6 +4,11 @@
 <?import javafx.scene.layout.*?>
 <?import util.Constants?>
 <?import view.*?>
+<?import view.gizmoviews.SquareGizmoView?>
+<?import view.gizmoviews.TriangleGizmoView?>
+<?import view.gizmoviews.CircleGizmoView?>
+<?import view.gizmoviews.FlipperGizmoView?>
+<?import view.gizmoviews.AbsorberGizmoView?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="controller.BuildController"
@@ -35,20 +40,20 @@
                 </ToolBar>
                 <ToolBar orientation="VERTICAL" style="-fx-background-color: lightgrey; -fx-border-color: grey; ">
                     <Label text="Bumpers"/>
-                    <SquareBumperView fx:id="squareButton"/>
-                    <TriangularBumperView fx:id="triangleButton"/>
-                    <CircularBumperView fx:id="circleButton"/>
+                    <SquareGizmoView fx:id="squareButton"/>
+                    <TriangleGizmoView fx:id="triangleButton"/>
+                    <CircleGizmoView fx:id="circleButton"/>
 
                     <Separator/>
 
                     <Label text="Flippers"/>
-                    <FlipperView fx:id="leftFlipperButton"/>
-                    <FlipperView fx:id="rightFlipperButton"/>
+                    <FlipperGizmoView fx:id="leftFlipperButton" type="LEFT_FLIPPER"/>
+                    <FlipperGizmoView fx:id="rightFlipperButton" type="RIGHT_FLIPPER"/>
 
                     <Separator/>
 
                     <Label text="Absorber"/>
-                    <AbsorberView fx:id="absorberButton"/>
+                    <AbsorberGizmoView fx:id="absorberButton"/>
 
                     <Separator/>
 

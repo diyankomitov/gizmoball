@@ -130,6 +130,7 @@ public class AbsorberGizmo implements Gizmo {
     public void setCoordinates(double x, double y) {
         this.x = x;
         this.y = y;
+        notifyObservers();
     }
 
     @Override

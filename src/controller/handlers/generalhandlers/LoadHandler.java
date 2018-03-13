@@ -1,22 +1,30 @@
 package controller.handlers.generalhandlers;
 
+import controller.BoardController;
+import controller.handlers.boardhandlers.AddAbsorberHandler;
+import controller.handlers.boardhandlers.AddBallHandler;
+import controller.handlers.boardhandlers.AddHandler;
+import controller.handlers.boardhandlers.ClearBoardHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import model.board.gizmos.AbsorberGizmo;
+import model.board.Ball;
 import model.board.BoardObjectType;
 import model.GizmoballModel;
-import view.BoardView;
+import model.board.gizmos.Gizmo;
+import view.gizmoviews.TriangleGizmoView;
 
 import java.io.*;
 
 public class LoadHandler implements EventHandler<ActionEvent> {
     private Stage stage;
     private GizmoballModel model; //Alistair thinks it might needs passed
-    private BoardView board;
-    public LoadHandler(Stage stage, BoardView board, GizmoballModel model) {
-        this.board = board;
+    private BoardController boardController;
+    private ActionEvent event;
+
+    public LoadHandler(Stage stage, BoardController boardController, GizmoballModel model) {
+        this.boardController = boardController;
 
         this.stage = stage;
         this.model = model;
@@ -27,6 +35,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
     //TODO add gravity and friction???
     @Override
     public void handle(ActionEvent event) {
+        this.event = event;
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter eFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
         fileChooser.getExtensionFilters().add(eFilter);
@@ -41,9 +50,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
     }
 
     public void clearBoard() {
-        board.clearBoard();
-        model.clearBoard();
-
+        new ClearBoardHandler(boardController, model).handle(event);
     }
 
     public void loadGame(File file) {
@@ -71,16 +78,19 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                 }
             }
 
-            model.getGizmos().forEach(gizmo -> {
-                        board.addGizmo(gizmo);
-
-                    }
-            );
-            model.getBalls().forEach(ball -> {
-                if(ball!=null){
-                    board.addBall(ball);
+            for (Gizmo gizmo : model.getGizmos()) {
+                if (gizmo.getType() == BoardObjectType.ABSORBER) {
+                    new AddAbsorberHandler(model, boardController).handle(gizmo.getName());
                 }
-            });
+                else {
+                    new AddHandler(model, boardController, gizmo.getType()).handle(gizmo.getName());
+                }
+            }
+            for (Ball ball : model.getBalls()) {
+                if (ball != null) {
+                    new AddBallHandler(model, boardController).handle(ball.getName());
+                }
+            }
 
 
         } catch (FileNotFoundException e) {
@@ -166,7 +176,6 @@ public class LoadHandler implements EventHandler<ActionEvent> {
             case "Delete":
                 if(string[1].charAt(0)=='B') {
                     model.removeBall(string[1]);
-                    board.removeBall();
                 }
                 model.removeGizmo(string[1]);
 

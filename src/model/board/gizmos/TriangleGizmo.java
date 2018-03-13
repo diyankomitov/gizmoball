@@ -83,6 +83,7 @@ public class TriangleGizmo implements Gizmo {
     public void setCoordinates(double x, double y) {
         this.x = x;
         this.y = y;
+        notifyObservers();
     }
 
     @Override
@@ -117,6 +118,8 @@ public class TriangleGizmo implements Gizmo {
         if(angle>=360){
             angle -= 360;
         }
+        System.out.println(angle);
+        notifyObservers();
     }
 
     public double getAngle(){
