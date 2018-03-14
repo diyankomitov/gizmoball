@@ -1,6 +1,7 @@
 package controller.handlers.boardhandlers;
 
 import javafx.event.Event;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import model.GizmoballModel;
 import model.board.gizmos.Gizmo;
@@ -12,9 +13,11 @@ public class DisconnectTriggerHandler implements BoardHandler {
     private final GizmoballModel model;
     //private boolean triggeredSelected;
    // private Gizmo triggeredGizmo;
+    private Label infoLabel;
 
-    public DisconnectTriggerHandler(GizmoballModel model) {
+    public DisconnectTriggerHandler(GizmoballModel model, Label infoLabel) {
         this.model = model;
+        this.infoLabel = infoLabel;
     }
 
     @Override
@@ -29,6 +32,7 @@ public class DisconnectTriggerHandler implements BoardHandler {
 
             if (gizmo != null) {
                 Triggers.removeTriggers(gizmo);
+                infoLabel.setText(gizmo + " has had its triggers removed.");
             }
 
         }

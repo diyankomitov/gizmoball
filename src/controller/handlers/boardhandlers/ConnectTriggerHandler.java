@@ -1,6 +1,7 @@
 package controller.handlers.boardhandlers;
 
 import javafx.event.Event;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -14,10 +15,12 @@ public class ConnectTriggerHandler implements BoardHandler {
     private final GizmoballModel model;
     private boolean triggeredSelected;
     private Gizmo triggeredGizmo;
+    private Label infoLabel;
 
-    public ConnectTriggerHandler(GizmoballModel model) {
+    public ConnectTriggerHandler(GizmoballModel model, Label infoLabel) {
         this.model = model;
         triggeredSelected = false;
+        this.infoLabel = infoLabel;
     }
 
     @Override
@@ -34,12 +37,14 @@ public class ConnectTriggerHandler implements BoardHandler {
                 if (gizmo != null) {
                     triggeredSelected = true;
                     triggeredGizmo = gizmo;
+                    infoLabel.setText(triggeredGizmo.getName() + " selected. Please select another gizmo or press a key to connect to.");
                 }
             }
             else {
                 if (gizmo != null) {
                     triggeredSelected = false;
                     Triggers.addTrigger(gizmo, triggeredGizmo);
+                    infoLabel.setText(triggeredGizmo.getName() + " and " + gizmo.getName() + " have been connected.");
                 }
             }
         }
@@ -50,6 +55,7 @@ public class ConnectTriggerHandler implements BoardHandler {
             if (keyCode != KeyCode.ESCAPE) {
                 if (triggeredSelected){
                     Triggers.addTrigger(keyCode, triggeredGizmo);
+                    infoLabel.setText(keyCode + " and " + triggeredGizmo.getName() + " have been connected.");
                 }
             }
             triggeredSelected = false;
