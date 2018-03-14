@@ -13,4 +13,8 @@ public class BoardState {
     public static List<String> getStateList() {
         return stateList;
     }
+
+    public static void removeAll() {
+        stateList.removeAll(getStateList());
+    }
 }
