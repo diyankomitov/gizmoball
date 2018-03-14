@@ -4,7 +4,6 @@ import model.BoundingBox;
 import model.board.Ball;
 import model.board.BoardObjectType;
 import physics.Circle;
-import physics.Geometry;
 import physics.LineSegment;
 import physics.Vect;
 import util.Observer;
@@ -37,6 +36,7 @@ public class AbsorberGizmo implements Gizmo {
 
     private List<Observer> observers;
     private double angle;
+    private boolean keyPressed;
 
     public AbsorberGizmo(double x, double y, double x2, double y2, String name) {
 
@@ -112,12 +112,6 @@ public class AbsorberGizmo implements Gizmo {
     }
 
     @Override
-    public void trigger() {
-        shootBall();
-        triggered = true;
-    }
-
-    @Override
     public void sendTrigger() {
         //TODO: implement this method when we implement the trigger system
     }
@@ -130,6 +124,32 @@ public class AbsorberGizmo implements Gizmo {
     @Override
     public void getTimeUntilCollision() {
 
+    }
+
+    @Override
+    public void activateAction() {
+        shootBall();
+    }
+
+    @Override
+    public void trigger(boolean keyPressed) {
+        if (keyPressed) {
+            this.keyPressed = keyPressed;
+            triggered = false;
+        }
+        else {
+            triggered = !this.keyPressed;
+        }
+
+    }
+
+    private void shootBall() {
+        if (triggered && balls.size() > 0) {
+            Ball ball = balls.remove();
+            ball.setInAbsorber(false);
+            ball.setY(this.y - (ball.getDiameter() / 2));
+            ball.setVelocity(new Vect(0, -50 * ONE_L));
+        }
     }
 
     @Override
@@ -194,14 +214,5 @@ public class AbsorberGizmo implements Gizmo {
     @Override
     public List<Observer> getObservers() {
         return observers;
-    }
-
-    private void shootBall() {
-        if (balls.size() > 0 ) {
-            Ball ball = balls.remove();
-            ball.setInAbsorber(false);
-            ball.setY(this.y-(ball.getDiameter()/2));
-            ball.setVelocity(new Vect(0, -50*ONE_L));
-        }
     }
 }

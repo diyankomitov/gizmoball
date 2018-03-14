@@ -75,9 +75,19 @@ public class GizmoballModel{
             }
         }
 
+        activateGizmoActions();
+
     }
 
+    private void activateGizmoActions() {
 
+        for (Gizmo gizmo : getGizmos()) {
+
+            gizmo.activateAction();
+
+        }
+
+    }
 
 
     private void findTimeUntilGizmoCollision(Gizmo gizmo, Ball ball) {
@@ -548,11 +558,11 @@ public class GizmoballModel{
     }
 
     public void triggerGizmo(String name) {
-        getGizmo(name).trigger();
+//        getGizmo(name).trigger();
     }
 
     public void triggerGizmo(double x, double y) {
-        getGizmo(x, y).trigger();
+//        getGizmo(x, y).trigger();
     }
 
     public void setGravity(double yVelocity) { //TODO: probably check upper and lower bounds

@@ -4,8 +4,10 @@ import controller.handlers.generalhandlers.ExitHandler;
 import controller.handlers.generalhandlers.LoadHandler;
 import controller.handlers.generalhandlers.SaveHandler;
 import controller.handlers.generalhandlers.SwitchModeHandler;
+import controller.handlers.runhandlers.TriggerHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -49,8 +51,8 @@ public class GizmoballController {
         SwitchModeHandler switchToBuild = new SwitchModeHandler(buildViewController, runViewController, LEFT);
 
         BoardController boardController = new BoardController();
-        buildViewController.setup(model, boardController, switchToRun);
-        runViewController.setup(model, boardController, switchToBuild);
+        buildViewController.setup(model, boardController, switchToRun, stage);
+        runViewController.setup(model, boardController, switchToBuild, stage);
 
         saveHandler = new SaveHandler(stage);
         loadHandler = new LoadHandler(stage, boardController, model);

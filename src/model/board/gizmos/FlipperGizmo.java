@@ -29,6 +29,8 @@ public class FlipperGizmo implements Gizmo{
     private boolean moving;
 //    private double offset;
     private List<Observer> observers;
+    private boolean flipUp;
+    private boolean keyPressed;
 
     /**
      * Constructor
@@ -74,29 +76,43 @@ public class FlipperGizmo implements Gizmo{
     }
 
     @Override
-    public void trigger() {
-        triggered = true;
+    public void activateAction() {
         flip();
+    }
+
+    @Override
+    public void trigger(boolean keyPressed) {
+        this.keyPressed = keyPressed;
+        flipUp = true;
     }
 
     private void flip() {
         if(type == BoardObjectType.RIGHT_FLIPPER)
         {
-            if (triggered) {
+            if (flipUp) {
                 angle = Math.min(angle + DELTA_ANGLE, 90);
             }
             else {
                 angle = Math.max(angle - DELTA_ANGLE, 0);
             }
 
-            moving = angle > 0 && angle < 90;
+            if (angle >= 90) {
 
+                flipUp = keyPressed;
+            }
         }
         else if (type == BoardObjectType.LEFT_FLIPPER)
         {
-            angle = triggered ? Math.max(angle - DELTA_ANGLE, -90) : Math.min(angle + DELTA_ANGLE, 0);
+            if (flipUp) {
+                angle = Math.max(angle - DELTA_ANGLE, -90);
+            }
+            else {
+                angle = Math.min(angle + DELTA_ANGLE, 0);
+            }
 
-            moving = angle < 0 && angle > -90;
+            if (angle <= -90) {
+                flipUp = keyPressed;
+            }
         }
 
         this.notifyObservers();

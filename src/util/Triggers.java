@@ -8,7 +8,7 @@ import java.util.*;
 public class Triggers {
 
     private static Map<Gizmo, Set<Gizmo>> gizmoTriggers = new HashMap<>();
-    private static Map<KeyCode, Set<Gizmo>> keyTriggers = new HashMap<>();
+    private static Map<KeyPress, Set<Gizmo>> keyTriggers = new HashMap<>();
 
 
     public static void addTrigger(Gizmo trigger, Gizmo triggered){
@@ -22,13 +22,14 @@ public class Triggers {
         printAllTriggers();
     }
 
-    public static void addTrigger(KeyCode trigger, Gizmo triggered){
+    public static void addTrigger(KeyPress trigger, Gizmo triggered){
         if(trigger != null && triggered != null){
             if (!keyTriggers.containsKey(trigger)) {
                 keyTriggers.put(trigger, new HashSet<>());
             }
             keyTriggers.get(trigger).add(triggered);
         }
+        printAllTriggers();
     }
 
     public static void removeTriggers(Gizmo gizmo) {
@@ -55,7 +56,7 @@ public class Triggers {
         return new HashSet<>();
     }
 
-    public static Set<Gizmo> getTriggeredGizmo(KeyCode trigger){
+    public static Set<Gizmo> getTriggeredGizmo(KeyPress trigger){
         if(keyTriggers.containsKey(trigger)){
             return keyTriggers.get(trigger);
         }
@@ -76,8 +77,8 @@ public class Triggers {
         System.out.println("");
 
         System.out.println("KEY TRIGGERS:");
-        for (KeyCode key : keyTriggers.keySet()) {
-            System.out.print("Key: " + key.getName() + " Values: ");
+        for (KeyPress key : keyTriggers.keySet()) {
+            System.out.print("Key: " + key.getCode() + ", " + key.getType() + " Values: ");
             for (Gizmo value : keyTriggers.get(key)) {
                 System.out.print("Gizmo " + value.getX() + ", " + value.getY());
             }

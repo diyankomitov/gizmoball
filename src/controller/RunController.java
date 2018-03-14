@@ -2,17 +2,17 @@ package controller;
 
 import controller.handlers.generalhandlers.DoNothingHandler;
 import controller.handlers.generalhandlers.SwitchModeHandler;
-import controller.handlers.runhandlers.TickLoopHandler;
-import controller.handlers.runhandlers.ResetGameHandler;
-import controller.handlers.runhandlers.StartLoopHandler;
-import controller.handlers.runhandlers.StopLoopHandler;
+import controller.handlers.runhandlers.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.GizmoballModel;
 import view.BoardView;
@@ -40,13 +40,17 @@ public class RunController {
     @FXML
     private Button stopButton;
     private SwitchModeHandler switchToBuild;
+    private Stage stage;
+    private TriggerHandler triggerHandler;
 
-    public void setup(GizmoballModel model, BoardController boardController, SwitchModeHandler switchToBuild) {
+    public void setup(GizmoballModel model, BoardController boardController, SwitchModeHandler switchToBuild, Stage stage) {
         this.model = model;
         this.boardController = boardController;
         this.doNothingHandler = new DoNothingHandler();
         this.switchToBuild = switchToBuild;
+        this.stage = stage;
 
+        triggerHandler = new TriggerHandler();
 
         this.timeline = new Timeline(
                 new KeyFrame(   //keyframes allow for something to happen at a given time
@@ -56,7 +60,7 @@ public class RunController {
         );
         this.timeline.setCycleCount(Timeline.INDEFINITE); //keeps running until stop is called
 
-        startButton.setOnAction(new StartLoopHandler(timeline));
+        startButton.setOnAction(new StartLoopHandler(timeline, boardController.getBoardView()));
         stopButton.setOnAction(new StopLoopHandler(timeline));
         resetButton.setOnAction(new ResetGameHandler(model));
         tickButton.setOnAction(new TickLoopHandler(model));
@@ -66,9 +70,11 @@ public class RunController {
     public void setDoNothing(boolean doNothing) {
         if (doNothing) {
             playRoot.addEventFilter(Event.ANY, doNothingHandler);
+            boardController.getBoardView().removeEventHandler(KeyEvent.ANY, triggerHandler);
         }
         else {
             playRoot.removeEventFilter(Event.ANY, doNothingHandler);
+            boardController.getBoardView().addEventHandler(KeyEvent.ANY, triggerHandler);
         }
     }
 

@@ -78,7 +78,7 @@ public class CircleGizmo implements Gizmo {
     }
 
     @Override
-    public void trigger() {
+    public void trigger(boolean keyPressed) {
         triggered = true;
     }
 
@@ -94,6 +94,11 @@ public class CircleGizmo implements Gizmo {
 
     @Override
     public void getTimeUntilCollision() {
+
+    }
+
+    @Override
+    public void activateAction() {
 
     }
 

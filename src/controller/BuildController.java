@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
 import model.GizmoballModel;
 import view.*;
@@ -67,12 +68,14 @@ public class BuildController {
     private BoardController boardController;
     private DoNothingHandler doNothingHandler;
     private SwitchModeHandler switchToPlay;
+    private Stage stage;
 
-    public void setup(GizmoballModel model, BoardController boardController, SwitchModeHandler switchToPlay) {
+    public void setup(GizmoballModel model, BoardController boardController, SwitchModeHandler switchToPlay, Stage stage) {
         this.model = model;
         this.boardController = boardController;
         this.doNothingHandler = new DoNothingHandler();
         this.switchToPlay = switchToPlay;
+        this.stage = stage;
 
         buildRoot.setCenter(boardController.getBoardView());
 
@@ -100,7 +103,7 @@ public class BuildController {
         moveButton.setOnAction(event -> boardController.setBoardHandler(new MoveHandler(model)));
         rotateButton.setOnAction(event -> boardController.setBoardHandler(new RotateHandler(model)));
         deleteButton.setOnAction(event -> boardController.setBoardHandler(new DeleteHandler(boardController, model)));
-        connectButton.setOnAction(event -> boardController.setBoardHandler(new ConnectTriggerHandler(model)));
+        connectButton.setOnAction(event -> boardController.setBoardHandler(new ConnectTriggerHandler(model, boardController, stage)));
         disconnectButton.setOnAction(event -> boardController.setBoardHandler(new DisconnectTriggerHandler()));
         clearBoardButton.setOnAction(event -> {
             boardController.setBoardHandler(new ClearBoardHandler(boardController, model));

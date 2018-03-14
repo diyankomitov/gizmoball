@@ -14,11 +14,13 @@ public interface Gizmo extends BoardObject, Observable {
 
     double getAngle();
 
-    void trigger();
+    void trigger(boolean keyPressed);
 
     void sendTrigger();
 
     BoundingBox getBoundingBox();
 
     void getTimeUntilCollision();
+
+    void activateAction();
 }
