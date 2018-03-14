@@ -69,7 +69,7 @@ public class GizmoballModel{
         }
 
     }
-    
+
     private void findTimeUntilGizmoCollision(Gizmo gizmo, Ball ball) {
         double time;
         List<LineSegment> lines = gizmo.getLines();
@@ -257,12 +257,9 @@ public class GizmoballModel{
             default:
                 return false;
         }
-
-
         if(isIntersecting(gizmo)) {
             return false;
         }
-
         board.addGizmo(gizmo);
         BoardState.add(type + " " + gizmoName + " " + x + " " + y);
         return true;
@@ -305,12 +302,10 @@ public class GizmoballModel{
             ballName = GizmoNames.addName(BALL);
         }
         if (board.getBalls().isEmpty()){
-
             Ball ball = new Ball(x, y, xv, yv, ballName);
             if(isBallIntersecting(ball)){
                 return false;
             }
-
             board.addBall(ball);
             details.addBall(ball);
             BoardState.add("Add " + ballName + " " + x + " " + y + " " + xv + " " + yv);
@@ -331,7 +326,6 @@ public class GizmoballModel{
                             return false;
                         }
                     }
-
                 }
                 else {
                     //if the names are equal
@@ -339,7 +333,6 @@ public class GizmoballModel{
                 }
             }
             Ball ball = new Ball(x, y, xv, yv, ballName);
-
             board.addBall(ball);
             details.addBall(ball);
             BoardState.add("Add " + ballName + " " + x + " " + y + " " + xv + " " + yv);

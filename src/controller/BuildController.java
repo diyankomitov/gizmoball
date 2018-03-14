@@ -120,6 +120,10 @@ public class BuildController {
         boardController.setDoNothing();
     }
 
+    public void setInformation(String text) {
+        information.setText(text);
+    }
+
     public Pane getRoot() {
         return buildRoot;
     }

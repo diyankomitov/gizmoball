@@ -1,6 +1,7 @@
 package controller.handlers.generalhandlers;
 
 import controller.BoardController;
+import controller.BuildController;
 import controller.handlers.boardhandlers.AddAbsorberHandler;
 import controller.handlers.boardhandlers.AddBallHandler;
 import controller.handlers.boardhandlers.AddHandler;
@@ -16,16 +17,22 @@ import model.board.gizmos.Gizmo;
 import view.gizmoviews.TriangleGizmoView;
 
 import java.io.*;
+import java.util.Arrays;
 
 public class LoadHandler implements EventHandler<ActionEvent> {
     private Stage stage;
     private GizmoballModel model; //Alistair thinks it might needs passed
     private BoardController boardController;
+    private BuildController buildController;
+
+    private String errorMessages = "";
+    private int errorCount = 0;
+
     private ActionEvent event;
 
-    public LoadHandler(Stage stage, BoardController boardController, GizmoballModel model) {
+    public LoadHandler(Stage stage, BoardController boardController, BuildController buildController, GizmoballModel model) {
         this.boardController = boardController;
-
+        this.buildController = buildController;
         this.stage = stage;
         this.model = model;
     }
@@ -59,6 +66,9 @@ public class LoadHandler implements EventHandler<ActionEvent> {
 
             clearBoard();
 
+            errorCount = 0;
+            errorMessages = "";
+
             FileReader fileReader  = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             int j = 0;
@@ -69,9 +79,6 @@ public class LoadHandler implements EventHandler<ActionEvent> {
             while((stringLine = bufferedReader.readLine())!=null) {
                 if(!stringLine.equals("")) {
                     boardDetailStr = stringLine.split(" ");
-                    for(int i=0; i<boardDetailStr.length; i++){
-                        System.out.println("string array at position: "+ i +" contains: "+boardDetailStr[i]);
-                    }
 
                     checkAction(boardDetailStr);
 
@@ -91,16 +98,23 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                     new AddBallHandler(model, boardController).handle(ball.getName());
                 }
             }
-
-
+            if(errorMessages.equals("")) {
+                buildController.setInformation("Board loaded successfully.");
+            }
+            else {
+                buildController.setInformation(errorMessages);
+            }
         } catch (FileNotFoundException e) {
+            buildController.setInformation("Error when trying to load the game.");
             System.out.println("Error when trying to load the game. :(");
         } catch(IOException e ) {
+            buildController.setInformation("Error when trying to load the game.");
             System.out.println("Error when trying to load the game. :(");
         }
     }
 
     public void checkAction(String[] string){
+
         double x;
         double y;
         double x2;
@@ -108,20 +122,22 @@ public class LoadHandler implements EventHandler<ActionEvent> {
         switch(string[0]) {
             case "Triangle":
                 try {
-                x = Double.parseDouble(string[2]);
-                y = Double.parseDouble(string[3]);
-                model.addGizmo(x, y, string[1], BoardObjectType.TRIANGLE);
+                    x = Double.parseDouble(string[2]);
+                    y = Double.parseDouble(string[3]);
+                    model.addGizmo(x, y, string[1], BoardObjectType.TRIANGLE);
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
+                    errorHandler(Arrays.toString(string));
                 }
                 break;
             case "Square":
                 try {
-                x = Double.parseDouble(string[2]);
-                y = Double.parseDouble(string[3]);
-                model.addGizmo(x, y, string[1], BoardObjectType.SQUARE);
+                    x = Double.parseDouble(string[2]);
+                    y = Double.parseDouble(string[3]);
+                    model.addGizmo(x, y, string[1], BoardObjectType.SQUARE);
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
+                    errorHandler(Arrays.toString(string));
                 }
                 break;
             case "Circle":
@@ -131,6 +147,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                     model.addGizmo(x, y, string[1], BoardObjectType.CIRCLE);
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
+                    errorHandler(Arrays.toString(string));
                 }
                 break;
             case "LeftFlipper":
@@ -140,6 +157,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                     model.addGizmo(x, y, string[1], BoardObjectType.LEFT_FLIPPER);
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
+                    errorHandler(Arrays.toString(string));
                 }
                 break;
             case "RightFlipper" :
@@ -149,6 +167,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                     model.addGizmo(x, y, string[1], BoardObjectType.RIGHT_FLIPPER);
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
+                    errorHandler(Arrays.toString(string));
                 }
                 break;
             case "Absorber" :
@@ -160,7 +179,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                     model.addAbsorber(x, y, x2, y2, string[1]);
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
-
+                    errorHandler(Arrays.toString(string));
                 }
                 break;
             case "Ball":
@@ -172,6 +191,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                     model.addBall(x, y, x2, y2, string[1]);
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
+                    errorHandler(Arrays.toString(string));
                 }
                 break;
             case "Delete":
@@ -186,6 +206,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                     model.rotateGizmo(string[1]);
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
+                    errorHandler(Arrays.toString(string));
                 }
 
                 break;
@@ -194,6 +215,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
 
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
+                    errorHandler(Arrays.toString(string));
                 }
 
                 break;
@@ -203,15 +225,27 @@ public class LoadHandler implements EventHandler<ActionEvent> {
 
                 } catch(Exception e) {
                     System.out.println("Something has gone wrong...");
+                    errorHandler(Arrays.toString(string));
                 }
                 break;
 
             //TODO add key connects
             default:
                 //todo add proper default
+                errorHandler(Arrays.toString(string));
                 break;
         }
 
         System.out.println(model.getGizmos().size());
+    }
+
+    private void errorHandler(String s){
+        errorMessages = "Something in the file was not in the recognised format at: " + s;
+        if(errorCount == 1){
+            errorMessages += "+ 1 other issue";
+        } else if (errorCount > 1){
+            errorMessages += " + " + errorCount + " other issues";
+        }
+        errorCount++;
     }
 }
