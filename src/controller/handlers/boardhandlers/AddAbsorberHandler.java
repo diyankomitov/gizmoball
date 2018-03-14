@@ -13,8 +13,7 @@ import static util.Constants.ONE_L_IN_PIXELS;
 
 public class AddAbsorberHandler extends AddHandler {
 
-    boolean firstClick;
-    boolean secondClick;
+    private boolean firstClick;
     private AbsorberGizmoView absorberView;
     private double xpos;
     private double ypos;
@@ -22,7 +21,6 @@ public class AddAbsorberHandler extends AddHandler {
     public AddAbsorberHandler(GizmoballModel model, BoardController boardController) {
         super(model, boardController, BoardObjectType.ABSORBER);
         firstClick = false;
-        secondClick = false;
         xpos = 0;
         ypos = 0;
     }
@@ -39,19 +37,13 @@ public class AddAbsorberHandler extends AddHandler {
                 firstClick = true;
                 absorberView = new AbsorberGizmoView();
 
-                xpos = ((int)(x/ONE_L_IN_PIXELS))*ONE_L_IN_PIXELS;
-                ypos = ((int)(y/ONE_L_IN_PIXELS))*ONE_L_IN_PIXELS;
-                absorberView.setCoordinates(xpos,ypos);
+                xpos = ((int) (x / ONE_L_IN_PIXELS)) * ONE_L_IN_PIXELS;
+                ypos = ((int) (y / ONE_L_IN_PIXELS)) * ONE_L_IN_PIXELS;
+                absorberView.setCoordinates(xpos, ypos);
                 boardController.addToBoardView(absorberView);
 
-
-                System.out.println("first click x: " + x + "first click y: " + y);
-                System.out.println("absview x: " + absorberView.getX() + "absview y: " + absorberView.getY());
-            }
-            else {
+            } else {
                 firstClick = false;
-
-                System.out.println("second click x: " + x + "second click y: " + y);
 
                 if (x < xpos) {
                     double tempx = x;
@@ -65,16 +57,14 @@ public class AddAbsorberHandler extends AddHandler {
                     ypos = tempy;
                 }
 
-                double x1 = Math.floor(xpos/ONE_L_IN_PIXELS);
-                double y1 = Math.floor(ypos/ONE_L_IN_PIXELS);
-                double x2 = Math.ceil(x/ONE_L_IN_PIXELS);
-                double y2 = Math.ceil(y/ONE_L_IN_PIXELS);
+                double x1 = Math.floor(xpos / ONE_L_IN_PIXELS);
+                double y1 = Math.floor(ypos / ONE_L_IN_PIXELS);
+                double x2 = Math.ceil(x / ONE_L_IN_PIXELS);
+                double y2 = Math.ceil(y / ONE_L_IN_PIXELS);
 
-                System.out.println("x1: " + x1 + "y1: " + y1 + "x2: " + x2 + "y2: " + y2);
-
-                if (model.addAbsorber(x1, y1, x2, y2, "")){
-                    boardController.removeFromBoardView(absorberView);
-                    boardController.addToBoardView(new AbsorberGizmoView(model.getGizmo(x1,y1)));
+                boardController.removeFromBoardView(absorberView);
+                if (model.addAbsorber(x1, y1, x2, y2, "")) {
+                    boardController.addToBoardView(new AbsorberGizmoView(model.getGizmo(x1, y1)));
                 }
             }
 
@@ -90,8 +80,7 @@ public class AddAbsorberHandler extends AddHandler {
                     absorberView.setTranslateX(xpos);
                     double width = x - xpos;
                     absorberView.setWidth(width);
-                }
-                else {
+                } else {
                     absorberView.setTranslateX(x);
                     absorberView.setWidth(xpos - x);
                 }
@@ -100,10 +89,9 @@ public class AddAbsorberHandler extends AddHandler {
                     absorberView.setTranslateY(ypos);
                     double height = y - ypos;
                     absorberView.setHeight(height);
-                }
-                else {
+                } else {
                     absorberView.setTranslateY(y);
-                    absorberView.setHeight(ypos-y);
+                    absorberView.setHeight(ypos - y);
                 }
             }
         }
