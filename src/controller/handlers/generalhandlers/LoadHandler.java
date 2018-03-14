@@ -1,13 +1,13 @@
 package controller.handlers.generalhandlers;
 
 import controller.BoardController;
-import controller.BuildController;
 import controller.handlers.boardhandlers.AddAbsorberHandler;
 import controller.handlers.boardhandlers.AddBallHandler;
 import controller.handlers.boardhandlers.AddHandler;
 import controller.handlers.boardhandlers.ClearBoardHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.board.Ball;
@@ -23,22 +23,21 @@ public class LoadHandler implements EventHandler<ActionEvent> {
     private Stage stage;
     private GizmoballModel model; //Alistair thinks it might needs passed
     private BoardController boardController;
-    private BuildController buildController;
 
     private String errorMessages = "";
     private int errorCount = 0;
+    private Label infoLabel;
 
     private ActionEvent event;
 
-    public LoadHandler(Stage stage, BoardController boardController, BuildController buildController, GizmoballModel model) {
+    public LoadHandler(Stage stage, BoardController boardController, GizmoballModel model, Label infoLabel) {
         this.boardController = boardController;
-        this.buildController = buildController;
+        this.infoLabel = infoLabel;
         this.stage = stage;
         this.model = model;
     }
 
     //TODO add key connects
-    //TODO add default options if input is incorrect ie missing params or wrong name/type
     //TODO add gravity and friction???
     @Override
     public void handle(ActionEvent event) {
@@ -57,7 +56,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
     }
 
     public void clearBoard() {
-        new ClearBoardHandler(boardController, model).handle(event);
+        new ClearBoardHandler(boardController, model, infoLabel).handle(event);
     }
 
     public void loadGame(File file) {
@@ -99,17 +98,17 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                 }
             }
             if(errorMessages.equals("")) {
-                buildController.setInformation("Board loaded successfully.");
+                infoLabel.setText("Board loaded successfully.");
             }
             else {
-                buildController.setInformation(errorMessages);
+                infoLabel.setText(errorMessages);
             }
         } catch (FileNotFoundException e) {
-            buildController.setInformation("Error when trying to load the game.");
-            System.out.println("Error when trying to load the game. :(");
+            infoLabel.setText("Error: No file found.");
+            System.out.println("Error: No file found.");
         } catch(IOException e ) {
-            buildController.setInformation("Error when trying to load the game.");
-            System.out.println("Error when trying to load the game. :(");
+            infoLabel.setText("Error: Wrong file format.");
+            System.out.println("Error: Wrong file format.");
         }
     }
 
@@ -253,7 +252,6 @@ public class LoadHandler implements EventHandler<ActionEvent> {
 
             //TODO add key connects
             default:
-                //todo add proper default
                 errorHandler(String.join(" ", string));
                 break;
         }

@@ -221,7 +221,7 @@ public class GizmoballModel{
         switch (type) {
             case CIRCLE:
                 if(name.equals("")) {
-                   gizmoName = GizmoNames.addName(CIRCLE);
+                    gizmoName = GizmoNames.addName(CIRCLE);
                 }
 
                 gizmo = new CircleGizmo(x, y, ONE_L, gizmoName);
@@ -513,15 +513,22 @@ public class GizmoballModel{
 
 
 
-    public void rotateGizmo(String name) {
-        BoardState.add("Rotate " + name);
-        getGizmo(name).rotate();
+    public boolean rotateGizmo(String name) {
+        if(getGizmo(name) != null){
+            BoardState.add("Rotate " + name);
+            getGizmo(name).rotate();
+            return true;
+        }
+        return false;
     }
 
-    public void rotateGizmo(double x, double y) {
+    public boolean rotateGizmo(double x, double y) {
         Gizmo gizmo = getGizmo(x,y);
-        BoardState.add("Rotate " + gizmo.getName());
-        gizmo.rotate();
+        if(gizmo != null){
+            BoardState.add("Rotate " + gizmo.getName());
+            gizmo.rotate();
+        }
+        return false;
     }
 
     public void triggerGizmo(String name) {
@@ -585,5 +592,9 @@ public class GizmoballModel{
             }
         }
         return null;
+    }
+
+    public void setMessage(String s){
+
     }
 }

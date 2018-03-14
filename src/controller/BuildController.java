@@ -103,7 +103,7 @@ public class BuildController {
         connectButton.setOnAction(event -> boardController.setBoardHandler(new ConnectTriggerHandler(model)));
         disconnectButton.setOnAction(event -> boardController.setBoardHandler(new DisconnectTriggerHandler(model)));
         clearBoardButton.setOnAction(event -> {
-            boardController.setBoardHandler(new ClearBoardHandler(boardController, model));
+            boardController.setBoardHandler(new ClearBoardHandler(boardController, model, information));
             boardController.handle(event);
         });
     }
@@ -124,6 +124,9 @@ public class BuildController {
         information.setText(text);
     }
 
+    public Label getInfoLabel(){
+        return information;
+    }
     public Pane getRoot() {
         return buildRoot;
     }
