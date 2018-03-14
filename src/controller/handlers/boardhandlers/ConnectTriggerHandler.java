@@ -1,24 +1,23 @@
 package controller.handlers.boardhandlers;
 
-import controller.BoardController;
 import javafx.event.Event;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import model.GizmoballModel;
-import model.board.BoardObjectType;
 import model.board.gizmos.Gizmo;
+import util.Triggers;
 
 import static util.Constants.ONE_L_IN_PIXELS;
 
+public class ConnectTriggerHandler implements BoardHandler {
+    private final GizmoballModel model;
+    private boolean triggeredSelected;
+    private Gizmo triggeredGizmo;
 
-public class ConnectTriggerHandler implements BoardHandler{
-    protected final GizmoballModel model;
-    protected final BoardController boardController;
-    protected final BoardObjectType type;
-
-    public ConnectTriggerHandler(GizmoballModel model, BoardController boardController, BoardObjectType type) {
+    public ConnectTriggerHandler(GizmoballModel model) {
         this.model = model;
-        this.boardController = boardController;
-        this.type = type;
+        triggeredSelected = false;
     }
 
     @Override
@@ -26,15 +25,34 @@ public class ConnectTriggerHandler implements BoardHandler{
 
         if (event.getEventType() == MouseEvent.MOUSE_CLICKED) {
             MouseEvent mouseEvent = (MouseEvent) event;
+            double x = Math.floor(mouseEvent.getX() / ONE_L_IN_PIXELS);
+            double y = Math.floor(mouseEvent.getY() / ONE_L_IN_PIXELS);
 
-            double x = (int)(mouseEvent.getX()/ONE_L_IN_PIXELS);
-            double y = (int)(mouseEvent.getY()/ONE_L_IN_PIXELS);
+            Gizmo gizmo = model.getGizmo(x, y);
 
-            if (model.getGizmo(x,y) != null){
-                Gizmo gizmo = model.getGizmo(x,y);
-                System.out.println(gizmo);
+            if (!triggeredSelected) {
+                if (gizmo != null) {
+                    triggeredSelected = true;
+                    triggeredGizmo = gizmo;
+                }
+            }
+            else {
+                if (gizmo != null) {
+                    triggeredSelected = false;
+                    Triggers.addTrigger(gizmo, triggeredGizmo);
+                }
             }
         }
+        else if (event.getEventType() == KeyEvent.KEY_PRESSED) {
+            KeyEvent keyEvent = (KeyEvent) event;
+            KeyCode keyCode = keyEvent.getCode();
 
+            if (keyCode != KeyCode.ESCAPE) {
+                if (triggeredSelected){
+                    Triggers.addTrigger(keyCode, triggeredGizmo);
+                }
+            }
+            triggeredSelected = false;
+        }
     }
 }
