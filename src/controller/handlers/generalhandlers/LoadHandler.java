@@ -160,6 +160,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                     model.addAbsorber(x, y, x2, y2, string[1]);
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
+
                 }
                 break;
             case "Ball":

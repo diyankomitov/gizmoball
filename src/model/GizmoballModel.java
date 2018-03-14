@@ -23,6 +23,14 @@ public class GizmoballModel{
     private double frictionMU;
     private double frictionMU2;
 
+    private int sCounter;
+    private int tCounter;
+    private int cCounter;
+    private int aCounter;
+    private int rfCounter;
+    private int lfCounter;
+    private int bCounter;
+
     private Gizmo collidedGizmo;
 
 
@@ -214,6 +222,7 @@ public class GizmoballModel{
     //TODO: Maybe move position checking of add and move to the board, or at least a private method
     public boolean addGizmo(double x, double y, String name, BoardObjectType type) {
         Gizmo gizmo;
+
         String gizmoName = name;
         for(Gizmo g: getGizmos()) {
             if(g.getName().equals(name)) {
@@ -224,35 +233,40 @@ public class GizmoballModel{
         switch (type) {
             case CIRCLE:
                 if(name.equals("")) {
-                    gizmoName = "C" + (int)x + (int)y;
+                    gizmoName = "C" + cCounter;
+                    cCounter++;
                 }
 
                 gizmo = new CircleGizmo(x, y, ONE_L, gizmoName);
                 break;
             case SQUARE:
                 if(name.equals("")) {
-                    gizmoName = "S" + (int)x + (int)y;
+                    gizmoName = "S" + sCounter;
+                    sCounter++;
                 }
 
                 gizmo = new SquareGizmo(x, y, ONE_L, gizmoName);
                 break;
             case TRIANGLE:
                 if(name.equals("")) {
-                    gizmoName = "T" + (int)x + (int)y;
+                    gizmoName = "T" + tCounter;
+                    tCounter++;
                 }
 
                 gizmo = new TriangleGizmo(x, y, ONE_L, gizmoName);
                 break;
             case LEFT_FLIPPER:
                 if(name.equals("")) {
-                    gizmoName = "LF" + (int)x + (int)y;
+                    gizmoName = "LF" + lfCounter;
+                    lfCounter++;
                 }
 
                 gizmo = new FlipperGizmo(x, y, 0, type, gizmoName);
                 break;
             case RIGHT_FLIPPER:
                 if(name.equals("")) {
-                    gizmoName = "RF" + (int)x + (int)y;
+                    gizmoName = "RF" + rfCounter;
+                    rfCounter++;
                 }
 
                 gizmo = new FlipperGizmo(x, y, 0, type, gizmoName);
@@ -272,13 +286,14 @@ public class GizmoballModel{
 
     public boolean addAbsorber(double x, double y, double x2, double y2, String name){
         if(name.equals("")) {
-            name = "A" + (int)x + (int)y;
+            name = "A" + aCounter;
+            aCounter++;
         }
         if (board.getGizmos().isEmpty()){
             Gizmo absorber = new AbsorberGizmo(x, y, x2, y2, name);
             board.addGizmo(absorber);
             //TODO: should we add a details.addGizmo(?) here?
-            BoardState.add(ABSORBER.toString() + " " + name + " " + x + " " + y);
+            BoardState.add(ABSORBER.toString() + " " + name + " " + x + " " + y + " " + x2 + " " + y2);
             return true;
         }
         else{
@@ -295,22 +310,28 @@ public class GizmoballModel{
 //                }
 //            }
             board.addGizmo(absorber);
-            BoardState.add(ABSORBER.toString() + " " + name + " " + x + " " + y);
+            BoardState.add(ABSORBER.toString() + " " + name + " " + x + " " + y + " " + x2 + " " + y2);
             return true;
         }
     }
 
 
     public boolean addBall(double x, double y, double xv, double yv, String name) {
+        String ballName = name;
+        if(name.equals("")){
+            ballName = "B"+ bCounter;
+            bCounter++;
+        }
         if (board.getBalls().isEmpty()){
 
-            Ball ball = new Ball(x, y, xv, yv, name);
+            Ball ball = new Ball(x, y, xv, yv, ballName);
             if(isBallIntersecting(ball)){
                 return false;
             }
+
             board.addBall(ball);
             details.addBall(ball);
-            BoardState.add("Add " + name + " " + x + " " + y + " " + xv + " " + yv);
+            BoardState.add("Add " + ballName + " " + x + " " + y + " " + xv + " " + yv);
             return true;
         }
         else {
@@ -335,10 +356,11 @@ public class GizmoballModel{
                     return false;
                 }
             }
-            Ball ball = new Ball(x, y, xv, yv, name);
+            Ball ball = new Ball(x, y, xv, yv, ballName);
+            
             board.addBall(ball);
             details.addBall(ball);
-            BoardState.add("Add " + name + " " + x + " " + y + " " + xv + " " + yv);
+            BoardState.add("Add " + ballName + " " + x + " " + y + " " + xv + " " + yv);
             return true;
         }
         // return false; UNREACHABLE STATEMENT - NECESSARY?
@@ -393,6 +415,7 @@ public class GizmoballModel{
 
     public void clearBoard() {
         board.clear();
+        BoardState.removeAll();
     }
 
     public boolean moveGizmo(String name, double newX, double newY) {
