@@ -31,11 +31,11 @@ public class DeleteHandler implements BoardHandler{
             double y = (int)(clicked.getTranslateY()/ONE_L_IN_PIXELS);
 
 
-            if (model.removeGizmo(x,y)) {
-                boardController.removeFromBoardView((GizmoView) clicked);
-            }
-            else if(model.removeBall(clicked.getTranslateX()/ONE_L_IN_PIXELS, clicked.getTranslateY()/ONE_L_IN_PIXELS)){
+            if (model.removeBall(clicked.getTranslateX()/ONE_L_IN_PIXELS, clicked.getTranslateY()/ONE_L_IN_PIXELS)) {
                 boardController.removeFromBoardView((BallView) clicked);
+            }
+            else if(model.removeGizmo(x,y)) {
+                boardController.removeFromBoardView((GizmoView) clicked);
             }
         }
     }

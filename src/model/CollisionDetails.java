@@ -23,4 +23,6 @@ public class CollisionDetails {
     public void addBall(Ball ball) {
         details.put(ball, Double.MAX_VALUE);
     }
+
+    public void removeBall(Ball ball){ details.remove(ball); }
 }
