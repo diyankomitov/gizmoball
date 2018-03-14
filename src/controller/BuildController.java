@@ -100,7 +100,7 @@ public class BuildController {
         moveButton.setOnAction(event -> boardController.setBoardHandler(new MoveHandler(model)));
         rotateButton.setOnAction(event -> boardController.setBoardHandler(new RotateHandler(model)));
         deleteButton.setOnAction(event -> boardController.setBoardHandler(new DeleteHandler(boardController, model)));
-        connectButton.setOnAction(event -> boardController.setBoardHandler(new ConnectTriggerHandler()));
+        connectButton.setOnAction(event -> boardController.setBoardHandler(new ConnectTriggerHandler(model)));
         disconnectButton.setOnAction(event -> boardController.setBoardHandler(new DisconnectTriggerHandler()));
         clearBoardButton.setOnAction(event -> {
             boardController.setBoardHandler(new ClearBoardHandler(boardController, model));
