@@ -124,50 +124,61 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                 try {
                     x = Double.parseDouble(string[2]);
                     y = Double.parseDouble(string[3]);
-                    model.addGizmo(x, y, string[1], BoardObjectType.TRIANGLE);
+                    if(!model.addGizmo(x, y, string[1], BoardObjectType.TRIANGLE)){
+                        errorHandler(String.join(" ", string));
+                    }
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
-                    errorHandler(Arrays.toString(string));
+                    errorHandler(String.join(" ", string));
                 }
                 break;
             case "Square":
                 try {
                     x = Double.parseDouble(string[2]);
                     y = Double.parseDouble(string[3]);
-                    model.addGizmo(x, y, string[1], BoardObjectType.SQUARE);
+                    if(!model.addGizmo(x, y, string[1], BoardObjectType.SQUARE)){
+                        errorHandler(String.join(" ", string));
+                    }
+
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
-                    errorHandler(Arrays.toString(string));
+                    errorHandler(String.join(" ", string));
                 }
                 break;
             case "Circle":
                 try {
                     x = Double.parseDouble(string[2]);
                     y = Double.parseDouble(string[3]);
-                    model.addGizmo(x, y, string[1], BoardObjectType.CIRCLE);
+                    if(!model.addGizmo(x, y, string[1], BoardObjectType.CIRCLE)){
+                        errorHandler(String.join(" ", string));
+                    }
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
-                    errorHandler(Arrays.toString(string));
+                    errorHandler(String.join(" ", string));
                 }
                 break;
             case "LeftFlipper":
                 try {
                     x = Double.parseDouble(string[2]);
                     y = Double.parseDouble(string[3]);
-                    model.addGizmo(x, y, string[1], BoardObjectType.LEFT_FLIPPER);
+                    if(!model.addGizmo(x, y, string[1], BoardObjectType.LEFT_FLIPPER)){
+                        errorHandler(String.join(" ", string));
+                    }
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
-                    errorHandler(Arrays.toString(string));
+                    errorHandler(String.join(" ", string));
                 }
                 break;
             case "RightFlipper" :
                 try {
                     x = Double.parseDouble(string[2]);
                     y = Double.parseDouble(string[3]);
-                    model.addGizmo(x, y, string[1], BoardObjectType.RIGHT_FLIPPER);
+                    if(!model.addGizmo(x, y, string[1], BoardObjectType.RIGHT_FLIPPER)){
+                        errorHandler(String.join(" ", string));
+                    }
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
-                    errorHandler(Arrays.toString(string));
+                    errorHandler(String.join(" ", string));
                 }
                 break;
             case "Absorber" :
@@ -176,10 +187,12 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                     y = Double.parseDouble(string[3]);
                     x2 = Double.parseDouble(string[4]);
                     y2 = Double.parseDouble(string[5]);
-                    model.addAbsorber(x, y, x2, y2, string[1]);
+                    if(!model.addAbsorber(x, y, x2, y2, string[1])){
+                        errorHandler(String.join(" ", string));
+                    }
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
-                    errorHandler(Arrays.toString(string));
+                    errorHandler(String.join(" ", string));
                 }
                 break;
             case "Ball":
@@ -188,25 +201,34 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                     y = Double.parseDouble(string[3]);
                     x2 = Double.parseDouble(string[4]);
                     y2 = Double.parseDouble(string[5]);
-                    model.addBall(x, y, x2, y2, string[1]);
+                    if(!model.addBall(x, y, x2, y2, string[1])){
+                        errorHandler(String.join(" ", string));
+                    }
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
-                    errorHandler(Arrays.toString(string));
+                    errorHandler(String.join(" ", string));
                 }
                 break;
             case "Delete":
                 if(string[1].charAt(0)=='B') {
-                    model.removeBall(string[1]);
+                    if(!model.removeBall(string[1])){
+                        errorHandler(String.join(" ", string));
+                    }
                 }
-                model.removeGizmo(string[1]);
+                if(!model.removeGizmo(string[1])){
+                    errorHandler(String.join(" ", string));
+                }
 
                 break;
             case "Rotate":
                 try{
-                    model.rotateGizmo(string[1]);
+                    if(!model.rotateGizmo(string[1])){
+                        errorHandler(String.join(" ", string));
+                    }
+
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
-                    errorHandler(Arrays.toString(string));
+                    errorHandler(String.join(" ", string));
                 }
 
                 break;
@@ -215,7 +237,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
 
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
-                    errorHandler(Arrays.toString(string));
+                    errorHandler(String.join(" ", string));
                 }
 
                 break;
@@ -225,14 +247,14 @@ public class LoadHandler implements EventHandler<ActionEvent> {
 
                 } catch(Exception e) {
                     System.out.println("Something has gone wrong...");
-                    errorHandler(Arrays.toString(string));
+                    errorHandler(String.join(" ", string));
                 }
                 break;
 
             //TODO add key connects
             default:
                 //todo add proper default
-                errorHandler(Arrays.toString(string));
+                errorHandler(String.join(" ", string));
                 break;
         }
 
@@ -240,7 +262,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
     }
 
     private void errorHandler(String s){
-        errorMessages = "Something in the file was not in the recognised format at: " + s;
+        errorMessages = "Something in the file was not in the recognised format at: (" + s + ")";
         if(errorCount == 1){
             errorMessages += "+ 1 other issue";
         } else if (errorCount > 1){
