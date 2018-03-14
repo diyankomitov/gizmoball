@@ -15,12 +15,14 @@ public class FlipperGizmo implements Gizmo{
     private double x;
     private double y;
     private double xWithOffset;
+    private double yWithOffset;
+    private double offset;
     private final double width;
     private final double length;
     private final double rCoefficient;
     private ArrayList<LineSegment> sides;
     private ArrayList<Circle> circles;
-    private final BoardObjectType type;
+    private BoardObjectType type;
     private String name;
     private double angle;
     private Vect pivot;
@@ -29,6 +31,7 @@ public class FlipperGizmo implements Gizmo{
     private boolean moving;
 //    private double offset;
     private List<Observer> observers;
+    private int rotationCount;
 
     /**
      * Constructor
@@ -40,18 +43,21 @@ public class FlipperGizmo implements Gizmo{
         width = ONE_L/2;
         length = ONE_L*2;
 
-        double offset = 0;
+        offset = 0;
         if(type == BoardObjectType.RIGHT_FLIPPER) {
             offset = ONE_L+width;
             this.type = type;
+            this.rotationCount = 1;
         }
         else {
             this.type = BoardObjectType.LEFT_FLIPPER;
+            rotationCount = 0;
         }
 
         this.x = x;
         this.xWithOffset = x + offset;
         this.y = y;
+        this.yWithOffset = y;
 
         this.name=name;
 
@@ -118,7 +124,38 @@ public class FlipperGizmo implements Gizmo{
     }
 
     public void rotate(){
+//        angle += 90;
+        switch (rotationCount){
+            case 0 :
+                xWithOffset = x + ONE_L + width;
+                type = BoardObjectType.RIGHT_FLIPPER;
+                angle = 0;
+                rotationCount++;
+                break;
+            case 1:
+                yWithOffset = y + ONE_L + width;
+                type = BoardObjectType.RIGHT_FLIPPER;
+                angle = 90;
+                rotationCount++;
+                break;
+            case 2:
+                xWithOffset = x;
+                type = BoardObjectType.LEFT_FLIPPER;
+                angle = -90;
+                rotationCount++;
+                break;
+            case 3:
+                yWithOffset = y;
+                type = BoardObjectType.LEFT_FLIPPER;
+                angle = 0;
+                rotationCount = 0;
+                break;
+        }
 
+        System.out.println(angle);
+        System.out.println(xWithOffset + " " + yWithOffset);
+
+        notifyObservers();
     }
 
     @Override
@@ -210,5 +247,21 @@ public class FlipperGizmo implements Gizmo{
     @Override
     public List<Observer> getObservers() {
         return observers;
+    }
+
+    public double getxWithOffset() {
+        return xWithOffset;
+    }
+
+    public double getyWithOffset() {
+        return yWithOffset;
+    }
+
+    public double getOffset() {
+        return offset;
+    }
+
+    public Vect getPivot() {
+        return pivot;
     }
 }
