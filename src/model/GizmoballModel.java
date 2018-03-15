@@ -548,6 +548,9 @@ public class GizmoballModel{
             getGizmo(name).rotate();
             return true;
         }
+        if(getGizmo(name).getType()==ABSORBER){
+            setMessage("You cannot rotate an absorber."); //TODO add the set message feature in rotate handler - doesn't properly work atm
+        }
         return false;
     }
 
