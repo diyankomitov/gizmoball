@@ -135,7 +135,7 @@ public class AbsorberGizmo implements Gizmo {
     public void trigger(boolean keyPressed) {
         if (keyPressed) {
             this.keyPressed = keyPressed;
-            triggered = false;
+            triggered = true;
         }
         else {
             triggered = !this.keyPressed;

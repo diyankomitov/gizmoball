@@ -34,6 +34,7 @@ public class FlipperGizmo implements Gizmo{
     private boolean flipUp;
     private boolean keyPressed;
     private int rotationCount;
+    private double startingAngle;
 
     /**
      * Constructor
@@ -96,10 +97,10 @@ public class FlipperGizmo implements Gizmo{
         if(type == BoardObjectType.RIGHT_FLIPPER)
         {
             if (flipUp) {
-                angle = Math.min(angle + DELTA_ANGLE, 90);
+                angle = Math.min(angle + DELTA_ANGLE, startingAngle + 90);
             }
             else {
-                angle = Math.max(angle - DELTA_ANGLE, 0);
+                angle = Math.max(angle - DELTA_ANGLE, startingAngle);
             }
 
             if (angle >= 90) {
@@ -110,10 +111,10 @@ public class FlipperGizmo implements Gizmo{
         else if (type == BoardObjectType.LEFT_FLIPPER)
         {
             if (flipUp) {
-                angle = Math.max(angle - DELTA_ANGLE, -90);
+                angle = Math.max(angle - DELTA_ANGLE, startingAngle - 90);
             }
             else {
-                angle = Math.min(angle + DELTA_ANGLE, 0);
+                angle = Math.min(angle + DELTA_ANGLE, startingAngle);
             }
 
             if (angle <= -90) {
@@ -146,24 +147,28 @@ public class FlipperGizmo implements Gizmo{
                 xWithOffset = x + ONE_L + width;
                 type = BoardObjectType.RIGHT_FLIPPER;
                 angle = 0;
+                startingAngle = 0;
                 rotationCount++;
                 break;
             case 1:
                 yWithOffset = y + ONE_L + width;
                 type = BoardObjectType.RIGHT_FLIPPER;
                 angle = 90;
+                startingAngle = 90;
                 rotationCount++;
                 break;
             case 2:
                 xWithOffset = x;
                 type = BoardObjectType.LEFT_FLIPPER;
                 angle = -90;
+                startingAngle = -90;
                 rotationCount++;
                 break;
             case 3:
                 yWithOffset = y;
                 type = BoardObjectType.LEFT_FLIPPER;
                 angle = 0;
+                startingAngle = 0;
                 rotationCount = 0;
                 break;
         }
