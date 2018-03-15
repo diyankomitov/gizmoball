@@ -7,6 +7,7 @@ import controller.handlers.boardhandlers.AddHandler;
 import controller.handlers.boardhandlers.ClearBoardHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.board.Ball;
@@ -16,22 +17,27 @@ import model.board.gizmos.Gizmo;
 import view.gizmoviews.TriangleGizmoView;
 
 import java.io.*;
+import java.util.Arrays;
 
 public class LoadHandler implements EventHandler<ActionEvent> {
     private Stage stage;
     private GizmoballModel model; //Alistair thinks it might needs passed
     private BoardController boardController;
+
+    private String errorMessages = "";
+    private int errorCount = 0;
+    private Label infoLabel;
+
     private ActionEvent event;
 
-    public LoadHandler(Stage stage, BoardController boardController, GizmoballModel model) {
+    public LoadHandler(Stage stage, BoardController boardController, GizmoballModel model, Label infoLabel) {
         this.boardController = boardController;
-
+        this.infoLabel = infoLabel;
         this.stage = stage;
         this.model = model;
     }
 
     //TODO add key connects
-    //TODO add default options if input is incorrect ie missing params or wrong name/type
     //TODO add gravity and friction???
     @Override
     public void handle(ActionEvent event) {
@@ -50,7 +56,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
     }
 
     public void clearBoard() {
-        new ClearBoardHandler(boardController, model).handle(event);
+        new ClearBoardHandler(boardController, model, infoLabel).handle(event);
     }
 
     public void loadGame(File file) {
@@ -58,6 +64,9 @@ public class LoadHandler implements EventHandler<ActionEvent> {
             System.out.println("At top of loadGame");
 
             clearBoard();
+
+            errorCount = 0;
+            errorMessages = "";
 
             FileReader fileReader  = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -69,9 +78,6 @@ public class LoadHandler implements EventHandler<ActionEvent> {
             while((stringLine = bufferedReader.readLine())!=null) {
                 if(!stringLine.equals("")) {
                     boardDetailStr = stringLine.split(" ");
-                    for(int i=0; i<boardDetailStr.length; i++){
-                        System.out.println("string array at position: "+ i +" contains: "+boardDetailStr[i]);
-                    }
 
                     checkAction(boardDetailStr);
 
@@ -91,16 +97,23 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                     new AddBallHandler(model, boardController).handle(ball.getName());
                 }
             }
-
-
+            if(errorMessages.equals("")) {
+                infoLabel.setText("Board loaded successfully.");
+            }
+            else {
+                infoLabel.setText(errorMessages);
+            }
         } catch (FileNotFoundException e) {
-            System.out.println("Error when trying to load the game. :(");
+            infoLabel.setText("Error: No file found.");
+            System.out.println("Error: No file found.");
         } catch(IOException e ) {
-            System.out.println("Error when trying to load the game. :(");
+            infoLabel.setText("Error: Wrong file format.");
+            System.out.println("Error: Wrong file format.");
         }
     }
 
     public void checkAction(String[] string){
+
         double x;
         double y;
         double x2;
@@ -108,47 +121,63 @@ public class LoadHandler implements EventHandler<ActionEvent> {
         switch(string[0]) {
             case "Triangle":
                 try {
-                x = Double.parseDouble(string[2]);
-                y = Double.parseDouble(string[3]);
-                model.addGizmo(x, y, string[1], BoardObjectType.TRIANGLE);
+                    x = Double.parseDouble(string[2]);
+                    y = Double.parseDouble(string[3]);
+                    if(!model.addGizmo(x, y, string[1], BoardObjectType.TRIANGLE)){
+                        errorHandler(String.join(" ", string));
+                    }
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
+                    errorHandler(String.join(" ", string));
                 }
                 break;
             case "Square":
                 try {
-                x = Double.parseDouble(string[2]);
-                y = Double.parseDouble(string[3]);
-                model.addGizmo(x, y, string[1], BoardObjectType.SQUARE);
+                    x = Double.parseDouble(string[2]);
+                    y = Double.parseDouble(string[3]);
+                    if(!model.addGizmo(x, y, string[1], BoardObjectType.SQUARE)){
+                        errorHandler(String.join(" ", string));
+                    }
+
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
+                    errorHandler(String.join(" ", string));
                 }
                 break;
             case "Circle":
                 try {
                     x = Double.parseDouble(string[2]);
                     y = Double.parseDouble(string[3]);
-                    model.addGizmo(x, y, string[1], BoardObjectType.CIRCLE);
+                    if(!model.addGizmo(x, y, string[1], BoardObjectType.CIRCLE)){
+                        errorHandler(String.join(" ", string));
+                    }
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
+                    errorHandler(String.join(" ", string));
                 }
                 break;
             case "LeftFlipper":
                 try {
                     x = Double.parseDouble(string[2]);
                     y = Double.parseDouble(string[3]);
-                    model.addGizmo(x, y, string[1], BoardObjectType.LEFT_FLIPPER);
+                    if(!model.addGizmo(x, y, string[1], BoardObjectType.LEFT_FLIPPER)){
+                        errorHandler(String.join(" ", string));
+                    }
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
+                    errorHandler(String.join(" ", string));
                 }
                 break;
             case "RightFlipper" :
                 try {
                     x = Double.parseDouble(string[2]);
                     y = Double.parseDouble(string[3]);
-                    model.addGizmo(x, y, string[1], BoardObjectType.RIGHT_FLIPPER);
+                    if(!model.addGizmo(x, y, string[1], BoardObjectType.RIGHT_FLIPPER)){
+                        errorHandler(String.join(" ", string));
+                    }
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
+                    errorHandler(String.join(" ", string));
                 }
                 break;
             case "Absorber" :
@@ -157,10 +186,12 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                     y = Double.parseDouble(string[3]);
                     x2 = Double.parseDouble(string[4]);
                     y2 = Double.parseDouble(string[5]);
-                    model.addAbsorber(x, y, x2, y2, string[1]);
+                    if(!model.addAbsorber(x, y, x2, y2, string[1])){
+                        errorHandler(String.join(" ", string));
+                    }
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
-
+                    errorHandler(String.join(" ", string));
                 }
                 break;
             case "Ball":
@@ -169,23 +200,34 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                     y = Double.parseDouble(string[3]);
                     x2 = Double.parseDouble(string[4]);
                     y2 = Double.parseDouble(string[5]);
-                    model.addBall(x, y, x2, y2, string[1]);
+                    if(!model.addBall(x, y, x2, y2, string[1])){
+                        errorHandler(String.join(" ", string));
+                    }
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
+                    errorHandler(String.join(" ", string));
                 }
                 break;
             case "Delete":
                 if(string[1].charAt(0)=='B') {
-                    model.removeBall(string[1]);
+                    if(!model.removeBall(string[1])){
+                        errorHandler(String.join(" ", string));
+                    }
                 }
-                model.removeGizmo(string[1]);
+                if(!model.removeGizmo(string[1])){
+                    errorHandler(String.join(" ", string));
+                }
 
                 break;
             case "Rotate":
                 try{
-                    model.rotateGizmo(string[1]);
+                    if(!model.rotateGizmo(string[1])){
+                        errorHandler(String.join(" ", string));
+                    }
+
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
+                    errorHandler(String.join(" ", string));
                 }
 
                 break;
@@ -194,6 +236,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
 
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
+                    errorHandler(String.join(" ", string));
                 }
 
                 break;
@@ -203,15 +246,26 @@ public class LoadHandler implements EventHandler<ActionEvent> {
 
                 } catch(Exception e) {
                     System.out.println("Something has gone wrong...");
+                    errorHandler(String.join(" ", string));
                 }
                 break;
 
             //TODO add key connects
             default:
-                //todo add proper default
+                errorHandler(String.join(" ", string));
                 break;
         }
 
         System.out.println(model.getGizmos().size());
+    }
+
+    private void errorHandler(String s){
+        errorMessages = "Something in the file was not in the recognised format at: (" + s + ")";
+        if(errorCount == 1){
+            errorMessages += "+ 1 other issue";
+        } else if (errorCount > 1){
+            errorMessages += " + " + errorCount + " other issues";
+        }
+        errorCount++;
     }
 }

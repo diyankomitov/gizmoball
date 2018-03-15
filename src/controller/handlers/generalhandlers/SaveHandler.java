@@ -1,5 +1,7 @@
 package controller.handlers.generalhandlers;
 
+import controller.BoardController;
+import controller.BuildController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
@@ -15,9 +17,9 @@ import java.util.List;
 
 public class SaveHandler implements EventHandler<ActionEvent> {
     private Stage stage;
-
-    public SaveHandler(Stage stage) {
-
+    private BuildController controller;
+    public SaveHandler(Stage stage, BuildController controller) {
+        this.controller = controller;
         this.stage = stage;
     }
 
@@ -47,10 +49,11 @@ public class SaveHandler implements EventHandler<ActionEvent> {
                     fileWriter.println(s);
                 }
                 fileWriter.close();
-
+               controller.setInformation("Game has been saved");
                 System.out.println("Game has been saved");
 
             } catch (IOException e) {
+                controller.setInformation("Error when trying to save game.");
                 System.out.println("Error when trying to save game. :(");
             }
 

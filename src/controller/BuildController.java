@@ -104,9 +104,9 @@ public class BuildController {
         rotateButton.setOnAction(event -> boardController.setBoardHandler(new RotateHandler(model)));
         deleteButton.setOnAction(event -> boardController.setBoardHandler(new DeleteHandler(boardController, model)));
         connectButton.setOnAction(event -> boardController.setBoardHandler(new ConnectTriggerHandler(model, boardController, stage)));
-        disconnectButton.setOnAction(event -> boardController.setBoardHandler(new DisconnectTriggerHandler()));
+        disconnectButton.setOnAction(event -> boardController.setBoardHandler(new DisconnectTriggerHandler(model)));
         clearBoardButton.setOnAction(event -> {
-            boardController.setBoardHandler(new ClearBoardHandler(boardController, model));
+            boardController.setBoardHandler(new ClearBoardHandler(boardController, model, information));
             boardController.handle(event);
         });
     }
@@ -123,6 +123,13 @@ public class BuildController {
         boardController.setDoNothing();
     }
 
+    public void setInformation(String text) {
+        information.setText(text);
+    }
+
+    public Label getInfoLabel(){
+        return information;
+    }
     public Pane getRoot() {
         return buildRoot;
     }

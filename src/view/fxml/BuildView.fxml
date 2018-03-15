@@ -92,6 +92,6 @@
     </center>
 
     <bottom>
-        <Label fx:id="information" BorderPane.alignment="BOTTOM_RIGHT" text="Here is where information to the user might be displayed"/>
+        <Label fx:id="information" BorderPane.alignment="BOTTOM_RIGHT" text="Build Mode"/>
     </bottom>
 </BorderPane>

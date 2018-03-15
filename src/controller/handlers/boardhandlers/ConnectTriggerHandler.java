@@ -2,6 +2,7 @@ package controller.handlers.boardhandlers;
 
 import controller.BoardController;
 import javafx.event.Event;
+import javafx.scene.control.Label;
 import javafx.event.EventType;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -26,12 +27,14 @@ public class ConnectTriggerHandler implements BoardHandler {
     private final Stage stage;
     private boolean triggeredSelected;
     private Gizmo triggeredGizmo;
+    private Label infoLabel;
 
-    public ConnectTriggerHandler(GizmoballModel model, BoardController boardController, Stage stage) {
+    public ConnectTriggerHandler(GizmoballModel model, BoardController boardController, Stage stage, Label infoLabel) {
         this.model = model;
         triggeredSelected = false;
         this.boardController = boardController;
         this.stage = stage;
+        this.infoLabel = infoLabel;
     }
 
     @Override
@@ -49,12 +52,14 @@ public class ConnectTriggerHandler implements BoardHandler {
                     triggeredSelected = true;
                     triggeredGizmo = gizmo;
                     boardController.getBoardView().requestFocus();
+                    infoLabel.setText(triggeredGizmo.getName() + " selected. Please select another gizmo or press a key to connect to.");
                 }
             }
             else {
                 if (gizmo != null) {
                     triggeredSelected = false;
                     Triggers.addTrigger(gizmo, triggeredGizmo);
+                    infoLabel.setText(triggeredGizmo.getName() + " and " + gizmo.getName() + " have been connected.");
                 }
                 else {
                     boardController.getBoardView().requestFocus();
@@ -85,6 +90,7 @@ public class ConnectTriggerHandler implements BoardHandler {
                         Triggers.addTrigger(new KeyPress(keyCode,KeyEvent.KEY_RELEASED), triggeredGizmo);
                     }
 
+                    infoLabel.setText(keyCode + " and " + triggeredGizmo.getName() + " have been connected.");
                 }
             }
             triggeredSelected = false;
