@@ -31,6 +31,7 @@ public class Ball implements BoardObject, Observable{
         this.potentialVelocity = new Vect(0,0);
     }
 
+    //TODO: FIX MOVEFORTIME
     public void moveForTime(double moveTime) {
         System.out.println(velocity);
         if(moveTime > 0.01) {
