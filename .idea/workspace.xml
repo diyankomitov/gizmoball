@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b68b6b0d-8203-4a49-99bd-24ea82f7b4c1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/CollisionDetails.java" afterPath="$PROJECT_DIR$/src/model/CollisionDetails.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/GizmoballModel.java" afterPath="$PROJECT_DIR$/src/model/GizmoballModel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/board/Ball.java" afterPath="$PROJECT_DIR$/src/model/board/Ball.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/util/GizmoNames.java" afterPath="$PROJECT_DIR$/src/util/GizmoNames.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,10 +24,23 @@
             <file leaf-file-name="GizmoballModel.java" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/model/GizmoballModel.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="519">
-                    <caret line="503" column="35" lean-forward="false" selection-start-line="503" selection-start-column="35" selection-end-line="503" selection-end-column="35" />
+                  <state relative-caret-position="12960">
+                    <caret line="480" column="5" lean-forward="false" selection-start-line="480" selection-start-column="5" selection-end-line="480" selection-end-column="5" />
                     <folding>
                       <element signature="imports" expanded="true" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="GizmoNames.java" pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/src/util/GizmoNames.java">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="998">
+                    <caret line="65" column="39" lean-forward="false" selection-start-line="65" selection-start-column="39" selection-end-line="65" selection-end-column="39" />
+                    <folding>
+                      <element signature="e#1624#1625#0" expanded="true" />
+                      <element signature="e#1670#1671#0" expanded="true" />
                     </folding>
                   </state>
                 </provider>
@@ -37,25 +53,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="BoundingBox.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BoundingBox.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/model/BoundingBox.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-403">
+            <state relative-caret-position="54">
               <caret line="2" column="26" lean-forward="true" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CollisionDetails.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CollisionDetails.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/CollisionDetails.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-              <folding>
-                <element signature="e#506#507#0" expanded="true" />
-                <element signature="e#557#558#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="405">
+              <caret line="22" column="21" lean-forward="true" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -63,8 +76,18 @@
       <file leaf-file-name="TriangleGizmo.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/board/gizmos/TriangleGizmo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-106">
-              <caret line="123" column="0" lean-forward="true" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
+            <state relative-caret-position="86">
+              <caret line="109" column="0" lean-forward="false" selection-start-line="109" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Constants.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/util/Constants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -83,9 +106,12 @@
       <file leaf-file-name="Ball.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/board/Ball.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-644">
-              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-              <folding />
+            <state relative-caret-position="216">
+              <caret line="63" column="20" lean-forward="true" selection-start-line="63" selection-start-column="20" selection-end-line="63" selection-end-column="20" />
+              <folding>
+                <element signature="e#1601#1602#0" expanded="true" />
+                <element signature="e#1641#1642#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -116,7 +142,12 @@
       <find>getTim</find>
       <find>isInter</find>
       <find>timeUntilC</find>
+      <find>isBallIntersecting</find>
+      <find>setvelocity</find>
+      <find>grav</find>
       <find>timeuntilCollision</find>
+      <find>details.remove</find>
+      <find>details.removeBa</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -157,9 +188,10 @@
         <option value="$PROJECT_DIR$/src/model/board/gizmos/FlipperGizmo.java" />
         <option value="$PROJECT_DIR$/src/controller/handlers/boardhandlers/ConnectTriggerHandler.java" />
         <option value="$PROJECT_DIR$/src/controller/handlers/boardhandlers/DisconnectTriggerHandler.java" />
-        <option value="$PROJECT_DIR$/src/model/board/Ball.java" />
         <option value="$PROJECT_DIR$/src/controller/handlers/boardhandlers/DeleteHandler.java" />
+        <option value="$PROJECT_DIR$/src/model/board/Ball.java" />
         <option value="$PROJECT_DIR$/src/model/CollisionDetails.java" />
+        <option value="$PROJECT_DIR$/src/util/GizmoNames.java" />
         <option value="$PROJECT_DIR$/src/model/GizmoballModel.java" />
       </list>
     </option>
@@ -533,7 +565,7 @@
       <workItem from="1520512304711" duration="10213000" />
       <workItem from="1521027450706" duration="4859000" />
       <workItem from="1521046682809" duration="1316000" />
-      <workItem from="1521072386720" duration="9084000" />
+      <workItem from="1521072386720" duration="13007000" />
     </task>
     <task id="LOCAL-00001" summary="doing fixes for boundingbox.isintersecting (see TODO)">
       <created>1519950029623</created>
@@ -598,7 +630,14 @@
       <option name="project" value="LOCAL" />
       <updated>1521048110880</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Beginning to fix ball placement: ball intersection now depends on the placement of the ball on the board. Still need to add: upper and lower ball collision detection">
+      <created>1521121690504</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1521121690505</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -634,7 +673,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66889000" />
+    <option name="totallyTimeSpent" value="70812000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -651,7 +690,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32999164" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32489452" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32467532" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -662,7 +701,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32999164" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48472223" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2212963" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -692,7 +731,8 @@
     <MESSAGE value="Removed add trigger methods from gizmos -all will be handled by one class" />
     <MESSAGE value="Merge branch 'refactorization' of https://gitlab.cis.strath.ac.uk/mhb15157/cs308-gizmoball into refactorization&#10;Changed the collision so the ball no longer slows to a stop and multiple balls no longer stick to one another - however we need to fix the amount of balls&#10;&#10;# Conflicts:&#10;#&#9;src/controller/handlers/boardhandlers/ConnectTriggerHandler.java&#10;#&#9;src/controller/handlers/boardhandlers/DeleteHandler.java" />
     <MESSAGE value="Ball Placement issues: You can add a balll after adding a gizmo, but only after you place a ball correctly. After addding an incorrect ball placement, no more balls can be added. Balls are still incremented even when they are not added. This is causing balls to disappear. for some reason. How it will be solved: creating new bounding boxes for each individual gizmo that are more precise to their shape." />
-    <option name="LAST_COMMIT_MESSAGE" value="Ball Placement issues: You can add a balll after adding a gizmo, but only after you place a ball correctly. After addding an incorrect ball placement, no more balls can be added. Balls are still incremented even when they are not added. This is causing balls to disappear. for some reason. How it will be solved: creating new bounding boxes for each individual gizmo that are more precise to their shape." />
+    <MESSAGE value="Beginning to fix ball placement: ball intersection now depends on the placement of the ball on the board. Still need to add: upper and lower ball collision detection" />
+    <option name="LAST_COMMIT_MESSAGE" value="Beginning to fix ball placement: ball intersection now depends on the placement of the ball on the board. Still need to add: upper and lower ball collision detection" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -701,14 +741,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/model/board/BoardObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/board/gizmos/FlipperGizmo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1593">
@@ -777,13 +809,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -923,14 +948,14 @@
         <state relative-caret-position="891">
           <caret line="53" column="30" lean-forward="false" selection-start-line="53" selection-start-column="30" selection-end-line="53" selection-end-column="30" />
           <folding>
-            <element signature="e#6200#6201#0" expanded="true" />
-            <element signature="e#6234#6235#0" expanded="true" />
-            <element signature="e#6272#6273#0" expanded="true" />
-            <element signature="e#6306#6307#0" expanded="true" />
-            <element signature="e#6339#6340#0" expanded="true" />
-            <element signature="e#6368#6369#0" expanded="true" />
-            <element signature="e#6398#6399#0" expanded="true" />
-            <element signature="e#6426#6427#0" expanded="true" />
+            <element signature="e#6200#6201#0" expanded="false" />
+            <element signature="e#6234#6235#0" expanded="false" />
+            <element signature="e#6272#6273#0" expanded="false" />
+            <element signature="e#6306#6307#0" expanded="false" />
+            <element signature="e#6339#6340#0" expanded="false" />
+            <element signature="e#6368#6369#0" expanded="false" />
+            <element signature="e#6398#6399#0" expanded="false" />
+            <element signature="e#6426#6427#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1040,14 +1065,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/board/Ball.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-644">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/physics/LineSegment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2218">
@@ -1058,38 +1075,65 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/board/gizmos/TriangleGizmo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-106">
-          <caret line="123" column="0" lean-forward="true" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
+        <state relative-caret-position="86">
+          <caret line="109" column="0" lean-forward="false" selection-start-line="109" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/BoundingBox.java">
+    <entry file="file://$PROJECT_DIR$/src/util/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-403">
-          <caret line="2" column="26" lean-forward="true" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
+        <state relative-caret-position="54">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/GizmoballModel.java">
+    <entry file="file://$PROJECT_DIR$/src/model/board/Ball.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="503" column="35" lean-forward="false" selection-start-line="503" selection-start-column="35" selection-end-line="503" selection-end-column="35" />
+        <state relative-caret-position="216">
+          <caret line="63" column="20" lean-forward="true" selection-start-line="63" selection-start-column="20" selection-end-line="63" selection-end-column="20" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1601#1602#0" expanded="true" />
+            <element signature="e#1641#1642#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/CollisionDetails.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+        <state relative-caret-position="405">
+          <caret line="22" column="21" lean-forward="true" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/GizmoNames.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="998">
+          <caret line="65" column="39" lean-forward="false" selection-start-line="65" selection-start-column="39" selection-end-line="65" selection-end-column="39" />
           <folding>
-            <element signature="e#506#507#0" expanded="true" />
-            <element signature="e#557#558#0" expanded="true" />
+            <element signature="e#1624#1625#0" expanded="true" />
+            <element signature="e#1670#1671#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/GizmoballModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12960">
+          <caret line="480" column="5" lean-forward="false" selection-start-line="480" selection-start-column="5" selection-end-line="480" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/BoundingBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="2" column="26" lean-forward="true" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
