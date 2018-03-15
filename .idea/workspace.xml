@@ -561,7 +561,7 @@
       <workItem from="1520512304711" duration="10213000" />
       <workItem from="1521027450706" duration="4859000" />
       <workItem from="1521046682809" duration="1316000" />
-      <workItem from="1521072386720" duration="13152000" />
+      <workItem from="1521072386720" duration="13163000" />
     </task>
     <task id="LOCAL-00001" summary="doing fixes for boundingbox.isintersecting (see TODO)">
       <created>1519950029623</created>
@@ -640,7 +640,14 @@
       <option name="project" value="LOCAL" />
       <updated>1521130965633</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Ball intersection checks functioning - fixed an issue where checking the intersection using the velocity changed the overall speed of the ball during game play. Next Task: clean up the code slightly and put the different velocity checks into a flexible method.">
+      <created>1521131006498</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1521131006498</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -676,7 +683,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70957000" />
+    <option name="totallyTimeSpent" value="70968000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
