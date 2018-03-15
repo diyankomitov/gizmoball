@@ -1,6 +1,7 @@
 package controller.handlers.boardhandlers;
 
 import controller.BoardController;
+import controller.BuildController;
 import javafx.event.Event;
 import javafx.scene.input.MouseEvent;
 import model.GizmoballModel;
@@ -18,8 +19,8 @@ public class AddAbsorberHandler extends AddHandler {
     private double xpos;
     private double ypos;
 
-    public AddAbsorberHandler(GizmoballModel model, BoardController boardController) {
-        super(model, boardController, BoardObjectType.ABSORBER);
+    public AddAbsorberHandler(GizmoballModel model, BoardController boardController, BuildController buildController) {
+        super(model, boardController, buildController, BoardObjectType.ABSORBER);
         firstClick = false;
         xpos = 0;
         ypos = 0;
@@ -67,6 +68,12 @@ public class AddAbsorberHandler extends AddHandler {
                     boardController.addToBoardView(new AbsorberGizmoView(model.getGizmo(x1, y1)));
                 }
             }
+            if(!model.getErrorMessage().equals("")){
+                buildController.setInformation(model.getErrorMessage());
+                model.setMessage("");
+            } else {
+                buildController.setInformation(" ");
+            }
 
         }
 
@@ -94,12 +101,20 @@ public class AddAbsorberHandler extends AddHandler {
                     absorberView.setHeight(ypos - y);
                 }
             }
+
         }
+
     }
 
     @Override
     public void handle(String name) {
         Gizmo absorber = model.getGizmo(name);
         boardController.addToBoardView(new AbsorberGizmoView(absorber));
+        if(!model.getErrorMessage().equals("")){
+            buildController.setInformation(model.getErrorMessage());
+            model.setMessage("");
+        } else {
+            buildController.setInformation(" ");
+        }
     }
 }

@@ -32,7 +32,7 @@ public class DisconnectTriggerHandler implements BoardHandler {
 
             if (gizmo != null) {
                 Triggers.removeTriggers(gizmo);
-                infoLabel.setText(gizmo + " has had its triggers removed.");
+                infoLabel.setText(gizmo.getName() + " has had its triggers removed.");
             }
 
         }

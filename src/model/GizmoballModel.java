@@ -27,7 +27,7 @@ public class GizmoballModel{
 
     private Gizmo pottentialCollision;
     private Gizmo collidedGizmo;
-
+    private String errorMessage = "";
 
     public GizmoballModel() {
         board = new Board();
@@ -283,6 +283,7 @@ public class GizmoballModel{
                 return false;
         }
         if(isIntersecting(gizmo)) {
+           setMessage("Gizmo cannot be placed on top of another gizmo.");
             return false;
         }
         board.addGizmo(gizmo);
@@ -304,6 +305,7 @@ public class GizmoballModel{
         else{
             Gizmo absorber = new AbsorberGizmo(x, y, x2, y2, name);
             if (isIntersecting(absorber)) {
+                setMessage("Absorber cannot intersect with any existing gizmos");
                 return false;
             }
 //            for (Gizmo gizmo : board.getGizmos()) {
@@ -329,6 +331,7 @@ public class GizmoballModel{
         if (board.getBalls().isEmpty()){
             Ball ball = new Ball(x, y, xv, yv, ballName);
             if(isBallIntersecting(ball)){
+                setMessage("Ball cannot be intersecting with any gizmos.");
                 return false;
             }
             board.addBall(ball);
@@ -621,6 +624,10 @@ public class GizmoballModel{
     }
 
     public void setMessage(String s){
+        errorMessage = s;
+    }
 
+    public String getErrorMessage() {
+        return errorMessage;
     }
 }

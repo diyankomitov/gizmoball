@@ -130,15 +130,15 @@ public class LoadHandler implements EventHandler<ActionEvent> {
 
             for (Gizmo gizmo : model.getGizmos()) {
                 if (gizmo.getType() == BoardObjectType.ABSORBER) {
-                    new AddAbsorberHandler(model, boardController).handle(gizmo.getName());
+                    new AddAbsorberHandler(model, boardController, buildController).handle(gizmo.getName());
                 }
                 else {
-                    new AddHandler(model, boardController, gizmo.getType()).handle(gizmo.getName());
+                    new AddHandler(model, boardController, buildController, gizmo.getType()).handle(gizmo.getName());
                 }
             }
             for (Ball ball : model.getBalls()) {
                 if (ball != null) {
-                    new AddBallHandler(model, boardController).handle(ball.getName());
+                    new AddBallHandler(model, boardController, buildController).handle(ball.getName());
                 }
             }
             if(errorMessages.equals("")) {
