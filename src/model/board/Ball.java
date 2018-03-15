@@ -32,7 +32,7 @@ public class Ball implements BoardObject, Observable{
     }
 
     public void moveForTime(double moveTime) {
-        System.out.println(moveTime);
+        System.out.println(velocity);
         if(moveTime > 0.01) {
             x += (velocity.x() * moveTime);
             y += (velocity.y() * moveTime);
