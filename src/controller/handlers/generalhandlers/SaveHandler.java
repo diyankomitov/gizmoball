@@ -31,33 +31,35 @@ public class SaveHandler implements EventHandler<ActionEvent> {
         FileChooser.ExtensionFilter eFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
         fileChooser.getExtensionFilters().add(eFilter);
         fileChooser.setSelectedExtensionFilter(eFilter);
-
+        fileChooser.setInitialFileName("untitled");
         fileChooser.setTitle("Save Board");
         File file = fileChooser.showSaveDialog(stage);
         if(file!=null) {
-            saveGame(file); //We need to pass in the current state of the Board
+            saveGame(file);
         }
     }
 
 
-        public void saveGame(File file) {
-            try{
-                PrintWriter fileWriter = null;
-                fileWriter=new PrintWriter(file);
-                List<String> stateList = BoardState.getStateList();
-                for(String s: stateList) {
-                    fileWriter.println(s);
-                }
-                fileWriter.close();
-               controller.setInformation("Game has been saved");
-                System.out.println("Game has been saved");
-
-            } catch (IOException e) {
-                controller.setInformation("Error when trying to save game.");
-                System.out.println("Error when trying to save game. :(");
+    public void saveGame(File file) {
+        try{
+            PrintWriter fileWriter = null;
+            fileWriter=new PrintWriter(file);
+            List<String> stateList = BoardState.getStateList();
+            for(String s: stateList) {
+                fileWriter.println(s);
             }
+            fileWriter.close();
+            BoardState.setSavedBoard(true);
+            controller.setInformation("Game has been saved");
+            System.out.println("Game has been saved");
 
+
+        } catch (IOException e) {
+            controller.setInformation("Error when trying to save game.");
+            System.out.println("Error when trying to save game. :(");
         }
+
+    }
 
 
 }

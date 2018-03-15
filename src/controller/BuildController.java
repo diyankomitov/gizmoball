@@ -92,16 +92,16 @@ public class BuildController {
 
     private void setupHandlers() {
 
-        squareButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController, SQUARE)));
-        triangleButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController, TRIANGLE)));
-        circleButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController, CIRCLE)));
-        leftFlipperButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController, LEFT_FLIPPER)));
-        rightFlipperButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController, RIGHT_FLIPPER)));
-        absorberButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddAbsorberHandler(model, boardController)));
-        ballButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddBallHandler(model, boardController)));
+        squareButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController,this, SQUARE)));
+        triangleButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController,this, TRIANGLE)));
+        circleButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController,this, CIRCLE)));
+        leftFlipperButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController,this, LEFT_FLIPPER)));
+        rightFlipperButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController,this, RIGHT_FLIPPER)));
+        absorberButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddAbsorberHandler(model, boardController, this)));
+        ballButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddBallHandler(model, boardController, this)));
 
         moveButton.setOnAction(event -> boardController.setBoardHandler(new MoveHandler(model)));
-        rotateButton.setOnAction(event -> boardController.setBoardHandler(new RotateHandler(model)));
+        rotateButton.setOnAction(event -> boardController.setBoardHandler(new RotateHandler(model, this)));
         deleteButton.setOnAction(event -> boardController.setBoardHandler(new DeleteHandler(boardController, model)));
         connectButton.setOnAction(event -> boardController.setBoardHandler(new ConnectTriggerHandler(model, boardController, stage, information)));
         disconnectButton.setOnAction(event -> boardController.setBoardHandler(new DisconnectTriggerHandler(model, information)));
@@ -125,6 +125,7 @@ public class BuildController {
 
     public void setInformation(String text) {
         information.setText(text);
+
     }
 
     public Label getInfoLabel(){

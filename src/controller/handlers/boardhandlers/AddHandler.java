@@ -1,6 +1,7 @@
 package controller.handlers.boardhandlers;
 
 import controller.BoardController;
+import controller.BuildController;
 import javafx.event.Event;
 import javafx.scene.input.MouseEvent;
 import model.GizmoballModel;
@@ -13,11 +14,13 @@ import static util.Constants.ONE_L_IN_PIXELS;
 public class AddHandler implements BoardHandler {
     protected final GizmoballModel model;
     protected final BoardController boardController;
+    protected final BuildController buildController;
     protected final BoardObjectType type;
 
-    public AddHandler(GizmoballModel model, BoardController boardController, BoardObjectType type) {
+    public AddHandler(GizmoballModel model, BoardController boardController, BuildController buildController, BoardObjectType type) {
         this.model = model;
         this.boardController = boardController;
+        this.buildController = buildController;
         this.type = type;
     }
 
@@ -55,7 +58,14 @@ public class AddHandler implements BoardHandler {
                         break;
                 }
 
+
                 boardController.addToBoardView(gizmoView);
+            }
+            if(!model.getErrorMessage().equals("")){
+                buildController.setInformation(model.getErrorMessage());
+                model.setMessage("");
+            } else {
+                buildController.setInformation(" ");
             }
         }
     }
@@ -86,5 +96,12 @@ public class AddHandler implements BoardHandler {
         }
 
         boardController.addToBoardView(gizmoView);
+        if(!model.getErrorMessage().equals("")){
+            buildController.setInformation(model.getErrorMessage());
+            model.setMessage("");
+        } else {
+            buildController.setInformation(" ");
+        }
+
     }
 }

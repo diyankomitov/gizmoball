@@ -1,6 +1,7 @@
 package controller.handlers.boardhandlers;
 
 import controller.BoardController;
+import controller.BuildController;
 import javafx.event.Event;
 import javafx.scene.input.MouseEvent;
 import model.GizmoballModel;
@@ -12,8 +13,8 @@ import static util.Constants.ONE_L_IN_PIXELS;
 
 public class AddBallHandler extends AddHandler {
 
-    public AddBallHandler(GizmoballModel model, BoardController boardController) {
-        super(model, boardController, BoardObjectType.BALL);
+    public AddBallHandler(GizmoballModel model, BoardController boardController, BuildController buildController) {
+        super(model, boardController, buildController, BoardObjectType.BALL);
     }
 
     @Override
@@ -29,6 +30,12 @@ public class AddBallHandler extends AddHandler {
                 Ball ball = model.getBall(x, y);
                 boardController.addToBoardView(new BallView(ball));
             }
+            if(!model.getErrorMessage().equals("")){
+                buildController.setInformation(model.getErrorMessage());
+                model.setMessage("");
+            } else {
+                buildController.setInformation(" ");
+            }
         }
     }
 
@@ -36,5 +43,11 @@ public class AddBallHandler extends AddHandler {
     public void handle(String name) {
         Ball ball = model.getBall(name);
         boardController.addToBoardView(new BallView(ball));
+        if(!model.getErrorMessage().equals("")){
+            buildController.setInformation(model.getErrorMessage());
+            model.setMessage("");
+        } else {
+            buildController.setInformation(" ");
+        }
     }
 }
