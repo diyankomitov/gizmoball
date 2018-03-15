@@ -8,6 +8,7 @@ import model.board.gizmos.*;
 import physics.*;
 import util.BoardState;
 import util.GizmoNames;
+import util.Triggers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,6 +25,7 @@ public class GizmoballModel{
     private double frictionMU;
     private double frictionMU2;
 
+    private Gizmo pottentialCollision;
     private Gizmo collidedGizmo;
 
 
@@ -57,10 +59,11 @@ public class GizmoballModel{
                 if (details.getTimeUntilCollision(ball) > moveTime) {
                     ball.moveForTime(moveTime);
                 } else {
-                    if (collidedGizmo != null) {
-                        if (collidedGizmo.getType() == ABSORBER) {
-                            ((AbsorberGizmo)collidedGizmo).addBall(ball);
+                    if (pottentialCollision != null) {
+                        if (pottentialCollision.getType() == ABSORBER) {
+                            ((AbsorberGizmo) pottentialCollision).addBall(ball);
                         }
+                        collidedGizmo = pottentialCollision;
                     }
                     ball.moveForTime(details.getTimeUntilCollision(ball)); //TODO: Fix issue where ball velocity becomes too low and stops abruptly
                     ball.applyPotentialVelocity();
@@ -68,8 +71,17 @@ public class GizmoballModel{
             }
         }
 
+        sendTriggers();
         activateGizmoActions();
+        collidedGizmo = null;
+    }
 
+    private void sendTriggers() { //TODO: maybe move from here to outside the model
+        if (collidedGizmo != null) {
+            for (Gizmo gizmo : Triggers.getTriggeredGizmos(collidedGizmo)) {
+                gizmo.trigger(false);
+            }
+        }
     }
 
     private void activateGizmoActions() {
@@ -100,7 +112,7 @@ public class GizmoballModel{
                     timeUntilCollision = time;
                     velocity = Geometry.reflectRotatingWall(line, gizmo.getCenter(), ((FlipperGizmo)gizmo).getAngularVelocity(), ballCircle, ball.getVelocity(), gizmo.getRCoefficient());
                     ball.setPotentialVelocity(velocity);
-                    collidedGizmo = gizmo;
+                    pottentialCollision = gizmo;
                 }
             }
 
@@ -110,7 +122,7 @@ public class GizmoballModel{
                     timeUntilCollision = time;
                     velocity = Geometry.reflectRotatingCircle(circle, gizmo.getCenter(), ((FlipperGizmo)gizmo).getAngularVelocity(), ballCircle, ball.getVelocity(), gizmo.getRCoefficient());
                     ball.setPotentialVelocity(velocity);
-                    collidedGizmo = gizmo;
+                    pottentialCollision = gizmo;
                 }
             }
         }
@@ -121,7 +133,7 @@ public class GizmoballModel{
                     timeUntilCollision = time;
                     velocity = Geometry.reflectWall(line, ball.getVelocity(), gizmo.getRCoefficient());
                     ball.setPotentialVelocity(velocity);
-                    collidedGizmo = gizmo;
+                    pottentialCollision = gizmo;
                 }
             }
 
@@ -131,7 +143,7 @@ public class GizmoballModel{
                     timeUntilCollision = time;
                     velocity = Geometry.reflectCircle(circle.getCenter(), ball.getCenter(), ball.getVelocity(), gizmo.getRCoefficient());
                     ball.setPotentialVelocity(velocity);
-                    collidedGizmo = gizmo;
+                    pottentialCollision = gizmo;
                 }
             }
         }
