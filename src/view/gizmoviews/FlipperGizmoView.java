@@ -80,7 +80,20 @@ public class FlipperGizmoView extends GizmoViewContainer{
             setPivots();
             flip.setPivotX(pivotX);
             flip.setPivotY(pivotY);
-            flip.setAngle(gizmo.getAngle());
+            flip.setAngle(((FlipperGizmo)gizmo).getOldAngle());
         }
     }
+
+
+    //TODO: remove when no longer needed
+//    private void visualiseLineSegments() {
+//        if (flipper != null) {
+//            Circle point = new Circle(flipper.getLines().get(0).p1().x() * ONE_L_IN_PIXELS, flipper.getLines().get(0).p1().y() * ONE_L_IN_PIXELS, 2, Color.NAVY);
+//            Circle point2 = new Circle(flipper.getLines().get(0).p2().x() * ONE_L_IN_PIXELS, flipper.getLines().get(0).p2().y() * ONE_L_IN_PIXELS, 2, Color.PINK);
+//            Circle point3 = new Circle(flipper.getLines().get(1).p1().x() * ONE_L_IN_PIXELS, flipper.getLines().get(1).p1().y() * ONE_L_IN_PIXELS, 2, Color.RED);
+//            Circle point4 = new Circle(flipper.getLines().get(1).p2().x() * ONE_L_IN_PIXELS, flipper.getLines().get(1).p2().y() * ONE_L_IN_PIXELS, 2, Color.GREEN);
+//            ((BoardView)this.getParent()).getChildren().removeAll(point, point2, point3, point4);
+//            ((BoardView)this.getParent()).getChildren().addAll(point, point2, point3, point4);
+//        }
+//    }
 }

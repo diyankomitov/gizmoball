@@ -28,13 +28,13 @@ public class FlipperGizmo implements Gizmo{
     private Vect pivot;
     private double angularVelocity;
     private boolean triggered;
-    private boolean moving;
 //    private double offset;
     private List<Observer> observers;
     private boolean flipUp;
     private boolean keyPressed;
     private int rotationCount;
     private double startingAngle;
+    private double oldAngle;
 
     /**
      * Constructor
@@ -65,6 +65,7 @@ public class FlipperGizmo implements Gizmo{
         this.name=name;
 
         angle = a;
+        oldAngle = angle;
         sides = new ArrayList<>();
         circles = new ArrayList<>();
         rCoefficient = 0.95;
@@ -82,6 +83,10 @@ public class FlipperGizmo implements Gizmo{
         return angle;
     }
 
+    public double getOldAngle() {
+        return oldAngle;
+    }
+
     @Override
     public void activateAction() {
         flip();
@@ -94,17 +99,19 @@ public class FlipperGizmo implements Gizmo{
     }
 
     private void flip() {
+        oldAngle = angle;
         if(type == BoardObjectType.RIGHT_FLIPPER)
         {
             if (flipUp) {
                 angle = Math.min(angle + DELTA_ANGLE, startingAngle + 90);
+                angularVelocity = Math.toRadians(FLIPPER_ANGULAR_VELOCITY);
             }
             else {
                 angle = Math.max(angle - DELTA_ANGLE, startingAngle);
+                angularVelocity = Math.toRadians(-FLIPPER_ANGULAR_VELOCITY);
             }
 
             if (angle >= 90) {
-
                 flipUp = keyPressed;
             }
         }
@@ -112,15 +119,21 @@ public class FlipperGizmo implements Gizmo{
         {
             if (flipUp) {
                 angle = Math.max(angle - DELTA_ANGLE, startingAngle - 90);
+                angularVelocity = Math.toRadians(-FLIPPER_ANGULAR_VELOCITY);
             }
             else {
                 angle = Math.min(angle + DELTA_ANGLE, startingAngle);
+                angularVelocity = Math.toRadians(FLIPPER_ANGULAR_VELOCITY);
             }
 
             if (angle <= -90) {
                 flipUp = keyPressed;
             }
         }
+        if (angle == 0 || angle == 90 || angle == -90) {
+            angularVelocity = 0;
+        }
+
 
         this.notifyObservers();
     }
@@ -176,16 +189,17 @@ public class FlipperGizmo implements Gizmo{
         System.out.println(angle);
         System.out.println(xWithOffset + " " + yWithOffset);
 
+        oldAngle = angle;
         notifyObservers();
     }
 
     @Override
     public List<LineSegment> getLines() {
+        pivot = new Vect(this.xWithOffset + width/2, this.yWithOffset + width/2);
         double lineLength = length - width;
-        double radianAngle = Math.toRadians(angle);
-
+        double radianAngle = Math.toRadians(oldAngle);
         LineSegment leftSide = new LineSegment(xWithOffset, pivot.y(), xWithOffset, pivot.y() + lineLength);
-        LineSegment rightSide = new LineSegment(xWithOffset +width, pivot.y(), xWithOffset + width, pivot.y() + lineLength);
+        LineSegment rightSide = new LineSegment(xWithOffset + width, pivot.y(), xWithOffset + width, pivot.y() + lineLength);
 
         leftSide = Geometry.rotateAround(leftSide, pivot, new Angle(radianAngle));
         rightSide = Geometry.rotateAround(rightSide, pivot, new Angle(radianAngle));
@@ -198,10 +212,10 @@ public class FlipperGizmo implements Gizmo{
     }
 
     public List<Circle> getCircles() {
+        pivot = new Vect(this.xWithOffset + width/2, this.yWithOffset + width/2);
         double lineLength = length - width;
-        double radianAngle = Math.toRadians(angle);
+        double radianAngle = Math.toRadians(oldAngle);
         double radius = width/2;
-
 
         Circle circleOne = new Circle(pivot, radius);
         Circle circleTwo = new Circle(pivot.plus(new Vect(0, lineLength)), radius);
@@ -259,10 +273,6 @@ public class FlipperGizmo implements Gizmo{
 
     public boolean isTriggered() {
         return triggered;
-    }
-
-    public boolean isMoving() {
-        return moving;
     }
 
     @Override

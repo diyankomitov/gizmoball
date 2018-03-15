@@ -14,7 +14,6 @@ public class TriggerHandler implements EventHandler<KeyEvent>{
 
     @Override
     public void handle(KeyEvent event) {
-        System.out.println(event.getEventType() + ", " + event.getCode());
         for (Gizmo gizmo : Triggers.getTriggeredGizmo(new KeyPress(event.getCode(), event.getEventType()))) {
 
             if (event.getEventType() == KeyEvent.KEY_PRESSED) {
