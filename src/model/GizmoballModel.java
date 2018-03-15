@@ -65,7 +65,7 @@ public class GizmoballModel{
                             System.out.println("BALL COLLISION!");
                         }
                     }
-                    ball.moveForTime(details.getTimeUntilCollision(ball)); //TODO: Fix issue where ball velocity becomes too low and stops abruptly
+                    ball.moveForTime(details.getTimeUntilCollision(ball));
                     ball.applyPotentialVelocity();
                 }
             }
@@ -82,8 +82,6 @@ public class GizmoballModel{
         Circle ballCircle = ball.getCircles().get(0);
 
         if ((gizmo.getType() == LEFT_FLIPPER || gizmo.getType() == RIGHT_FLIPPER) && ((FlipperGizmo)gizmo).isMoving()) {
-            //TODO: hopefully remove the casting, probably through interface for moving gizmos or maybe reduce it to one cast at the start
-
             for (LineSegment line : lines) {
                 time = Geometry.timeUntilRotatingWallCollision(line, gizmo.getCenter(), ((FlipperGizmo)gizmo).getAngularVelocity(), ballCircle, ball.getVelocity()); //TODO: Fix flipper collision
                 if (time < timeUntilCollision) {
@@ -212,7 +210,6 @@ public class GizmoballModel{
         });
     }
 
-    //TODO: Maybe move position checking of add and move to the board, or at least a private method
     public boolean addGizmo(double x, double y, String name, BoardObjectType type) {
         Gizmo gizmo;
         String gizmoName = name;
@@ -278,7 +275,6 @@ public class GizmoballModel{
         if (board.getGizmos().isEmpty()){
             Gizmo absorber = new AbsorberGizmo(x, y, x2, y2, name);
             board.addGizmo(absorber);
-            //TODO: should we add a details.addGizmo(?) here?
             BoardState.add(ABSORBER.toString() + " " + name + " " + x + " " + y + " " + x2 + " " + y2);
             return true;
         }
@@ -431,47 +427,33 @@ public class GizmoballModel{
         ball.setY(newY);
     }
 
+    private boolean ballVelocityIntersectionCheck(double x, double y, Ball ball){
+        ball.setVelocity(new Vect(x,y));
+        findTimeUntilCollision();
+        System.out.println(ball.getName());
+        System.out.println(details.getTimeUntilCollision(ball));
+        if (details.getTimeUntilCollision(ball) < 0.3){
+            return true;
+        }
+        return false;
+    }
+
     private boolean isBallIntersecting(Ball ball){
-        System.out.println("HOI!!!");
         Vect orig = new Vect(ball.getVelocity().x(),ball.getVelocity().y());
-
         //LEFT
-        ball.setVelocity(new Vect(0.1 + (ball.getDiameter()/2), 0.0));
-        findTimeUntilCollision();
-        System.out.println(ball.getName());
-        System.out.println(details.getTimeUntilCollision(ball));
-        if (details.getTimeUntilCollision(ball) < 0.5){
-            System.out.println("COLLIDER");
+        if(ballVelocityIntersectionCheck(0.1 + (ball.getDiameter()/2),0.0, ball)){
             return true;
         }
-
         //RIGHT
-        ball.setVelocity(new Vect(-0.1 - (ball.getDiameter()/2), 0.0));
-        findTimeUntilCollision();
-        System.out.println(ball.getName());
-        System.out.println(details.getTimeUntilCollision(ball));
-        if (details.getTimeUntilCollision(ball) < 0.5){
-            System.out.println("COLLIDER");
+        if(ballVelocityIntersectionCheck(-0.1 - (ball.getDiameter()/2),0.0, ball)){
             return true;
         }
-
-        //DOWN?
-        ball.setVelocity(new Vect(0, -0.1 - (ball.getDiameter()/2)));
-        findTimeUntilCollision();
-        System.out.println(ball.getName());
-        System.out.println(details.getTimeUntilCollision(ball));
-        if (details.getTimeUntilCollision(ball) < 0.5){
-            System.out.println("COLLIDER");
+        //DOWN
+        if(ballVelocityIntersectionCheck(0.0, -0.1 - (ball.getDiameter()/2), ball)){
             return true;
         }
-
-        //UP
-        ball.setVelocity(new Vect(0, 0.1 + (ball.getDiameter()/2)));
-        findTimeUntilCollision();
-        System.out.println(ball.getName());
-        System.out.println(details.getTimeUntilCollision(ball));
-        if (details.getTimeUntilCollision(ball) < 0.5){
-            System.out.println("COLLIDER");
+        //DOWN
+        if(ballVelocityIntersectionCheck(0.0, 0.1 + (ball.getDiameter()/2), ball)){
             return true;
         }
 

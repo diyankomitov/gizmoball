@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b68b6b0d-8203-4a49-99bd-24ea82f7b4c1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/GizmoballModel.java" afterPath="$PROJECT_DIR$/src/model/GizmoballModel.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -12,47 +13,12 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="GizmoballModel.java" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/model/GizmoballModel.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="12960">
-                    <caret line="480" column="5" lean-forward="false" selection-start-line="480" selection-start-column="5" selection-end-line="480" selection-end-column="5" />
-                    <folding>
-                      <element signature="imports" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="GizmoNames.java" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/util/GizmoNames.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="998">
-                    <caret line="65" column="39" lean-forward="false" selection-start-line="65" selection-start-column="39" selection-end-line="65" selection-end-column="39" />
-                    <folding>
-                      <element signature="e#1624#1625#0" expanded="true" />
-                      <element signature="e#1670#1671#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
       <file leaf-file-name="BoundingBox.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/model/BoundingBox.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
+            <state relative-caret-position="-108">
               <caret line="2" column="26" lean-forward="true" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
               <folding />
             </state>
@@ -561,7 +527,7 @@
       <workItem from="1520512304711" duration="10213000" />
       <workItem from="1521027450706" duration="4859000" />
       <workItem from="1521046682809" duration="1316000" />
-      <workItem from="1521072386720" duration="13163000" />
+      <workItem from="1521072386720" duration="13874000" />
     </task>
     <task id="LOCAL-00001" summary="doing fixes for boundingbox.isintersecting (see TODO)">
       <created>1519950029623</created>
@@ -647,7 +613,14 @@
       <option name="project" value="LOCAL" />
       <updated>1521131006498</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Ball intersection checks functioning - fixed an issue where checking the intersection using the velocity changed the overall speed of the ball during game play. Next Task: clean up the code slightly and put the different velocity checks into a flexible method.">
+      <created>1521131018082</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1521131018082</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -683,7 +656,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70968000" />
+    <option name="totallyTimeSpent" value="71679000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1129,21 +1102,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/GizmoballModel.java">
+    <entry file="file://$PROJECT_DIR$/src/model/BoundingBox.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12960">
-          <caret line="480" column="5" lean-forward="false" selection-start-line="480" selection-start-column="5" selection-end-line="480" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="-108">
+          <caret line="2" column="26" lean-forward="true" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/BoundingBox.java">
+    <entry file="file://$PROJECT_DIR$/src/model/GizmoballModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="2" column="26" lean-forward="true" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
-          <folding />
+        <state relative-caret-position="270">
+          <caret line="441" column="76" lean-forward="false" selection-start-line="441" selection-start-column="76" selection-end-line="441" selection-end-column="76" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
