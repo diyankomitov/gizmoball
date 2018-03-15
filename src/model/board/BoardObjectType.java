@@ -1,7 +1,7 @@
 package model.board;
 
 public enum BoardObjectType {
-    CIRCLE("Circle"), SQUARE("Circle"), TRIANGLE("Triangle"), LEFT_FLIPPER("Left Flipper"), RIGHT_FLIPPER("Right Flipper"), ABSORBER("Absorber"), WALLS("Walls"), BALL("Ball");
+    CIRCLE("Circle"), SQUARE("Square"), TRIANGLE("Triangle"), LEFT_FLIPPER("LeftFlipper"), RIGHT_FLIPPER("RightFlipper"), ABSORBER("Absorber"), WALLS("Walls"), BALL("Ball");
 
     private final String name;
     BoardObjectType(String name) {

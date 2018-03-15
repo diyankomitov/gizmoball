@@ -124,7 +124,9 @@ public class BuildController {
     }
 
     public void setInformation(String text) {
+        System.out.println("Text is : "+text);
         information.setText(text);
+
     }
 
     public Label getInfoLabel(){

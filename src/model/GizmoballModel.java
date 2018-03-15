@@ -333,7 +333,7 @@ public class GizmoballModel{
             }
             board.addBall(ball);
             details.addBall(ball);
-            BoardState.add("Add " + ballName + " " + x + " " + y + " " + xv + " " + yv);
+            BoardState.add("Ball " + ballName + " " + x + " " + y + " " + xv + " " + yv);
             return true;
         }
         else {
@@ -360,7 +360,7 @@ public class GizmoballModel{
             Ball ball = new Ball(x, y, xv, yv, ballName);
             board.addBall(ball);
             details.addBall(ball);
-            BoardState.add("Add " + ballName + " " + x + " " + y + " " + xv + " " + yv);
+            BoardState.add("Ball " + ballName + " " + x + " " + y + " " + xv + " " + yv);
             return true;
         }
         // return false; UNREACHABLE STATEMENT - NECESSARY?
@@ -536,6 +536,7 @@ public class GizmoballModel{
         return false;
     }
 
+    //TODO add connect information to BoardState details for saving
 
 
     public boolean rotateGizmo(String name) {

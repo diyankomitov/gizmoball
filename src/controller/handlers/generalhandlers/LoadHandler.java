@@ -1,58 +1,102 @@
 package controller.handlers.generalhandlers;
 
 import controller.BoardController;
+import controller.BuildController;
 import controller.handlers.boardhandlers.AddAbsorberHandler;
 import controller.handlers.boardhandlers.AddBallHandler;
 import controller.handlers.boardhandlers.AddHandler;
 import controller.handlers.boardhandlers.ClearBoardHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import model.board.Ball;
 import model.board.BoardObjectType;
 import model.GizmoballModel;
 import model.board.gizmos.Gizmo;
+import util.BoardState;
 import view.gizmoviews.TriangleGizmoView;
 
 import java.io.*;
 import java.util.Arrays;
+import java.util.Optional;
 
 public class LoadHandler implements EventHandler<ActionEvent> {
     private Stage stage;
     private GizmoballModel model; //Alistair thinks it might needs passed
     private BoardController boardController;
-
+    private BuildController buildController;
+    private SaveHandler saveHandler;
     private String errorMessages = "";
     private int errorCount = 0;
     private Label infoLabel;
 
     private ActionEvent event;
 
-    public LoadHandler(Stage stage, BoardController boardController, GizmoballModel model, Label infoLabel) {
+    public LoadHandler(Stage stage, BoardController boardController, BuildController buildController, GizmoballModel model, Label infoLabel) {
         this.boardController = boardController;
+        this.buildController = buildController;
         this.infoLabel = infoLabel;
         this.stage = stage;
         this.model = model;
+        saveHandler = new SaveHandler(stage, buildController);
     }
 
     //TODO add key connects
     //TODO add gravity and friction???
     @Override
     public void handle(ActionEvent event) {
+
         this.event = event;
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter eFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
         fileChooser.getExtensionFilters().add(eFilter);
         fileChooser.setSelectedExtensionFilter(eFilter);
+        if (BoardState.getSavedBoard()) {
+            fileChooser.setTitle("Load Board");
+            File file = fileChooser.showOpenDialog(stage);
 
-        fileChooser.setTitle("Load Board");
-        File file = fileChooser.showOpenDialog(stage);
+            if(file!=null) {
+                loadGame(file);
+            }
+        } else {
+            ButtonType yes = new ButtonType("Yes");
+            ButtonType no = new ButtonType("No");
+            ButtonType cancel = new ButtonType("Cancel");
 
-        if(file!=null) {
-            loadGame(file);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you wish to save the layout before loading a new one?", yes, no, cancel);
+            alert.setTitle("Board Layout Not Saved");
+            alert.setHeaderText("Board layout has not been saved.");
+            Window window = alert.getDialogPane().getScene().getWindow();
+            window.setOnCloseRequest(event1 -> window.hide());
+            Optional<ButtonType> result = alert.showAndWait();
+            if(result.isPresent()) {
+                if (result.get() == yes) {
+                    saveHandler.handle(event); //TODO: returns a null pointer after successful saving
+                    fileChooser.setTitle("Load Board");
+                    File file = fileChooser.showOpenDialog(stage);
+
+                    if (file != null) {
+                        loadGame(file);
+                    }
+                } else if (result.get() == no) {
+                    fileChooser.setTitle("Load Board");
+                    File file = fileChooser.showOpenDialog(stage);
+
+                    if (file != null) {
+                        loadGame(file);
+                    }
+                } else {
+                    event.consume();
+                }
+            }
+
         }
+
     }
 
     public void clearBoard() {
@@ -233,7 +277,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                 break;
             case "KeyConnect":
                 try{
-
+                    //TODO: load in a key connect
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
                     errorHandler(String.join(" ", string));
@@ -243,7 +287,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
             case "Connect":
                 try{
 
-
+                    //TODO: load in connect
                 } catch(Exception e) {
                     System.out.println("Something has gone wrong...");
                     errorHandler(String.join(" ", string));
