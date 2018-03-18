@@ -25,7 +25,7 @@ public class ExitHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent event) {
         if (BoardState.getSavedBoard()) {
-            System.exit(0); //TODO: Add more functionality, like save before exit and other cleanup
+            System.exit(0);
         } else {
             ButtonType yes = new ButtonType("Yes");
             ButtonType no = new ButtonType("No");
@@ -39,7 +39,7 @@ public class ExitHandler implements EventHandler<ActionEvent> {
             Optional<ButtonType> result = alert.showAndWait();
             if(result.isPresent()){
                 if (result.get() == yes) {
-                    saveHandler.handle(event); //TODO: returns a null pointer after successful saving
+                    saveHandler.handle(event);
                     System.exit(0);
                 }
                 else if (result.get() == no) {
@@ -48,12 +48,7 @@ public class ExitHandler implements EventHandler<ActionEvent> {
                 else {
                     event.consume();
                 }
-//                get() == ButtonType.OK
-//            }) {
-//                saveHandler.handle(event); //TODO: returns a null pointer after successful saving
-//                System.exit(0);
-//            } else {
-//                System.exit(0);
+
             }
 
         }

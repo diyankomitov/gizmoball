@@ -45,8 +45,6 @@ public class GizmoballController {
 
     public static SimpleBooleanProperty disable = new SimpleBooleanProperty(false);
 
-
-
     private SaveHandler saveHandler;
     private LoadHandler loadHandler;
     private ExitHandler exitHandler;

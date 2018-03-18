@@ -117,6 +117,7 @@ public class BuildController {
         clearBoardButton.setOnAction(event -> {
             boardController.setBoardHandler(new ClearBoardHandler(boardController, model, information));
             boardController.handle(event);
+            boardController.setDoNothing();
         });
     }
 
