@@ -54,7 +54,6 @@ public class LoadHandler implements EventHandler<ActionEvent> {
         saveHandler = new SaveHandler(stage, buildController);
     }
 
-    //TODO add key connects
     //TODO add gravity and friction???
     @Override
     public void handle(ActionEvent event) {
@@ -84,7 +83,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
             Optional<ButtonType> result = alert.showAndWait();
             if(result.isPresent()) {
                 if (result.get() == yes) {
-                    saveHandler.handle(event); //TODO: returns a null pointer after successful saving
+                    saveHandler.handle(event);
                     fileChooser.setTitle("Load Board");
                     File file = fileChooser.showOpenDialog(stage);
 
@@ -138,15 +137,15 @@ public class LoadHandler implements EventHandler<ActionEvent> {
 
             for (Gizmo gizmo : model.getGizmos()) {
                 if (gizmo.getType() == BoardObjectType.ABSORBER) {
-                    new AddAbsorberHandler(model, boardController, buildController).handle(gizmo.getName());
+                    new AddAbsorberHandler(model, boardController, buildController, infoLabel).handle(gizmo.getName());
                 }
                 else {
-                    new AddHandler(model, boardController, buildController, gizmo.getType()).handle(gizmo.getName());
+                    new AddHandler(model, boardController, buildController, gizmo.getType(), infoLabel).handle(gizmo.getName());
                 }
             }
             for (Ball ball : model.getBalls()) {
                 if (ball != null) {
-                    new AddBallHandler(model, boardController, buildController).handle(ball.getName());
+                    new AddBallHandler(model, boardController, buildController, infoLabel).handle(ball.getName());
                 }
             }
             if(errorMessages.equals("")) {

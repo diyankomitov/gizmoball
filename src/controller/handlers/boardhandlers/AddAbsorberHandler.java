@@ -3,12 +3,15 @@ package controller.handlers.boardhandlers;
 import controller.BoardController;
 import controller.BuildController;
 import javafx.event.Event;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import model.GizmoballModel;
 import model.board.BoardObjectType;
 import model.board.gizmos.Gizmo;
 import view.gizmoviews.AbsorberGizmoView;
 import view.gizmoviews.GizmoView;
+
+
 
 import static util.Constants.ONE_L_IN_PIXELS;
 
@@ -19,8 +22,8 @@ public class AddAbsorberHandler extends AddHandler {
     private double xpos;
     private double ypos;
 
-    public AddAbsorberHandler(GizmoballModel model, BoardController boardController, BuildController buildController) {
-        super(model, boardController, buildController, BoardObjectType.ABSORBER);
+    public AddAbsorberHandler(GizmoballModel model, BoardController boardController, BuildController buildController, Label infoLabel) {
+        super(model, boardController, buildController, BoardObjectType.ABSORBER, infoLabel);
         firstClick = false;
         xpos = 0;
         ypos = 0;

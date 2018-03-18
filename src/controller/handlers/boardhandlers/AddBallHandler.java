@@ -3,6 +3,7 @@ package controller.handlers.boardhandlers;
 import controller.BoardController;
 import controller.BuildController;
 import javafx.event.Event;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import model.GizmoballModel;
 import model.board.Ball;
@@ -13,8 +14,8 @@ import static util.Constants.ONE_L_IN_PIXELS;
 
 public class AddBallHandler extends AddHandler {
 
-    public AddBallHandler(GizmoballModel model, BoardController boardController, BuildController buildController) {
-        super(model, boardController, buildController, BoardObjectType.BALL);
+    public AddBallHandler(GizmoballModel model, BoardController boardController, BuildController buildController, Label infoLabel) {
+        super(model, boardController, buildController, BoardObjectType.BALL, infoLabel);
     }
 
     @Override

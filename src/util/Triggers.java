@@ -91,7 +91,7 @@ public class Triggers {
         for (KeyPress key : keyTriggers.keySet()) {
             System.out.print("Key: " + key.getCode() + ", " + key.getType() + " Values: ");
             for (Gizmo value : keyTriggers.get(key)) {
-                System.out.print("Gizmo " + value.getX() + ", " + value.getY());
+                System.out.print("Gizmo " + value.getX() + ", " + value.getY()+" ");
             }
             System.out.println("");
         }

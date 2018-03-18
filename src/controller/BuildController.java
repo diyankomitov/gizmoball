@@ -101,13 +101,13 @@ public class BuildController {
 
     private void setupHandlers() {
 
-        squareButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController,this, SQUARE)));
-        triangleButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController,this, TRIANGLE)));
-        circleButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController,this, CIRCLE)));
-        leftFlipperButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController,this, LEFT_FLIPPER)));
-        rightFlipperButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController,this, RIGHT_FLIPPER)));
-        absorberButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddAbsorberHandler(model, boardController, this)));
-        ballButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddBallHandler(model, boardController, this)));
+        squareButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController,this, SQUARE, information)));
+        triangleButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController,this, TRIANGLE, information)));
+        circleButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController,this, CIRCLE, information)));
+        leftFlipperButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController,this, LEFT_FLIPPER, information)));
+        rightFlipperButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController,this, RIGHT_FLIPPER, information)));
+        absorberButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddAbsorberHandler(model, boardController, this, information)));
+        ballButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddBallHandler(model, boardController, this, information)));
 
         moveButton.setOnAction(event -> boardController.setBoardHandler(new MoveHandler(model)));
         rotateButton.setOnAction(event -> boardController.setBoardHandler(new RotateHandler(model, this)));

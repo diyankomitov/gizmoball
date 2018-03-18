@@ -3,6 +3,7 @@ package controller.handlers.boardhandlers;
 import controller.BoardController;
 import controller.BuildController;
 import javafx.event.Event;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import model.GizmoballModel;
 import model.board.BoardObjectType;
@@ -16,12 +17,14 @@ public class AddHandler implements BoardHandler {
     protected final BoardController boardController;
     protected final BuildController buildController;
     protected final BoardObjectType type;
+    private Label infoLabel;
 
-    public AddHandler(GizmoballModel model, BoardController boardController, BuildController buildController, BoardObjectType type) {
+    public AddHandler(GizmoballModel model, BoardController boardController, BuildController buildController, BoardObjectType type,  Label infoLabel) {
         this.model = model;
         this.boardController = boardController;
         this.buildController = buildController;
         this.type = type;
+        this.infoLabel = infoLabel;
     }
 
     @Override
@@ -62,10 +65,10 @@ public class AddHandler implements BoardHandler {
                 boardController.addToBoardView(gizmoView);
             }
             if(!model.getErrorMessage().equals("")){
-                buildController.setInformation(model.getErrorMessage());
+               infoLabel.setText(model.getErrorMessage());
                 model.setMessage("");
             } else {
-                buildController.setInformation(" ");
+                infoLabel.setText(" ");
             }
         }
     }
@@ -97,10 +100,10 @@ public class AddHandler implements BoardHandler {
 
         boardController.addToBoardView(gizmoView);
         if(!model.getErrorMessage().equals("")){
-            buildController.setInformation(model.getErrorMessage());
+            infoLabel.setText(model.getErrorMessage());
             model.setMessage("");
         } else {
-            buildController.setInformation(" ");
+            infoLabel.setText(" ");
         }
 
     }

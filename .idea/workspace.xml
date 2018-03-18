@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b68b6b0d-8203-4a49-99bd-24ea82f7b4c1" name="Default" comment="Names didnt reset on board reset so it was causing the issue with ball">
+    <list default="true" id="b68b6b0d-8203-4a49-99bd-24ea82f7b4c1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/BuildController.java" afterPath="$PROJECT_DIR$/src/controller/BuildController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/GizmoballController.java" afterPath="$PROJECT_DIR$/src/controller/GizmoballController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/handlers/generalhandlers/ExitHandler.java" afterPath="$PROJECT_DIR$/src/controller/handlers/generalhandlers/ExitHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/handlers/boardhandlers/AddAbsorberHandler.java" afterPath="$PROJECT_DIR$/src/controller/handlers/boardhandlers/AddAbsorberHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/handlers/boardhandlers/AddBallHandler.java" afterPath="$PROJECT_DIR$/src/controller/handlers/boardhandlers/AddBallHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/handlers/boardhandlers/AddHandler.java" afterPath="$PROJECT_DIR$/src/controller/handlers/boardhandlers/AddHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/handlers/generalhandlers/LoadHandler.java" afterPath="$PROJECT_DIR$/src/controller/handlers/generalhandlers/LoadHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/BoundingBox.java" afterPath="$PROJECT_DIR$/src/model/BoundingBox.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/util/Triggers.java" afterPath="$PROJECT_DIR$/src/util/Triggers.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,56 +24,40 @@
       <file leaf-file-name="GizmoballModel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/GizmoballModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2402">
+            <state relative-caret-position="-3412">
               <caret line="334" column="28" lean-forward="false" selection-start-line="334" selection-start-column="28" selection-end-line="334" selection-end-column="28" />
               <folding>
-                <marker date="1521404027493" expanded="true" signature="14286:14721" ph="{...}" />
-                <marker date="1521404027493" expanded="true" signature="14798:15158" ph="{...}" />
-                <marker date="1521404027493" expanded="true" signature="15207:15459" ph="{...}" />
-                <marker date="1521404027493" expanded="true" signature="15528:16010" ph="{...}" />
-                <marker date="1521404027493" expanded="true" signature="16083:16289" ph="{...}" />
-                <marker date="1521404027493" expanded="true" signature="16371:16675" ph="{...}" />
-                <marker date="1521404027493" expanded="true" signature="16726:17403" ph="{...}" />
-                <marker date="1521404027493" expanded="true" signature="17519:17899" ph="{...}" />
-                <marker date="1521404027493" expanded="true" signature="17952:18140" ph="{...}" />
-                <marker date="1521404027493" expanded="true" signature="18184:18227" ph="{}" />
-                <marker date="1521404027493" expanded="true" signature="18278:18321" ph="{}" />
-                <marker date="1521404027493" expanded="true" signature="18368:18516" ph="{...}" />
-                <marker date="1521404027493" expanded="true" signature="18568:18737" ph="{...}" />
-                <marker date="1521404027493" expanded="false" signature="18773:18819" ph=" { " />
-                <marker date="1521404027493" expanded="false" signature="18844:18850" ph=" }" />
-                <marker date="1521404027493" expanded="true" signature="18885:18984" ph="{...}" />
-                <marker date="1521404027493" expanded="true" signature="18887:18945" ph="//..." />
-                <marker date="1521404027493" expanded="true" signature="19025:19200" ph="{...}" />
-                <marker date="1521404027493" expanded="true" signature="19248:19433" ph="{...}" />
-                <marker date="1521404027493" expanded="true" signature="19473:19691" ph="{...}" />
-                <marker date="1521404027493" expanded="true" signature="19737:20011" ph="{...}" />
                 <marker date="1521404027493" expanded="true" signature="19929:20011" ph="{...}" />
-                <marker date="1521404027493" expanded="false" signature="20049:20059" ph=" { " />
-                <marker date="1521404027493" expanded="false" signature="20076:20082" ph=" }" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BuildView.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/view/fxml/BuildView.fxml">
+      <file leaf-file-name="ChangeFrictionHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/controller/handlers/buildhandlers/ChangeFrictionHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1428">
-              <caret line="84" column="35" lean-forward="false" selection-start-line="84" selection-start-column="35" selection-end-line="84" selection-end-column="35" />
+            <state relative-caret-position="34">
+              <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
               <folding />
             </state>
           </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
+        </entry>
+      </file>
+      <file leaf-file-name="ChangeGravityHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/controller/handlers/buildhandlers/ChangeGravityHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <folding />
+            </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BoardView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/view/BoardView.java">
+      <file leaf-file-name="DoNothingHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/controller/handlers/generalhandlers/DoNothingHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="44" column="44" lean-forward="false" selection-start-line="44" selection-start-column="44" selection-end-line="44" selection-end-column="44" />
+            <state relative-caret-position="68">
+              <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -85,11 +73,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BoardController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/BoardController.java">
+      <file leaf-file-name="LoadHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/controller/handlers/generalhandlers/LoadHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+            <state relative-caret-position="191">
+              <caret line="147" column="20" lean-forward="false" selection-start-line="147" selection-start-column="20" selection-end-line="147" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -98,18 +86,28 @@
       <file leaf-file-name="BuildController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/controller/BuildController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="119" column="43" lean-forward="true" selection-start-line="119" selection-start-column="43" selection-end-line="119" selection-end-column="43" />
+            <state relative-caret-position="1415">
+              <caret line="109" column="138" lean-forward="false" selection-start-line="109" selection-start-column="138" selection-end-line="109" selection-end-column="138" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GizmoballController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/GizmoballController.java">
+      <file leaf-file-name="AddBallHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/controller/handlers/boardhandlers/AddBallHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-22">
-              <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+            <state relative-caret-position="-156">
+              <caret line="17" column="86" lean-forward="false" selection-start-line="17" selection-start-column="86" selection-end-line="17" selection-end-column="86" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddAbsorberHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/controller/handlers/boardhandlers/AddAbsorberHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="20" column="43" lean-forward="true" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -117,31 +115,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RunController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/RunController.java">
+      <file leaf-file-name="AddHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/controller/handlers/boardhandlers/AddHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoadHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/handlers/generalhandlers/LoadHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1372">
-              <caret line="157" column="45" lean-forward="false" selection-start-line="157" selection-start-column="45" selection-end-line="157" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CollisionDetails.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/CollisionDetails.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="19" column="33" lean-forward="false" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+            <state relative-caret-position="573">
+              <caret line="106" column="9" lean-forward="false" selection-start-line="106" selection-start-column="9" selection-end-line="106" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -215,7 +193,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/test/testAbsorber.java" />
-        <option value="$PROJECT_DIR$/src/model/BoundingBox.java" />
         <option value="$PROJECT_DIR$/src/main/AbsorberPrototype.java" />
         <option value="$PROJECT_DIR$/src/main/CollisionPrototype.java" />
         <option value="$PROJECT_DIR$/src/controller/LoadHandler.java" />
@@ -231,9 +208,6 @@
         <option value="$PROJECT_DIR$/src/model/board/BoardObjectType.java" />
         <option value="$PROJECT_DIR$/src/controller/handlers/generalhandlers/ExitHandler.java" />
         <option value="$PROJECT_DIR$/src/controller/handlers/boardhandlers/DisconnectTriggerHandler.java" />
-        <option value="$PROJECT_DIR$/src/controller/handlers/boardhandlers/AddHandler.java" />
-        <option value="$PROJECT_DIR$/src/controller/handlers/boardhandlers/AddAbsorberHandler.java" />
-        <option value="$PROJECT_DIR$/src/controller/handlers/boardhandlers/AddBallHandler.java" />
         <option value="$PROJECT_DIR$/src/controller/handlers/boardhandlers/RotateHandler.java" />
         <option value="$PROJECT_DIR$/src/view/gizmoviews/AbsorberGizmoView.java" />
         <option value="$PROJECT_DIR$/src/view/gizmoviews/CircleGizmoView.java" />
@@ -253,17 +227,21 @@
         <option value="$PROJECT_DIR$/src/view/BallView.java" />
         <option value="$PROJECT_DIR$/src/controller/handlers/generalhandlers/SwitchModeHandler.java" />
         <option value="$PROJECT_DIR$/src/controller/handlers/runhandlers/ResetGameHandler.java" />
-        <option value="$PROJECT_DIR$/src/util/Triggers.java" />
         <option value="$PROJECT_DIR$/Notes/KeyCode names.txt" />
         <option value="$PROJECT_DIR$/src/main/Main.java" />
         <option value="$PROJECT_DIR$/src/model/board/Ball.java" />
         <option value="$PROJECT_DIR$/src/util/GizmoNames.java" />
         <option value="$PROJECT_DIR$/src/util/BoardState.java" />
         <option value="$PROJECT_DIR$/src/model/GizmoballModel.java" />
-        <option value="$PROJECT_DIR$/src/controller/handlers/generalhandlers/LoadHandler.java" />
         <option value="$PROJECT_DIR$/src/controller/RunController.java" />
         <option value="$PROJECT_DIR$/src/controller/BoardController.java" />
         <option value="$PROJECT_DIR$/src/controller/GizmoballController.java" />
+        <option value="$PROJECT_DIR$/src/model/BoundingBox.java" />
+        <option value="$PROJECT_DIR$/src/util/Triggers.java" />
+        <option value="$PROJECT_DIR$/src/controller/handlers/boardhandlers/AddHandler.java" />
+        <option value="$PROJECT_DIR$/src/controller/handlers/boardhandlers/AddBallHandler.java" />
+        <option value="$PROJECT_DIR$/src/controller/handlers/boardhandlers/AddAbsorberHandler.java" />
+        <option value="$PROJECT_DIR$/src/controller/handlers/generalhandlers/LoadHandler.java" />
         <option value="$PROJECT_DIR$/src/controller/BuildController.java" />
       </list>
     </option>
@@ -791,7 +769,14 @@
       <option name="project" value="LOCAL" />
       <updated>1521400426836</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Fixed an issue where board would clear things that are loaded in after clearing the current board">
+      <created>1521405690881</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1521405690881</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -827,7 +812,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129256000" />
+    <option name="totallyTimeSpent" value="130826000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -850,7 +835,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25108695" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25108695" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32999164" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -915,7 +900,8 @@
     <MESSAGE value="Move handler now moves balls and flippers, Load and save now handle connects keyconnects move gravity and friction, reset now works using save and load to a gamestate txt file to save the game state, added extra slider for friction (doesnt work yet, neither do the rest of the sliders), Appropriate buttons now get disabled on run of a game (all but stop and exit) and get enabled on stop of game (stop gets disabled), ball now checks its velocity and forces it to be between the min and max values, added a lighting class to make shapes look more 3d but its not working yet" />
     <MESSAGE value="Merge branch 'refactorization' of https://gitlab.cis.strath.ac.uk/mhb15157/cs308-gizmoball into refactorization&#10;&#10;# Conflicts:&#10;#&#9;src/model/GizmoballModel.java" />
     <MESSAGE value="Added a list of all accepted keycode names as a txt file, for reference" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a list of all accepted keycode names as a txt file, for reference" />
+    <MESSAGE value="Fixed an issue where board would clear things that are loaded in after clearing the current board" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed an issue where board would clear things that are loaded in after clearing the current board" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -924,93 +910,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_152/javafx-src.zip!/javafx/stage/FileChooser.java" />
-    <entry file="file://$PROJECT_DIR$/boardstate.txt" />
-    <entry file="file://$PROJECT_DIR$/src/view/gizmoviews/CircleGizmoView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="34" lean-forward="false" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/gizmoviews/SquareGizmoView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/handlers/boardhandlers/AddBallHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="42" column="16" lean-forward="false" selection-start-line="42" selection-start-column="16" selection-end-line="42" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_152/javafx-src.zip!/javafx/event/Event.java" />
-    <entry file="file://$PROJECT_DIR$/src/util/Observable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="21" lean-forward="false" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/board/gizmos/Gizmo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="9" lean-forward="false" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/gizmoviews/GizmoViewContainer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="48" column="27" lean-forward="false" selection-start-line="48" selection-start-column="27" selection-end-line="48" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/gizmoviews/FlipperGizmoView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="76" column="42" lean-forward="false" selection-start-line="76" selection-start-column="42" selection-end-line="76" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/fxml/BuildView.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1428">
-          <caret line="84" column="35" lean-forward="false" selection-start-line="84" selection-start-column="35" selection-end-line="84" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_152/javafx-src.zip!/javafx/util/converter/NumberStringConverter.java" />
-    <entry file="file://$PROJECT_DIR$/src/controller/handlers/buildhandlers/ChangeGravityHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/handlers/boardhandlers/MoveHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="57" column="20" lean-forward="true" selection-start-line="57" selection-start-column="20" selection-end-line="57" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/gizmoviews/AbsorberGizmoView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="32" column="55" lean-forward="true" selection-start-line="32" selection-start-column="55" selection-end-line="32" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/GlobalLighting.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -1037,6 +936,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="236" column="38" lean-forward="false" selection-start-line="236" selection-start-column="38" selection-end-line="236" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1044,6 +944,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="21" lean-forward="false" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1059,18 +960,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
           <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/handlers/generalhandlers/boardstate.txt" />
-    <entry file="file://$PROJECT_DIR$/src/controller/handlers/boardhandlers/ConnectTriggerHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="86" column="109" lean-forward="true" selection-start-line="86" selection-start-column="28" selection-end-line="86" selection-end-column="109" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/handlers/generalhandlers/boardstate.txt" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_152/src.zip!/java/awt/event/KeyEvent.java" />
     <entry file="file://$PROJECT_DIR$/src/controller/handlers/generalhandlers/SaveHandler.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1081,14 +975,6 @@
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_152/javafx-src.zip!/javafx/event/EventType.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_152/javafx-src.zip!/javafx/scene/input/KeyEvent.java" />
-    <entry file="file://$PROJECT_DIR$/src/controller/handlers/boardhandlers/DeleteHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/CollisionDetails.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -1101,6 +987,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="388">
           <caret line="150" column="42" lean-forward="false" selection-start-line="150" selection-start-column="42" selection-end-line="150" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1108,13 +995,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="16" lean-forward="false" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/Triggers.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="42" column="27" lean-forward="false" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1145,6 +1026,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1632">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1159,6 +1041,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="346">
           <caret line="45" column="17" lean-forward="true" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1169,18 +1052,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/handlers/boardhandlers/ClearBoardHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="23" lean-forward="true" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/util/GizmoNames.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1207">
           <caret line="71" column="19" lean-forward="true" selection-start-line="71" selection-start-column="19" selection-end-line="71" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1191,51 +1067,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/GizmoballModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2402">
-          <caret line="334" column="28" lean-forward="false" selection-start-line="334" selection-start-column="28" selection-end-line="334" selection-end-column="28" />
-          <folding>
-            <marker date="1521404027493" expanded="true" signature="14286:14721" ph="{...}" />
-            <marker date="1521404027493" expanded="true" signature="14798:15158" ph="{...}" />
-            <marker date="1521404027493" expanded="true" signature="15207:15459" ph="{...}" />
-            <marker date="1521404027493" expanded="true" signature="15528:16010" ph="{...}" />
-            <marker date="1521404027493" expanded="true" signature="16083:16289" ph="{...}" />
-            <marker date="1521404027493" expanded="true" signature="16371:16675" ph="{...}" />
-            <marker date="1521404027493" expanded="true" signature="16726:17403" ph="{...}" />
-            <marker date="1521404027493" expanded="true" signature="17519:17899" ph="{...}" />
-            <marker date="1521404027493" expanded="true" signature="17952:18140" ph="{...}" />
-            <marker date="1521404027493" expanded="true" signature="18184:18227" ph="{}" />
-            <marker date="1521404027493" expanded="true" signature="18278:18321" ph="{}" />
-            <marker date="1521404027493" expanded="true" signature="18368:18516" ph="{...}" />
-            <marker date="1521404027493" expanded="true" signature="18568:18737" ph="{...}" />
-            <marker date="1521404027493" expanded="false" signature="18773:18819" ph=" { " />
-            <marker date="1521404027493" expanded="false" signature="18844:18850" ph=" }" />
-            <marker date="1521404027493" expanded="true" signature="18885:18984" ph="{...}" />
-            <marker date="1521404027493" expanded="true" signature="18887:18945" ph="//..." />
-            <marker date="1521404027493" expanded="true" signature="19025:19200" ph="{...}" />
-            <marker date="1521404027493" expanded="true" signature="19248:19433" ph="{...}" />
-            <marker date="1521404027493" expanded="true" signature="19473:19691" ph="{...}" />
-            <marker date="1521404027493" expanded="true" signature="19737:20011" ph="{...}" />
-            <marker date="1521404027493" expanded="true" signature="19929:20011" ph="{...}" />
-            <marker date="1521404027493" expanded="false" signature="20049:20059" ph=" { " />
-            <marker date="1521404027493" expanded="false" signature="20076:20082" ph=" }" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/RunController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/handlers/generalhandlers/LoadHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1372">
-          <caret line="157" column="45" lean-forward="false" selection-start-line="157" selection-start-column="45" selection-end-line="157" selection-end-column="45" />
           <folding />
         </state>
       </provider>
@@ -1250,14 +1085,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/handlers/generalhandlers/ExitHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/BoardController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -1266,10 +1093,190 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/BoundingBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="37" lean-forward="true" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/Triggers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1513">
+          <caret line="93" column="82" lean-forward="false" selection-start-line="93" selection-start-column="82" selection-end-line="93" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/handlers/boardhandlers/BoardHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/handlers/boardhandlers/ClearBoardHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="21" column="23" lean-forward="true" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-9/lib/src.zip!/javafx.controls/javafx/scene/control/Labeled.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="146" column="22" lean-forward="false" selection-start-line="146" selection-start-column="22" selection-end-line="146" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/handlers/boardhandlers/ConnectTriggerHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-226">
+          <caret line="54" column="31" lean-forward="false" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/handlers/boardhandlers/DeleteHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/handlers/boardhandlers/DisconnectTriggerHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/handlers/boardhandlers/MoveHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="57" column="20" lean-forward="true" selection-start-line="57" selection-start-column="20" selection-end-line="57" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/handlers/boardhandlers/RotateHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/handlers/boardhandlers/ToggleGridHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/handlers/buildhandlers/ChangeBallSpeedHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/handlers/buildhandlers/ChangeForceHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/handlers/buildhandlers/ChangeFrictionHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/handlers/buildhandlers/ChangeGravityHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/handlers/generalhandlers/DoNothingHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/handlers/generalhandlers/ExitHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/handlers/boardhandlers/AddHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="573">
+          <caret line="106" column="9" lean-forward="false" selection-start-line="106" selection-start-column="9" selection-end-line="106" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/GizmoballModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3412">
+          <caret line="334" column="28" lean-forward="false" selection-start-line="334" selection-start-column="28" selection-end-line="334" selection-end-column="28" />
+          <folding>
+            <marker date="1521404027493" expanded="true" signature="19929:20011" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/handlers/boardhandlers/AddBallHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-156">
+          <caret line="17" column="86" lean-forward="false" selection-start-line="17" selection-start-column="86" selection-end-line="17" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/handlers/boardhandlers/AddAbsorberHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="20" column="43" lean-forward="true" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/handlers/generalhandlers/LoadHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="147" column="20" lean-forward="false" selection-start-line="147" selection-start-column="20" selection-end-line="147" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/BuildController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="119" column="43" lean-forward="true" selection-start-line="119" selection-start-column="43" selection-end-line="119" selection-end-column="43" />
+        <state relative-caret-position="1415">
+          <caret line="109" column="138" lean-forward="false" selection-start-line="109" selection-start-column="138" selection-end-line="109" selection-end-column="138" />
           <folding />
         </state>
       </provider>
