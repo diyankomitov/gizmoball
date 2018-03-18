@@ -76,9 +76,9 @@ public class TestAddRemoveBall {
     @Test
     public void testMoveBall2() {
         gizmoballModel.addBall(1, 1, 0, 0, "B1");
-        gizmoballModel.addGizmo(5, 5, "", BoardObjectType.TRIANGLE);
+        gizmoballModel.addGizmo(5, 5, "T55", BoardObjectType.TRIANGLE);
 
-        assertTrue(gizmoballModel.moveBall("B1", 5.7, 5.7));
+        assertTrue(gizmoballModel.moveBall("B1", 5.9, 5.9));
     }
 
     @Test

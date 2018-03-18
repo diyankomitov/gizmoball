@@ -62,4 +62,8 @@ public class GizmoNames {
 
     }
 
+    public static boolean nameExists(String name) {
+        return nameList.contains(name);
+    }
+
 }

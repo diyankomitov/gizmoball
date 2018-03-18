@@ -65,7 +65,7 @@ public class GizmoballModel{
                         }
                         collidedGizmo = potentialCollision;
                     }
-                    ball.moveForTime(details.getTimeUntilCollision(ball)); //TODO: Fix issue where ball velocity becomes too low and stops abruptly
+                    ball.moveForTime(details.getTimeUntilCollision(ball));
                     ball.applyPotentialVelocity();
                 }
             }
@@ -236,7 +236,6 @@ public class GizmoballModel{
         });
     }
 
-    //TODO: Maybe move position checking of add and move to the board, or at least a private method
     public boolean addGizmo(double x, double y, String name, BoardObjectType type) {
         Gizmo gizmo;
         String gizmoName = name;
@@ -300,7 +299,6 @@ public class GizmoballModel{
         if (board.getGizmos().isEmpty()){
             Gizmo absorber = new AbsorberGizmo(x, y, x2, y2, name);
             board.addGizmo(absorber);
-            //TODO: should we add a details.addGizmo(?) here?
             BoardState.add(ABSORBER.toString() + " " + name + " " + x + " " + y + " " + x2 + " " + y2);
             return true;
         }
@@ -310,14 +308,6 @@ public class GizmoballModel{
                 setMessage("Absorber cannot intersect with any existing gizmos");
                 return false;
             }
-//            for (Gizmo gizmo : board.getGizmos()) {
-//                if (absorber.getBoundingBox().isIntersecting(gizmo.getBoundingBox())){
-//                    return false;
-//                }
-//                if (gizmo.getName().equals(name)){
-//                    return false;
-//                }
-//            }
             board.addGizmo(absorber);
             BoardState.add(ABSORBER.toString() + " " + name + " " + x + " " + y + " " + x2 + " " + y2);
             return true;
@@ -327,48 +317,23 @@ public class GizmoballModel{
 
     public boolean addBall(double x, double y, double xv, double yv, String name) {
         String ballName = name;
+        if(GizmoNames.nameExists(name)){
+            return false;
+        }
         if(name.equals("")){
             ballName = GizmoNames.addName(BALL);
         }
-        if (board.getBalls().isEmpty()){
-            Ball ball = new Ball(x, y, xv, yv, ballName);
-            if(isBallIntersecting(ball)){
-                setMessage("Ball cannot be intersecting with any gizmos.");
-                return false;
-            }
-            board.addBall(ball);
-            details.addBall(ball);
-            BoardState.add("Ball " + ballName + " " + x + " " + y + " " + xv + " " + yv);
-            return true;
+        Ball ball = new Ball(x, y, xv, yv, ballName);
+        details.addBall(ball);
+        board.addBall(ball);
+        if(isBallIntersecting(ball)){
+            setMessage("Ball cannot be intersecting with any gizmos.");
+            details.removeBall(ball);
+            board.removeBall(ball);
+            return false;
         }
-        else {
-            for (Ball b : board.getBalls()) {
-                //if name of ball being added is NOT equal to the name of some other ball
-                if (!b.getName().equals(name)) {
-                    if (b.getX() == x && b.getY() == y) {
-                        return false;
-                    }
-                    if(isBallIntersecting(b)){
-                        return false;
-                    }
-                    for (Gizmo g : board.getGizmos()) {
-                        if (g.getX() == x && g.getY() == y) {
-                            return false;
-                        }
-                    }
-                }
-                else {
-                    //if the names are equal
-                    return false;
-                }
-            }
-            Ball ball = new Ball(x, y, xv, yv, ballName);
-            board.addBall(ball);
-            details.addBall(ball);
-            BoardState.add("Ball " + ballName + " " + x + " " + y + " " + xv + " " + yv);
-            return true;
-        }
-        // return false; UNREACHABLE STATEMENT - NECESSARY?
+        BoardState.add("Add " + ballName + " " + x + " " + y + " " + xv + " " + yv);
+        return true;
     }
 
     public boolean removeGizmo(String name) {
@@ -413,7 +378,6 @@ public class GizmoballModel{
                 board.removeBall(ball);
                 return true;
             }
-
         }
         return false;
     }
@@ -486,56 +450,38 @@ public class GizmoballModel{
         ball.setY(newY);
     }
 
-    private boolean isBallIntersecting(Ball ball){
-        double x = ball.getX();
-        double y = ball.getY();
-        int roundX = (int) x;
-        int roundY = (int) y;
-        Vect orig = ball.getVelocity();
-
-        for(int boxX = roundX - 1;boxX  < roundX + 1; boxX++ ){
-            for(int boxY = roundY - 1;boxY  < roundY + 1; boxY++ ){
-                Gizmo g = getGizmo(boxX, boxY);
-                if(g != null){
-
-                    if(g.getX() == roundX && g.getY() == roundY) {
-                        if (x-roundX == 0.5 && y-roundY == 0.5) {
-                            return true;
-                        }
-                    }
-
-                    ball.setVelocity(new Vect(0.01, 0.0));
-                    findTimeUntilGizmoCollision(g, ball);
-                    System.out.println(details.getTimeUntilCollision(ball));
-                    if((int) details.getTimeUntilCollision(ball) == 0){
-                        return true;
-                    }
-
-                    ball.setVelocity(new Vect(-0.01, 0.0));
-                    findTimeUntilGizmoCollision(g, ball);
-                    System.out.println(details.getTimeUntilCollision(ball));
-                    if((int) details.getTimeUntilCollision(ball) == 0){
-                        return true;
-                    }
-
-                    ball.setVelocity(new Vect(0.0, 0.01));
-                    findTimeUntilGizmoCollision(g, ball);
-                    System.out.println(details.getTimeUntilCollision(ball));
-                    if((int) details.getTimeUntilCollision(ball) == 0){
-                        return true;
-                    }
-
-                    ball.setVelocity(new Vect(0.0, -0.01));
-                    findTimeUntilGizmoCollision(g, ball);
-                    System.out.println(details.getTimeUntilCollision(ball));
-                    if((int) details.getTimeUntilCollision(ball) == 0){
-                        return true;
-                    }
-
-                }
-            }
+    private boolean ballVelocityIntersectionCheck(double x, double y, Ball ball){
+        ball.setVelocity(new Vect(x,y));
+        findTimeUntilCollision();
+        System.out.println(ball.getName());
+        System.out.println(details.getTimeUntilCollision(ball));
+        if (details.getTimeUntilCollision(ball) < 0.3){
+            return true;
         }
+        return false;
+    }
+
+    private boolean isBallIntersecting(Ball ball){
+        Vect orig = new Vect(ball.getVelocity().x(),ball.getVelocity().y());
+        //LEFT
+        if(ballVelocityIntersectionCheck(0.1 + (ball.getDiameter()/2),0.0, ball)){
+            return true;
+        }
+        //RIGHT
+        if(ballVelocityIntersectionCheck(-0.1 - (ball.getDiameter()/2),0.0, ball)){
+            return true;
+        }
+        //DOWN
+        if(ballVelocityIntersectionCheck(0.0, -0.1 - (ball.getDiameter()/2), ball)){
+            return true;
+        }
+        //DOWN
+        if(ballVelocityIntersectionCheck(0.0, 0.1 + (ball.getDiameter()/2), ball)){
+            return true;
+        }
+
         ball.setVelocity(orig);
+
         return false;
     }
 

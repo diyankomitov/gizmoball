@@ -44,16 +44,16 @@ public class testAddGizmo {
 
     @Test
     public void testAddGizmoz() {
-        gizmoballModel.addGizmo(2, 2, "", BoardObjectType.CIRCLE);
-        gizmoballModel.addGizmo(20, 20, "", BoardObjectType.CIRCLE);
+        gizmoballModel.addGizmo(2, 2, "C22", BoardObjectType.CIRCLE);
+        gizmoballModel.addGizmo(20, 20, "C2020", BoardObjectType.CIRCLE);
         assertEquals(gizmoballModel.getGizmos().get(0).getName(), "C22");
         assertEquals(gizmoballModel.getGizmos().get(1).getName(), "C2020");
     }
 
     @Test
     public void testTwoGizmoSameLocation () {
-        gizmoballModel.addGizmo(1, 1, "", BoardObjectType.SQUARE);
-        gizmoballModel.addGizmo(1,1, "", BoardObjectType.CIRCLE);
+        gizmoballModel.addGizmo(1, 1, "S11", BoardObjectType.SQUARE);
+        gizmoballModel.addGizmo(1,1, "C11", BoardObjectType.CIRCLE);
         assertFalse("Should not have added gizmo in same location.",gizmoballModel.addGizmo(1,1, "", BoardObjectType.CIRCLE));
     }
 
@@ -61,19 +61,19 @@ public class testAddGizmo {
     public void testAddGizmoNaming() {
         gizmoballModel.addGizmo(2.0, 2.0, "", BoardObjectType.CIRCLE);
         List<Gizmo> gl = gizmoballModel.getGizmos();
-        assertTrue(gizmoballModel.getGizmo("C22").equals(gl.get(0)));
+        assertTrue(gizmoballModel.getGizmo("C0").equals(gl.get(0)));
 
     }
 
     @Test
     public void testGizmoType () {
-        gizmoballModel.addGizmo(1, 1, "", BoardObjectType.SQUARE);
+        gizmoballModel.addGizmo(1, 1, "S11", BoardObjectType.SQUARE);
         assertEquals(gizmoballModel.getGizmo("S11").getType(), BoardObjectType.SQUARE);
     }
 
     @Test
     public void testRemoveGizmo () {
-        gizmoballModel.addGizmo(1, 1, "", BoardObjectType.SQUARE);
+        gizmoballModel.addGizmo(1, 1, "S11", BoardObjectType.SQUARE);
         System.out.println("Name is : "+gizmoballModel.getGizmo(1, 1).getName());
        assertTrue(gizmoballModel.removeGizmo("S11"));
 
