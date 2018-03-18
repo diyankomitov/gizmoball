@@ -66,4 +66,14 @@ public class GizmoNames {
         return nameList.contains(name);
     }
 
+    public static void resetNames() {
+        bCounter=0;
+        cCounter=0;
+        tCounter=0;
+        sCounter=0;
+        lfCounter=0;
+        rfCounter=0;
+        aCounter=0;
+        nameList.clear();
+    }
 }

@@ -332,7 +332,7 @@ public class GizmoballModel{
             board.removeBall(ball);
             return false;
         }
-        BoardState.add("Add " + ballName + " " + x + " " + y + " " + xv + " " + yv);
+        BoardState.add("Ball " + ballName + " " + x + " " + y + " " + xv + " " + yv);
         return true;
     }
 
@@ -385,6 +385,7 @@ public class GizmoballModel{
     public void clearBoard() {
         board.clear();
         BoardState.removeAll();
+        GizmoNames.resetNames();
     }
 
     public boolean moveGizmo(String name, double newX, double newY) {
