@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b68b6b0d-8203-4a49-99bd-24ea82f7b4c1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/BuildController.java" afterPath="$PROJECT_DIR$/src/controller/BuildController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/handlers/boardhandlers/AddAbsorberHandler.java" afterPath="$PROJECT_DIR$/src/controller/handlers/boardhandlers/AddAbsorberHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/handlers/boardhandlers/AddBallHandler.java" afterPath="$PROJECT_DIR$/src/controller/handlers/boardhandlers/AddBallHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/handlers/boardhandlers/AddHandler.java" afterPath="$PROJECT_DIR$/src/controller/handlers/boardhandlers/AddHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/handlers/generalhandlers/LoadHandler.java" afterPath="$PROJECT_DIR$/src/controller/handlers/generalhandlers/LoadHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/BoundingBox.java" afterPath="$PROJECT_DIR$/src/model/BoundingBox.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/util/Triggers.java" afterPath="$PROJECT_DIR$/src/util/Triggers.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/testAddGizmo.java" afterPath="$PROJECT_DIR$/src/test/testAddGizmo.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,6 +15,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="testAddGizmo.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/testAddGizmo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="61" column="36" lean-forward="true" selection-start-line="61" selection-start-column="36" selection-end-line="61" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="GizmoballModel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/GizmoballModel.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -29,26 +33,6 @@
               <folding>
                 <marker date="1521404027493" expanded="true" signature="19929:20011" ph="{...}" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ChangeFrictionHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/handlers/buildhandlers/ChangeFrictionHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ChangeGravityHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/handlers/buildhandlers/ChangeGravityHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -73,6 +57,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="testAbsorber.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/testAbsorber.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="LoadHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controller/handlers/generalhandlers/LoadHandler.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -83,10 +77,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BuildController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BuildController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controller/BuildController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1415">
+            <state relative-caret-position="1109">
               <caret line="109" column="138" lean-forward="false" selection-start-line="109" selection-start-column="138" selection-end-line="109" selection-end-column="138" />
               <folding />
             </state>
@@ -192,7 +186,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/test/testAbsorber.java" />
         <option value="$PROJECT_DIR$/src/main/AbsorberPrototype.java" />
         <option value="$PROJECT_DIR$/src/main/CollisionPrototype.java" />
         <option value="$PROJECT_DIR$/src/controller/LoadHandler.java" />
@@ -243,6 +236,7 @@
         <option value="$PROJECT_DIR$/src/controller/handlers/boardhandlers/AddAbsorberHandler.java" />
         <option value="$PROJECT_DIR$/src/controller/handlers/generalhandlers/LoadHandler.java" />
         <option value="$PROJECT_DIR$/src/controller/BuildController.java" />
+        <option value="$PROJECT_DIR$/src/test/testAddGizmo.java" />
       </list>
     </option>
   </component>
@@ -446,26 +440,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="CollisionPrototype" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="main.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="main.CollisionPrototype" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="cs308-gizmoball" />
-      <envs />
-    </configuration>
+  <component name="RunManager" selected="JUnit.testAddGizmo">
     <configuration name="LightingTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -585,7 +560,7 @@
       <properties />
       <listeners />
     </configuration>
-    <configuration name="testConnectors" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="testAbsorber" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="test.*" />
@@ -596,7 +571,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.testConnectors" />
+      <option name="MAIN_CLASS_NAME" value="test.testAbsorber" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -610,7 +585,7 @@
       <envs />
       <patterns />
     </configuration>
-    <configuration name="testConnectors.addTriggerToNonExistingGizmo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="testAddGizmo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="test.*" />
@@ -621,8 +596,33 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.testConnectors" />
-      <option name="METHOD_NAME" value="addTriggerToNonExistingGizmo" />
+      <option name="MAIN_CLASS_NAME" value="test.testAddGizmo" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration name="testAddGizmo.testAddGizmoNaming" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="cs308-gizmoball" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.testAddGizmo" />
+      <option name="METHOD_NAME" value="testAddGizmoNaming" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -636,19 +636,19 @@
       <patterns />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Application.CollisionPrototype" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.testConnectors" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.testConnectors.addTriggerToNonExistingGizmo" />
-      <item index="3" class="java.lang.String" itemvalue="Application.Main" />
-      <item index="4" class="java.lang.String" itemvalue="Application.LightingTest" />
+      <item index="0" class="java.lang.String" itemvalue="Application.Main" />
+      <item index="1" class="java.lang.String" itemvalue="Application.LightingTest" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.testAbsorber" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.testAddGizmo" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.testAddGizmo.testAddGizmoNaming" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.Main" />
-        <item index="1" class="java.lang.String" itemvalue="Application.LightingTest" />
-        <item index="2" class="java.lang.String" itemvalue="Application.CollisionPrototype" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.testConnectors" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.testConnectors.addTriggerToNonExistingGizmo" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.testAddGizmo" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.testAddGizmo.testAddGizmoNaming" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.testAbsorber" />
+        <item index="3" class="java.lang.String" itemvalue="Application.Main" />
+        <item index="4" class="java.lang.String" itemvalue="Application.LightingTest" />
       </list>
     </recent_temporary>
   </component>
@@ -776,30 +776,37 @@
       <option name="project" value="LOCAL" />
       <updated>1521405690881</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Fixed the error messages so they now appear for intersecting objects">
+      <created>1521407250197</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1521407250197</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="testAddGizmo - 2018.03.02 at 15h 13m 53s.xml">
+    <history-entry file="testAbsorber - 2018.03.18 at 21h 18m 40s.xml">
+      <configuration name="testAbsorber" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="testAddGizmo - 2018.03.18 at 21h 18m 49s.xml">
       <configuration name="testAddGizmo" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="testConnectors - 2018.03.08 at 14h 04m 48s.xml">
-      <configuration name="testConnectors" configurationId="JUnit" />
+    <history-entry file="testAddGizmo - 2018.03.18 at 21h 31m 52s.xml">
+      <configuration name="testAddGizmo" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="testConnectors - 2018.03.08 at 14h 13m 10s.xml">
-      <configuration name="testConnectors" configurationId="JUnit" />
+    <history-entry file="testAddGizmo - 2018.03.18 at 21h 32m 08s.xml">
+      <configuration name="testAddGizmo" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="testConnectors_addTriggerToNonExistingGizmo - 2018.03.08 at 14h 09m 56s.xml">
-      <configuration name="testConnectors.addTriggerToNonExistingGizmo" configurationId="JUnit" />
+    <history-entry file="testAddGizmo - 2018.03.18 at 21h 32m 56s.xml">
+      <configuration name="testAddGizmo" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="testConnectors_addTriggerToNonExistingGizmo - 2018.03.08 at 14h 12m 59s.xml">
-      <configuration name="testConnectors.addTriggerToNonExistingGizmo" configurationId="JUnit" />
+    <history-entry file="testAddGizmo_testAddGizmoNaming - 2018.03.18 at 21h 31m 56s.xml">
+      <configuration name="testAddGizmo.testAddGizmoNaming" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="testMoveGizmo - 2018.03.02 at 15h 14m 05s.xml">
-      <configuration name="testMoveGizmo" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="testMoveGizmo - 2018.03.08 at 12h 36m 07s.xml">
-      <configuration name="testMoveGizmo" configurationId="JUnit" />
+    <history-entry file="testAddGizmo_testAddGizmoNaming - 2018.03.18 at 21h 32m 04s.xml">
+      <configuration name="testAddGizmo.testAddGizmoNaming" configurationId="JUnit" />
     </history-entry>
     <history-entry file="testRotateGizmo - 2018.03.02 at 15h 14m 10s.xml">
       <configuration name="testRotateGizmo" configurationId="JUnit" />
@@ -812,7 +819,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="130826000" />
+    <option name="totallyTimeSpent" value="132226000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -835,7 +842,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25108695" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25108695" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32999164" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -901,7 +908,8 @@
     <MESSAGE value="Merge branch 'refactorization' of https://gitlab.cis.strath.ac.uk/mhb15157/cs308-gizmoball into refactorization&#10;&#10;# Conflicts:&#10;#&#9;src/model/GizmoballModel.java" />
     <MESSAGE value="Added a list of all accepted keycode names as a txt file, for reference" />
     <MESSAGE value="Fixed an issue where board would clear things that are loaded in after clearing the current board" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed an issue where board would clear things that are loaded in after clearing the current board" />
+    <MESSAGE value="Fixed the error messages so they now appear for intersecting objects" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed the error messages so they now appear for intersecting objects" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -910,20 +918,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/view/GlobalLighting.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="54" lean-forward="false" selection-start-line="22" selection-start-column="54" selection-end-line="22" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/css/styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="21" lean-forward="false" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/BoardView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
@@ -1275,8 +1269,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/BuildController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1415">
+        <state relative-caret-position="1109">
           <caret line="109" column="138" lean-forward="false" selection-start-line="109" selection-start-column="138" selection-end-line="109" selection-end-column="138" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/testAbsorber.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/testAddGizmo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="61" column="36" lean-forward="true" selection-start-line="61" selection-start-column="36" selection-end-line="61" selection-end-column="36" />
           <folding />
         </state>
       </provider>
