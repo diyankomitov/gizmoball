@@ -151,9 +151,11 @@ public class LoadHandler implements EventHandler<ActionEvent> {
             }
             if(errorMessages.equals("")) {
                 infoLabel.setText("Board loaded successfully.");
+                BoardState.setSavedBoard(true);
             }
             else {
                 infoLabel.setText(errorMessages);
+                BoardState.setSavedBoard(true);
             }
         } catch (FileNotFoundException e) {
             infoLabel.setText("Error: No file found.");
