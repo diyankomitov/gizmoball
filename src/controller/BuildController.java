@@ -1,8 +1,11 @@
 package controller;
 
 import controller.handlers.boardhandlers.*;
+import controller.handlers.buildhandlers.ChangeGravityHandler;
 import controller.handlers.generalhandlers.DoNothingHandler;
 import controller.handlers.generalhandlers.SwitchModeHandler;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -24,9 +27,13 @@ public class BuildController {
     @FXML
     private Button toggleGrid;
     @FXML
-    private Slider frictionSlider;
+    private Slider frictionMuSlider;
     @FXML
-    private TextField frictionField;
+    private TextField frictionMuField;
+    @FXML
+    private Slider frictionMu2Slider;
+    @FXML
+    private TextField frictionMu2Field;
     @FXML
     private Slider gravitySlider;
     @FXML
@@ -85,7 +92,9 @@ public class BuildController {
 
         ballSpeedField.textProperty().bindBidirectional(ballSpeedSlider.valueProperty(), new NumberStringConverter());
         gravityField.textProperty().bindBidirectional(gravitySlider.valueProperty(), new NumberStringConverter());
-        frictionField.textProperty().bindBidirectional(frictionSlider.valueProperty(), new NumberStringConverter());
+        gravityField.textProperty().addListener(new ChangeGravityHandler(model));
+        frictionMuField.textProperty().bindBidirectional(frictionMuSlider.valueProperty(), new NumberStringConverter());
+        frictionMu2Field.textProperty().bindBidirectional(frictionMu2Slider.valueProperty(), new NumberStringConverter());
 
         setupHandlers();
     }

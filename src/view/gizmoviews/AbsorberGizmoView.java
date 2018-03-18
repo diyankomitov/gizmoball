@@ -4,6 +4,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import model.board.gizmos.AbsorberGizmo;
 import model.board.gizmos.Gizmo;
+import view.GlobalLighting;
 
 import static util.Constants.ONE_L_IN_PIXELS;
 
@@ -29,8 +30,9 @@ public class AbsorberGizmoView extends GizmoViewContainer{
 
 
         rectangle = new Rectangle(width, height);
-        rectangle.setFill(Color.PURPLE); //TODO: move elsewhere
+        rectangle.getStyleClass().add("absorberGizmo");
         this.getChildren().add(rectangle);
+
     }
 
     public AbsorberGizmoView() {

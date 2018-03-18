@@ -1,6 +1,7 @@
 package util;
 
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import model.board.gizmos.Gizmo;
 
 import java.util.*;
@@ -17,8 +18,8 @@ public class Triggers {
                 gizmoTriggers.put(trigger, new HashSet<>());
             }
             gizmoTriggers.get(trigger).add(triggered);
+            BoardState.add("Connect " + trigger.getName() + " " + triggered.getName());
         }
-
         printAllTriggers();
     }
 
@@ -28,6 +29,16 @@ public class Triggers {
                 keyTriggers.put(trigger, new HashSet<>());
             }
             keyTriggers.get(trigger).add(triggered);
+
+            String type = null;
+            if (trigger.getType() == KeyEvent.KEY_PRESSED) {
+                type = "up";
+            }
+            else if (trigger.getType() == KeyEvent.KEY_RELEASED) {
+                type = "down";
+            }
+
+            BoardState.add("KeyConnect key " + "\"" + trigger.getCode().getName() + "\" " + type + " " + triggered.getName());
         }
         printAllTriggers();
     }

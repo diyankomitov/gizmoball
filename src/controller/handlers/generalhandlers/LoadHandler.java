@@ -8,9 +8,12 @@ import controller.handlers.boardhandlers.AddHandler;
 import controller.handlers.boardhandlers.ClearBoardHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -19,11 +22,16 @@ import model.board.BoardObjectType;
 import model.GizmoballModel;
 import model.board.gizmos.Gizmo;
 import util.BoardState;
+import util.KeyPress;
+import util.Triggers;
 import view.gizmoviews.TriangleGizmoView;
 
 import java.io.*;
+import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class LoadHandler implements EventHandler<ActionEvent> {
     private Stage stage;
@@ -275,9 +283,64 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                 }
 
                 break;
+            case "Move":
+                try {
+                    x = Double.parseDouble(string[2]);
+                    y = Double.parseDouble(string[3]);
+
+                    if (!model.moveBall(string[1], x, y)) {
+                        if (!model.moveGizmo(string[1], x , y)) {
+                            errorHandler(String.join(" ", string));
+                        }
+                    }
+                } catch (Exception e) {
+                    System.out.println("Something has gone wrong...");
+                    errorHandler(String.join(" ", string));
+                }
+                break;
             case "KeyConnect":
                 try{
-                    //TODO: load in a key connect
+
+                    if (!string[1].equals("key")) {
+                        errorHandler(String.join(" ", string));
+                        break;
+                    }
+
+                    String toMatch = String.join(" ", string);
+                    String keyName = toMatch.split("\"")[1];
+                    int keyLength = keyName.split(" ").length;
+
+                    KeyCode keyCode = KeyCode.getKeyCode(keyName);
+
+                    if (keyCode == null) {
+                        errorHandler(String.join(" ", string));
+                        break;
+                    }
+
+                    String modifier = string[2+keyLength];
+                    EventType<KeyEvent> eventType = null;
+
+
+                    if (modifier.equals("up")) {
+                        eventType = KeyEvent.KEY_RELEASED;
+                    }
+                    else if (modifier.equals("down")) {
+                        eventType = KeyEvent.KEY_PRESSED;
+                    }
+                    else {
+                        errorHandler(String.join(" ", string));
+                        break;
+                    }
+
+                    Gizmo gizmo = model.getGizmo(string[3+keyLength]);
+
+                    if (gizmo == null) {
+                        errorHandler(String.join(" ", string));
+                        break;
+                    }
+
+                    Triggers.addTrigger(new KeyPress(keyCode, eventType), gizmo);
+                //TODO: error message
                 } catch(Exception e){
                     System.out.println("Something has gone wrong...");
                     errorHandler(String.join(" ", string));
@@ -286,15 +349,34 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                 break;
             case "Connect":
                 try{
-
-                    //TODO: load in connect
+                    Triggers.addTrigger(model.getGizmo(string[1]), model.getGizmo(string[2]));
+                    //TODO: error check
                 } catch(Exception e) {
                     System.out.println("Something has gone wrong...");
                     errorHandler(String.join(" ", string));
                 }
                 break;
+            case "Gravity":
+                try {
+                    double g = Double.parseDouble(string[1]);
+                    model.setGravity(g);
 
-            //TODO add key connects
+                } catch (Exception e) {
+                    System.out.println("Something has gone wrong...");
+                    errorHandler(String.join(" ", string));
+                }
+                break;
+            case "Friction":
+                try {
+                    double mu = Double.parseDouble(string[1]);
+                    double mu2 = Double.parseDouble(string[2]);
+                    model.setFriction(mu, mu2);
+
+                } catch (Exception e) {
+                    System.out.println("Something has gone wrong...");
+                    errorHandler(String.join(" ", string));
+                }
+                break;
             default:
                 errorHandler(String.join(" ", string));
                 break;

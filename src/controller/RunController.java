@@ -1,12 +1,12 @@
 package controller;
 
 import controller.handlers.generalhandlers.DoNothingHandler;
+import controller.handlers.generalhandlers.LoadHandler;
 import controller.handlers.generalhandlers.SwitchModeHandler;
 import controller.handlers.runhandlers.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
@@ -42,13 +42,15 @@ public class RunController {
     private SwitchModeHandler switchToBuild;
     private Stage stage;
     private TriggerHandler triggerHandler;
+    private LoadHandler loadHandler;
 
-    public void setup(GizmoballModel model, BoardController boardController, SwitchModeHandler switchToBuild, Stage stage) {
+    public void setup(GizmoballModel model, BoardController boardController, SwitchModeHandler switchToBuild, Stage stage, LoadHandler loadHandler) {
         this.model = model;
         this.boardController = boardController;
         this.doNothingHandler = new DoNothingHandler();
         this.switchToBuild = switchToBuild;
         this.stage = stage;
+        this.loadHandler = loadHandler;
 
         triggerHandler = new TriggerHandler();
 
@@ -60,11 +62,27 @@ public class RunController {
         );
         this.timeline.setCycleCount(Timeline.INDEFINITE); //keeps running until stop is called
 
-        startButton.setOnAction(new StartLoopHandler(timeline, boardController.getBoardView()));
-        stopButton.setOnAction(new StopLoopHandler(timeline));
-        resetButton.setOnAction(new ResetGameHandler(model));
+        stopButton.setDisable(true);
+
+        startButton.setOnAction(event -> {
+            GizmoballController.disable.set(true);
+            stopButton.requestFocus();
+            new StartLoopHandler(timeline, boardController.getBoardView()).handle(event);
+        });
+        stopButton.setOnAction(event -> {
+            GizmoballController.disable.set(false);
+            startButton.requestFocus();
+            new StopLoopHandler(timeline).handle(event);
+        });
+        resetButton.setOnAction(new ResetGameHandler(model, loadHandler));
         tickButton.setOnAction(new TickLoopHandler(model));
         switchButton.setOnAction(this.switchToBuild);
+
+        startButton.disableProperty().bind(GizmoballController.disable);
+        stopButton.disableProperty().bind(GizmoballController.disable.not());
+        resetButton.disableProperty().bind(GizmoballController.disable);
+        tickButton.disableProperty().bind(GizmoballController.disable);
+        switchButton.disableProperty().bind(GizmoballController.disable);
     }
 
     public void setDoNothing(boolean doNothing) {

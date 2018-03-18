@@ -1,5 +1,7 @@
 package view.gizmoviews;
 
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import model.board.gizmos.Gizmo;
@@ -16,14 +18,13 @@ public class SquareGizmoView extends GizmoViewContainer {
 
         double side = ONE_L_IN_PIXELS;
         square = new Rectangle(side, side);
-        square.setFill(Color.RED); //TODO: put in css
+        square.getStyleClass().add("squareGizmo");
 
         this.getChildren().add(square);
     }
 
     public SquareGizmoView() {
         this(null);
-        square.setStyle("-fx-stroke: red; -fx-stroke-type: inside; -fx-stroke-width: 2");
     }
 
 //    public void toggle() {

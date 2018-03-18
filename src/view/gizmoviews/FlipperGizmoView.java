@@ -1,11 +1,14 @@
 package view.gizmoviews;
 
 import javafx.beans.NamedArg;
+import javafx.scene.effect.Light;
+import javafx.scene.effect.Lighting;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 import model.board.BoardObjectType;
 import model.board.gizmos.FlipperGizmo;
 import model.board.gizmos.Gizmo;
+import view.GlobalLighting;
 
 import static javafx.scene.paint.Color.ORANGE;
 import static util.Constants.ONE_L_IN_PIXELS;
@@ -28,7 +31,7 @@ public class FlipperGizmoView extends GizmoViewContainer{
         rectangle = new Rectangle(width, length);
         rectangle.setArcWidth(width);
         rectangle.setArcHeight(width);
-        rectangle.setFill(ORANGE);
+        rectangle.getStyleClass().add("flipperGizmo");
 
         if (flipperGizmo.getType() == BoardObjectType.RIGHT_FLIPPER) {
             rectangle.setX(length-width);
@@ -38,7 +41,7 @@ public class FlipperGizmoView extends GizmoViewContainer{
 
         setPivots();
         flip = new Rotate(0, pivotX, pivotY);
-        this.getTransforms().add(flip);
+        rectangle.getTransforms().add(flip);
     }
 
     private void setPivots() {
@@ -55,17 +58,13 @@ public class FlipperGizmoView extends GizmoViewContainer{
         Rectangle rectangle = new Rectangle(width, length);
         rectangle.setArcWidth(width);
         rectangle.setArcHeight(width);
-        rectangle.setFill(ORANGE);
+        rectangle.getStyleClass().add("flipperGizmo");
 
         if (type == BoardObjectType.RIGHT_FLIPPER) {
             rectangle.setX(length-width);
         }
 
         this.getChildren().add(rectangle);
-
-
-//        this(null);
-//        square.setStyle("-fx-stroke: red; -fx-stroke-type: inside; -fx-stroke-width: 2");
     }
 
     @Override
@@ -74,13 +73,18 @@ public class FlipperGizmoView extends GizmoViewContainer{
         if(rectangle != null) {
             FlipperGizmo flipper = (FlipperGizmo) gizmo;
             rectangle.setX((flipper.getxWithOffset() - flipper.getX()) *ONE_L_IN_PIXELS);
+            System.out.println(rectangle.getX());
             rectangle.setY((flipper.getyWithOffset() - flipper.getY()) *ONE_L_IN_PIXELS);
+            System.out.println(rectangle.getY());
         }
         if (flip != null) {
             setPivots();
             flip.setPivotX(pivotX);
             flip.setPivotY(pivotY);
             flip.setAngle(((FlipperGizmo)gizmo).getOldAngle());
+            System.out.println("flip angle: " + flip.getAngle());
+//            rectangle.setStyle(null);
+//            rectangle.setStyle("-fx-fill: radial-gradient(focus-angle " +  0 + "deg, focus-distance 10%, center 0 0, radius 100%, #f9ffef, #000000);");
         }
     }
 

@@ -2,8 +2,10 @@ package controller.handlers.boardhandlers;
 
 import controller.BoardController;
 import javafx.event.Event;
+import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import model.GizmoballModel;
+import model.board.Ball;
 import model.board.BoardObjectType;
 import view.gizmoviews.AbsorberGizmoView;
 
@@ -15,6 +17,7 @@ public class MoveHandler implements BoardHandler {
     boolean firstClick;
     private double firstx;
     private double firsty;
+    private boolean gizmo;
 
     public MoveHandler(GizmoballModel model) {
         this.model = model;
@@ -26,20 +29,41 @@ public class MoveHandler implements BoardHandler {
 
         if (event.getEventType() == MouseEvent.MOUSE_CLICKED) {
             MouseEvent mouseEvent = (MouseEvent) event;
-            double x = Math.floor(mouseEvent.getX() / ONE_L_IN_PIXELS);
-            double y = Math.floor(mouseEvent.getY() / ONE_L_IN_PIXELS);
+            double mouseX = mouseEvent.getX()/ONE_L_IN_PIXELS;
+            double mouseY = mouseEvent.getY()/ONE_L_IN_PIXELS;
 
+            Node clicked = ((Node)event.getTarget()).getParent();
+            double nodeX = clicked.getTranslateX()/ONE_L_IN_PIXELS;
+            double nodeY = clicked.getTranslateY()/ONE_L_IN_PIXELS;
 
             if (!firstClick) {
-                firstClick = model.getGizmo(x, y) != null;  //TODO: check for move ball
 
-                System.out.println(x + " " + y);
-                firstx = x;
-                firsty = y;
+                Ball ball = model.getBall(nodeX, nodeY);
+
+                if (ball != null) {
+                    firstClick = true;
+                    gizmo = false;
+                    firstx = nodeX;
+                    firsty = nodeY;
+                }
+                else {
+                    gizmo = true;
+                    firstClick = model.getGizmo(Math.floor(nodeX), Math.floor(nodeY)) != null;
+                    firstx = Math.floor(nodeX);
+                    firsty = Math.floor(nodeY);
+                }
+
+
+                System.out.println(firstx + " " + firsty);
             } else {
                 firstClick = false;
-                System.out.println(x + " " + y);
-                model.moveGizmo(firstx, firsty, x, y);
+                if (gizmo) {
+                    System.out.println(firstx + " " + firsty + " " + Math.floor(mouseX)+ " " + Math.floor(mouseY));
+                    model.moveGizmo(firstx, firsty, Math.floor(mouseX), Math.floor(mouseY));
+                }
+                else {
+                    model.moveBall(firstx, firsty, mouseX, mouseY);
+                }
             }
 
         }

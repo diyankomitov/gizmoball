@@ -23,6 +23,10 @@ public class SaveHandler implements EventHandler<ActionEvent> {
         this.stage = stage;
     }
 
+    public SaveHandler() {
+
+    }
+
     @Override
     public void handle(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -56,7 +60,7 @@ public class SaveHandler implements EventHandler<ActionEvent> {
 
         } catch (IOException e) {
             controller.setInformation("Error when trying to save game.");
-            System.out.println("Error when trying to save game. :(");
+            System.err.println("Error when trying to save game. :(" + e);
         }
 
     }

@@ -8,9 +8,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HorizontalDirection;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.File;
+import java.io.IOException;
+
+import static controller.handlers.runhandlers.ResetGameHandler.SAVE_STATE;
 import static javafx.geometry.HorizontalDirection.*;
 
 /**
@@ -26,6 +29,8 @@ public class SwitchModeHandler implements EventHandler<ActionEvent>{
     private final TranslateTransition moveFrom;
     private final TranslateTransition moveTo;
     private final ParallelTransition switchTransition;
+    private final SaveHandler saveHandler;
+    private final LoadHandler loadHandler;
 
     /**
      * Constructor for the SwitchModeHandler
@@ -34,10 +39,12 @@ public class SwitchModeHandler implements EventHandler<ActionEvent>{
      * @param runController
      * @param direction the direction of the animation
      */
-    public SwitchModeHandler(BuildController buildController, RunController runController, HorizontalDirection direction) {
+    public SwitchModeHandler(BuildController buildController, RunController runController, HorizontalDirection direction, LoadHandler loadHandler, SaveHandler saveHandler) {
         this.buildController = buildController;
         this.runController = runController;
         this.direction = direction;
+        this.saveHandler = saveHandler;
+        this.loadHandler = loadHandler;
 
         if (direction == RIGHT) {
             from = buildController.getRoot();
@@ -62,11 +69,16 @@ public class SwitchModeHandler implements EventHandler<ActionEvent>{
             buildController.setDoNothing(true);
             runController.setDoNothing(false);
             runController.toggleBoard();
+
+           saveHandler.saveGame(SAVE_STATE);
+
         }
         else {
             buildController.setDoNothing(false);
             runController.setDoNothing(true);
             buildController.toggleBoard();
+
+            loadHandler.loadGame(SAVE_STATE);
         }
 
 

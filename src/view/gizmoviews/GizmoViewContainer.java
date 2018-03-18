@@ -3,13 +3,16 @@ package view.gizmoviews;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Shape;
 import model.board.gizmos.Gizmo;
+import view.GlobalLighting;
 
 import static util.Constants.ONE_L_IN_PIXELS;
 
 public class GizmoViewContainer extends Pane implements GizmoView{
 
     protected final Gizmo gizmo;
+    protected Shape shape;
 
     GizmoViewContainer(Gizmo gizmo) {
         this.gizmo = gizmo;
@@ -43,5 +46,6 @@ public class GizmoViewContainer extends Pane implements GizmoView{
     @Override
     public void update() {
         setCoordinates(gizmo.getX() * ONE_L_IN_PIXELS, gizmo.getY() * ONE_L_IN_PIXELS);
+        System.out.println(this.getTranslateX() + " translate " + this.getTranslateY());
     }
 }

@@ -234,6 +234,8 @@ public class FlipperGizmo implements Gizmo{
     public void setCoordinates(double x, double y) {
         this.x = x;
         this.y = y;
+        this.xWithOffset = x + offset;
+        this.yWithOffset = y;
         notifyObservers();
     }
 

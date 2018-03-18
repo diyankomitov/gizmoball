@@ -77,10 +77,15 @@
                 </HBox>
             </VBox>
             <VBox>
-                <Label text="Friction"/>
+                <Label text="MU"/>
                 <HBox>
-                    <Slider fx:id="frictionSlider" majorTickUnit="1" minorTickCount="10" snapToTicks="true" showTickLabels="true"/>
-                    <TextField fx:id="frictionField" maxWidth="50"/>
+                    <Slider fx:id="frictionMuSlider" majorTickUnit="1" minorTickCount="10" snapToTicks="true" showTickLabels="true"/>
+                    <TextField fx:id="frictionMuField" maxWidth="50"/>
+                </HBox>
+                <Label text="MU2"/>
+                <HBox>
+                    <Slider fx:id="frictionMu2Slider" majorTickUnit="1" minorTickCount="10" snapToTicks="true" showTickLabels="true"/>
+                    <TextField fx:id="frictionMu2Field" maxWidth="50"/>
                 </HBox>
             </VBox>
         </VBox>

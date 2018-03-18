@@ -24,12 +24,10 @@ public class BallView extends Group implements Observer{
         this.ballModel = ballModel;
         double radius = ONE_L_IN_PIXELS/4;
         ball = new Circle(radius);
-        ball.setFill(Color.NAVY); //TODO put in css
         this.getChildren().add(ball);
-
+        ball.getStyleClass().add("ball");
         this.setTranslateX(x);
         this.setTranslateY(y);
-
         ballModel.subscribe(this);
     }
 
@@ -38,9 +36,9 @@ public class BallView extends Group implements Observer{
         this.y = 0;
         this.ballModel = null;
         double radius = ONE_L_IN_PIXELS/4;
-        Circle ball = new Circle(radius);
-        ball.setFill(Color.CYAN); //TODO put in css
+        ball = new Circle(radius);
         this.getChildren().add(ball);
+        ball.getStyleClass().add("ball");
     }
 
     @Override

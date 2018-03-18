@@ -62,7 +62,18 @@ public class Ball implements BoardObject, Observable{
     }
 
     public void setVelocity(Vect velocity) {
-        this.velocity = velocity;
+
+        double velX = velocity.x();
+        double signX = Math.signum(velX);
+        double velY = velocity.y();
+        double signY = Math.signum(velY);
+
+        velX = Math.max(Math.abs(velX), 0.01);
+        velX = Math.min(Math.abs(velX), 200);
+        velY = Math.max(Math.abs(velY), 0.01);
+        velY = Math.min(Math.abs(velY), 200);
+
+        this.velocity = new Vect(velX*signX, velY*signY);
     }
 
     public void setPotentialVelocity(Vect potentialVelocity) {

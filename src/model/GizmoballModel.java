@@ -407,15 +407,13 @@ public class GizmoballModel{
 
     public boolean removeBall(double x, double y) {
         for(Ball b: board.getBalls()) {
-            double radius = b.getDiameter()/2;
-            if (Math.pow(x - b.getX(),2) + Math.pow(y - b.getY(), 2) < Math.pow(radius, 2)){
-                Ball ball = getBall(b.getX(), b.getY());
-                if(ball!=null) {
-                    BoardState.add("Delete " + ball.getName());
-                    board.removeBall(ball);
-                    return true;
-                }
+            Ball ball = getBall(x, y);
+            if(ball!=null) {
+                BoardState.add("Delete " + ball.getName());
+                board.removeBall(ball);
+                return true;
             }
+
         }
         return false;
     }
@@ -575,10 +573,12 @@ public class GizmoballModel{
 
     public void setGravity(double yVelocity) { //TODO: probably check upper and lower bounds
         this.gravity = new Vect(0, yVelocity);
+        BoardState.add("Gravity " + yVelocity);
     }
     public void setFriction(double mu, double mu2) { //TODO: probably check upper and lower bounds
         this.frictionMU = mu;
         this.frictionMU2 = mu2;
+        BoardState.add("Friction " + mu + " " + mu2);
     }
 
     public List<Gizmo> getGizmos(){ //TODO: Remove? Maybe return a copy
@@ -621,7 +621,8 @@ public class GizmoballModel{
 
     public Ball getBall(double x, double y) {
         for(Ball ball : board.getBalls()) {
-            if(ball.getX() == x && ball.getY() == y){
+            double radius = ball.getDiameter()/2;
+            if (Math.pow(x - ball.getX(),2) + Math.pow(y - ball.getY(), 2) < Math.pow(radius, 2)){
                 return ball;
             }
         }

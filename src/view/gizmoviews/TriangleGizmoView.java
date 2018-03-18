@@ -9,12 +9,14 @@ import static util.Constants.ONE_L_IN_PIXELS;
 
 public class TriangleGizmoView extends GizmoViewContainer{
 
+    private final Polygon triangle;
+
     public TriangleGizmoView(Gizmo triangleGizmo) {
         super(triangleGizmo);
 
         double side = ONE_L_IN_PIXELS;
-        Polygon triangle = new Polygon(0.0, 0.0, side, 0.0, 0.0, side);
-        triangle.setFill(Color.GREEN); //TODO put in css
+        triangle = new Polygon(0.0, 0.0, side, 0.0, 0.0, side);
+        triangle.getStyleClass().add("triangleGizmo");
         if (gizmo != null) {
             rotate(gizmo.getAngle());
         }
@@ -24,16 +26,16 @@ public class TriangleGizmoView extends GizmoViewContainer{
 
     public TriangleGizmoView() {
         this(null);
-//        square.setStyle("-fx-stroke: red; -fx-stroke-type: inside; -fx-stroke-width: 2");
     }
 
     public void rotate(double angle){
-        this.setRotate(angle);
+        triangle.setRotate(angle);
     }
 
     @Override
     public void update() {
         super.update();
+        if (triangle != null)
         rotate(gizmo.getAngle());
     }
 }

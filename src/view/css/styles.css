@@ -1,15 +1,65 @@
-#board {
-    -fx-background-color: #e6e6e6;
+.board {
+    -fx-background-color: linear-gradient(to bottom right, #e6fffd, #e6fffc);
     -fx-border-color: black;
-}
-
-.boardCell {
-    /*-fx-background-insets: 0, 0 0 1 1 ;*/
+    -fx-border-insets: 1;
 }
 
 .noGrid {
-    -fx-border-color: #e6e6e6;
+    -fx-border-color: none;
 }
 .grid {
     -fx-border-color: black;
+}
+
+.squareGizmo {
+    -fx-fill: red;
+    /*-fx-fill: radial-gradient(center 30% 30%, radius 100%, #ff8c8c, red);*/
+    /*-fx-fill: red;*/
+    /*-fx-stroke: red;*/
+    /*-fx-stroke-type: inside;*/
+    /*-fx-stroke-width: 2;*/
+}
+.squareGizmo:focused {
+    -fx-fill: radial-gradient(center 30% 30%, radius 100%, red, #ff8c8c);
+}
+
+.triangleGizmo {
+    -fx-fill: #00ff00;
+    /*-fx-fill: radial-gradient(center 30% 30%, radius 100%, #8cff8c, #00ff00);*/
+}
+.triangleGizmo.selected {
+    -fx-fill: derive( green , -50%);
+}
+
+.circleGizmo {
+    -fx-fill: deepskyBlue;
+    /*-fx-fill: radial-gradient(center 30% 30%, radius 100%, #8ce2ff, deepskyblue);*/
+}
+.flipperGizmo {
+    -fx-fill: orange;
+    /*-fx-fill: radial-gradient(center 30% 30%, radius 100%, #ffd38c, orange);*/
+
+}
+.flipperGizmo.selected {
+    -fx-fill: derive( orange , -50%);
+}
+.absorberGizmo {
+    -fx-fill: #ff00ff;
+    /*-fx-fill: radial-gradient(center 30% 30%, radius 100%, #ff8cff, #ff00ff);*/
+ }
+.absorberGizmo.selected {
+    -fx-fill: derive( purple , -50%);
+
+}
+.ball {
+    /*-fx-fill: radial-gradient(radius 100%, #fff28c, #ffdb00);*/
+    -fx-fill: #ffdb00;
+    /*-fx-stroke: #ffdb00;*/
+    /*-fx-stroke-type: inside;*/
+    /*-fx-stroke-width: 2;*/
+    /*-fx-stroke-line-join: round;*/
+    /*-fx-stroke-line-cap: round;*/
+ }
+.ball.selected {
+    -fx-fill: derive( #ffdb00 , -50%);
 }
