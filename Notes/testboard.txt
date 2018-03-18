@@ -34,14 +34,14 @@ Circle C174 17 4
 Circle C183 18 3
 
 LeftFlipper LF92 9 2
-KeyConnect key 32 down LF92
-KeyConnect key 32 up LF92
+KeyConnect key "Left" down LF92
+KeyConnect key "Left" up LF92
 RightFlipper RF112 11 2
-KeyConnect key 32 down RF112
-KeyConnect key 32 up RF112
+KeyConnect key "D" down RF112
+KeyConnect key "D" up RF112
 LeftFlipper LF87 8 7
-KeyConnect key 81 down LF87
-KeyConnect key 81 up LF87
+KeyConnect key "A" down LF87
+KeyConnect key "A" up LF87
 Connect C43 LF87
 Connect C54 LF87
 Connect C65 LF87
@@ -51,8 +51,8 @@ Connect C1110 LF87
 Connect C139 LF87
 
 RightFlipper RF137 13 7
-KeyConnect key 87 down RF137
-KeyConnect key 87 up RF137
+KeyConnect key "Right" down RF137
+KeyConnect key "Right" up RF137
 Connect C99 RF137
 Connect C1110 RF137
 Connect C129 RF137
@@ -61,6 +61,6 @@ Connect C165 RF137
 Connect C174 RF137
 Connect C183 RF137
 Absorber A 0 19 20 20
-KeyConnect key 127 down A
+KeyConnect key "Space" down A
 Connect A A
 Ball B 1.0 11.0 0.0 0.0

@@ -332,7 +332,7 @@ public class GizmoballModel{
             board.removeBall(ball);
             return false;
         }
-        BoardState.add("Add " + ballName + " " + x + " " + y + " " + xv + " " + yv);
+        BoardState.add("Ball " + ballName + " " + x + " " + y + " " + xv + " " + yv);
         return true;
     }
 
