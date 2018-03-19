@@ -435,6 +435,7 @@ public class GizmoballModel{
 
     public void setGravity(double yVelocity) { //TODO: probably check upper and lower bounds
         this.gravity = new Vect(0, yVelocity);
+        System.out.println("gravity changed: " + this.gravity);
         BoardState.add("Gravity " + yVelocity);
     }
 
@@ -443,6 +444,15 @@ public class GizmoballModel{
         this.frictionMU2 = mu2;
         BoardState.add("Friction " + mu + " " + mu2);
     }
+
+    public void setFrictionMU(double mu) {
+        setFriction(mu, frictionMU2);
+    }
+    public void setFrictionMU2(double mu2) {
+        setFriction(frictionMU, mu2);
+    }
+
+
     public List<Gizmo> getGizmos(){ //TODO: Remove? Maybe return a copy
         return board.getGizmos();
     }

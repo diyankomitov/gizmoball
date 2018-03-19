@@ -1,25 +1,33 @@
 package controller;
 
 import controller.handlers.boardhandlers.*;
+import controller.handlers.buildhandlers.ChangeFrictionMu2Handler;
+import controller.handlers.buildhandlers.ChangeFrictionMuHandler;
 import controller.handlers.buildhandlers.ChangeGravityHandler;
 import controller.handlers.generalhandlers.DoNothingHandler;
 import controller.handlers.generalhandlers.SwitchModeHandler;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
 import model.GizmoballModel;
 import view.*;
 import view.gizmoviews.*;
 
+import javax.swing.event.DocumentEvent;
+import java.util.regex.Pattern;
+
 import static model.board.BoardObjectType.*;
 
 public class BuildController {
+    @FXML
+    public Slider ballYVelocitySlider;
+    @FXML
+    public TextField ballYVelocityField;
     @FXML
     private BorderPane buildRoot;
     @FXML
@@ -39,9 +47,9 @@ public class BuildController {
     @FXML
     private TextField gravityField;
     @FXML
-    private Slider ballSpeedSlider;
+    private Slider ballXVelocitySlider;
     @FXML
-    private TextField ballSpeedField;
+    private TextField ballXVelocityField;
     @FXML
     private SquareGizmoView squareButton;
     @FXML
@@ -90,13 +98,52 @@ public class BuildController {
 
         switchButton.setOnAction(this.switchToPlay);
 
-        ballSpeedField.textProperty().bindBidirectional(ballSpeedSlider.valueProperty(), new NumberStringConverter());
+        ballXVelocityField.setTextFormatter(getTextFormatter());
+        ballYVelocityField.setTextFormatter(getTextFormatter());
+        gravityField.setTextFormatter(getTextFormatter());
+        frictionMuField.setTextFormatter(getTextFormatter());
+        frictionMu2Field.setTextFormatter(getTextFormatter());
+
+        ballXVelocityField.textProperty().bindBidirectional(ballXVelocitySlider.valueProperty(), new NumberStringConverter());
+        ballYVelocityField.textProperty().bindBidirectional(ballYVelocitySlider.valueProperty(), new NumberStringConverter());
         gravityField.textProperty().bindBidirectional(gravitySlider.valueProperty(), new NumberStringConverter());
-        gravityField.textProperty().addListener(new ChangeGravityHandler(model));
         frictionMuField.textProperty().bindBidirectional(frictionMuSlider.valueProperty(), new NumberStringConverter());
         frictionMu2Field.textProperty().bindBidirectional(frictionMu2Slider.valueProperty(), new NumberStringConverter());
 
+        gravityField.textProperty().addListener(new ChangeGravityHandler(model, gravityField));
+        frictionMuField.textProperty().addListener(new ChangeFrictionMuHandler(model, frictionMuField));
+        frictionMu2Field.textProperty().addListener(new ChangeFrictionMu2Handler(model, frictionMu2Field));
+
+
         setupHandlers();
+    }
+
+    private TextFormatter<Double> getTextFormatter() {
+        Pattern pattern = Pattern.compile("-?(([1-9][0-9]*)|0)?(\\.[0-9]*)?");
+
+        StringConverter<Double> stringConverter = new StringConverter<Double>() {
+            @Override
+            public String toString(Double object) {
+                return object == null ? "0.0" : Double.toString(object);
+            }
+
+            @Override
+            public Double fromString(String string) {
+                if (string == null) {
+                    return 0.0;
+                } else {
+                    string = string.trim();
+                    return string.length() < 1 ? 0.0 : Double.valueOf(string);
+                }
+            }
+        };
+
+        TextFormatter<Double> textFormatter = new TextFormatter<>(stringConverter, 0.0, change -> {
+            String newText = change.getControlNewText();
+            return pattern.matcher(newText).matches() ? change : null;
+        });
+
+        return textFormatter;
     }
 
     private void setupHandlers() {

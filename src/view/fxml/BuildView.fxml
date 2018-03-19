@@ -63,28 +63,33 @@
             </HBox>
 
             <VBox>
-                <Label text="Ball Speed"/>
+                <Label text="Ball X Velocity"/>
                 <HBox>
-                    <Slider fx:id="ballSpeedSlider" majorTickUnit="1" minorTickCount="10" snapToTicks="true" showTickLabels="true"/>
-                    <TextField fx:id="ballSpeedField" maxWidth="50"/>
+                    <Slider fx:id="ballXVelocitySlider" min="-200" max="200" showTickLabels="true"/>
+                    <TextField fx:id="ballXVelocityField" maxWidth="50"/>
+                </HBox>
+                <Label text="Ball Y Velocity"/>
+                <HBox>
+                    <Slider fx:id="ballYVelocitySlider" min="-200" max="200" showTickLabels="true"/>
+                    <TextField fx:id="ballYVelocityField" maxWidth="50"/>
                 </HBox>
             </VBox>
             <VBox>
                 <Label text="Gravity"/>
                 <HBox>
-                    <Slider fx:id="gravitySlider" majorTickUnit="1" minorTickCount="10" snapToTicks="true" showTickLabels="true"/>
+                    <Slider fx:id="gravitySlider" min="-1000" max="1000" showTickLabels="true"/>
                     <TextField fx:id="gravityField" maxWidth="50"/>
                 </HBox>
             </VBox>
             <VBox>
                 <Label text="MU"/>
                 <HBox>
-                    <Slider fx:id="frictionMuSlider" majorTickUnit="1" minorTickCount="10" snapToTicks="true" showTickLabels="true"/>
+                    <Slider fx:id="frictionMuSlider" max="1000" showTickLabels="true"/>
                     <TextField fx:id="frictionMuField" maxWidth="50"/>
                 </HBox>
                 <Label text="MU2"/>
                 <HBox>
-                    <Slider fx:id="frictionMu2Slider" majorTickUnit="1" minorTickCount="10" snapToTicks="true" showTickLabels="true"/>
+                    <Slider fx:id="frictionMu2Slider" max="1000" showTickLabels="true"/>
                     <TextField fx:id="frictionMu2Field" maxWidth="50"/>
                 </HBox>
             </VBox>
