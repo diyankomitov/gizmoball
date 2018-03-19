@@ -292,7 +292,7 @@ public class GizmoballModel{
                 return false;
         }
         if(isIntersecting(gizmo)) {
-           setMessage("Gizmo cannot be placed on top of another gizmo.");
+            setMessage("Gizmo cannot be placed on top of another gizmo.");
             return false;
         }
         board.addGizmo(gizmo);
@@ -387,9 +387,16 @@ public class GizmoballModel{
         Gizmo gizmo = getGizmo(x,y);
         if(gizmo != null) {
             gizmo.setCoordinates(newX, newY);
-            if (!isIntersecting(gizmo)) {
-                BoardState.add("Move " + gizmo.getName() + " " + newX + " " + newY);
-                return true;
+            if(!isOutside(gizmo)){
+                if (!isIntersecting(gizmo)) {
+                    BoardState.add("Move " + gizmo.getName() + " " + newX + " " + newY);
+                    return true;
+                } else {
+                    setMessage("Cannot move gizmo within another gizmo.");//TODO make this error work cos it just doesnt
+                }
+            } else {
+                System.out.println("You made it here");
+                setMessage("Cannot move a gizmo outside of the playable board."); //TODO This one too
             }
             gizmo.setCoordinates(x, y);
         }
@@ -524,6 +531,10 @@ public class GizmoballModel{
             }
         }
         return false;
+    }
+
+    private boolean isOutside(Gizmo gizmo){
+        return gizmo.getBoundingBox().isOutside();
     }
 
     private boolean ballVelocityIntersectionCheck(double x, double y, Ball ball){

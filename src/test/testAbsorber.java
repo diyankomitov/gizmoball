@@ -25,6 +25,12 @@ public class testAbsorber {
     }
 
     @Test
+    public void testMoveAbsorberInCorner(){
+        gizmoballModel.addAbsorber(1.0, 1.0, 3.0, 3.0, "a2");
+        assertFalse(gizmoballModel.moveGizmo("a2", 20, 20));
+    }
+
+    @Test
     public void testAddMultipleAbsorbers(){
         gizmoballModel.addAbsorber(1.0, 20.0, 3.0, 17.0, "A1");
         gizmoballModel.addAbsorber(5.0, 20.0, 8.0, 17.0, "A2");
