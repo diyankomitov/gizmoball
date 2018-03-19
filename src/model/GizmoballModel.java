@@ -29,10 +29,17 @@ public class GizmoballModel{
         board = new Board();
         details = new CollisionDetails();
         gizmoNames = new GizmoNames();
-        collisionEngine = new CollisionEngine(board, details);
     }
 
-    private void activateGizmoActions() {
+    public Board getBoard(){
+        return board;
+    }
+
+    public CollisionDetails getDetails() {
+        return details;
+    }
+
+    public void activateGizmoActions() {
 
         for (Gizmo gizmo : getGizmos()) {
 
@@ -244,24 +251,6 @@ public class GizmoballModel{
         gizmoNames.resetNames();
     }
 
-    public void setGravity(double yVelocity) { //TODO: probably check upper and lower bounds
-        this.gravity = new Vect(0, yVelocity);
-        System.out.println("gravity changed: " + this.gravity);
-        BoardState.add("Gravity " + yVelocity);
-    }
-
-    public void setFriction(double mu, double mu2) { //TODO: probably check upper and lower bounds
-        this.frictionMU = mu;
-        this.frictionMU2 = mu2;
-        BoardState.add("Friction " + mu + " " + mu2);
-    }
-
-    public void setFrictionMU(double mu) {
-        setFriction(mu, frictionMU2);
-    }
-    public void setFrictionMU2(double mu2) {
-        setFriction(frictionMU, mu2);
-    }
 
 
     public List<Gizmo> getGizmos(){ //TODO: Remove? Maybe return a copy

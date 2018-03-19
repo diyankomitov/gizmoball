@@ -3,14 +3,16 @@ package controller.handlers.buildhandlers;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TextField;
+import model.CollisionDetails;
+import model.CollisionEngine;
 import model.GizmoballModel;
 
 public class ChangeGravityHandler implements ChangeListener<String> {
-    private final GizmoballModel model;
+    private final CollisionEngine collisionEngine;
     private TextField textField;
 
-    public ChangeGravityHandler(GizmoballModel model, TextField textField) {
-        this.model = model;
+    public ChangeGravityHandler(CollisionEngine collisionEngine, TextField textField) {
+        this.collisionEngine = collisionEngine;
         this.textField = textField;
     }
 
@@ -26,6 +28,6 @@ public class ChangeGravityHandler implements ChangeListener<String> {
             textField.setText("-1000");
         }
 
-        model.setGravity(newDouble);
+        collisionEngine.setGravity(newDouble);
     }
 }

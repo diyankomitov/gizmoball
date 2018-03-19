@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b68b6b0d-8203-4a49-99bd-24ea82f7b4c1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/model/CollisionEngine.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/handlers/buildhandlers/ChangeGravityHandler.java" afterPath="$PROJECT_DIR$/src/controller/handlers/buildhandlers/ChangeGravityHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/CollisionEngine.java" afterPath="$PROJECT_DIR$/src/model/CollisionEngine.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/GizmoballModel.java" afterPath="$PROJECT_DIR$/src/model/GizmoballModel.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -16,12 +17,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GizmoballModel.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GizmoballModel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/GizmoballModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8505">
-              <caret line="345" column="0" lean-forward="true" selection-start-line="345" selection-start-column="0" selection-end-line="345" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="-3267">
+              <caret line="30" column="38" lean-forward="false" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
+              <folding>
+                <element signature="e#810#811#0" expanded="true" />
+                <element signature="e#838#839#0" expanded="true" />
+                <element signature="e#882#883#0" expanded="true" />
+                <element signature="e#912#913#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -29,11 +35,31 @@
       <file leaf-file-name="CollisionEngine.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/CollisionEngine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="213" column="10" lean-forward="false" selection-start-line="213" selection-start-column="10" selection-end-line="213" selection-end-column="10" />
+            <state relative-caret-position="-3337">
+              <caret line="30" column="31" lean-forward="false" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChangeGravityHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/controller/handlers/buildhandlers/ChangeGravityHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="632">
+              <caret line="30" column="31" lean-forward="false" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CollisionPrototype.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/CollisionPrototype.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-16">
+              <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -156,7 +182,6 @@
         <option value="$PROJECT_DIR$/src/view/gizmoviews/FlipperGizmoView.java" />
         <option value="$PROJECT_DIR$/src/model/board/gizmos/FlipperGizmo.java" />
         <option value="$PROJECT_DIR$/src/view/fxml/BuildView.fxml" />
-        <option value="$PROJECT_DIR$/src/controller/handlers/buildhandlers/ChangeGravityHandler.java" />
         <option value="$PROJECT_DIR$/src/view/css/styles.css" />
         <option value="$PROJECT_DIR$/src/view/GlobalLighting.java" />
         <option value="$PROJECT_DIR$/src/view/BoardView.java" />
@@ -181,6 +206,7 @@
         <option value="$PROJECT_DIR$/src/test/testAddGizmo.java" />
         <option value="$PROJECT_DIR$/src/model/board/gizmos/AbsorberGizmo.java" />
         <option value="$PROJECT_DIR$/src/model/GizmoballModel.java" />
+        <option value="$PROJECT_DIR$/src/controller/handlers/buildhandlers/ChangeGravityHandler.java" />
         <option value="$PROJECT_DIR$/src/model/CollisionEngine.java" />
       </list>
     </option>
@@ -196,8 +222,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="1066" />
-    <option name="width" value="1107" />
+    <option name="x" value="929" />
+    <option name="width" value="1284" />
     <option name="height" value="1390" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -543,7 +569,7 @@
       <workItem from="1521301800668" duration="28506000" />
       <workItem from="1521472068379" duration="3478000" />
       <workItem from="1521486009066" duration="3992000" />
-      <workItem from="1521496477988" duration="1796000" />
+      <workItem from="1521496477988" duration="4334000" />
     </task>
     <task id="LOCAL-00001" summary="doing fixes for boundingbox.isintersecting (see TODO)">
       <created>1519950029623</created>
@@ -664,7 +690,14 @@
       <option name="project" value="LOCAL" />
       <updated>1521494827672</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="The beginnings of a CollisionEngine class - not sure how to work on it further without passing in the entire model, which is not ideal">
+      <created>1521498336545</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1521498336545</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -700,7 +733,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="143842000" />
+    <option name="totallyTimeSpent" value="146380000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -712,11 +745,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1066" y="0" width="1107" height="1390" extended-state="0" />
-    <editor active="true" />
+    <frame x="929" y="0" width="1284" height="1390" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32999164" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32213116" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -727,7 +760,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32999164" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32073733" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32012677" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -741,7 +774,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="combo" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294621" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3228261" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32999164" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -771,7 +803,8 @@
     <MESSAGE value="Fixed the error messages so they now appear for intersecting objects" />
     <MESSAGE value="Half-fixed shootBall - balls firing one at a time instead of all at once, but when a ball returns to the absorber, it takes all the other balls on the board with it, which messes up further firing" />
     <MESSAGE value="a few print messages added" />
-    <option name="LAST_COMMIT_MESSAGE" value="a few print messages added" />
+    <MESSAGE value="The beginnings of a CollisionEngine class - not sure how to work on it further without passing in the entire model, which is not ideal" />
+    <option name="LAST_COMMIT_MESSAGE" value="The beginnings of a CollisionEngine class - not sure how to work on it further without passing in the entire model, which is not ideal" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -780,13 +813,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/controller/handlers/generalhandlers/SaveHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="658">
-          <caret line="52" column="38" lean-forward="false" selection-start-line="52" selection-start-column="38" selection-end-line="52" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_152/javafx-src.zip!/javafx/event/EventType.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_152/javafx-src.zip!/javafx/scene/input/KeyEvent.java" />
     <entry file="file://$PROJECT_DIR$/src/model/CollisionDetails.java">
@@ -815,6 +841,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1632">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -892,13 +919,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/handlers/buildhandlers/ChangeFrictionHandler.java" />
-    <entry file="file://$PROJECT_DIR$/src/controller/handlers/buildhandlers/ChangeGravityHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/handlers/generalhandlers/DoNothingHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1020,6 +1040,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2376">
           <caret line="109" column="120" lean-forward="false" selection-start-line="109" selection-start-column="120" selection-end-line="109" selection-end-column="120" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1111,8 +1132,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/CollisionEngine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="213" column="10" lean-forward="false" selection-start-line="213" selection-start-column="10" selection-end-line="213" selection-end-column="10" />
+        <state relative-caret-position="-3337">
+          <caret line="30" column="31" lean-forward="false" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1121,8 +1142,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/GizmoballModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8505">
-          <caret line="345" column="0" lean-forward="true" selection-start-line="345" selection-start-column="0" selection-end-line="345" selection-end-column="0" />
+        <state relative-caret-position="-3267">
+          <caret line="30" column="38" lean-forward="false" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
+          <folding>
+            <element signature="e#810#811#0" expanded="true" />
+            <element signature="e#838#839#0" expanded="true" />
+            <element signature="e#882#883#0" expanded="true" />
+            <element signature="e#912#913#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/handlers/buildhandlers/ChangeGravityHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="632">
+          <caret line="30" column="31" lean-forward="false" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/CollisionPrototype.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-16">
+          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
           <folding />
         </state>
       </provider>
