@@ -134,22 +134,20 @@ public class AbsorberGizmo implements Gizmo {
 
     @Override
     public void trigger(boolean keyPressed) {
-        if (keyPressed) {
             this.keyPressed = keyPressed;
             triggered = true;
-        }
-        else {
-            triggered = !this.keyPressed;
-        }
 
     }
 
     private void shootBall() {
         if (triggered && balls.size() > 0) {
-            Ball ball = balls.remove();
-            ball.setInAbsorber(false);
+            Ball ball = balls.peek();
+            System.out.println("BALL SHOT: " + ball.getName());
             ball.setY(this.y - (ball.getDiameter() / 2));
             ball.setVelocity(new Vect(0, -50 * ONE_L));
+            ball.setInAbsorber(false);
+            triggered = false;
+            balls.remove(ball);
         }
     }
 
