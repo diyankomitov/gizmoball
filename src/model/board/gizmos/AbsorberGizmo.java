@@ -145,7 +145,9 @@ public class AbsorberGizmo implements Gizmo {
             System.out.println("BALL SHOT: " + ball.getName());
             ball.setY(this.y - (ball.getDiameter() / 2));
             ball.setVelocity(new Vect(0, -50 * ONE_L));
-            ball.setInAbsorber(false);
+            if(ball.isInAbsorber()) {
+                ball.setInAbsorber(false);
+            }
             triggered = false;
             balls.remove(ball);
         }

@@ -45,6 +45,7 @@ public class GizmoballModel{
         findTimeUntilCollision();
 
         for (Ball ball : board.getBalls()) {
+//            System.out.println(ball.getName());
             if (!ball.isInAbsorber()) {
                 if (details.getTimeUntilCollision(ball) > moveTime) {
                     ball.moveForTime(moveTime);
@@ -53,8 +54,10 @@ public class GizmoballModel{
 
                 } else {
                     if (potentialCollision != null) {
+                        System.out.println(potentialCollision.getType());
                         if (potentialCollision.getType() == ABSORBER) {
                             ((AbsorberGizmo) potentialCollision).addBall(ball);
+                            System.out.println("BALL ADDED: " + ball.getName());
                         }
                         collidedGizmo = potentialCollision;
                     }
