@@ -17,7 +17,7 @@ public class SquareGizmo implements Gizmo {
     private final double rCoefficient;
     private final List<LineSegment> sides;
     private final List<Circle> corners;
-    private BoardObjectType type = BoardObjectType.SQUARE;
+    private BoardObjectType type;
 
     private String name;
     private List<Observer> observers;
@@ -41,6 +41,7 @@ public class SquareGizmo implements Gizmo {
 
         triggered = false;
         angle = 0;
+        type = BoardObjectType.SQUARE;
     }
 
     @Override

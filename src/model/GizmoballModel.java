@@ -28,6 +28,7 @@ public class GizmoballModel{
     private Gizmo potentialCollision;
     private Gizmo collidedGizmo;
     private String errorMessage = "";
+    private GizmoNames gizmoNames;
 
     public GizmoballModel() {
         board = new Board();
@@ -35,6 +36,7 @@ public class GizmoballModel{
         gravity = new Vect(0, GRAVITY);
         frictionMU = FRICTION_MU;
         frictionMU2 = FRICTION_MU_2;
+        gizmoNames = new GizmoNames();
     }
 
     public void moveBalls() {
@@ -239,43 +241,41 @@ public class GizmoballModel{
     public boolean addGizmo(double x, double y, String name, BoardObjectType type) {
         Gizmo gizmo;
         String gizmoName = name;
-        for(Gizmo g: getGizmos()) {
-            if(g.getName().equals(name)) {
-                return false;
-            }
+        if (!gizmoNames.addName(gizmoName)) {
+            return false;
         }
         switch (type) {
             case CIRCLE:
                 if(name.equals("")) {
-                    gizmoName = GizmoNames.addName(CIRCLE);
+                    gizmoName = gizmoNames.addName(CIRCLE);
                 }
 
                 gizmo = new CircleGizmo(x, y, ONE_L, gizmoName);
                 break;
             case SQUARE:
                 if(name.equals("")) {
-                    gizmoName = GizmoNames.addName(SQUARE);
+                    gizmoName = gizmoNames.addName(SQUARE);
                 }
 
                 gizmo = new SquareGizmo(x, y, ONE_L, gizmoName);
                 break;
             case TRIANGLE:
                 if(name.equals("")) {
-                    gizmoName = GizmoNames.addName(TRIANGLE);
+                    gizmoName = gizmoNames.addName(TRIANGLE);
                 }
 
                 gizmo = new TriangleGizmo(x, y, ONE_L, gizmoName);
                 break;
             case LEFT_FLIPPER:
                 if(name.equals("")) {
-                    gizmoName = GizmoNames.addName(LEFT_FLIPPER);
+                    gizmoName = gizmoNames.addName(LEFT_FLIPPER);
                 }
 
                 gizmo = new FlipperGizmo(x, y, 0, type, gizmoName);
                 break;
             case RIGHT_FLIPPER:
                 if(name.equals("")) {
-                    gizmoName = GizmoNames.addName(RIGHT_FLIPPER);
+                    gizmoName = gizmoNames.addName(RIGHT_FLIPPER);
                 }
 
                 gizmo = new FlipperGizmo(x, y, 0, type, gizmoName);
@@ -294,8 +294,12 @@ public class GizmoballModel{
 
     public boolean addAbsorber(double x, double y, double x2, double y2, String name){
         if(name.equals("")) {
-            name = GizmoNames.addName(ABSORBER);
+            name = gizmoNames.addName(ABSORBER);
         }
+        else if (!gizmoNames.addName(name)) {
+            return false;
+        }
+
         if (board.getGizmos().isEmpty()){
             Gizmo absorber = new AbsorberGizmo(x, y, x2, y2, name);
             board.addGizmo(absorber);
@@ -314,15 +318,15 @@ public class GizmoballModel{
         }
     }
 
-
     public boolean addBall(double x, double y, double xv, double yv, String name) {
         String ballName = name;
-        if(GizmoNames.nameExists(name)){
+        if(name.equals("")){
+            ballName = gizmoNames.addName(BALL);
+        }
+        else if (!gizmoNames.addName(name)){
             return false;
         }
-        if(name.equals("")){
-            ballName = GizmoNames.addName(BALL);
-        }
+
         Ball ball = new Ball(x, y, xv, yv, ballName);
         details.addBall(ball);
         board.addBall(ball);
@@ -337,70 +341,38 @@ public class GizmoballModel{
     }
 
     public boolean removeGizmo(String name) {
-        for(Gizmo g: getGizmos()) {
-            if(g.getName().equals(name)){
-                BoardState.add("Delete " + name);
-                board.removeGizmo(getGizmo(name));
-                return true;
-            }
-        }
-        return false;
+        Gizmo gizmo = getGizmo(name);
+        return gizmo != null && removeGizmo(gizmo.getX(), gizmo.getY());
     }
 
     public boolean removeGizmo(double x, double y) {
-        for(Gizmo g: getGizmos()){
-            if(g.getX()==x && g.getY()==y) {
-                Gizmo gizmo = getGizmo(x, y);
-                BoardState.add("Delete " + gizmo.getName());
-                board.removeGizmo(gizmo);
-                return true;
-            }
+        Gizmo gizmo = getGizmo(x,y);
+        if (gizmo != null) {
+            BoardState.add("Delete " + gizmo.getName());
+            board.removeGizmo(gizmo);
+            return true;
         }
         return false;
     }
 
     public boolean removeBall(String name) {
-        for(Ball b: board.getBalls()) {
-            if (b.getName().equals(name)) {
-                BoardState.add("Delete " + name);
-                board.removeBall(getBall(name)); //TODO: check this method of getting the ball as returns null
-                return true;
-            }
-        }
-        return false;
+        Ball ball = getBall(name);
+        return ball != null && removeBall(ball.getX(), ball.getY());
     }
 
     public boolean removeBall(double x, double y) {
-        for(Ball b: board.getBalls()) {
-            Ball ball = getBall(x, y);
-            if(ball!=null) {
-                BoardState.add("Delete " + ball.getName());
-                board.removeBall(ball);
-                return true;
-            }
+        Ball ball = getBall(x,y);
+        if (ball != null) {
+            BoardState.add("Delete " + ball.getName());
+            board.removeBall(ball);
+            return true;
         }
         return false;
-    }
-
-    public void clearBoard() {
-        board.clear();
-        BoardState.removeAll();
-        GizmoNames.resetNames();
     }
 
     public boolean moveGizmo(String name, double newX, double newY) {
         Gizmo gizmo = getGizmo(name);
-        if(gizmo != null) {
-            double x = gizmo.getX();
-            double y = gizmo.getY();
-            gizmo.setCoordinates(newX, newY);
-            if (!isIntersecting(gizmo)) {
-                BoardState.add("Move " + gizmo.getName() + " " + newX + " " + newY);
-                return true;
-            }
-            gizmo.setCoordinates(x, y);
-        }
-        return false;
+        return gizmo!= null && moveGizmo(gizmo.getX(), gizmo.getY(), newX, newY);
     }
 
     public boolean moveGizmo(double x, double y, double newX, double newY) {
@@ -416,26 +388,18 @@ public class GizmoballModel{
         return false;
     }
 
-    public boolean isIntersecting(Gizmo gizmo) {
-        for (Gizmo g : getGizmos()){
-            if (gizmo.getBoundingBox().isIntersecting(g.getBoundingBox())) {
-                if (gizmo != g) {
-                    return true;
-                }
-            }
-        }
-        return false;
+    public boolean moveBall(String name, double newX, double newY) {
+        Ball ball = getBall(name);
+        return ball != null && moveBall(ball.getX(), ball.getY(), newX, newY);
     }
 
-    public boolean moveBall(String name, double newX, double newY) { //TODO: check if new position is valid
-        Ball ball = getBall(name);
+    public boolean moveBall(double x, double y, double newX, double newY) {
+        Ball ball = getBall(x,y);
         if(ball!=null) {
-            double x = ball.getX();
-            double y = ball.getY();
             ball.setX(newX);
             ball.setY(newY);
             if (!isBallIntersecting(ball)) {
-                BoardState.add("Move " + name + " " + newX + " " + newY);
+                BoardState.add("Move " + ball.getName() + " " + newX + " " + newY);
                 return true;
             }
             ball.setX(x);
@@ -444,11 +408,104 @@ public class GizmoballModel{
         return false;
     }
 
-    public void moveBall(double x, double y, double newX, double newY) { //TODO: check if new position is valid
-        Ball ball = getBall(x,y);
-        BoardState.add("Move " + ball.getName() + " " + newX + " " + newY);
-        ball.setX(newX);
-        ball.setY(newY);
+    public boolean rotateGizmo(String name) {
+        Gizmo gizmo = getGizmo(name);
+        return gizmo != null && rotateGizmo(gizmo.getX(), gizmo.getY());
+    }
+
+    public boolean rotateGizmo(double x, double y) {
+        Gizmo gizmo = getGizmo(x,y);
+        if(gizmo != null){
+            if(gizmo.getType() == ABSORBER){
+                setMessage("You cannot rotate an absorber."); //TODO add the set message feature in rotate handler - doesn't properly work atm
+                return false;
+            }
+            BoardState.add("Rotate " + gizmo.getName());
+            gizmo.rotate();
+            return true;
+        }
+        return false;
+    }
+
+    public void clearBoard() {
+        board.clear();
+        BoardState.removeAll();
+        gizmoNames.resetNames();
+    }
+
+    public void setGravity(double yVelocity) { //TODO: probably check upper and lower bounds
+        this.gravity = new Vect(0, yVelocity);
+        BoardState.add("Gravity " + yVelocity);
+    }
+
+    public void setFriction(double mu, double mu2) { //TODO: probably check upper and lower bounds
+        this.frictionMU = mu;
+        this.frictionMU2 = mu2;
+        BoardState.add("Friction " + mu + " " + mu2);
+    }
+    public List<Gizmo> getGizmos(){ //TODO: Remove? Maybe return a copy
+        return board.getGizmos();
+    }
+
+    public List<Ball> getBalls() { //TODO: Remove? Maybe return a copy
+        return board.getBalls();
+    }
+
+    public Gizmo getGizmo(String name) {
+        for(Gizmo gizmo : board.getGizmos()) {
+            if(gizmo.getName().equals(name)){
+                return gizmo;
+            }
+        }
+        return null;
+    }
+
+    public Gizmo getGizmo(double x, double y) {
+        for(Gizmo gizmo : board.getGizmos()) {
+            if(gizmo.getX() == x && gizmo.getY() == y){
+                return gizmo;
+            }
+        }
+        return null;
+    }
+
+
+    public Ball getBall(String name) {
+        for(Ball ball : board.getBalls()) {
+            if(ball.getName().equals(name)){
+                return ball;
+            }
+        }
+        return null;
+    }
+
+    public Ball getBall(double x, double y) {
+        for(Ball ball : board.getBalls()) {
+            double radius = ball.getDiameter()/2;
+            if (Math.pow(x - ball.getX(),2) + Math.pow(y - ball.getY(), 2) < Math.pow(radius, 2)){
+                return ball;
+            }
+        }
+        return null;
+    }
+
+    public void setMessage(String s){
+        errorMessage = s;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    private boolean isIntersecting(Gizmo gizmo) {
+        for (Gizmo g : getGizmos()){
+            if (gizmo.getBoundingBox().isIntersecting(g.getBoundingBox())) {
+                if (gizmo != g) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private boolean ballVelocityIntersectionCheck(double x, double y, Ball ball){
@@ -484,103 +541,5 @@ public class GizmoballModel{
         ball.setVelocity(orig);
 
         return false;
-    }
-
-    //TODO add connect information to BoardState details for saving
-
-
-    public boolean rotateGizmo(String name) {
-        if(getGizmo(name) != null){
-            BoardState.add("Rotate " + name);
-            getGizmo(name).rotate();
-            return true;
-        }
-        if(getGizmo(name).getType()==ABSORBER){
-            setMessage("You cannot rotate an absorber."); //TODO add the set message feature in rotate handler - doesn't properly work atm
-        }
-        return false;
-    }
-
-    public boolean rotateGizmo(double x, double y) {
-        Gizmo gizmo = getGizmo(x,y);
-        if(gizmo != null){
-            BoardState.add("Rotate " + gizmo.getName());
-            gizmo.rotate();
-        }
-        return false;
-    }
-
-    public void triggerGizmo(String name) {
-//        getGizmo(name).trigger();
-    }
-
-    public void triggerGizmo(double x, double y) {
-//        getGizmo(x, y).trigger();
-    }
-
-    public void setGravity(double yVelocity) { //TODO: probably check upper and lower bounds
-        this.gravity = new Vect(0, yVelocity);
-        BoardState.add("Gravity " + yVelocity);
-    }
-    public void setFriction(double mu, double mu2) { //TODO: probably check upper and lower bounds
-        this.frictionMU = mu;
-        this.frictionMU2 = mu2;
-        BoardState.add("Friction " + mu + " " + mu2);
-    }
-
-    public List<Gizmo> getGizmos(){ //TODO: Remove? Maybe return a copy
-        return board.getGizmos();
-    }
-
-    public List<Ball> getBalls() { //TODO: Remove? Maybe return a copy
-//        return ball;
-        return board.getBalls();
-    }
-
-    public Gizmo getGizmo(String name) {
-        for(Gizmo gizmo : board.getGizmos()) {
-            if(gizmo.getName().equals(name)){
-                return gizmo;
-            }
-        }
-        return null;
-    }
-
-    public Gizmo getGizmo(double x, double y) {
-        for(Gizmo gizmo : board.getGizmos()) {
-            if(gizmo.getX() == x && gizmo.getY() == y){
-                return gizmo;
-            }
-        }
-        return null;
-    }
-
-
-    public Ball getBall(String name) {
-        for(Ball ball : board.getBalls()) {
-            System.out.println(ball.getName());
-            if(ball.getName().equals(name)){
-                return ball;
-            }
-        }
-        return null;
-    }
-
-    public Ball getBall(double x, double y) {
-        for(Ball ball : board.getBalls()) {
-            double radius = ball.getDiameter()/2;
-            if (Math.pow(x - ball.getX(),2) + Math.pow(y - ball.getY(), 2) < Math.pow(radius, 2)){
-                return ball;
-            }
-        }
-        return null;
-    }
-
-    public void setMessage(String s){
-        errorMessage = s;
-    }
-
-    public String getErrorMessage() {
-        return errorMessage;
     }
 }

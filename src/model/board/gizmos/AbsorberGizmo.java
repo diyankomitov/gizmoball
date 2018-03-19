@@ -27,7 +27,7 @@ public class AbsorberGizmo implements Gizmo {
 
     private final List<LineSegment> sides;
     private final List<Circle> corners;
-    private BoardObjectType type = BoardObjectType.ABSORBER;
+    private BoardObjectType type;
     private String name;
 
     private Queue<Ball> balls;
@@ -57,6 +57,7 @@ public class AbsorberGizmo implements Gizmo {
         balls = new LinkedList<>();
 
         triggered = false;
+        type = BoardObjectType.ABSORBER;
     }
 
     @Override

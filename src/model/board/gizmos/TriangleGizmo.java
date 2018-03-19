@@ -15,7 +15,7 @@ public class TriangleGizmo implements Gizmo {
     private final double rCoefficient;
     private final List<LineSegment> sides;
     private final List<Circle> corners;
-    private BoardObjectType type = BoardObjectType.TRIANGLE;
+    private BoardObjectType type;
     private double angle = 0;
     private String name;
     private List<Observer> observers;
@@ -34,6 +34,7 @@ public class TriangleGizmo implements Gizmo {
         observers = new ArrayList<>();
 
         triggered = false;
+        type = BoardObjectType.TRIANGLE;
     }
 
     @Override

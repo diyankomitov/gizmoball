@@ -82,7 +82,7 @@ public class Ball implements BoardObject, Observable{
     }
 
     public void applyPotentialVelocity() {
-        velocity = potentialVelocity;
+        setVelocity(potentialVelocity);
     }
 
     public boolean isInAbsorber() {

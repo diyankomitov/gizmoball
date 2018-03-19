@@ -16,7 +16,7 @@ public class CircleGizmo implements Gizmo {
     private final double diameter;
     private final double rCoefficient;
     private List<Circle> circles;
-    private BoardObjectType type = BoardObjectType.CIRCLE;
+    private BoardObjectType type;
     private String name;
     private List<Observer> observers;
     private double angle;
@@ -35,6 +35,7 @@ public class CircleGizmo implements Gizmo {
 
         triggered = false;
         angle = 0;
+        type = BoardObjectType.CIRCLE;
     }
 
     @Override

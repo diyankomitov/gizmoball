@@ -59,7 +59,6 @@ public class testAddGizmo {
 
     @Test
     public void testAddGizmoNaming() {
-        gizmoballModel.clearBoard();
         gizmoballModel.addGizmo(2.0, 2.0, "", BoardObjectType.CIRCLE);
         List<Gizmo> gl = gizmoballModel.getGizmos();
         assertTrue(gizmoballModel.getGizmo("C0").equals(gl.get(0)));
