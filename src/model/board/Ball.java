@@ -9,7 +9,7 @@ import util.Observer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Ball implements BoardObject, Observable{
+public class Ball implements BoardObject, Observable {
     private double x;
     private double y;
     private final double diameter;
@@ -19,42 +19,31 @@ public class Ball implements BoardObject, Observable{
     private Vect potentialVelocity;
     private boolean inAbsorber = false;
     private List<Observer> observers = new ArrayList<>();
-    private double oldTime;
 
     public Ball(double x, double y, double xv, double yv, String name) {
         this.x = x;
         this.y = y;
         this.diameter = 0.5;
         this.type = BoardObjectType.BALL;
-        this.name=name;
+        this.name = name;
         this.velocity = new Vect(xv, yv);
-        this.potentialVelocity = new Vect(0,0);
+        this.potentialVelocity = new Vect(0, 0);
     }
 
     //TODO: FIX MOVEFORTIME
     public void moveForTime(double moveTime) {
-        System.out.println(velocity);
-        if(moveTime > 0.01) {
-            x += (velocity.x() * moveTime);
-            y += (velocity.y() * moveTime);
-            oldTime = moveTime;
-        }
-        else {
-            x -= (velocity.x() * oldTime);
-            y -= (velocity.y() * oldTime);
-//            System.out.println(oldTime);
-        }
-
+        x += (velocity.x() * moveTime);
+        y += (velocity.y() * moveTime);
         notifyObservers();
     }
 
-    public void setX(double x){
-        this.x =  x;
+    public void setX(double x) {
+        this.x = x;
         notifyObservers();
     }
 
-    public void setY(double y){
-        this.y =  y;
+    public void setY(double y) {
+        this.y = y;
         notifyObservers();
     }
 
@@ -69,12 +58,12 @@ public class Ball implements BoardObject, Observable{
         double velY = velocity.y();
         double signY = Math.signum(velY);
 
-        velX = Math.max(Math.abs(velX), 0.01);
+        velX = Math.max(Math.abs(velX), 0.1);
         velX = Math.min(Math.abs(velX), 200);
-        velY = Math.max(Math.abs(velY), 0.01);
+        velY = Math.max(Math.abs(velY), 0.1);
         velY = Math.min(Math.abs(velY), 200);
 
-        this.velocity = new Vect(velX*signX, velY*signY);
+        this.velocity = new Vect(velX * signX, velY * signY);
     }
 
     public void setPotentialVelocity(Vect potentialVelocity) {
@@ -99,11 +88,11 @@ public class Ball implements BoardObject, Observable{
 
     @Override
     public Vect getCenter() {
-        return new Vect(x,y);
+        return new Vect(x, y);
     }
 
     @Override
-    public String getName(){
+    public String getName() {
         return name;
     }
 
@@ -126,7 +115,7 @@ public class Ball implements BoardObject, Observable{
     public List<Circle> getCircles() {
 
         List<Circle> circles = new ArrayList<>();
-        circles.add(new Circle(x,y,diameter/2));
+        circles.add(new Circle(x, y, diameter / 2));
         return circles;
     }
 

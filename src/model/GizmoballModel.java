@@ -41,18 +41,6 @@ public class GizmoballModel{
 
     public void moveBalls() {
         double moveTime = SECONDS_PER_FRAME;
-        for (Ball ball : board.getBalls()) {
-
-            ball.setVelocity(ball.getVelocity().plus(gravity.times(moveTime)));
-
-            double vOldX = ball.getVelocity().x();
-            double vOldY = ball.getVelocity().y();
-
-            double vNewX = vOldX * (1 - (frictionMU * moveTime) - (frictionMU2 * Math.abs(vOldX) * moveTime));
-            double vNewY = vOldY * (1 - (frictionMU * moveTime) - (frictionMU2 * Math.abs(vOldY) * moveTime));
-
-            ball.setVelocity(new Vect(vNewX, vNewY));
-        }
 
         findTimeUntilCollision();
 
@@ -60,6 +48,9 @@ public class GizmoballModel{
             if (!ball.isInAbsorber()) {
                 if (details.getTimeUntilCollision(ball) > moveTime) {
                     ball.moveForTime(moveTime);
+                    applyGravity(ball, moveTime);
+                    applyFriction(ball, moveTime);
+
                 } else {
                     if (potentialCollision != null) {
                         if (potentialCollision.getType() == ABSORBER) {
@@ -69,6 +60,8 @@ public class GizmoballModel{
                     }
                     ball.moveForTime(details.getTimeUntilCollision(ball));
                     ball.applyPotentialVelocity();
+                    applyGravity(ball, details.getTimeUntilCollision(ball));
+                    applyFriction(ball, details.getTimeUntilCollision(ball));
                 }
             }
         }
@@ -77,6 +70,21 @@ public class GizmoballModel{
         activateGizmoActions();
         collidedGizmo = null;
         potentialCollision = null;
+    }
+
+    private void applyGravity(Ball ball, double moveTime) {
+        ball.setVelocity(ball.getVelocity().plus(gravity.times(moveTime)));
+
+    }
+
+    private void applyFriction(Ball ball, double moveTime) {
+        double vOldX = ball.getVelocity().x();
+        double vOldY = ball.getVelocity().y();
+
+        double vNewX = vOldX * (1 - (frictionMU * moveTime) - (frictionMU2 * Math.abs(vOldX) * moveTime));
+        double vNewY = vOldY * (1 - (frictionMU * moveTime) - (frictionMU2 * Math.abs(vOldY) * moveTime));
+
+        ball.setVelocity(new Vect(vNewX, vNewY));
     }
 
     private void sendTriggers() { //TODO: maybe move from here to outside the model
@@ -241,7 +249,7 @@ public class GizmoballModel{
     public boolean addGizmo(double x, double y, String name, BoardObjectType type) {
         Gizmo gizmo;
         String gizmoName = name;
-        if (!gizmoNames.addName(gizmoName)) {
+        if (!name.equals("") && !gizmoNames.addName(gizmoName)) {
             return false;
         }
         switch (type) {
