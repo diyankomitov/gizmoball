@@ -186,7 +186,7 @@ public class BuildController {
             boardController.setBoardHandler(new AddBallHandler(model, boardController, this, information));
         });
 
-        moveButton.setOnAction(event -> boardController.setBoardHandler(new MoveHandler(model, moveButton)));
+        moveButton.setOnAction(event -> boardController.setBoardHandler(new MoveHandler(model)));
         rotateButton.setOnAction(event -> boardController.setBoardHandler(new RotateHandler(model, this)));
         deleteButton.setOnAction(event -> boardController.setBoardHandler(new DeleteHandler(boardController, model)));
         connectButton.setOnAction(event -> boardController.setBoardHandler(new ConnectTriggerHandler(model, boardController, stage, information, connectButton)));
