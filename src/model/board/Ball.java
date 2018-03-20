@@ -128,4 +128,11 @@ public class Ball implements BoardObject, Observable {
     public List<Observer> getObservers() {
         return observers;
     }
+
+    public void setXVelocity(double xVelocity) {
+        setVelocity(new Vect(xVelocity, velocity.y()));
+    }
+    public void setYVelocity(double yVelocity) {
+        setVelocity(new Vect(velocity.x(), yVelocity));
+    }
 }

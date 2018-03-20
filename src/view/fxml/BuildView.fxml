@@ -73,6 +73,7 @@
                     <Slider fx:id="ballYVelocitySlider" min="-200" max="200" showTickLabels="true"/>
                     <TextField fx:id="ballYVelocityField" maxWidth="50"/>
                 </HBox>
+                <Button fx:id="selectBallButton" text="Select Ball"/>
             </VBox>
             <VBox>
                 <Label text="Gravity"/>

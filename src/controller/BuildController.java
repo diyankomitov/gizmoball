@@ -1,11 +1,13 @@
 package controller;
 
 import controller.handlers.boardhandlers.*;
+import controller.handlers.buildhandlers.ChangeBallXVelocityHandler;
 import controller.handlers.buildhandlers.ChangeFrictionMu2Handler;
 import controller.handlers.buildhandlers.ChangeFrictionMuHandler;
 import controller.handlers.buildhandlers.ChangeGravityHandler;
 import controller.handlers.generalhandlers.DoNothingHandler;
 import controller.handlers.generalhandlers.SwitchModeHandler;
+import javafx.beans.binding.Bindings;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -28,6 +30,8 @@ public class BuildController {
     public Slider ballYVelocitySlider;
     @FXML
     public TextField ballYVelocityField;
+    @FXML
+    public Button selectBallButton;
     @FXML
     private BorderPane buildRoot;
     @FXML
@@ -110,9 +114,14 @@ public class BuildController {
         frictionMuField.textProperty().bindBidirectional(frictionMuSlider.valueProperty(), new NumberStringConverter());
         frictionMu2Field.textProperty().bindBidirectional(frictionMu2Slider.valueProperty(), new NumberStringConverter());
 
+        ballXVelocityField.textProperty().addListener(new ChangeBallXVelocityHandler(model, ballXVelocityField));
         gravityField.textProperty().addListener(new ChangeGravityHandler(model, gravityField));
         frictionMuField.textProperty().addListener(new ChangeFrictionMuHandler(model, frictionMuField));
         frictionMu2Field.textProperty().addListener(new ChangeFrictionMu2Handler(model, frictionMu2Field));
+
+        gravityField.textProperty().bind(Bindings.convert(model.getGravityProperty()));
+        frictionMuField.textProperty().bind(Bindings.convert(model.getFrictionMUProperty()));
+        frictionMu2Field.textProperty().bind(Bindings.convert(model.getFrictionMU2Property()));
 
 
         setupHandlers();
@@ -177,7 +186,7 @@ public class BuildController {
             boardController.setBoardHandler(new AddBallHandler(model, boardController, this, information));
         });
 
-        moveButton.setOnAction(event -> boardController.setBoardHandler(new MoveHandler(model)));
+        moveButton.setOnAction(event -> boardController.setBoardHandler(new MoveHandler(model, moveButton)));
         rotateButton.setOnAction(event -> boardController.setBoardHandler(new RotateHandler(model, this)));
         deleteButton.setOnAction(event -> boardController.setBoardHandler(new DeleteHandler(boardController, model)));
         connectButton.setOnAction(event -> boardController.setBoardHandler(new ConnectTriggerHandler(model, boardController, stage, information, connectButton)));

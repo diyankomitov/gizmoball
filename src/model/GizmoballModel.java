@@ -1,5 +1,6 @@
 package model;
 
+import javafx.beans.property.SimpleDoubleProperty;
 import model.board.Ball;
 import model.board.Board;
 import model.board.BoardObjectType;
@@ -25,6 +26,10 @@ public class GizmoballModel{
     private double frictionMU;
     private double frictionMU2;
 
+    private SimpleDoubleProperty gravityProperty;
+    private SimpleDoubleProperty frictionMUProperty;
+    private SimpleDoubleProperty frictionMU2Property;
+
     private Gizmo potentialCollision;
     private Gizmo collidedGizmo;
     private String errorMessage = "";
@@ -36,6 +41,9 @@ public class GizmoballModel{
         gravity = new Vect(0, GRAVITY);
         frictionMU = FRICTION_MU;
         frictionMU2 = FRICTION_MU_2;
+        gravityProperty = new SimpleDoubleProperty(GRAVITY);
+        frictionMUProperty = new SimpleDoubleProperty(FRICTION_MU);
+        frictionMU2Property = new SimpleDoubleProperty(FRICTION_MU_2);
         gizmoNames = new GizmoNames();
     }
 
@@ -450,6 +458,7 @@ public class GizmoballModel{
 
     public void setGravity(double yVelocity) { //TODO: probably check upper and lower bounds
         this.gravity = new Vect(0, yVelocity);
+        this.gravityProperty.setValue(yVelocity);
         System.out.println("gravity changed: " + this.gravity);
         BoardState.add("Gravity " + yVelocity);
     }
@@ -457,6 +466,8 @@ public class GizmoballModel{
     public void setFriction(double mu, double mu2) { //TODO: probably check upper and lower bounds
         this.frictionMU = mu;
         this.frictionMU2 = mu2;
+        this.frictionMUProperty.setValue(mu);
+        this.frictionMU2Property.setValue(mu2);
         BoardState.add("Friction " + mu + " " + mu2);
     }
 
@@ -467,6 +478,15 @@ public class GizmoballModel{
         setFriction(frictionMU, mu2);
     }
 
+    public SimpleDoubleProperty getGravityProperty() {
+        return gravityProperty;
+    }
+    public SimpleDoubleProperty getFrictionMUProperty() {
+        return frictionMUProperty;
+    }
+    public SimpleDoubleProperty getFrictionMU2Property() {
+        return frictionMU2Property;
+    }
 
     public List<Gizmo> getGizmos(){ //TODO: Remove? Maybe return a copy
         return board.getGizmos();
