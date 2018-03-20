@@ -75,4 +75,11 @@ public class testAbsorber {
         gizmoballModel.addGizmo(2.0, 19.0, "C219", BoardObjectType.CIRCLE);
         assertFalse(gizmoballModel.addAbsorber(1.0, 17.0, 3.0, 20.0, "A1"));
     }
+
+    @Test
+    public void testAddTwoAbsorbersSameName(){
+        gizmoballModel.addAbsorber(1.0, 20.0, 3.0, 17.0, "A1");
+        assertFalse(gizmoballModel.addAbsorber(1.0, 20.0, 3.0, 17.0, "A1"));
+    }
+
 }

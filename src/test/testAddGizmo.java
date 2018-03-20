@@ -36,6 +36,11 @@ public class testAddGizmo {
         assertTrue(gizmoballModel.addGizmo(15, 15, "", BoardObjectType.TRIANGLE));
     }
 
+    @Test
+    public void testAddWrongGizmo() {
+        assertFalse(gizmoballModel.addGizmo(15, 15, "", BoardObjectType.WALLS));
+    }
+
 
     @Test
     public void testAddGizmoz() {
@@ -124,5 +129,14 @@ public class testAddGizmo {
     public void testAddGizmoInAbsorber() {
         gizmoballModel.addAbsorber(0,16,19, 19, "A1");
         assertFalse(gizmoballModel.addGizmo(4,17, "C417", BoardObjectType.CIRCLE));
+    }
+
+    @Test
+    public void testClearBoard() {
+        gizmoballModel.addAbsorber(0,16,19, 19, "A1");
+        gizmoballModel.addGizmo(0, 5, "", BoardObjectType.TRIANGLE);
+        assertEquals(gizmoballModel.getGizmos().size(), 2);
+        gizmoballModel.clearBoard();
+        assertEquals(gizmoballModel.getGizmos().size(), 0);
     }
 }

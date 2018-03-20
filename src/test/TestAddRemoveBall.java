@@ -57,7 +57,8 @@ public class TestAddRemoveBall {
 
     @Test
     public void testAddSecondBall() {
-        assertTrue(gizmoballModel.addBall(8,9, 10,10, "B3"));
+        assertTrue(gizmoballModel.addBall(8,9, 10,10, ""));
+        assertEquals(gizmoballModel.getBalls().size(), 2);
     }
 
     @Test
@@ -106,5 +107,17 @@ public class TestAddRemoveBall {
         gizmoballModel.addGizmo(4, 4, "", BoardObjectType.TRIANGLE);
         assertFalse(gizmoballModel.moveBall("B1", 5, 5));
     }
+
+    @Test
+    public void testRemoveBallNull() {
+        assertFalse(gizmoballModel.removeBall(null));
+    }
+
+    @Test
+    public void testRemoveNoBallLocation() {
+        assertFalse(gizmoballModel.removeBall(0, 0));
+    }
+
+
 
 }
