@@ -26,7 +26,6 @@ public class testMoveGizmo {
     @Test
     public void testMoveWrongGizmo() {
         assertFalse(gizmoballModel.moveGizmo("T", 2.0, 2.0));
-
     }
 
     @Test
@@ -82,4 +81,13 @@ public class testMoveGizmo {
         gizmoballModel.addGizmo(5,5, "", BoardObjectType.TRIANGLE);
         assertFalse(gizmoballModel.moveGizmo(5,5, 4,20));
     }
+
+    @Test
+    public void testMoveOutside() {
+        assertFalse(gizmoballModel.moveGizmo(4,20, -1,20));
+        assertFalse(gizmoballModel.moveGizmo(4,20, 21,20));
+        assertFalse(gizmoballModel.moveGizmo(4,20, 4,-1));
+        assertFalse(gizmoballModel.moveGizmo(4,20, 4,21));
+    }
+
 }
