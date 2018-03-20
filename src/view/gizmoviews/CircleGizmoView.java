@@ -19,6 +19,7 @@ public class CircleGizmoView extends GizmoViewContainer {
         circle.setCenterX(radius);
         circle.setCenterY(radius);
         circle.getStyleClass().add("circleGizmo");
+        circle.setMouseTransparent(true);
 
         this.getChildren().add(circle);
 //        this.setEffect(GlobalLighting.get());

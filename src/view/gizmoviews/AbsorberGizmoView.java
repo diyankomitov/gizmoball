@@ -31,6 +31,7 @@ public class AbsorberGizmoView extends GizmoViewContainer{
 
         rectangle = new Rectangle(width, height);
         rectangle.getStyleClass().add("absorberGizmo");
+        rectangle.setMouseTransparent(true);
         this.getChildren().add(rectangle);
 
     }

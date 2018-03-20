@@ -19,6 +19,7 @@ public class SquareGizmoView extends GizmoViewContainer {
         double side = ONE_L_IN_PIXELS;
         square = new Rectangle(side, side);
         square.getStyleClass().add("squareGizmo");
+        square.setMouseTransparent(true);
 
         this.getChildren().add(square);
     }

@@ -2,11 +2,9 @@ package controller.handlers.boardhandlers;
 
 import controller.BoardController;
 import javafx.event.Event;
-import javafx.scene.control.Label;
+import javafx.scene.Node;
+import javafx.scene.control.*;
 import javafx.event.EventType;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -16,6 +14,7 @@ import model.GizmoballModel;
 import model.board.gizmos.Gizmo;
 import util.KeyPress;
 import util.Triggers;
+import view.gizmoviews.GizmoView;
 
 import java.util.Optional;
 
@@ -23,14 +22,17 @@ import static util.Constants.ONE_L_IN_PIXELS;
 
 public class ConnectTriggerHandler implements BoardHandler {
     private final GizmoballModel model;
+    private Button connectButton;
     private final BoardController boardController;
     private final Stage stage;
     private boolean triggeredSelected;
     private Gizmo triggeredGizmo;
     private Label infoLabel;
+    private GizmoView gizmoView;
 
-    public ConnectTriggerHandler(GizmoballModel model, BoardController boardController, Stage stage, Label infoLabel) {
+    public ConnectTriggerHandler(GizmoballModel model, BoardController boardController, Stage stage, Label infoLabel, Button connectButton) {
         this.model = model;
+        this.connectButton = connectButton;
         triggeredSelected = false;
         this.boardController = boardController;
         this.stage = stage;
@@ -41,11 +43,11 @@ public class ConnectTriggerHandler implements BoardHandler {
     public void handle(Event event) {
 
         if (event.getEventType() == MouseEvent.MOUSE_CLICKED) {
-            MouseEvent mouseEvent = (MouseEvent) event;
-            double x = Math.floor(mouseEvent.getX() / ONE_L_IN_PIXELS);
-            double y = Math.floor(mouseEvent.getY() / ONE_L_IN_PIXELS);
+            Node clicked = ((Node)event.getTarget());
+            double nodeX = Math.floor(clicked.getTranslateX()/ONE_L_IN_PIXELS);
+            double nodeY = Math.floor(clicked.getTranslateY()/ONE_L_IN_PIXELS);
 
-            Gizmo gizmo = model.getGizmo(x, y);
+            Gizmo gizmo = model.getGizmo(nodeX, nodeY);
 
             if (!triggeredSelected) {
                 if (gizmo != null) {
@@ -53,6 +55,8 @@ public class ConnectTriggerHandler implements BoardHandler {
                     triggeredGizmo = gizmo;
                     boardController.getBoardView().requestFocus();
                     infoLabel.setText(triggeredGizmo.getName() + " selected. Please select another gizmo or press a key to connect to.");
+                    gizmoView = (GizmoView) clicked;
+                    gizmoView.setSelected(true);
                 }
             }
             else {
@@ -60,15 +64,17 @@ public class ConnectTriggerHandler implements BoardHandler {
                     triggeredSelected = false;
                     Triggers.addTrigger(gizmo, triggeredGizmo);
                     infoLabel.setText(triggeredGizmo.getName() + " and " + gizmo.getName() + " have been connected.");
-                }
-                else {
-                    boardController.getBoardView().requestFocus();
+                    gizmoView.setSelected(false);
+                    gizmoView = null;
+                    connectButton.requestFocus();
                 }
             }
         }
         else if (event.getEventType() == KeyEvent.KEY_PRESSED) {
             KeyEvent keyEvent = (KeyEvent) event;
             KeyCode keyCode = keyEvent.getCode();
+
+            infoLabel.setText("");
 
             if (keyCode != KeyCode.ESCAPE) {
                 if (triggeredSelected){
@@ -94,6 +100,9 @@ public class ConnectTriggerHandler implements BoardHandler {
                 }
             }
             triggeredSelected = false;
+            gizmoView.setSelected(false);
+            gizmoView = null;
+            connectButton.requestFocus();
         }
     }
 }

@@ -12,7 +12,9 @@ import static util.Constants.ONE_L_IN_PIXELS;
 public class GizmoViewContainer extends Pane implements GizmoView{
 
     protected final Gizmo gizmo;
+    private boolean canFocus;
     protected Shape shape;
+    private boolean selected;
 
     GizmoViewContainer(Gizmo gizmo) {
         this.gizmo = gizmo;
@@ -20,6 +22,16 @@ public class GizmoViewContainer extends Pane implements GizmoView{
             this.gizmo.subscribe(this);
             update();
         }
+
+        this.canFocus = false;
+
+        this.getStyleClass().add("gizmoContainer");
+        this.setOnMouseClicked(event -> {
+            if (canFocus) {
+                this.requestFocus();
+            }
+        });
+        this.setPickOnBounds(true);
     }
 
     @Override
@@ -44,7 +56,21 @@ public class GizmoViewContainer extends Pane implements GizmoView{
     }
 
     @Override
+    public void setSelected(boolean selected) {
+        if (selected) {
+            this.getStyleClass().add("selected");
+        }
+        else {
+            this.getStyleClass().remove("selected");
+        }
+    }
+
+    @Override
     public void update() {
-        setCoordinates(gizmo.getX() * ONE_L_IN_PIXELS, gizmo.getY() * ONE_L_IN_PIXELS);
+        this.setCoordinates(gizmo.getX() * ONE_L_IN_PIXELS, gizmo.getY() * ONE_L_IN_PIXELS);
+    }
+
+    public void setCanFocus(boolean canFocus) {
+        this.canFocus = canFocus;
     }
 }
