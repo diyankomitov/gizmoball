@@ -44,7 +44,6 @@ public class GizmoballModel{
         findTimeUntilCollision();
 
         for (Ball ball : board.getBalls()) {
-//            System.out.println(ball.getName());
             if (!ball.isInAbsorber()) {
                 if (details.getTimeUntilCollision(ball) > moveTime) {
                     ball.moveForTime(moveTime);
@@ -54,6 +53,7 @@ public class GizmoballModel{
                 } else {
                     if (ball.getPotentialCollision() != null) {
                         System.out.println(ball.getPotentialCollision().getType());
+                        System.out.println(ball.getPotentialCollision().getName());
                         if (ball.getPotentialCollision().getType() == ABSORBER) {
                             ((AbsorberGizmo) ball.getPotentialCollision()).addBall(ball);
                             System.out.println("BALL ADDED: " + ball.getName());
@@ -71,10 +71,6 @@ public class GizmoballModel{
             ball.setCollidedGizmo(null);
             ball.setPotentialCollision(null);
         }
-
-
-//        collidedGizmo = null;
-//        potentialCollision = null;
     }
 
 
@@ -136,6 +132,7 @@ public class GizmoballModel{
                     timeUntilCollision = time;
                     velocity = Geometry.reflectWall(line, ball.getVelocity(), gizmo.getRCoefficient());
                     ball.setPotentialVelocity(velocity);
+                    System.out.println(gizmo.getName());
                     ball.setPotentialCollision(gizmo);
                 }
             }
@@ -146,6 +143,7 @@ public class GizmoballModel{
                     timeUntilCollision = time;
                     velocity = Geometry.reflectCircle(circle.getCenter(), ball.getCenter(), ball.getVelocity(), gizmo.getRCoefficient());
                     ball.setPotentialVelocity(velocity);
+                    System.out.println(gizmo.getName());
                     ball.setPotentialCollision(gizmo);
                 }
             }
