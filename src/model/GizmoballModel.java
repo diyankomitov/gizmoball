@@ -93,7 +93,7 @@ public class GizmoballModel{
     private void sendTriggers() { //TODO: maybe move from here to outside the model
         if (collidedGizmo != null) {
             for (Gizmo gizmo : Triggers.getTriggeredGizmos(collidedGizmo)) {
-                gizmo.trigger(false);
+                gizmo.trigger(false, true);
             }
         }
     }
@@ -125,7 +125,6 @@ public class GizmoballModel{
                 if (time < timeUntilCollision) {
                     timeUntilCollision = time;
                     velocity = Geometry.reflectRotatingWall(line, gizmo.getCenter(), ((FlipperGizmo)gizmo).getAngularVelocity(), ballCircle, ball.getVelocity(), gizmo.getRCoefficient());
-                    System.out.println(velocity);
                     ball.setPotentialVelocity(velocity);
                     potentialCollision = gizmo;
                 }
@@ -207,13 +206,11 @@ public class GizmoballModel{
         if (time < timeUntilCollision) {
             timeUntilCollision = time;
             ball.setPotentialVelocity(velocities.v1);
-            System.out.println(ball.getName() + ": " + velocities.v1);
         }
 
         if (time < timeUntilCollisionOther) {
             timeUntilCollisionOther = time;
             otherBall.setPotentialVelocity(velocities.v2);
-            System.out.println(otherBall.getName() + ": " + velocities.v2);
 
         }
         details.setTimeUntilCollission(ball, timeUntilCollision);

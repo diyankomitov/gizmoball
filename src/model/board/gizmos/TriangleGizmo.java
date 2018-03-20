@@ -128,7 +128,7 @@ public class TriangleGizmo implements Gizmo {
     }
 
     @Override
-    public void trigger(boolean keyPressed) {
+    public void trigger(boolean keyPressed, boolean keyReleased) {
         triggered = true;
     }
 
