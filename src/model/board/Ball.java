@@ -31,6 +31,8 @@ public class Ball implements BoardObject, Observable {
         this.name = name;
         this.velocity = new Vect(xv, yv);
         this.potentialVelocity = new Vect(0, 0);
+        this.potentialCollision = null;
+        this.collidedGizmo = null;
     }
 
     //TODO: FIX MOVEFORTIME
