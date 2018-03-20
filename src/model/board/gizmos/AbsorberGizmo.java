@@ -143,6 +143,8 @@ public class AbsorberGizmo implements Gizmo {
         if (triggered && balls.size() > 0) {
             Ball ball = balls.peek();
             System.out.println("BALL SHOT: " + ball.getName());
+            ball.setCollidedGizmo(null);
+            ball.setPotentialCollision(null);
             ball.setInAbsorber(false);
             ball.setY(this.y - (ball.getDiameter() / 2));
             ball.setVelocity(new Vect(0, -50 * ONE_L));
