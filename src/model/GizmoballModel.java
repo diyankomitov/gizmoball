@@ -21,8 +21,8 @@ import static util.Constants.*;
 public class GizmoballModel{
     private CollisionDetails details;
     private Board board;
-    private Gizmo potentialCollision;
-    private Gizmo collidedGizmo;
+//    private Gizmo potentialCollision;
+//    private Gizmo collidedGizmo;
     private String errorMessage = "";
     private GizmoNames gizmoNames;
     private CollisionEngine collisionEngine;
@@ -52,13 +52,13 @@ public class GizmoballModel{
                     collisionEngine.applyFriction(ball, moveTime);
 
                 } else {
-                    if (potentialCollision != null) {
-                        System.out.println(potentialCollision.getType());
-                        if (potentialCollision.getType() == ABSORBER) {
-                            ((AbsorberGizmo) potentialCollision).addBall(ball);
+                    if (ball.getPotentialCollision() != null) {
+                        System.out.println(ball.getPotentialCollision().getType());
+                        if (ball.getPotentialCollision().getType() == ABSORBER) {
+                            ((AbsorberGizmo) ball.getPotentialCollision()).addBall(ball);
                             System.out.println("BALL ADDED: " + ball.getName());
                         }
-                        collidedGizmo = potentialCollision;
+                       ball.setCollidedGizmo(ball.getPotentialCollision());
                     }
                     ball.moveForTime(details.getTimeUntilCollision(ball));
                     ball.applyPotentialVelocity();
@@ -66,19 +66,22 @@ public class GizmoballModel{
                     collisionEngine.applyFriction(ball, details.getTimeUntilCollision(ball));
                 }
             }
+            sendTriggers(ball);
+            activateGizmoActions();
+            ball.setCollidedGizmo(null);
+            ball.setPotentialCollision(null);
         }
 
-        sendTriggers();
-        activateGizmoActions();
-        collidedGizmo = null;
-        potentialCollision = null;
+
+//        collidedGizmo = null;
+//        potentialCollision = null;
     }
 
 
 
-    private void sendTriggers() { //TODO: maybe move from here to outside the model
-        if (collidedGizmo != null) {
-            for (Gizmo gizmo : Triggers.getTriggeredGizmos(collidedGizmo)) {
+    private void sendTriggers(Ball ball) { //TODO: maybe move from here to outside the model
+        if (ball.getCollidedGizmo() != null) {
+            for (Gizmo gizmo : Triggers.getTriggeredGizmos(ball.getCollidedGizmo())) {
                 gizmo.trigger(false, true);
             }
         }
@@ -112,7 +115,7 @@ public class GizmoballModel{
                     timeUntilCollision = time;
                     velocity = Geometry.reflectRotatingWall(line, gizmo.getCenter(), ((FlipperGizmo)gizmo).getAngularVelocity(), ballCircle, ball.getVelocity(), gizmo.getRCoefficient());
                     ball.setPotentialVelocity(velocity);
-                    potentialCollision = gizmo;
+                    ball.setPotentialCollision(gizmo);
                 }
             }
 
@@ -122,7 +125,7 @@ public class GizmoballModel{
                     timeUntilCollision = time;
                     velocity = Geometry.reflectRotatingCircle(circle, gizmo.getCenter(), ((FlipperGizmo)gizmo).getAngularVelocity(), ballCircle, ball.getVelocity(), gizmo.getRCoefficient());
                     ball.setPotentialVelocity(velocity);
-                    potentialCollision = gizmo;
+                    ball.setPotentialCollision(gizmo);
                 }
             }
         }
@@ -133,7 +136,7 @@ public class GizmoballModel{
                     timeUntilCollision = time;
                     velocity = Geometry.reflectWall(line, ball.getVelocity(), gizmo.getRCoefficient());
                     ball.setPotentialVelocity(velocity);
-                    potentialCollision = gizmo;
+                    ball.setPotentialCollision(gizmo);
                 }
             }
 
@@ -143,7 +146,7 @@ public class GizmoballModel{
                     timeUntilCollision = time;
                     velocity = Geometry.reflectCircle(circle.getCenter(), ball.getCenter(), ball.getVelocity(), gizmo.getRCoefficient());
                     ball.setPotentialVelocity(velocity);
-                    potentialCollision = gizmo;
+                    ball.setPotentialCollision(gizmo);
                 }
             }
         }
