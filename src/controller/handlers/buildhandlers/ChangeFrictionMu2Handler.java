@@ -26,7 +26,7 @@ public class ChangeFrictionMu2Handler implements ChangeListener<String> {
             textField.setText("-1000");
         }
 
-        model.setFrictionMU2(newDouble);
+        model.getCollisionEngine().setFrictionMU2(newDouble);
 
     }
 }
