@@ -384,11 +384,10 @@ public class GizmoballModel{
                     BoardState.add("Move " + gizmo.getName() + " " + newX + " " + newY);
                     return true;
                 } else {
-                    setMessage("Cannot move gizmo within another gizmo.");//TODO make this error work cos it just doesnt
+                    setMessage("Cannot move gizmo within another gizmo.");
                 }
             } else {
-
-                setMessage("Cannot move a gizmo outside of the playable board."); //TODO This one too
+                setMessage("Cannot move a gizmo outside of the playable board.");
             }
             gizmo.setCoordinates(x, y);
         }
@@ -424,7 +423,7 @@ public class GizmoballModel{
         Gizmo gizmo = getGizmo(x,y);
         if(gizmo != null){
             if(gizmo.getType() == ABSORBER){
-                setMessage("You cannot rotate an absorber."); //TODO add the set message feature in rotate handler - doesn't properly work atm
+                setMessage("You cannot rotate an absorber.");
                 return false;
             }
             BoardState.add("Rotate " + gizmo.getName());
