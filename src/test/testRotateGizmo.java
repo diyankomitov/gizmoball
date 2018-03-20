@@ -4,6 +4,8 @@ import model.GizmoballModel;
 import model.board.BoardObjectType;
 import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.*;
+
 
 import static org.junit.Assert.assertEquals;
 
@@ -44,4 +46,18 @@ public class testRotateGizmo {
         gizmoballModel.rotateGizmo("T");
         assertEquals((gizmoballModel.getGizmo("T")).getAngle(), 270, 0);
     }
+
+    @Test
+    public void testRotateAbsorber(){
+        gizmoballModel.addAbsorber(1.0, 20.0, 3.0, 17.0, "A1");
+        assertFalse(gizmoballModel.rotateGizmo("A1"));
+    }
+
+    @Test
+    public void testRotateNoGizmoLocation(){
+        assertFalse(gizmoballModel.rotateGizmo(0, 0));
+    }
+
+
+
 }

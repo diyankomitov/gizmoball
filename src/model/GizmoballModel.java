@@ -84,13 +84,9 @@ public class GizmoballModel{
     }
 
     private void activateGizmoActions() {
-
         for (Gizmo gizmo : getGizmos()) {
-
             gizmo.activateAction();
-
         }
-
     }
 
 
@@ -178,7 +174,6 @@ public class GizmoballModel{
                 ball.setPotentialVelocity(velocity);
             }
         }
-
         details.setTimeUntilCollission(ball, timeUntilCollision);
     }
 
