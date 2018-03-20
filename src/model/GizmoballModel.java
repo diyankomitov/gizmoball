@@ -278,6 +278,7 @@ public class GizmoballModel{
             default:
                 return false;
         }
+
         if(isOutside(gizmo)){
             setMessage("Gizmo cannot be placed outside of the board.");
             return false;
