@@ -1,5 +1,7 @@
 package controller.handlers.buildhandlers;
 
+import controller.BuildController;
+import controller.handlers.boardhandlers.AddBallHandler;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TextField;
@@ -9,10 +11,17 @@ import model.board.Ball;
 public class ChangeBallYVelocityHandler implements ChangeListener<String> {
     private final GizmoballModel model;
     private TextField textField;
+    private BuildController buildController;
+    private AddBallHandler addBallHandler;
 
-    public ChangeBallYVelocityHandler(GizmoballModel model, TextField textField) {
+    public ChangeBallYVelocityHandler(GizmoballModel model, TextField textField, BuildController buildController) {
         this.model = model;
         this.textField = textField;
+        this.buildController = buildController;
+    }
+
+    public void setAddBallHandler(AddBallHandler addBallHandler) {
+        this.addBallHandler = addBallHandler;
     }
 
     @Override
@@ -43,8 +52,19 @@ public class ChangeBallYVelocityHandler implements ChangeListener<String> {
             textField.setText("-200");
         }
 
-        for (Ball ball : model.getBalls()) {
-            ball.setYVelocity(newDouble);
+        Ball selectedBall = buildController.getSelecedBall();
+        if (buildController.isAddBallSelected()) {
+            addBallHandler.setVy(newDouble);
         }
+
+        if (selectedBall != null && !buildController.isAddBallSelected()) {
+            selectedBall.setYVelocity(newDouble);
+        }
+        else {
+            for (Ball ball : model.getBalls()) {
+                ball.setYVelocity(newDouble);
+            }
+        }
+
     }
 }

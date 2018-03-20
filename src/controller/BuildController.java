@@ -1,10 +1,7 @@
 package controller;
 
 import controller.handlers.boardhandlers.*;
-import controller.handlers.buildhandlers.ChangeBallXVelocityHandler;
-import controller.handlers.buildhandlers.ChangeFrictionMu2Handler;
-import controller.handlers.buildhandlers.ChangeFrictionMuHandler;
-import controller.handlers.buildhandlers.ChangeGravityHandler;
+import controller.handlers.buildhandlers.*;
 import controller.handlers.generalhandlers.DoNothingHandler;
 import controller.handlers.generalhandlers.SwitchModeHandler;
 import javafx.beans.binding.Bindings;
@@ -13,15 +10,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
 import model.CollisionEngine;
 import model.GizmoballModel;
+import model.board.Ball;
 import view.*;
 import view.gizmoviews.*;
 
-import javax.swing.event.DocumentEvent;
 import java.util.regex.Pattern;
 
 import static model.board.BoardObjectType.*;
@@ -32,7 +30,11 @@ public class BuildController {
     @FXML
     public TextField ballYVelocityField;
     @FXML
-    public Button selectBallButton;
+    public ToggleButton selectBallButton;
+    @FXML
+    public CheckBox globalCheckBox;
+    @FXML
+    public VBox velocityContainer;
     @FXML
     private BorderPane buildRoot;
     @FXML
@@ -70,17 +72,17 @@ public class BuildController {
     @FXML
     private BallView ballButton;
     @FXML
-    private Button connectButton;
+    private ToggleButton connectButton;
     @FXML
-    private Button disconnectButton;
+    private ToggleButton disconnectButton;
     @FXML
     private Button clearBoardButton;
     @FXML
-    private Button moveButton;
+    private ToggleButton moveButton;
     @FXML
-    private Button rotateButton;
+    private ToggleButton rotateButton;
     @FXML
-    private Button deleteButton;
+    private ToggleButton deleteButton;
     @FXML
     private Label information;
 
@@ -89,7 +91,12 @@ public class BuildController {
     private DoNothingHandler doNothingHandler;
     private SwitchModeHandler switchToPlay;
     private Stage stage;
-    private CollisionEngine collisionEngine;
+    private Ball selectedBall;
+    private ToggleGroup toggleGroup;
+    private AddBallHandler addBallHandler;
+    private boolean addBallSelected;
+    private ChangeBallXVelocityHandler changeBallXVelocityHandler;
+    private ChangeBallYVelocityHandler changeBallYVelocityHandler;
 
     public void setup(GizmoballModel model, BoardController boardController, SwitchModeHandler switchToPlay, Stage stage, CollisionEngine collisionEngine) {
         this.model = model;
@@ -97,13 +104,18 @@ public class BuildController {
         this.doNothingHandler = new DoNothingHandler();
         this.switchToPlay = switchToPlay;
         this.stage = stage;
-        this.collisionEngine = collisionEngine;
+        this.toggleGroup = new ToggleGroup();
 
         buildRoot.setCenter(boardController.getBoardView());
 
         toggleGrid.setOnAction(event -> boardController.getBoardView().toggleGrid());
 
-        switchButton.setOnAction(this.switchToPlay);
+        switchButton.setOnAction(event -> {
+            toggleGroup.selectToggle(null);
+            this.switchToPlay.handle(event);
+        });
+
+        buildRoot.setFocusTraversable(false);
 
         ballXVelocityField.setTextFormatter(getTextFormatter());
         ballYVelocityField.setTextFormatter(getTextFormatter());
@@ -117,7 +129,10 @@ public class BuildController {
         frictionMuField.textProperty().bindBidirectional(frictionMuSlider.valueProperty(), new NumberStringConverter());
         frictionMu2Field.textProperty().bindBidirectional(frictionMu2Slider.valueProperty(), new NumberStringConverter());
 
-        ballXVelocityField.textProperty().addListener(new ChangeBallXVelocityHandler(model, ballXVelocityField));
+        changeBallXVelocityHandler = new ChangeBallXVelocityHandler(model, ballXVelocityField, this);
+        changeBallYVelocityHandler = new ChangeBallYVelocityHandler(model, ballYVelocityField, this);
+        ballXVelocityField.textProperty().addListener(changeBallXVelocityHandler);
+        ballYVelocityField.textProperty().addListener(changeBallYVelocityHandler);
         gravityField.textProperty().addListener(new ChangeGravityHandler(model, gravityField));
         frictionMuField.textProperty().addListener(new ChangeFrictionMuHandler(collisionEngine, frictionMuField));
         frictionMu2Field.textProperty().addListener(new ChangeFrictionMu2Handler(model, frictionMu2Field));
@@ -127,7 +142,35 @@ public class BuildController {
 //        frictionMu2Field.textProperty().bind(Bindings.convert(model.getFrictionMU2Property()));
 
 
+        globalCheckBox.setOnAction(event -> {
+            if (globalCheckBox.isSelected()) {
+                velocityContainer.setDisable(false);
+                selectBallButton.setDisable(true);
+                if (toggleGroup.getSelectedToggle() != null && toggleGroup.getSelectedToggle().equals(selectBallButton)){
+                    toggleGroup.selectToggle(null);
+                }
+                for (Ball ball : model.getBalls()) {
+                    ball.setGlobalVelocity(true);
+                }
+                addBallHandler.setGlobal(true);
+            }
+            else {
+                if (!ballButton.isSelected()) {
+                    velocityContainer.setDisable(true);
+                }
+                selectBallButton.setDisable(false);
+                for (Ball ball : model.getBalls()) {
+                    ball.setGlobalVelocity(false);
+                }
+            }
+        });
+
+        selectBallButton.setOnAction(event -> boardController.setBoardHandler(new SelectBallHandler(model, this, selectBallButton)));
+        selectBallButton.setToggleGroup(toggleGroup);
+
+
         setupHandlers();
+
     }
 
     private TextFormatter<Double> getTextFormatter() {
@@ -158,47 +201,124 @@ public class BuildController {
         return textFormatter;
     }
 
-    private void setupHandlers() {
+    private void toggleButton(Toggle toggle) {
+        if (toggle.isSelected()) {
+            toggleGroup.selectToggle(null);
+        }
+        else {
+            toggleGroup.selectToggle(toggle);
+        }
+    }
 
+    private void setupHandlers() {
         squareButton.setOnMouseClicked(event -> {
-            squareButton.requestFocus();
+            toggleButton(squareButton);
             boardController.setBoardHandler(new AddHandler(model, boardController,this, SQUARE, information));
         });
         triangleButton.setOnMouseClicked(event -> {
-            triangleButton.requestFocus();
+            toggleButton(triangleButton);
             boardController.setBoardHandler(new AddHandler(model, boardController,this, TRIANGLE, information));
+
         });
         circleButton.setOnMouseClicked(event -> {
-            circleButton.requestFocus();
+            toggleButton(circleButton);
             boardController.setBoardHandler(new AddHandler(model, boardController,this, CIRCLE, information));
         });
         leftFlipperButton.setOnMouseClicked(event -> {
-            leftFlipperButton.requestFocus();
+            toggleButton(leftFlipperButton);
             boardController.setBoardHandler(new AddHandler(model, boardController,this, LEFT_FLIPPER, information));
         });
         rightFlipperButton.setOnMouseClicked(event -> {
-            rightFlipperButton.requestFocus();
+            toggleButton(rightFlipperButton);
             boardController.setBoardHandler(new AddHandler(model, boardController,this, RIGHT_FLIPPER, information));
         });
         absorberButton.setOnMouseClicked(event -> {
-            absorberButton.requestFocus();
+            toggleButton(absorberButton);
             boardController.setBoardHandler(new AddAbsorberHandler(model, boardController, this, information));
         });
         ballButton.setOnMouseClicked(event -> {
-            ballButton.requestFocus();
-            boardController.setBoardHandler(new AddBallHandler(model, boardController, this, information));
+            toggleButton(ballButton);
+            addBallHandler = new AddBallHandler(model, boardController, this, information);
+            boardController.setBoardHandler(addBallHandler);
+            changeBallXVelocityHandler.setAddBallHandler(addBallHandler);
+            changeBallYVelocityHandler.setAddBallHandler(addBallHandler);
         });
 
-        moveButton.setOnAction(event -> boardController.setBoardHandler(new MoveHandler(model, information)));
-        rotateButton.setOnAction(event -> boardController.setBoardHandler(new RotateHandler(model, this)));
-        deleteButton.setOnAction(event -> boardController.setBoardHandler(new DeleteHandler(boardController, model)));
-        connectButton.setOnAction(event -> boardController.setBoardHandler(new ConnectTriggerHandler(model, boardController, stage, information, connectButton)));
-        disconnectButton.setOnAction(event -> boardController.setBoardHandler(new DisconnectTriggerHandler(model, information)));
+        ballButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                addBallSelected = true;
+                velocityContainer.setDisable(false);
+                System.out.println("is add a null" + addBallHandler);
+            }
+            else {
+                addBallSelected = false;
+                if (!globalCheckBox.isSelected()) {
+                    velocityContainer.setDisable(true);
+                }
+            }
+        });
+
+        moveButton.setOnAction(event -> {
+            if (!moveButton.isSelected()) {
+                boardController.setDoNothing();
+            }
+            else {
+                boardController.setBoardHandler(new MoveHandler(model, moveButton));
+            }
+        });
+        rotateButton.setOnAction(event -> {
+            if (!rotateButton.isSelected()) {
+                boardController.setDoNothing();
+            }
+            else {
+                boardController.setBoardHandler(new RotateHandler(model, this));
+            }
+        });
+        deleteButton.setOnAction(event -> {
+            if (!deleteButton.isSelected()) {
+                boardController.setDoNothing();
+            }
+            else {
+                boardController.setBoardHandler(new DeleteHandler(boardController, model));
+            }
+        });
+        connectButton.setOnAction(event -> {
+            if (!connectButton.isSelected()) {
+                boardController.setDoNothing();
+            }
+            else {
+                boardController.setBoardHandler(new ConnectTriggerHandler(model, boardController, stage, information, connectButton));
+            }
+        });
+        disconnectButton.setOnAction(event -> {
+            if (!disconnectButton.isSelected()) {
+                boardController.setDoNothing();
+            }
+            else {
+                boardController.setBoardHandler(new DisconnectTriggerHandler(model, information));
+            }
+        });
+
         clearBoardButton.setOnAction(event -> {
             boardController.setBoardHandler(new ClearBoardHandler(boardController, model, information));
             boardController.handle(event);
             boardController.setDoNothing();
+            toggleGroup.selectToggle(null);
         });
+
+        moveButton.setToggleGroup(toggleGroup);
+        rotateButton.setToggleGroup(toggleGroup);
+        deleteButton.setToggleGroup(toggleGroup);
+        connectButton.setToggleGroup(toggleGroup);
+        disconnectButton.setToggleGroup(toggleGroup);
+
+        squareButton.setToggleGroup(toggleGroup);
+        triangleButton.setToggleGroup(toggleGroup);
+        circleButton.setToggleGroup(toggleGroup);
+        leftFlipperButton.setToggleGroup(toggleGroup);
+        rightFlipperButton.setToggleGroup(toggleGroup);
+        absorberButton.setToggleGroup(toggleGroup);
+        ballButton.setToggleGroup(toggleGroup);
     }
 
     public void setDoNothing(boolean doNothing) {
@@ -228,5 +348,22 @@ public class BuildController {
     public void toggleBoard() {
         buildRoot.setCenter(boardController.getBoardView());
         boardController.getBoardView().setGrid(true);
+    }
+
+    public void setSelectedBall(Ball selectedBall) {
+        this.selectedBall = selectedBall;
+        if (selectedBall == null) {
+            velocityContainer.setDisable(true);
+        }
+        else {
+            velocityContainer.setDisable(false);
+        }
+    }
+    public Ball getSelecedBall() {
+        return selectedBall;
+    }
+
+    public boolean isAddBallSelected() {
+        return addBallSelected;
     }
 }

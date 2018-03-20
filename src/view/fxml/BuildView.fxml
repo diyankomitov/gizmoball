@@ -9,89 +9,110 @@
 <?import view.gizmoviews.CircleGizmoView?>
 <?import view.gizmoviews.FlipperGizmoView?>
 <?import view.gizmoviews.AbsorberGizmoView?>
+<?import javafx.scene.Group?>
+<?import javafx.geometry.Insets?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="controller.BuildController"
             fx:id="buildRoot"
-            style="-fx-background-color: white; -fx-padding: 10">
+            style="-fx-background-color: #154a8f; -fx-padding: 10">
 
     <fx:define>
         <Constants fx:id="oneLInPixels" fx:constant="ONE_L_IN_PIXELS" />
     </fx:define>
 
     <left>
-        <VBox>
-            <HBox style="-fx-border-color: grey">
-                <ToolBar orientation="VERTICAL" style="-fx-alignment: top-center; -fx-border-color: grey; -fx-background-color: lightgrey">
-                    <Button fx:id="moveButton" text="Move"/>
-                    <Button fx:id="rotateButton" text="Rotate"/>
-                    <Button fx:id="deleteButton" text="Delete"/>
+        <VBox styleClass="leftPanel">
+            <BorderPane.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            </BorderPane.margin>
+            <HBox styleClass="sideBarHBox">
+                <VBox styleClass="buttonsVBox">
+                    <ToggleButton fx:id="moveButton" text="Move" styleClass="uiButton" focusTraversable="false"/>
+                    <ToggleButton fx:id="rotateButton" text="Rotate" styleClass="uiButton" focusTraversable="false"/>
+                    <ToggleButton fx:id="deleteButton" text="Delete" styleClass="uiButton" focusTraversable="false"/>
 
                     <Separator/>
 
-                    <Button fx:id="connectButton" text="Connect"/>
-                    <Button fx:id="disconnectButton" text="Disconnect"/>
+                    <ToggleButton fx:id="connectButton" text="Connect" styleClass="uiButton" focusTraversable="false"/>
+                    <ToggleButton fx:id="disconnectButton" text="Disconnect" styleClass="uiButton" focusTraversable="false"/>
 
                     <Separator/>
 
-                    <Button fx:id="switchButton" text="Switch to Run"/>
-                    <Button fx:id="toggleGrid" text="Toggle Grid"/>
-                    <Button fx:id="clearBoardButton" text="Clear Board"/>
-                </ToolBar>
-                <ToolBar orientation="VERTICAL" style="-fx-background-color: lightgrey; -fx-border-color: grey; ">
-                    <Label text="Bumpers"/>
-                    <SquareGizmoView fx:id="squareButton"/>
-                    <TriangleGizmoView fx:id="triangleButton"/>
-                    <CircleGizmoView fx:id="circleButton"/>
+                    <Button fx:id="switchButton" text="Switch to Run" styleClass="uiButton" focusTraversable="false"/>
+                    <Button fx:id="toggleGrid" text="Toggle Grid" styleClass="uiButton" focusTraversable="false"/>
+                    <Button fx:id="clearBoardButton" text="Clear Board" styleClass="uiButton" focusTraversable="false"/>
+                </VBox>
+                <VBox styleClass="buttonsVBox">
+                    <VBox alignment="CENTER" spacing="10">
+                        <Label text="Bumpers"/>
+                        <SquareGizmoView fx:id="squareButton"/>
+                        <TriangleGizmoView fx:id="triangleButton"/>
+                        <CircleGizmoView fx:id="circleButton"/>
+                    </VBox>
 
                     <Separator/>
 
-                    <Label text="Flippers"/>
-                    <FlipperGizmoView fx:id="leftFlipperButton" type="LEFT_FLIPPER"/>
-                    <FlipperGizmoView fx:id="rightFlipperButton" type="RIGHT_FLIPPER"/>
+                    <VBox alignment="CENTER" spacing="10">
+                        <Label text="Flippers"/>
+                        <FlipperGizmoView fx:id="leftFlipperButton" type="LEFT_FLIPPER"/>
+                        <FlipperGizmoView fx:id="rightFlipperButton" type="RIGHT_FLIPPER"/>
+                    </VBox>
 
                     <Separator/>
 
-                    <Label text="Absorber"/>
-                    <AbsorberGizmoView fx:id="absorberButton"/>
+                    <VBox spacing="10">
+                        <VBox alignment="CENTER">
+                            <Label text="Absorber"/>
+                        </VBox>
+                            <AbsorberGizmoView fx:id="absorberButton"/>
+                    </VBox>
 
                     <Separator/>
 
-                    <Label text="Ball"/>
-                    <BallView fx:id="ballButton"/>
-                </ToolBar>
+                    <VBox alignment="CENTER" spacing="10">
+                        <Label text="Ball"/>
+                        <BallView fx:id="ballButton"/>
+                    </VBox>
+                </VBox>
             </HBox>
 
             <VBox>
-                <Label text="Ball X Velocity"/>
-                <HBox>
-                    <Slider fx:id="ballXVelocitySlider" min="-200" max="200" showTickLabels="true"/>
-                    <TextField fx:id="ballXVelocityField" maxWidth="50"/>
+                <VBox fx:id="velocityContainer" disable="true">
+                    <Label text="Ball X Velocity"/>
+                    <HBox>
+                        <Slider fx:id="ballXVelocitySlider" min="-200" max="200" showTickLabels="true" focusTraversable="false"/>
+                        <TextField fx:id="ballXVelocityField" maxWidth="50" focusTraversable="false"/>
+                    </HBox>
+                    <Label text="Ball Y Velocity"/>
+                    <HBox>
+                        <Slider fx:id="ballYVelocitySlider" min="-200" max="200" showTickLabels="true" focusTraversable="false"/>
+                        <TextField fx:id="ballYVelocityField" maxWidth="50" focusTraversable="false"/>
+                    </HBox>
+                </VBox>
+                <HBox spacing="10">
+                    <ToggleButton fx:id="selectBallButton" text="Select Ball" focusTraversable="false"/>
+
+                    <CheckBox fx:id="globalCheckBox" focusTraversable="false">Global</CheckBox>
                 </HBox>
-                <Label text="Ball Y Velocity"/>
-                <HBox>
-                    <Slider fx:id="ballYVelocitySlider" min="-200" max="200" showTickLabels="true"/>
-                    <TextField fx:id="ballYVelocityField" maxWidth="50"/>
-                </HBox>
-                <Button fx:id="selectBallButton" text="Select Ball"/>
             </VBox>
             <VBox>
                 <Label text="Gravity"/>
                 <HBox>
-                    <Slider fx:id="gravitySlider" min="-1000" max="1000" showTickLabels="true"/>
-                    <TextField fx:id="gravityField" maxWidth="50"/>
+                    <Slider fx:id="gravitySlider" min="-1000" max="1000" showTickLabels="true" focusTraversable="false"/>
+                    <TextField fx:id="gravityField" maxWidth="50" focusTraversable="false"/>
                 </HBox>
             </VBox>
             <VBox>
                 <Label text="MU"/>
                 <HBox>
-                    <Slider fx:id="frictionMuSlider" max="1000" showTickLabels="true"/>
-                    <TextField fx:id="frictionMuField" maxWidth="50"/>
+                    <Slider fx:id="frictionMuSlider" max="1000" showTickLabels="true" focusTraversable="false"/>
+                    <TextField fx:id="frictionMuField" maxWidth="50" focusTraversable="false"/>
                 </HBox>
                 <Label text="MU2"/>
                 <HBox>
-                    <Slider fx:id="frictionMu2Slider" max="1000" showTickLabels="true"/>
-                    <TextField fx:id="frictionMu2Field" maxWidth="50"/>
+                    <Slider fx:id="frictionMu2Slider" max="1000" showTickLabels="true" focusTraversable="false"/>
+                    <TextField fx:id="frictionMu2Field" maxWidth="50" focusTraversable="false"/>
                 </HBox>
             </VBox>
         </VBox>

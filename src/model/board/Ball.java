@@ -19,6 +19,7 @@ public class Ball implements BoardObject, Observable {
     private Vect potentialVelocity;
     private boolean inAbsorber = false;
     private List<Observer> observers = new ArrayList<>();
+    private Vect privateVelocity;
 
     public Ball(double x, double y, double xv, double yv, String name) {
         this.x = x;
@@ -30,7 +31,15 @@ public class Ball implements BoardObject, Observable {
         this.potentialVelocity = new Vect(0, 0);
     }
 
-    //TODO: FIX MOVEFORTIME
+    public void setGlobalVelocity(boolean globalVelocity) {
+        if (globalVelocity) {
+            this.privateVelocity = velocity;
+        }
+        else {
+            setVelocity(this.privateVelocity);
+        }
+    }
+
     public void moveForTime(double moveTime) {
         x += (velocity.x() * moveTime);
         y += (velocity.y() * moveTime);

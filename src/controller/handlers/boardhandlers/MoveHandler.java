@@ -1,9 +1,13 @@
 package controller.handlers.boardhandlers;
 
 import controller.BoardController;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
 import model.GizmoballModel;
 import model.board.Ball;
@@ -25,10 +29,21 @@ public class MoveHandler implements BoardHandler {
     private BallView ballView;
     private Label infoLabel;
 
-    public MoveHandler(GizmoballModel model, Label infoLabel) {
+    public MoveHandler(GizmoballModel model, ToggleButton moveButton) {
         this.model = model;
-        this.infoLabel = infoLabel;
+        this.infoLabel = new Label();
         firstClick = false;
+
+        moveButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) {
+                if (gizmoView != null) {
+                    gizmoView.setSelected(false);
+                }
+                if (ballView != null) {
+                    ballView.setSelected(false);
+                }
+            }
+        });
     }
 
     @Override

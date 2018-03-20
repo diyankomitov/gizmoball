@@ -1,3 +1,9 @@
+
+.root{
+    -fx-font-family: 'Tahoma', Arial, Helvetica, sans-serif;
+    -fx-font-smoothing-type: gray;
+}
+
 .board {
     -fx-background-color: linear-gradient(to bottom right, #e6fffd, #e6fffc);
     -fx-border-color: black;
@@ -11,14 +17,36 @@
     -fx-border-color: black;
 }
 
+.uiButton {
+    -fx-border-width: 0;
+    -fx-pref-height: 50;
+    -fx-pref-width: 150;
+    -fx-background-color: #186ebf;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 18;
+}
+
+.uiButton:hover {
+    -fx-background-color: derive(#4b4b8f, -25%);
+}
+
+.uiButton:selected {
+    -fx-background-color: derive(#4b4b8f, -45%);
+}
+
+.uiButton:armed {
+    -fx-background-color: derive(#4b4b8f, -55%);
+}
+
 .squareGizmo {
     -fx-fill: red;
     /*-fx-fill: radial-gradient(center 30% 30%, radius 100%, #ff8c8c, red);*/
 }
 
-.gizmoContainer:focused .squareGizmo {
-    -fx-fill: derive(red, -50%);
-}
+/*.gizmoContainer:focused .squareGizmo {*/
+    /*-fx-fill: derive(red, -50%);*/
+/*}*/
 .gizmoContainer.selected .squareGizmo {
      -fx-fill: derive(red, -50%);
  }
@@ -27,9 +55,9 @@
     -fx-fill: #00ff00;
     /*-fx-fill: radial-gradient(center 30% 30%, radius 100%, #8cff8c, #00ff00);*/
 }
-.gizmoContainer:focused .triangleGizmo {
-    -fx-fill: derive(#00ff00, -50%);
-}
+/*.gizmoContainer:focused .triangleGizmo {*/
+    /*-fx-fill: derive(#00ff00, -50%);*/
+/*}*/
 .gizmoContainer.selected .triangleGizmo {
     -fx-fill: derive(#00ff00, -50%);
 }
@@ -38,9 +66,9 @@
     -fx-fill: deepskyBlue;
     /*-fx-fill: radial-gradient(center 30% 30%, radius 100%, #8ce2ff, deepskyblue);*/
 }
-.gizmoContainer:focused .circleGizmo {
-    -fx-fill: derive(deepskyblue, -50%);
-}
+/*.gizmoContainer:focused .circleGizmo {*/
+    /*-fx-fill: derive(deepskyblue, -50%);*/
+/*}*/
 .gizmoContainer.selected .circleGizmo {
     -fx-fill: derive(deepskyblue, -50%);
 }
@@ -48,9 +76,9 @@
     -fx-fill: orange;
     /*-fx-fill: radial-gradient(center 30% 30%, radius 100%, #ffd38c, orange);*/
 }
-.gizmoContainer:focused .flipperGizmo {
-    -fx-fill: derive(orange, -50%);
-}
+/*.gizmoContainer:focused .flipperGizmo {*/
+    /*-fx-fill: derive(orange, -50%);*/
+/*}*/
 .gizmoContainer.selected .flipperGizmo {
     -fx-fill: derive(orange, -50%);
 }
@@ -58,9 +86,9 @@
     -fx-fill: #ff00ff;
     /*-fx-fill: radial-gradient(center 30% 30%, radius 100%, #ff8cff, #ff00ff);*/
  }
-.gizmoContainer:focused .absorberGizmo {
-    -fx-fill: derive(#ff00ff, -50%);
-}
+/*.gizmoContainer:focused .absorberGizmo {*/
+    /*-fx-fill: derive(#ff00ff, -50%);*/
+/*}*/
 .gizmoContainer.selected .absorberGizmo {
     -fx-fill: derive(#ff00ff, -50%);
 }
@@ -75,4 +103,18 @@
 .ballContainer.selected .ball {
     -fx-fill: derive(#ffdb00, -50%);
 
+}
+
+.sideBarHBox {
+}
+
+.buttonsVBox {
+    -fx-alignment: top-center;
+    -fx-spacing: 10;
+    -fx-padding: 10;
+}
+
+.leftPanel {
+    -fx-background-color: derive(#154a8f, -10%);
+    -fx-background-radius: 10;
 }

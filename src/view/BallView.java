@@ -1,6 +1,12 @@
 package view;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.Group;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import model.board.Ball;
@@ -9,13 +15,15 @@ import util.Observer;
 import static util.Constants.ONE_L_IN_PIXELS;
 
 
-public class BallView extends Group implements Observer{
+public class BallView extends Group implements Observer, Toggle{
 
     private Circle ball;
     private double x;
     private double y;
     private final Ball ballModel;
     private double hue;
+    private BooleanProperty selected;
+    private ObjectProperty<ToggleGroup> toggleGroup;
 
     public BallView(Ball ballModel) {
         super();
@@ -30,6 +38,9 @@ public class BallView extends Group implements Observer{
         this.setTranslateY(y);
         ballModel.subscribe(this);
         this.getStyleClass().add("ballContainer");
+
+        selected = new SimpleBooleanProperty(false);
+        toggleGroup = new SimpleObjectProperty<>(null);
     }
 
     public BallView() {
@@ -41,6 +52,8 @@ public class BallView extends Group implements Observer{
         this.getChildren().add(ball);
         ball.getStyleClass().add("ball");
         this.getStyleClass().add("ballContainer");
+        selected = new SimpleBooleanProperty(false);
+        toggleGroup = new SimpleObjectProperty<>(null);
     }
 
     @Override
@@ -54,12 +67,51 @@ public class BallView extends Group implements Observer{
         hue++;
     }
 
+//    public void setSelected(boolean selected) {
+//        if (selected) {
+//            this.getStyleClass().add("selected");
+//        }
+//        else {
+//            this.getStyleClass().remove("selected");
+//        }
+//    }
+
+    @Override
+    public ToggleGroup getToggleGroup() {
+        return toggleGroup.getValue();
+    }
+
+    @Override
+    public void setToggleGroup(ToggleGroup toggleGroup) {
+        this.toggleGroup.setValue(toggleGroup);
+    }
+
+    @Override
+    public ObjectProperty<ToggleGroup> toggleGroupProperty() {
+        return toggleGroup;
+    }
+
+    @Override
+    public boolean isSelected() {
+        return selected.get();
+    }
+
+    @Override
     public void setSelected(boolean selected) {
+        System.out.println("setSelected");
         if (selected) {
+            System.out.println("selected");
             this.getStyleClass().add("selected");
         }
         else {
+            System.out.println("not Selected");
             this.getStyleClass().remove("selected");
         }
+        this.selected.setValue(selected);
+    }
+
+    @Override
+    public BooleanProperty selectedProperty() {
+        return selected;
     }
 }

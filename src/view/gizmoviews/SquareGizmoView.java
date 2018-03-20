@@ -1,5 +1,10 @@
 package view.gizmoviews;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.paint.Color;
@@ -9,7 +14,7 @@ import model.board.gizmos.Gizmo;
 import static util.Constants.ONE_L_IN_PIXELS;
 
 
-public class SquareGizmoView extends GizmoViewContainer {
+public class SquareGizmoView extends GizmoViewContainer{
 
     private final Rectangle square;
 
@@ -21,21 +26,12 @@ public class SquareGizmoView extends GizmoViewContainer {
         square.getStyleClass().add("squareGizmo");
         square.setMouseTransparent(true);
 
+        this.setMaxSize(side, side);
+
         this.getChildren().add(square);
     }
 
     public SquareGizmoView() {
         this(null);
     }
-
-//    public void toggle() {
-//        if (!isToggle) {
-//            square.setFill(Color.DARKRED);
-//        }
-//        else {
-//            square.setFill(Color.RED); //TODO: put in css
-//        }
-//
-//        isToggle = !isToggle;
-//    }
 }

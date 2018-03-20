@@ -21,6 +21,7 @@ public class TriangleGizmoView extends GizmoViewContainer{
         if (gizmo != null) {
             rotate(gizmo.getAngle());
         }
+        this.setMaxSize(side, side);
 
         this.getChildren().add(triangle);
     }

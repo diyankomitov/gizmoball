@@ -22,7 +22,7 @@ import static util.Constants.ONE_L_IN_PIXELS;
 
 public class ConnectTriggerHandler implements BoardHandler {
     private final GizmoballModel model;
-    private Button connectButton;
+    private ToggleButton connectButton;
     private final BoardController boardController;
     private final Stage stage;
     private boolean triggeredSelected;
@@ -30,13 +30,20 @@ public class ConnectTriggerHandler implements BoardHandler {
     private Label infoLabel;
     private GizmoView gizmoView;
 
-    public ConnectTriggerHandler(GizmoballModel model, BoardController boardController, Stage stage, Label infoLabel, Button connectButton) {
+    public ConnectTriggerHandler(GizmoballModel model, BoardController boardController, Stage stage, Label infoLabel, ToggleButton connectButton) {
         this.model = model;
         this.connectButton = connectButton;
         triggeredSelected = false;
         this.boardController = boardController;
         this.stage = stage;
         this.infoLabel = infoLabel;
+        connectButton.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) {
+                if (gizmoView != null) {
+                    gizmoView.setSelected(false);
+                }
+            }
+        });
     }
 
     @Override
@@ -84,8 +91,6 @@ public class ConnectTriggerHandler implements BoardHandler {
 
                     Alert keyTypeAlert = new Alert(Alert.AlertType.NONE, "Please select if you want the action to be triggered when you press the key or release the key!", down, up);
                     keyTypeAlert.setTitle("Select when trigger should occur");
-
-//                    EventType<KeyEvent> type = null;
 
                     Optional<ButtonType> result = keyTypeAlert.showAndWait();
                     if (result.isPresent()) {
