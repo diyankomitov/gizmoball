@@ -32,8 +32,12 @@ public class SaveHandler implements EventHandler<ActionEvent> {
         FileChooser fileChooser = new FileChooser();
 
         //fileChooser.setInitialDirectory();
-        FileChooser.ExtensionFilter eFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+        FileChooser.ExtensionFilter eFilter = new FileChooser.ExtensionFilter("Gizmoball files (*.gzb)", "*.gzb");
+        FileChooser.ExtensionFilter eFilter2 = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+
         fileChooser.getExtensionFilters().add(eFilter);
+        fileChooser.getExtensionFilters().add(eFilter2);
+
         fileChooser.setSelectedExtensionFilter(eFilter);
         fileChooser.setInitialFileName("untitled");
         fileChooser.setTitle("Save Board");

@@ -14,6 +14,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import model.CollisionEngine;
 import model.GizmoballModel;
 
 import java.util.concurrent.Callable;
@@ -41,6 +42,7 @@ public class GizmoballController {
     private RunController runViewController;
 
     private GizmoballModel model;
+    private CollisionEngine collisionEngine;
     private Stage stage;
 
     public static SimpleBooleanProperty disable = new SimpleBooleanProperty(false);
@@ -49,22 +51,23 @@ public class GizmoballController {
     private LoadHandler loadHandler;
     private ExitHandler exitHandler;
 
-    public void setup(Stage stage, GizmoballModel model) {
+    public void setup(Stage stage, GizmoballModel model, CollisionEngine collisionEngine) {
         this.stage = stage;
         this.model = model;
+        this.collisionEngine = collisionEngine;
 
         BoardController boardController = new BoardController();
 
         saveHandler = new SaveHandler(stage, buildViewController);
-        loadHandler = new LoadHandler(stage, boardController, buildViewController, model, buildViewController.getInfoLabel());
+        loadHandler = new LoadHandler(stage, boardController, buildViewController, model, buildViewController.getInfoLabel(), model.getCollisionEngine());
         exitHandler = new ExitHandler(buildViewController);
 
         SwitchModeHandler switchToRun = new SwitchModeHandler(buildViewController, runViewController, RIGHT, loadHandler, saveHandler);
         SwitchModeHandler switchToBuild = new SwitchModeHandler(buildViewController, runViewController, LEFT, loadHandler, saveHandler);
 
 
-        buildViewController.setup(model, boardController, switchToRun, stage);
-        runViewController.setup(model, boardController, switchToBuild, stage, loadHandler);
+        buildViewController.setup(model, boardController, switchToRun, stage, collisionEngine);
+        runViewController.setup(model, boardController, switchToBuild, stage, loadHandler, model.getCollisionEngine());
 
         save.disableProperty().bind(disable);
         load.disableProperty().bind(disable);

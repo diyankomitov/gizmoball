@@ -16,6 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
+import model.CollisionEngine;
 import model.GizmoballModel;
 import view.*;
 import view.gizmoviews.*;
@@ -88,13 +89,15 @@ public class BuildController {
     private DoNothingHandler doNothingHandler;
     private SwitchModeHandler switchToPlay;
     private Stage stage;
+    private CollisionEngine collisionEngine;
 
-    public void setup(GizmoballModel model, BoardController boardController, SwitchModeHandler switchToPlay, Stage stage) {
+    public void setup(GizmoballModel model, BoardController boardController, SwitchModeHandler switchToPlay, Stage stage, CollisionEngine collisionEngine) {
         this.model = model;
         this.boardController = boardController;
         this.doNothingHandler = new DoNothingHandler();
         this.switchToPlay = switchToPlay;
         this.stage = stage;
+        this.collisionEngine = collisionEngine;
 
         buildRoot.setCenter(boardController.getBoardView());
 
@@ -116,12 +119,12 @@ public class BuildController {
 
         ballXVelocityField.textProperty().addListener(new ChangeBallXVelocityHandler(model, ballXVelocityField));
         gravityField.textProperty().addListener(new ChangeGravityHandler(model, gravityField));
-        frictionMuField.textProperty().addListener(new ChangeFrictionMuHandler(model, frictionMuField));
+        frictionMuField.textProperty().addListener(new ChangeFrictionMuHandler(collisionEngine, frictionMuField));
         frictionMu2Field.textProperty().addListener(new ChangeFrictionMu2Handler(model, frictionMu2Field));
 
-        gravityField.textProperty().bind(Bindings.convert(model.getGravityProperty()));
-        frictionMuField.textProperty().bind(Bindings.convert(model.getFrictionMUProperty()));
-        frictionMu2Field.textProperty().bind(Bindings.convert(model.getFrictionMU2Property()));
+//        gravityField.textProperty().bind(Bindings.convert(model.getGravityProperty()));
+//        frictionMuField.textProperty().bind(Bindings.convert(model.getFrictionMUProperty()));
+//        frictionMu2Field.textProperty().bind(Bindings.convert(model.getFrictionMU2Property()));
 
 
         setupHandlers();
@@ -186,7 +189,7 @@ public class BuildController {
             boardController.setBoardHandler(new AddBallHandler(model, boardController, this, information));
         });
 
-        moveButton.setOnAction(event -> boardController.setBoardHandler(new MoveHandler(model, moveButton)));
+        moveButton.setOnAction(event -> boardController.setBoardHandler(new MoveHandler(model, information)));
         rotateButton.setOnAction(event -> boardController.setBoardHandler(new RotateHandler(model, this)));
         deleteButton.setOnAction(event -> boardController.setBoardHandler(new DeleteHandler(boardController, model)));
         connectButton.setOnAction(event -> boardController.setBoardHandler(new ConnectTriggerHandler(model, boardController, stage, information, connectButton)));

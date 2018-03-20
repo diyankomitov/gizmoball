@@ -3,14 +3,15 @@ package controller.handlers.buildhandlers;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TextField;
+import model.CollisionEngine;
 import model.GizmoballModel;
 
 public class ChangeFrictionMuHandler implements ChangeListener<String> {
-    private final GizmoballModel model;
+    private final CollisionEngine collisionEngine;
     private TextField textField;
 
-    public ChangeFrictionMuHandler(GizmoballModel model, TextField textField) {
-        this.model = model;
+    public ChangeFrictionMuHandler(CollisionEngine collisionEngine, TextField textField) {
+        this.collisionEngine = collisionEngine;
         this.textField = textField;
     }
 
@@ -26,6 +27,6 @@ public class ChangeFrictionMuHandler implements ChangeListener<String> {
             textField.setText("-1000");
         }
 
-        model.setFrictionMU(newDouble);
+        collisionEngine.setFrictionMU(newDouble);
     }
 }

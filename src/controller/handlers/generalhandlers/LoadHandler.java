@@ -17,6 +17,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import model.CollisionEngine;
 import model.board.Ball;
 import model.board.BoardObjectType;
 import model.GizmoballModel;
@@ -45,7 +46,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
 
     private ActionEvent event;
 
-    public LoadHandler(Stage stage, BoardController boardController, BuildController buildController, GizmoballModel model, Label infoLabel) {
+    public LoadHandler(Stage stage, BoardController boardController, BuildController buildController, GizmoballModel model, Label infoLabel, CollisionEngine collisionEngine) {
         this.boardController = boardController;
         this.buildController = buildController;
         this.infoLabel = infoLabel;
@@ -60,8 +61,11 @@ public class LoadHandler implements EventHandler<ActionEvent> {
 
         this.event = event;
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter eFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+        FileChooser.ExtensionFilter eFilter = new FileChooser.ExtensionFilter("Gizmoball files (*.gzb)", "*.gzb");
+        FileChooser.ExtensionFilter eFilter2 = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+
         fileChooser.getExtensionFilters().add(eFilter);
+        fileChooser.getExtensionFilters().add(eFilter2);
         fileChooser.setSelectedExtensionFilter(eFilter);
         if (BoardState.getSavedBoard()) {
             fileChooser.setTitle("Load Board");
@@ -360,7 +364,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
             case "Gravity":
                 try {
                     double g = Double.parseDouble(string[1]);
-                    model.setGravity(g);
+                    model.getCollisionEngine().setGravity(g);
 
                 } catch (Exception e) {
                     System.out.println("Something has gone wrong...");
@@ -371,7 +375,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                 try {
                     double mu = Double.parseDouble(string[1]);
                     double mu2 = Double.parseDouble(string[2]);
-                    model.setFriction(mu, mu2);
+                    model.getCollisionEngine().setFriction(mu, mu2);
 
                 } catch (Exception e) {
                     System.out.println("Something has gone wrong...");
