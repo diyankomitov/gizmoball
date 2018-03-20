@@ -34,7 +34,7 @@ public class KeyPress {
         KeyPress keyPress = (KeyPress) o;
 
         return keyPress.code.equals(code) &&
-                keyPress.type == type;
+                keyPress.type.equals(type);
     }
 
     //Idea from effective Java : Item 9

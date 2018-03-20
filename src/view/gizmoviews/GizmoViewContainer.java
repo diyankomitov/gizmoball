@@ -46,6 +46,5 @@ public class GizmoViewContainer extends Pane implements GizmoView{
     @Override
     public void update() {
         setCoordinates(gizmo.getX() * ONE_L_IN_PIXELS, gizmo.getY() * ONE_L_IN_PIXELS);
-        System.out.println(this.getTranslateX() + " translate " + this.getTranslateY());
     }
 }

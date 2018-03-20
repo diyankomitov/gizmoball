@@ -133,7 +133,7 @@ public class AbsorberGizmo implements Gizmo {
     }
 
     @Override
-    public void trigger(boolean keyPressed) {
+    public void trigger(boolean keyPressed, boolean keyReleased) {
             this.keyPressed = keyPressed;
             triggered = true;
 

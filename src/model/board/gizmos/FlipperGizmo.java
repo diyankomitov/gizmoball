@@ -35,6 +35,7 @@ public class FlipperGizmo implements Gizmo{
     private int rotationCount;
     private double startingAngle;
     private double oldAngle;
+    private boolean keyReleased;
 
     /**
      * Constructor
@@ -93,9 +94,24 @@ public class FlipperGizmo implements Gizmo{
     }
 
     @Override
-    public void trigger(boolean keyPressed) {
-        this.keyPressed = keyPressed;
-        flipUp = true;
+    public boolean getKeyPressed() {
+        return keyPressed;
+    }
+
+    @Override
+    public void trigger(boolean keyPressed, boolean keyReleased) {
+        if (!this.keyPressed || this.keyReleased || keyPressed || !keyReleased) { //when a key is being held down dont trigger from gizmos
+            this.keyReleased = keyReleased;
+            this.keyPressed = keyPressed;
+        }
+
+        if (keyPressed && !keyReleased) {
+            flipUp = true;
+        }
+        else if (!keyPressed && keyReleased) {
+            flipUp = true;
+        }
+
     }
 
     private void flip() {
@@ -112,7 +128,15 @@ public class FlipperGizmo implements Gizmo{
             }
 
             if (angle >= 90) {
-                flipUp = keyPressed;
+                if (keyPressed && !keyReleased) {
+                    flipUp = true;
+                }
+                else if(keyPressed) {
+                    flipUp = false;
+                }
+                else if (keyReleased) {
+                    flipUp = false;
+                }
             }
         }
         else if (type == BoardObjectType.LEFT_FLIPPER)
@@ -127,7 +151,15 @@ public class FlipperGizmo implements Gizmo{
             }
 
             if (angle <= -90) {
-                flipUp = keyPressed;
+                if (keyPressed && !keyReleased) {
+                    flipUp = true;
+                }
+                else if(keyPressed) {
+                    flipUp = false;
+                }
+                else if (keyReleased) {
+                    flipUp = false;
+                }
             }
         }
         if (angle == 0 || angle == 90 || angle == -90) {
@@ -185,9 +217,6 @@ public class FlipperGizmo implements Gizmo{
                 rotationCount = 0;
                 break;
         }
-
-        System.out.println(angle);
-        System.out.println(xWithOffset + " " + yWithOffset);
 
         oldAngle = angle;
         notifyObservers();

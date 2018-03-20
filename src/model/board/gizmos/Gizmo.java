@@ -14,7 +14,7 @@ public interface Gizmo extends BoardObject, Observable {
 
     double getAngle();
 
-    void trigger(boolean keyPressed);
+    void trigger(boolean keyPressed, boolean keyReleased);
 
     void sendTrigger();
 
@@ -23,4 +23,8 @@ public interface Gizmo extends BoardObject, Observable {
     void getTimeUntilCollision();
 
     void activateAction();
+
+    default boolean getKeyPressed() {
+        return false;
+    }
 }
