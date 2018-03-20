@@ -1,6 +1,7 @@
 package controller.handlers.boardhandlers;
 
 import javafx.event.Event;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import model.GizmoballModel;
@@ -24,11 +25,13 @@ public class DisconnectTriggerHandler implements BoardHandler {
     public void handle(Event event) {
 
         if (event.getEventType() == MouseEvent.MOUSE_CLICKED) {
-            MouseEvent mouseEvent = (MouseEvent) event;
-            double x = Math.floor(mouseEvent.getX() / ONE_L_IN_PIXELS);
-            double y = Math.floor(mouseEvent.getY() / ONE_L_IN_PIXELS);
+            Node clicked = ((Node)event.getTarget());
+            double nodeX = Math.floor(clicked.getTranslateX()/ONE_L_IN_PIXELS);
+            double nodeY = Math.floor(clicked.getTranslateY()/ONE_L_IN_PIXELS);
 
-            Gizmo gizmo = model.getGizmo(x, y);
+
+
+            Gizmo gizmo = model.getGizmo(nodeX, nodeY);
 
             if (gizmo != null) {
                 Triggers.removeTriggers(gizmo);

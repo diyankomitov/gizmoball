@@ -17,6 +17,7 @@ public class TriangleGizmoView extends GizmoViewContainer{
         double side = ONE_L_IN_PIXELS;
         triangle = new Polygon(0.0, 0.0, side, 0.0, 0.0, side);
         triangle.getStyleClass().add("triangleGizmo");
+        triangle.setMouseTransparent(true);
         if (gizmo != null) {
             rotate(gizmo.getAngle());
         }

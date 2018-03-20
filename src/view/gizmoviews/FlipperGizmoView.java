@@ -1,11 +1,14 @@
 package view.gizmoviews;
 
 import javafx.beans.NamedArg;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 import model.board.BoardObjectType;
 import model.board.gizmos.FlipperGizmo;
 import model.board.gizmos.Gizmo;
+import view.BoardView;
 
 import static util.Constants.ONE_L_IN_PIXELS;
 
@@ -28,12 +31,15 @@ public class FlipperGizmoView extends GizmoViewContainer {
         rectangle.setArcWidth(width);
         rectangle.setArcHeight(width);
         rectangle.getStyleClass().add("flipperGizmo");
+        rectangle.setMouseTransparent(true);
+
 
         if (flipperGizmo.getType() == BoardObjectType.RIGHT_FLIPPER) {
             rectangle.setX(length - width);
         }
 
         this.getChildren().add(rectangle);
+        this.setPrefSize(length, length);
 
         flip = new Rotate(0, pivotX, pivotY);
         rectangle.getTransforms().add(flip);

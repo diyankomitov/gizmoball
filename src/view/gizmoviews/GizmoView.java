@@ -8,4 +8,5 @@ public interface GizmoView extends Observer {
     double getY();
     void setCoordinates(double x, double y);
     Node getNode();
+    void setSelected(boolean selected);
 }

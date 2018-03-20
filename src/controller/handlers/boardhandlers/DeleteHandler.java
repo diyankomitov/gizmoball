@@ -26,7 +26,7 @@ public class DeleteHandler implements BoardHandler{
     public void handle(Event event) {
         if (event.getEventType() == MouseEvent.MOUSE_CLICKED) {
 
-            Node clicked = ((Node)event.getTarget()).getParent();
+            Node clicked = ((Node)event.getTarget());
             double x = (int)(clicked.getTranslateX()/ONE_L_IN_PIXELS);
             double y = (int)(clicked.getTranslateY()/ONE_L_IN_PIXELS);
 

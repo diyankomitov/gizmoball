@@ -1,11 +1,13 @@
 package controller;
 
 import controller.handlers.boardhandlers.*;
+import controller.handlers.buildhandlers.ChangeBallXVelocityHandler;
 import controller.handlers.buildhandlers.ChangeFrictionMu2Handler;
 import controller.handlers.buildhandlers.ChangeFrictionMuHandler;
 import controller.handlers.buildhandlers.ChangeGravityHandler;
 import controller.handlers.generalhandlers.DoNothingHandler;
 import controller.handlers.generalhandlers.SwitchModeHandler;
+import javafx.beans.binding.Bindings;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -29,6 +31,8 @@ public class BuildController {
     public Slider ballYVelocitySlider;
     @FXML
     public TextField ballYVelocityField;
+    @FXML
+    public Button selectBallButton;
     @FXML
     private BorderPane buildRoot;
     @FXML
@@ -113,9 +117,14 @@ public class BuildController {
         frictionMuField.textProperty().bindBidirectional(frictionMuSlider.valueProperty(), new NumberStringConverter());
         frictionMu2Field.textProperty().bindBidirectional(frictionMu2Slider.valueProperty(), new NumberStringConverter());
 
+        ballXVelocityField.textProperty().addListener(new ChangeBallXVelocityHandler(model, ballXVelocityField));
         gravityField.textProperty().addListener(new ChangeGravityHandler(model, gravityField));
         frictionMuField.textProperty().addListener(new ChangeFrictionMuHandler(collisionEngine, frictionMuField));
         frictionMu2Field.textProperty().addListener(new ChangeFrictionMu2Handler(model, frictionMu2Field));
+
+        gravityField.textProperty().bind(Bindings.convert(model.getGravityProperty()));
+        frictionMuField.textProperty().bind(Bindings.convert(model.getFrictionMUProperty()));
+        frictionMu2Field.textProperty().bind(Bindings.convert(model.getFrictionMU2Property()));
 
 
         setupHandlers();
@@ -151,18 +160,39 @@ public class BuildController {
 
     private void setupHandlers() {
 
-        squareButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController,this, SQUARE, information)));
-        triangleButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController,this, TRIANGLE, information)));
-        circleButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController,this, CIRCLE, information)));
-        leftFlipperButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController,this, LEFT_FLIPPER, information)));
-        rightFlipperButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddHandler(model, boardController,this, RIGHT_FLIPPER, information)));
-        absorberButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddAbsorberHandler(model, boardController, this, information)));
-        ballButton.setOnMouseClicked(event -> boardController.setBoardHandler(new AddBallHandler(model, boardController, this, information)));
+        squareButton.setOnMouseClicked(event -> {
+            squareButton.requestFocus();
+            boardController.setBoardHandler(new AddHandler(model, boardController,this, SQUARE, information));
+        });
+        triangleButton.setOnMouseClicked(event -> {
+            triangleButton.requestFocus();
+            boardController.setBoardHandler(new AddHandler(model, boardController,this, TRIANGLE, information));
+        });
+        circleButton.setOnMouseClicked(event -> {
+            circleButton.requestFocus();
+            boardController.setBoardHandler(new AddHandler(model, boardController,this, CIRCLE, information));
+        });
+        leftFlipperButton.setOnMouseClicked(event -> {
+            leftFlipperButton.requestFocus();
+            boardController.setBoardHandler(new AddHandler(model, boardController,this, LEFT_FLIPPER, information));
+        });
+        rightFlipperButton.setOnMouseClicked(event -> {
+            rightFlipperButton.requestFocus();
+            boardController.setBoardHandler(new AddHandler(model, boardController,this, RIGHT_FLIPPER, information));
+        });
+        absorberButton.setOnMouseClicked(event -> {
+            absorberButton.requestFocus();
+            boardController.setBoardHandler(new AddAbsorberHandler(model, boardController, this, information));
+        });
+        ballButton.setOnMouseClicked(event -> {
+            ballButton.requestFocus();
+            boardController.setBoardHandler(new AddBallHandler(model, boardController, this, information));
+        });
 
         moveButton.setOnAction(event -> boardController.setBoardHandler(new MoveHandler(model)));
         rotateButton.setOnAction(event -> boardController.setBoardHandler(new RotateHandler(model, this)));
         deleteButton.setOnAction(event -> boardController.setBoardHandler(new DeleteHandler(boardController, model)));
-        connectButton.setOnAction(event -> boardController.setBoardHandler(new ConnectTriggerHandler(model, boardController, stage, information)));
+        connectButton.setOnAction(event -> boardController.setBoardHandler(new ConnectTriggerHandler(model, boardController, stage, information, connectButton)));
         disconnectButton.setOnAction(event -> boardController.setBoardHandler(new DisconnectTriggerHandler(model, information)));
         clearBoardButton.setOnAction(event -> {
             boardController.setBoardHandler(new ClearBoardHandler(boardController, model, information));

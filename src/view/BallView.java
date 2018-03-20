@@ -29,6 +29,7 @@ public class BallView extends Group implements Observer{
         this.setTranslateX(x);
         this.setTranslateY(y);
         ballModel.subscribe(this);
+        this.getStyleClass().add("ballContainer");
     }
 
     public BallView() {
@@ -39,6 +40,7 @@ public class BallView extends Group implements Observer{
         ball = new Circle(radius);
         this.getChildren().add(ball);
         ball.getStyleClass().add("ball");
+        this.getStyleClass().add("ballContainer");
     }
 
     @Override
@@ -50,5 +52,14 @@ public class BallView extends Group implements Observer{
         }
 //        ball.setFill(Color.hsb(hue,1.0,1.0));
         hue++;
+    }
+
+    public void setSelected(boolean selected) {
+        if (selected) {
+            this.getStyleClass().add("selected");
+        }
+        else {
+            this.getStyleClass().remove("selected");
+        }
     }
 }
