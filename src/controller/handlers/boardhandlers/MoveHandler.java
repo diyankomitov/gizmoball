@@ -3,6 +3,7 @@ package controller.handlers.boardhandlers;
 import controller.BoardController;
 import javafx.event.Event;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import model.GizmoballModel;
 import model.board.Ball;
@@ -22,9 +23,11 @@ public class MoveHandler implements BoardHandler {
     private boolean gizmo;
     private GizmoView gizmoView;
     private BallView ballView;
+    private Label infoLabel;
 
-    public MoveHandler(GizmoballModel model) {
+    public MoveHandler(GizmoballModel model, Label infoLabel) {
         this.model = model;
+        this.infoLabel = infoLabel;
         firstClick = false;
     }
 
@@ -82,7 +85,12 @@ public class MoveHandler implements BoardHandler {
                     ballView = null;
                 }
             }
-
+            if(!model.getErrorMessage().equals("")){
+                infoLabel.setText(model.getErrorMessage());
+                model.setMessage("");
+            } else {
+                infoLabel.setText(" ");
+            }
         }
     }
 }

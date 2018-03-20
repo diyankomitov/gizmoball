@@ -122,9 +122,9 @@ public class BuildController {
         frictionMuField.textProperty().addListener(new ChangeFrictionMuHandler(collisionEngine, frictionMuField));
         frictionMu2Field.textProperty().addListener(new ChangeFrictionMu2Handler(model, frictionMu2Field));
 
-        gravityField.textProperty().bind(Bindings.convert(model.getGravityProperty()));
-        frictionMuField.textProperty().bind(Bindings.convert(model.getFrictionMUProperty()));
-        frictionMu2Field.textProperty().bind(Bindings.convert(model.getFrictionMU2Property()));
+//        gravityField.textProperty().bind(Bindings.convert(model.getGravityProperty()));
+//        frictionMuField.textProperty().bind(Bindings.convert(model.getFrictionMUProperty()));
+//        frictionMu2Field.textProperty().bind(Bindings.convert(model.getFrictionMU2Property()));
 
 
         setupHandlers();
@@ -189,7 +189,7 @@ public class BuildController {
             boardController.setBoardHandler(new AddBallHandler(model, boardController, this, information));
         });
 
-        moveButton.setOnAction(event -> boardController.setBoardHandler(new MoveHandler(model)));
+        moveButton.setOnAction(event -> boardController.setBoardHandler(new MoveHandler(model, information)));
         rotateButton.setOnAction(event -> boardController.setBoardHandler(new RotateHandler(model, this)));
         deleteButton.setOnAction(event -> boardController.setBoardHandler(new DeleteHandler(boardController, model)));
         connectButton.setOnAction(event -> boardController.setBoardHandler(new ConnectTriggerHandler(model, boardController, stage, information, connectButton)));

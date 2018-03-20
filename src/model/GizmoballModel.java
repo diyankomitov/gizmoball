@@ -238,6 +238,7 @@ public class GizmoballModel{
         if (!name.equals("") && !gizmoNames.addName(gizmoName)) {
             return false;
         }
+
         switch (type) {
             case CIRCLE:
                 if(name.equals("")) {
@@ -276,6 +277,10 @@ public class GizmoballModel{
                 break;
             default:
                 return false;
+        }
+        if(isOutside(gizmo)){
+            setMessage("Gizmo cannot be placed outside of the board.");
+            return false;
         }
         if(isIntersecting(gizmo)) {
             setMessage("Gizmo cannot be placed on top of another gizmo.");
@@ -381,7 +386,7 @@ public class GizmoballModel{
                     setMessage("Cannot move gizmo within another gizmo.");//TODO make this error work cos it just doesnt
                 }
             } else {
-                System.out.println("You made it here");
+
                 setMessage("Cannot move a gizmo outside of the playable board."); //TODO This one too
             }
             gizmo.setCoordinates(x, y);
