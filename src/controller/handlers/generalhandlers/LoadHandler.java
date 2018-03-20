@@ -61,7 +61,10 @@ public class LoadHandler implements EventHandler<ActionEvent> {
         this.event = event;
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter eFilter = new FileChooser.ExtensionFilter("Gizmoball files (*.gzb)", "*.gzb");
+        FileChooser.ExtensionFilter eFilter2 = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+
         fileChooser.getExtensionFilters().add(eFilter);
+        fileChooser.getExtensionFilters().add(eFilter2);
         fileChooser.setSelectedExtensionFilter(eFilter);
         if (BoardState.getSavedBoard()) {
             fileChooser.setTitle("Load Board");
