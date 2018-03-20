@@ -21,22 +21,21 @@ import static util.Constants.*;
 public class GizmoballModel{
     private CollisionDetails details;
     private Board board;
-    private Vect gravity;
-    private double frictionMU;
-    private double frictionMU2;
-
     private Gizmo potentialCollision;
     private Gizmo collidedGizmo;
     private String errorMessage = "";
     private GizmoNames gizmoNames;
+    private CollisionEngine collisionEngine;
 
     public GizmoballModel() {
         board = new Board();
         details = new CollisionDetails();
-        gravity = new Vect(0, GRAVITY);
-        frictionMU = FRICTION_MU;
-        frictionMU2 = FRICTION_MU_2;
         gizmoNames = new GizmoNames();
+        collisionEngine = new CollisionEngine();
+    }
+
+    public CollisionEngine getCollisionEngine() {
+        return collisionEngine;
     }
 
     public void moveBalls() {
@@ -49,8 +48,8 @@ public class GizmoballModel{
             if (!ball.isInAbsorber()) {
                 if (details.getTimeUntilCollision(ball) > moveTime) {
                     ball.moveForTime(moveTime);
-                    applyGravity(ball, moveTime);
-                    applyFriction(ball, moveTime);
+                    collisionEngine.applyGravity(ball, moveTime);
+                    collisionEngine.applyFriction(ball, moveTime);
 
                 } else {
                     if (potentialCollision != null) {
@@ -63,8 +62,8 @@ public class GizmoballModel{
                     }
                     ball.moveForTime(details.getTimeUntilCollision(ball));
                     ball.applyPotentialVelocity();
-                    applyGravity(ball, details.getTimeUntilCollision(ball));
-                    applyFriction(ball, details.getTimeUntilCollision(ball));
+                    collisionEngine.applyGravity(ball, details.getTimeUntilCollision(ball));
+                    collisionEngine.applyFriction(ball, details.getTimeUntilCollision(ball));
                 }
             }
         }
@@ -75,20 +74,7 @@ public class GizmoballModel{
         potentialCollision = null;
     }
 
-    private void applyGravity(Ball ball, double moveTime) {
-        ball.setVelocity(ball.getVelocity().plus(gravity.times(moveTime)));
 
-    }
-
-    private void applyFriction(Ball ball, double moveTime) {
-        double vOldX = ball.getVelocity().x();
-        double vOldY = ball.getVelocity().y();
-
-        double vNewX = vOldX * (1 - (frictionMU * moveTime) - (frictionMU2 * Math.abs(vOldX) * moveTime));
-        double vNewY = vOldY * (1 - (frictionMU * moveTime) - (frictionMU2 * Math.abs(vOldY) * moveTime));
-
-        ball.setVelocity(new Vect(vNewX, vNewY));
-    }
 
     private void sendTriggers() { //TODO: maybe move from here to outside the model
         if (collidedGizmo != null) {
@@ -447,26 +433,6 @@ public class GizmoballModel{
         BoardState.removeAll();
         gizmoNames.resetNames();
     }
-
-    public void setGravity(double yVelocity) { //TODO: probably check upper and lower bounds
-        this.gravity = new Vect(0, yVelocity);
-        System.out.println("gravity changed: " + this.gravity);
-        BoardState.add("Gravity " + yVelocity);
-    }
-
-    public void setFriction(double mu, double mu2) { //TODO: probably check upper and lower bounds
-        this.frictionMU = mu;
-        this.frictionMU2 = mu2;
-        BoardState.add("Friction " + mu + " " + mu2);
-    }
-
-    public void setFrictionMU(double mu) {
-        setFriction(mu, frictionMU2);
-    }
-    public void setFrictionMU2(double mu2) {
-        setFriction(frictionMU, mu2);
-    }
-
 
     public List<Gizmo> getGizmos(){ //TODO: Remove? Maybe return a copy
         return board.getGizmos();

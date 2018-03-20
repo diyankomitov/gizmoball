@@ -34,7 +34,7 @@ public class Main extends Application {
         GizmoballController gizmoballController = mainFXML.getController();
         GizmoballModel model = new GizmoballModel();
 
-        gizmoballController.setup(primaryStage, model);
+        gizmoballController.setup(primaryStage, model, model.getCollisionEngine());
 
         Scene scene = new Scene(root);
         scene.getStylesheets().add("view/css/styles.css");
