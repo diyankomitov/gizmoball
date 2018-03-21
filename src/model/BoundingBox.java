@@ -24,9 +24,14 @@ public class BoundingBox {
 
     public boolean isOutside(){
         if (this.x1 > 19) return true;
-        if (this.y1 > 19) return true;
         if (this.x1 < 0) return true;
+        if (this.x2 > 20) return true;
+        if (this.x2 < 1) return true;
+        if (this.y1 > 19) return true;
         if (this.y1 < 0) return true;
+        if (this.y2 > 20) return true;
+        if (this.y2 < 1) return true;
+
         return false;
     }
 

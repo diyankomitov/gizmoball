@@ -19,7 +19,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         primaryStage.setTitle("Gizmoball");
-        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/icon.png")));
 
         FXMLLoader mainFXML = new FXMLLoader(getClass().getResource("/view/fxml/GizmoballView.fxml"));
         Parent root = mainFXML.load();
