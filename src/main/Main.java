@@ -1,21 +1,12 @@
 package main;
 
-import controller.*;
+import controller.GizmoballController;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import model.GizmoballModel;
-import physics.Circle;
-import physics.Geometry;
-import physics.LineSegment;
-import physics.Vect;
-
-import java.lang.reflect.Constructor;
 
 
 public class Main extends Application {
@@ -34,7 +25,7 @@ public class Main extends Application {
         GizmoballController gizmoballController = mainFXML.getController();
         GizmoballModel model = new GizmoballModel();
 
-        gizmoballController.setup(primaryStage, model, model.getCollisionEngine());
+        gizmoballController.setup(primaryStage, model);
 
         Scene scene = new Scene(root);
         scene.getStylesheets().add("view/css/styles.css");

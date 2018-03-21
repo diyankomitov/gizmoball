@@ -14,7 +14,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.CollisionEngine;
 import model.GizmoballModel;
 import view.BoardView;
 
@@ -45,7 +44,7 @@ public class RunController {
     private TriggerHandler triggerHandler;
     private LoadHandler loadHandler;
 
-    public void setup(GizmoballModel model, BoardController boardController, SwitchModeHandler switchToBuild, Stage stage, LoadHandler loadHandler, CollisionEngine collisionEngine) {
+    public void setup(GizmoballModel model, BoardController boardController, SwitchModeHandler switchToBuild, Stage stage, LoadHandler loadHandler) {
         this.model = model;
         this.boardController = boardController;
         this.doNothingHandler = new DoNothingHandler();

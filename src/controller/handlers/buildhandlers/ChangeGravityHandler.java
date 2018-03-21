@@ -26,6 +26,6 @@ public class ChangeGravityHandler implements ChangeListener<String> {
             textField.setText("-1000");
         }
 
-        model.getCollisionEngine().setGravity(newDouble);
+        model.setGravity(newDouble);
     }
 }

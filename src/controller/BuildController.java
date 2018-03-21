@@ -14,7 +14,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
-import model.CollisionEngine;
 import model.GizmoballModel;
 import model.board.Ball;
 import view.*;
@@ -98,7 +97,7 @@ public class BuildController {
     private ChangeBallXVelocityHandler changeBallXVelocityHandler;
     private ChangeBallYVelocityHandler changeBallYVelocityHandler;
 
-    public void setup(GizmoballModel model, BoardController boardController, SwitchModeHandler switchToPlay, Stage stage, CollisionEngine collisionEngine) {
+    public void setup(GizmoballModel model, BoardController boardController, SwitchModeHandler switchToPlay, Stage stage) {
         this.model = model;
         this.boardController = boardController;
         this.doNothingHandler = new DoNothingHandler();
@@ -134,7 +133,7 @@ public class BuildController {
         ballXVelocityField.textProperty().addListener(changeBallXVelocityHandler);
         ballYVelocityField.textProperty().addListener(changeBallYVelocityHandler);
         gravityField.textProperty().addListener(new ChangeGravityHandler(model, gravityField));
-        frictionMuField.textProperty().addListener(new ChangeFrictionMuHandler(collisionEngine, frictionMuField));
+        frictionMuField.textProperty().addListener(new ChangeFrictionMuHandler(model, frictionMuField));
         frictionMu2Field.textProperty().addListener(new ChangeFrictionMu2Handler(model, frictionMu2Field));
 
 //        gravityField.textProperty().bind(Bindings.convert(model.getGravityProperty()));

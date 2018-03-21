@@ -38,7 +38,6 @@ public class AbsorberGizmoView extends GizmoViewContainer{
 
     public AbsorberGizmoView() {
         this(null);
-        this.setMinHeight(ONE_L_IN_PIXELS);
 //        square.setStyle("-fx-stroke: red; -fx-stroke-type: inside; -fx-stroke-width: 2");
     }
 

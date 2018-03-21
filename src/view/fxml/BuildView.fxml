@@ -65,7 +65,7 @@
                         <VBox alignment="CENTER">
                             <Label text="Absorber"/>
                         </VBox>
-                            <AbsorberGizmoView fx:id="absorberButton"/>
+                            <AbsorberGizmoView fx:id="absorberButton" />
                     </VBox>
 
                     <Separator/>

@@ -17,26 +17,20 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import model.CollisionEngine;
+import model.GizmoballModel;
 import model.board.Ball;
 import model.board.BoardObjectType;
-import model.GizmoballModel;
 import model.board.gizmos.Gizmo;
 import util.BoardState;
 import util.KeyPress;
 import util.Triggers;
-import view.gizmoviews.TriangleGizmoView;
 
 import java.io.*;
-import java.text.NumberFormat;
-import java.util.Arrays;
 import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class LoadHandler implements EventHandler<ActionEvent> {
     private Stage stage;
-    private GizmoballModel model; //Alistair thinks it might needs passed
+    private GizmoballModel model;
     private BoardController boardController;
     private BuildController buildController;
     private SaveHandler saveHandler;
@@ -46,7 +40,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
 
     private ActionEvent event;
 
-    public LoadHandler(Stage stage, BoardController boardController, BuildController buildController, GizmoballModel model, Label infoLabel, CollisionEngine collisionEngine) {
+    public LoadHandler(Stage stage, BoardController boardController, BuildController buildController, GizmoballModel model, Label infoLabel) {
         this.boardController = boardController;
         this.buildController = buildController;
         this.infoLabel = infoLabel;
@@ -364,7 +358,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
             case "Gravity":
                 try {
                     double g = Double.parseDouble(string[1]);
-                    model.getCollisionEngine().setGravity(g);
+                    model.setGravity(g);
 
                 } catch (Exception e) {
                     System.out.println("Something has gone wrong...");
@@ -375,7 +369,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                 try {
                     double mu = Double.parseDouble(string[1]);
                     double mu2 = Double.parseDouble(string[2]);
-                    model.getCollisionEngine().setFriction(mu, mu2);
+                    model.setFriction(mu, mu2);
 
                 } catch (Exception e) {
                     System.out.println("Something has gone wrong...");

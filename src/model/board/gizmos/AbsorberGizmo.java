@@ -8,10 +8,7 @@ import physics.LineSegment;
 import physics.Vect;
 import util.Observer;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 import static util.Constants.ONE_L;
 
@@ -37,6 +34,9 @@ public class AbsorberGizmo implements Gizmo {
     private List<Observer> observers;
     private double angle;
     private boolean keyPressed;
+    private boolean keyReleased;
+    private int shootTimer;
+    private int numberOfTriggersLeft;
 
     public AbsorberGizmo(double x, double y, double x2, double y2, String name) {
 
@@ -58,6 +58,7 @@ public class AbsorberGizmo implements Gizmo {
 
         triggered = false;
         type = BoardObjectType.ABSORBER;
+        shootTimer = 20;
     }
 
     @Override
@@ -134,22 +135,44 @@ public class AbsorberGizmo implements Gizmo {
 
     @Override
     public void trigger(boolean keyPressed, boolean keyReleased) {
+        if (!this.keyPressed || this.keyReleased || keyPressed || !keyReleased) { //when a key is being held down dont trigger from gizmos
+            this.keyReleased = keyReleased;
             this.keyPressed = keyPressed;
-            triggered = true;
+        }
 
+        if (this.keyPressed && !this.keyReleased) {
+            numberOfTriggersLeft++;
+        }
+
+        if (this.keyPressed && this.keyReleased) {
+            numberOfTriggersLeft = 0;
+        }
+
+        if (!this.keyPressed && this.keyReleased) {
+            numberOfTriggersLeft++;
+        }
+
+//
+//            this.keyPressed = keyPressed;
+//            triggered = true;
+
+        System.out.println("Absorber Triggered");
     }
 
     private void shootBall() {
-        if (triggered && balls.size() > 0) {
-            Ball ball = balls.peek();
+//        if (shootTimer > 0) {
+//            shootTimer--;
+//        }
+
+        System.out.println(shootTimer);
+        if (numberOfTriggersLeft > 0 && balls.size() > 0) {
+            Ball ball = balls.remove();
             System.out.println("BALL SHOT: " + ball.getName());
-            ball.setCollidedGizmo(null);
-            ball.setPotentialCollision(null);
             ball.setInAbsorber(false);
-            ball.setY(this.y - (ball.getDiameter() / 2));
+            ball.setY(this.y - (ball.getDiameter() / 2)); //TODO: check if theres enough clearance
             ball.setVelocity(new Vect(0, -50 * ONE_L));
-            triggered = false;
-            balls.remove(ball);
+            numberOfTriggersLeft--;
+//            shootTimer = 20;
         }
     }
 
@@ -186,6 +209,7 @@ public class AbsorberGizmo implements Gizmo {
         ball.setY(y + height - 0.25*ONE_L);
         ball.setInAbsorber(true);
         this.balls.add(ball);
+        System.out.println("Ball: " + ball + " added");
     }
 
     public Queue<Ball> getBalls() {
