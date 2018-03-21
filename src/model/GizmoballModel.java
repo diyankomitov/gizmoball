@@ -121,6 +121,11 @@ public class GizmoballModel{
             setMessage("Gizmo cannot be placed on top of another gizmo.");
             return false;
         }
+//        for(Ball ball : getBalls()){
+//            if(isBallIntersecting(ball)){
+//                setMessage("Gizmo cannot be placed on top of a ball.");
+//            }
+//        }
         board.addGizmo(gizmo);
         BoardState.add(type + " " + gizmoName + " " + x + " " + y);
         return true;
@@ -367,6 +372,14 @@ public class GizmoballModel{
                 }
             }
         }
+        board.addGizmo(gizmo);
+        for (Ball b : getBalls()){
+           if(isBallIntersecting(b)){
+               board.removeGizmo(gizmo);
+               return true;
+           }
+        }
+        board.removeGizmo(gizmo);
         return false;
     }
 
@@ -381,6 +394,7 @@ public class GizmoballModel{
 //        System.out.println(details.getTimeUntilCollision(ball));
         return collisionEngine.getCollisionDetails(ball).getTimeUntilCollision() < 0.3;
     }
+
 
     private boolean isBallIntersecting(Ball ball){
         Vect orig = new Vect(ball.getVelocity().x(),ball.getVelocity().y());
