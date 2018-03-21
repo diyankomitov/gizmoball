@@ -164,6 +164,7 @@
     -fx-fill: #00ff00;
     /*-fx-fill: radial-gradient(center 30% 30%, radius 100%, #8cff8c, #00ff00);*/
 }
+
 /*.gizmoContainer:focused .triangleGizmo {*/
     /*-fx-fill: derive(#00ff00, -50%);*/
 /*}*/
@@ -180,6 +181,10 @@
 /*}*/
 .gizmoContainer.selected .circleGizmo {
     -fx-fill: derive(deepskyblue, -50%);
+}
+
+.circleGizmo .colourChange {
+    -fx-fill: #ff6c0f;
 }
 .flipperGizmo {
     -fx-fill: orange;
@@ -198,6 +203,7 @@
 .gizmoContainer.selected .flipperPivot {
     -fx-fill: derive(#ff6e00, -50%);
 }
+
 
 .absorberGizmo {
     -fx-fill: #ff00ff;

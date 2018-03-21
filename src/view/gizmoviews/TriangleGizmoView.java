@@ -1,5 +1,6 @@
 package view.gizmoviews;
 
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import model.board.gizmos.Gizmo;
 
@@ -36,7 +37,15 @@ public class TriangleGizmoView extends GizmoViewContainer{
     @Override
     public void update() {
         super.update();
-        if (triangle != null)
-        rotate(gizmo.getAngle());
+        if (triangle != null) {
+            rotate(gizmo.getAngle());
+            if (gizmo.isTriggered()) {
+                triangle.setFill(Color.RED);
+            }
+            else {
+                triangle.setFill(Color.valueOf("#00ff00"));
+            }
+        }
     }
+
 }
