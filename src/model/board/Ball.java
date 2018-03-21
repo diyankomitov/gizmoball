@@ -17,9 +17,11 @@ public class Ball implements BoardObject, Observable {
     private String name;
     private Vect velocity;
     private Vect potentialVelocity;
+    private Gizmo potentialCollision;
     private boolean inAbsorber = false;
     private List<Observer> observers = new ArrayList<>();
     private Vect privateVelocity;
+    private Gizmo collidedGizmo;
 
     public Ball(double x, double y, double xv, double yv, String name) {
         this.x = x;
@@ -29,6 +31,8 @@ public class Ball implements BoardObject, Observable {
         this.name = name;
         this.velocity = new Vect(xv, yv);
         this.potentialVelocity = new Vect(0, 0);
+        this.potentialCollision = null;
+        this.collidedGizmo = null;
     }
 
     public void setGlobalVelocity(boolean globalVelocity) {
@@ -143,5 +147,21 @@ public class Ball implements BoardObject, Observable {
     }
     public void setYVelocity(double yVelocity) {
         setVelocity(new Vect(velocity.x(), yVelocity));
+    }
+
+    public Gizmo getPotentialCollision(){
+        return potentialCollision;
+    }
+
+    public void setPotentialCollision(Gizmo potentialCollision){
+        this.potentialCollision = potentialCollision;
+    }
+
+    public Gizmo getCollidedGizmo(){
+        return collidedGizmo;
+    }
+
+    public void setCollidedGizmo(Gizmo collidedGizmo){
+        this.collidedGizmo = collidedGizmo;
     }
 }
