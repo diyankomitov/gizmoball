@@ -21,6 +21,7 @@ import model.GizmoballModel;
 import model.board.Ball;
 import model.board.BoardObjectType;
 import model.board.gizmos.Gizmo;
+import physics.Vect;
 import util.BoardState;
 import util.KeyPress;
 import util.Triggers;
@@ -373,6 +374,36 @@ public class LoadHandler implements EventHandler<ActionEvent> {
 
                 } catch (Exception e) {
                     System.out.println("Something has gone wrong...");
+                    errorHandler(String.join(" ", string));
+                }
+                break;
+            case "Velocity":
+                try {
+                    String name = string[1];
+                    double vx = Double.parseDouble(string[2]);
+                    System.out.println("parsing vx: " + vx);
+                    double vy = Double.parseDouble(string[3]);
+                    System.out.println("parsing vy: " + vy);
+                    boolean global = false;
+
+                    System.out.println("string length: " + string.length);
+
+                    if (string.length > 4) {
+                        if (!string[4].equals("global")) {
+                            errorHandler(String.join(" ", string));
+                            break;
+                        }
+                        else {
+                            global = true;
+                        }
+                    }
+
+                    model.getBall(name).setGlobalVelocity(global);
+                    model.getBall(name).setVelocity(new Vect(vx, vy));
+
+                } catch (Exception e) {
+                    System.err.println("Something has gone wrong... " + e);
+                    e.printStackTrace();
                     errorHandler(String.join(" ", string));
                 }
                 break;

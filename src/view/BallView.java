@@ -24,6 +24,7 @@ public class BallView extends Group implements Observer, Toggle{
     private double hue;
     private BooleanProperty selected;
     private ObjectProperty<ToggleGroup> toggleGroup;
+    private boolean partyTime;
 
     public BallView(Ball ballModel) {
         super();
@@ -63,8 +64,15 @@ public class BallView extends Group implements Observer, Toggle{
         if (hue == 360) {
             hue = 0;
         }
-//        ball.setFill(Color.hsb(hue,1.0,1.0));
+        if (partyTime) {
+            ball.setFill(Color.hsb(hue,1.0,1.0));
+        }
         hue++;
+        this.toBack();
+    }
+
+    public void setPartyTime(boolean partyTime) {
+        this.partyTime = partyTime;
     }
 
 //    public void setSelected(boolean selected) {

@@ -261,10 +261,10 @@ public class FlipperGizmo implements Gizmo{
 
     @Override
     public void setCoordinates(double x, double y) {
+        this.xWithOffset += x-this.x;
+        this.yWithOffset += y-this.y;
         this.x = x;
         this.y = y;
-        this.xWithOffset = x + offset;
-        this.yWithOffset = y;
         notifyObservers();
     }
 

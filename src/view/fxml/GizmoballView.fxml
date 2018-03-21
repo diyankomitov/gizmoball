@@ -7,7 +7,9 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="controller.GizmoballController"
             fx:id="mainRoot"
-            prefHeight="500.0" prefWidth="500.0">
+            minWidth="1120.0"
+            minHeight="986.0"
+>
 
     <top>
         <MenuBar>

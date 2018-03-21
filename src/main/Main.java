@@ -30,7 +30,10 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         scene.getStylesheets().add("view/css/styles.css");
 
+//        primaryStage.setFullScreen(true);
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        System.out.println(scene.getWidth() + " " + scene.getHeight());
     }
 }

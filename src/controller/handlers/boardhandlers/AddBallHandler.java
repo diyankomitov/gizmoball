@@ -3,6 +3,7 @@ package controller.handlers.boardhandlers;
 import controller.BoardController;
 import controller.BuildController;
 import javafx.event.Event;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import model.GizmoballModel;
@@ -35,22 +36,23 @@ public class AddBallHandler extends AddHandler {
             double y = mouseEvent.getY() / ONE_L_IN_PIXELS;
 
             System.out.println(global);
+            Node clicked = ((Node) event.getTarget());
 
-            if (global) {
-                if (model.addBall(x, y, 0, 0, "")) {
-                    Ball ball = model.getBall(x, y);
-                    ball.setGlobalVelocity(true);
-                    ball.setXVelocity(vx);
-                    ball.setYVelocity(vy);
-                    boardController.addToBoardView(new BallView(ball));
+            System.out.println("clicked on: " + clicked);
+                if (global) {
+                    if (model.addBall(x, y, 0, 0, "")) {
+                        Ball ball = model.getBall(x, y);
+                        ball.setGlobalVelocity(true);
+                        ball.setXVelocity(vx);
+                        ball.setYVelocity(vy);
+                        boardController.addToBoardView(new BallView(ball));
+                    }
+                } else {
+                    if (model.addBall(x, y, vx, vy, "")) {
+                        Ball ball = model.getBall(x, y);
+                        boardController.addToBoardView(new BallView(ball));
+                    }
                 }
-            }
-            else {
-                if (model.addBall(x, y, vx, vy, "")) {
-                    Ball ball = model.getBall(x, y);
-                    boardController.addToBoardView(new BallView(ball));
-                }
-            }
 
             if(!model.getErrorMessage().equals("")){
                 buildController.setInformation(model.getErrorMessage());

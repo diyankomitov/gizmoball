@@ -18,7 +18,7 @@
             style="-fx-background-color: #154a8f; -fx-padding: 10">
 
     <fx:define>
-        <Constants fx:id="oneLInPixels" fx:constant="ONE_L_IN_PIXELS" />
+        <Constants fx:id="oneLInPixels" fx:constant="ONE_L_IN_PIXELS"/>
     </fx:define>
 
     <left>
@@ -35,7 +35,8 @@
                     <Separator/>
 
                     <ToggleButton fx:id="connectButton" text="Connect" styleClass="uiButton" focusTraversable="false"/>
-                    <ToggleButton fx:id="disconnectButton" text="Disconnect" styleClass="uiButton" focusTraversable="false"/>
+                    <ToggleButton fx:id="disconnectButton" text="Disconnect" styleClass="uiButton"
+                                  focusTraversable="false"/>
 
                     <Separator/>
 
@@ -65,7 +66,7 @@
                         <VBox alignment="CENTER">
                             <Label text="Absorber"/>
                         </VBox>
-                            <AbsorberGizmoView fx:id="absorberButton" />
+                        <AbsorberGizmoView fx:id="absorberButton"/>
                     </VBox>
 
                     <Separator/>
@@ -76,45 +77,54 @@
                     </VBox>
                 </VBox>
             </HBox>
+            <HBox alignment="CENTER">
+                <VBox spacing="10">
+                    <VBox spacing="5">
+                        <VBox fx:id="velocityContainer" disable="true">
+                            <Label text="Ball X Velocity"/>
+                            <HBox spacing="10">
+                                <Slider fx:id="ballXVelocitySlider" min="-200" max="200" showTickLabels="true"
+                                        focusTraversable="false"/>
+                                <TextField fx:id="ballXVelocityField" maxWidth="50" focusTraversable="false"/>
+                            </HBox>
+                            <Label text="Ball Y Velocity"/>
+                            <HBox spacing="10">
+                                <Slider fx:id="ballYVelocitySlider" min="-200" max="200" showTickLabels="true"
+                                        focusTraversable="false"/>
+                                <TextField fx:id="ballYVelocityField" maxWidth="50" focusTraversable="false"/>
+                            </HBox>
+                        </VBox>
+                        <HBox spacing="10" alignment="CENTER">
+                            <ToggleButton fx:id="selectBallButton" text="Select Ball" focusTraversable="false"/>
 
-            <VBox>
-                <VBox fx:id="velocityContainer" disable="true">
-                    <Label text="Ball X Velocity"/>
-                    <HBox>
-                        <Slider fx:id="ballXVelocitySlider" min="-200" max="200" showTickLabels="true" focusTraversable="false"/>
-                        <TextField fx:id="ballXVelocityField" maxWidth="50" focusTraversable="false"/>
-                    </HBox>
-                    <Label text="Ball Y Velocity"/>
-                    <HBox>
-                        <Slider fx:id="ballYVelocitySlider" min="-200" max="200" showTickLabels="true" focusTraversable="false"/>
-                        <TextField fx:id="ballYVelocityField" maxWidth="50" focusTraversable="false"/>
-                    </HBox>
+                            <CheckBox fx:id="globalCheckBox" focusTraversable="false">Global</CheckBox>
+                        </HBox>
+                    </VBox>
+
+                    <VBox spacing="5">
+                        <Label text="Gravity"/>
+                        <HBox spacing="10">
+                            <Slider fx:id="gravitySlider" min="-1000" max="1000" showTickLabels="true"
+                                    focusTraversable="false"/>
+                            <TextField fx:id="gravityField" maxWidth="50" focusTraversable="false"/>
+                        </HBox>
+                    </VBox>
+
+                    <VBox spacing="5">
+                        <Label text="MU"/>
+                        <HBox spacing="10">
+                            <Slider fx:id="frictionMuSlider" max="1000" showTickLabels="true" focusTraversable="false"/>
+                            <TextField fx:id="frictionMuField" maxWidth="50" focusTraversable="false"/>
+                        </HBox>
+                        <Label text="MU2"/>
+                        <HBox spacing="10">
+                            <Slider fx:id="frictionMu2Slider" max="1000" showTickLabels="true"
+                                    focusTraversable="false"/>
+                            <TextField fx:id="frictionMu2Field" maxWidth="50" focusTraversable="false"/>
+                        </HBox>
+                    </VBox>
                 </VBox>
-                <HBox spacing="10">
-                    <ToggleButton fx:id="selectBallButton" text="Select Ball" focusTraversable="false"/>
-
-                    <CheckBox fx:id="globalCheckBox" focusTraversable="false">Global</CheckBox>
-                </HBox>
-            </VBox>
-            <VBox>
-                <Label text="Gravity"/>
-                <HBox>
-                    <Slider fx:id="gravitySlider" min="-1000" max="1000" showTickLabels="true" focusTraversable="false"/>
-                    <TextField fx:id="gravityField" maxWidth="50" focusTraversable="false"/>
-                </HBox>
-            </VBox>
-            <VBox>
-                <Label text="MU"/>
-                <HBox>
-                    <Slider fx:id="frictionMuSlider" max="1000" showTickLabels="true" focusTraversable="false"/>
-                    <TextField fx:id="frictionMuField" maxWidth="50" focusTraversable="false"/>
-                </HBox>
-                <Label text="MU2"/>
-                <HBox>
-                    <Slider fx:id="frictionMu2Slider" max="1000" showTickLabels="true" focusTraversable="false"/>
-                    <TextField fx:id="frictionMu2Field" maxWidth="50" focusTraversable="false"/>
-                </HBox>
-            </VBox>
+            </HBox>
         </VBox>
 
     </left>
@@ -124,6 +134,6 @@
     </center>
 
     <bottom>
-        <Label fx:id="information" BorderPane.alignment="BOTTOM_RIGHT" text="Build Mode"/>
+        <Label fx:id="information" BorderPane.alignment="CENTER_RIGHT" style="-fx-font-size: 18" text="Build Mode"/>
     </bottom>
 </BorderPane>

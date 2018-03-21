@@ -80,8 +80,10 @@ public class MoveHandler implements BoardHandler {
                     firstClick = model.getGizmo(Math.floor(nodeX), Math.floor(nodeY)) != null;
                     firstx = Math.floor(nodeX);
                     firsty = Math.floor(nodeY);
-                    gizmoView = (GizmoView) clicked;
-                    gizmoView.setSelected(true);
+                    if (firstClick) {
+                        gizmoView = (GizmoView) clicked;
+                        gizmoView.setSelected(true);
+                    }
                 }
 
 

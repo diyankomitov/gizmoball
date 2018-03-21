@@ -25,11 +25,10 @@ public class RunController {
     public Button tickButton;
     @FXML
     public Button resetButton;
-    private BoardController boardController;
-    private DoNothingHandler doNothingHandler;
-    private GizmoballModel model;
-    private Timeline timeline;
+    @FXML
+    public Pane boardPaneWrapper;
 
+    @FXML
     public BorderPane playRoot;
     @FXML
     private Button switchButton;
@@ -43,6 +42,10 @@ public class RunController {
     private Stage stage;
     private TriggerHandler triggerHandler;
     private LoadHandler loadHandler;
+    private BoardController boardController;
+    private DoNothingHandler doNothingHandler;
+    private GizmoballModel model;
+    private Timeline timeline;
 
     public void setup(GizmoballModel model, BoardController boardController, SwitchModeHandler switchToBuild, Stage stage, LoadHandler loadHandler) {
         this.model = model;

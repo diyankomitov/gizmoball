@@ -4,6 +4,7 @@ import model.board.gizmos.Gizmo;
 import physics.Circle;
 import physics.LineSegment;
 import physics.Vect;
+import util.BoardState;
 import util.Observable;
 import util.Observer;
 
@@ -21,6 +22,7 @@ public class Ball implements BoardObject, Observable {
     private boolean inAbsorber = false;
     private List<Observer> observers = new ArrayList<>();
     private Vect privateVelocity;
+    private boolean global;
 
     public Ball(double x, double y, double xv, double yv, String name) {
         this.x = x;
@@ -30,9 +32,11 @@ public class Ball implements BoardObject, Observable {
         this.name = name;
         this.velocity = new Vect(xv, yv);
         this.potentialVelocity = new Vect(0, 0);
+        this.privateVelocity = new Vect(0,0);
     }
 
     public void setGlobalVelocity(boolean globalVelocity) {
+        this.global = globalVelocity;
         if (globalVelocity) {
             this.privateVelocity = velocity;
         }
@@ -63,6 +67,7 @@ public class Ball implements BoardObject, Observable {
 
     public void setVelocity(Vect velocity) {
 
+        System.out.println("setting velocity " + velocity);
         double velX = velocity.x();
         double signX = Math.signum(velX);
         double velY = velocity.y();
@@ -133,9 +138,11 @@ public class Ball implements BoardObject, Observable {
 
     public void setXVelocity(double xVelocity) {
         setVelocity(new Vect(xVelocity, velocity.y()));
+        BoardState.add("Velocity " + name + " " + xVelocity + " " + velocity.y() + " " + (global ? "global" : ""));
     }
     public void setYVelocity(double yVelocity) {
         setVelocity(new Vect(velocity.x(), yVelocity));
+        BoardState.add("Velocity " + name + " " + velocity.x() + " " + yVelocity + " " + (global ? "global" : ""));
     }
 
 }

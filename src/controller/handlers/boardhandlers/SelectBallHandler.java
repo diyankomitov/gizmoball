@@ -26,6 +26,7 @@ public class SelectBallHandler implements BoardHandler {
             if (!newValue) {
                 if (ballView != null) {
                     ballView.setSelected(false);
+                    buildController.setSelectedBall(null);
                 }
             }
         });

@@ -5,9 +5,11 @@
 }
 
 .board {
-    -fx-background-color: linear-gradient(to bottom right, #e6fffd, #e6fffc);
-    -fx-border-color: black;
-    -fx-border-insets: 1;
+    -fx-background-color: derive(#154a8f, 140%);
+    /*-fx-border-color: gold;*/
+    /*-fx-background-insets: 0 5;*/
+    /*-fx-padding: 10;*/
+    /*!*-fx-border-insets: 1;*!*/
 }
 
 .noGrid {
@@ -17,10 +19,93 @@
     -fx-border-color: black;
 }
 
+.menu-bar {
+    -fx-background-color: derive(#154a8f, -10%)
+}
+
+.menu {
+    -fx-background-color: derive(#154a8f, -20%);
+}
+
+.menu:hover {
+    -fx-background-color: derive(#154a8f, -30%);
+}
+
+.menu .context-menu {
+    -fx-background-color: derive(#154a8f, -20%);
+}
+
+.menu-item {
+    -fx-background-color: derive(#154a8f, -20%);
+}
+
+.menu-item:hover {
+    -fx-background-color: derive(#154a8f, -30%);
+}
+
+.label {
+    -fx-text-fill: white;
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+}
+
+.separator {
+    -fx-background-color: #ff8000;
+    -fx-border-color: #ff8000;
+    -fx-border-radius: 50;
+}
+
+.separator .line {
+    -fx-border-color: #ff8000;
+}
+
+.slider .track {
+    -fx-background-color: #ffbc0a;
+}
+
+.slider .thumb {
+    -fx-background-color: #ff8000;
+}
+
+.slider .axis{
+    -fx-tick-label-fill: white;
+}
+
+.check-box {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.check-box .box {
+    -fx-background-color: #186ebf;
+}
+. check-box:selected .mark {
+    -fx-background-color: white;
+
+}
+
+#selectBallButton {
+    -fx-border-width: 0;
+    -fx-background-color: #186ebf;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+#selectBallButton:hover {
+    -fx-background-color: derive(#4b4b8f, -25%);
+}
+
+#selectBallButton:selected {
+    -fx-background-color: derive(#4b4b8f, -45%);
+}
+
+#selectBallButton:armed {
+    -fx-background-color: derive(#4b4b8f, -55%);
+}
+
 .uiButton {
     -fx-border-width: 0;
     -fx-pref-height: 50;
-    -fx-pref-width: 150;
+    -fx-pref-width: 160;
     -fx-background-color: #186ebf;
     -fx-text-fill: white;
     -fx-font-weight: bold;
@@ -36,6 +121,28 @@
 }
 
 .uiButton:armed {
+    -fx-background-color: derive(#4b4b8f, -55%);
+}
+
+.uiButtonRun {
+    -fx-border-width: 0;
+    -fx-pref-height: 50;
+    -fx-pref-width: 170;
+    -fx-background-color: #186ebf;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 18;
+}
+
+.uiButtonRun:hover {
+    -fx-background-color: derive(#4b4b8f, -25%);
+}
+
+.uiButtonRun:selected {
+    -fx-background-color: derive(#4b4b8f, -45%);
+}
+
+.uiButtonRun:armed {
     -fx-background-color: derive(#4b4b8f, -55%);
 }
 
@@ -109,7 +216,7 @@
 }
 
 .buttonsVBox {
-    -fx-alignment: top-center;
+    -fx-alignment: center;
     -fx-spacing: 10;
     -fx-padding: 10;
 }

@@ -4,6 +4,8 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.effect.Light;
 import javafx.scene.effect.Lighting;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import view.gizmoviews.GizmoView;
@@ -36,6 +38,7 @@ public class BoardView extends Pane{
                 cell.setTranslateX(x*ONE_L_IN_PIXELS);
                 cell.setTranslateY(y*ONE_L_IN_PIXELS);
                 cellGroup.getChildren().add(cell);
+                cellGroup.setMouseTransparent(true);
             }
         }
         this.getChildren().add(cellGroup);
@@ -64,10 +67,12 @@ public class BoardView extends Pane{
 
     public void add(GizmoView gizmoView) {
         objectGroup.getChildren().add(gizmoView.getNode());
+        cellGroup.toFront();
     }
 
     public void add(BallView ballView) {
         objectGroup.getChildren().add(ballView);
+        cellGroup.toFront();
     }
     public void remove(GizmoView gizmoView) {
         objectGroup.getChildren().remove(gizmoView.getNode());

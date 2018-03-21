@@ -4,6 +4,7 @@ import controller.handlers.boardhandlers.*;
 import controller.handlers.buildhandlers.*;
 import controller.handlers.generalhandlers.DoNothingHandler;
 import controller.handlers.generalhandlers.SwitchModeHandler;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -136,9 +137,9 @@ public class BuildController {
         frictionMuField.textProperty().addListener(new ChangeFrictionMuHandler(model, frictionMuField));
         frictionMu2Field.textProperty().addListener(new ChangeFrictionMu2Handler(model, frictionMu2Field));
 
-//        gravityField.textProperty().bind(Bindings.convert(model.getGravityProperty()));
-//        frictionMuField.textProperty().bind(Bindings.convert(model.getFrictionMUProperty()));
-//        frictionMu2Field.textProperty().bind(Bindings.convert(model.getFrictionMU2Property()));
+        gravityField.textProperty().bind(Bindings.convert(model.getGravityProperty()));
+        frictionMuField.textProperty().bind(Bindings.convert(model.getFrictionMUProperty()));
+        frictionMu2Field.textProperty().bind(Bindings.convert(model.getFrictionMU2Property()));
 
 
         globalCheckBox.setOnAction(event -> {
@@ -151,7 +152,9 @@ public class BuildController {
                 for (Ball ball : model.getBalls()) {
                     ball.setGlobalVelocity(true);
                 }
-                addBallHandler.setGlobal(true);
+                if (addBallHandler != null) {
+                    addBallHandler.setGlobal(true);
+                }
             }
             else {
                 if (!ballButton.isSelected()) {
@@ -350,13 +353,21 @@ public class BuildController {
     }
 
     public void setSelectedBall(Ball selectedBall) {
-        this.selectedBall = selectedBall;
         if (selectedBall == null) {
+            changeBallXVelocityHandler.setSelectingBall(true);
+            ballXVelocityField.setText("0.0");
+            changeBallYVelocityHandler.setSelectingBall(true);
+            ballYVelocityField.setText("0.0");
             velocityContainer.setDisable(true);
         }
         else {
             velocityContainer.setDisable(false);
+            changeBallXVelocityHandler.setSelectingBall(true);
+            ballXVelocityField.setText("" + selectedBall.getVelocity().x());
+            changeBallYVelocityHandler.setSelectingBall(true);
+            ballYVelocityField.setText("" + selectedBall.getVelocity().y());
         }
+        this.selectedBall = selectedBall;
     }
     public Ball getSelecedBall() {
         return selectedBall;
