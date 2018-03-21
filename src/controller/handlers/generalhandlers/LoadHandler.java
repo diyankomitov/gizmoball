@@ -12,10 +12,12 @@ import javafx.event.EventType;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import model.GizmoballModel;
 import model.board.Ball;
@@ -77,6 +79,10 @@ public class LoadHandler implements EventHandler<ActionEvent> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you wish to save the layout before loading a new one?", yes, no, cancel);
             alert.setTitle("Board Layout Not Saved");
             alert.setHeaderText("Board layout has not been saved.");
+            alert.initStyle(StageStyle.TRANSPARENT);
+            stage.getScene().getRoot().setEffect(new GaussianBlur(50));
+            alert.getDialogPane().getScene().getStylesheets().add("view/css/styles.css");
+
             Window window = alert.getDialogPane().getScene().getWindow();
             window.setOnCloseRequest(event1 -> window.hide());
             Optional<ButtonType> result = alert.showAndWait();
@@ -101,6 +107,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                 }
             }
 
+            stage.getScene().getRoot().setEffect(null);
         }
 
     }

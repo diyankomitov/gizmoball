@@ -14,6 +14,7 @@ import static util.Constants.ONE_L_IN_PIXELS;
 
 public class FlipperGizmoView extends GizmoViewContainer {
 
+    private Circle pivotCircle;
     private double pivotX;
     private double pivotY;
     private Rotate flip;
@@ -43,7 +44,14 @@ public class FlipperGizmoView extends GizmoViewContainer {
 
         flip = new Rotate(0, pivotX, pivotY);
         rectangle.getTransforms().add(flip);
+        pivotCircle = new Circle(pivotX, pivotY, 0.66 * width/2);
+        pivotCircle.getStyleClass().add("flipperPivot");
+        pivotCircle.setMouseTransparent(true);
+        pivotCircle.getTransforms().add(flip);
+        this.getChildren().add(pivotCircle);
         update();
+
+
     }
 
     private void setPivots() {
@@ -67,6 +75,11 @@ public class FlipperGizmoView extends GizmoViewContainer {
         }
 
         this.getChildren().add(rectangle);
+
+        Circle pivotCircle = new Circle(rectangle.getX() + width/2, rectangle.getY() + width/2, 0.66 * width/2);
+        pivotCircle.getStyleClass().add("flipperPivot");
+        pivotCircle.setMouseTransparent(true);
+        this.getChildren().add(pivotCircle);
     }
 
     @Override
@@ -76,6 +89,8 @@ public class FlipperGizmoView extends GizmoViewContainer {
             FlipperGizmo flipper = (FlipperGizmo) gizmo;
             rectangle.setX((flipper.getxWithOffset() - flipper.getX()) * ONE_L_IN_PIXELS);
             rectangle.setY((flipper.getyWithOffset() - flipper.getY()) * ONE_L_IN_PIXELS);
+            pivotCircle.setCenterX((flipper.getxWithOffset() - flipper.getX()) * ONE_L_IN_PIXELS + ONE_L_IN_PIXELS / 4);
+            pivotCircle.setCenterY((flipper.getyWithOffset() - flipper.getY()) * ONE_L_IN_PIXELS + ONE_L_IN_PIXELS / 4);
         }
         if (flip != null) {
             setPivots();

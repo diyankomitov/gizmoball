@@ -5,11 +5,15 @@ import javafx.event.Event;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.event.EventType;
+import javafx.scene.effect.BoxBlur;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.GizmoballModel;
 import model.board.gizmos.Gizmo;
 import util.KeyPress;
@@ -91,6 +95,11 @@ public class ConnectTriggerHandler implements BoardHandler {
 
                     Alert keyTypeAlert = new Alert(Alert.AlertType.NONE, "Please select if you want the action to be triggered when you press the key or release the key!", down, up);
                     keyTypeAlert.setTitle("Select when trigger should occur");
+                    keyTypeAlert.initStyle(StageStyle.TRANSPARENT);
+
+                    stage.getScene().getRoot().setEffect(new GaussianBlur(50));
+
+                    keyTypeAlert.getDialogPane().getScene().getStylesheets().add("view/css/styles.css");
 
                     Optional<ButtonType> result = keyTypeAlert.showAndWait();
                     if (result.isPresent()) {
@@ -100,6 +109,8 @@ public class ConnectTriggerHandler implements BoardHandler {
 
                         Triggers.addTrigger(new KeyPress(keyCode,KeyEvent.KEY_RELEASED), triggeredGizmo);
                     }
+
+                    stage.getScene().getRoot().setEffect(null);
 
                     infoLabel.setText(keyCode + " and " + triggeredGizmo.getName() + " have been connected.");
                 }

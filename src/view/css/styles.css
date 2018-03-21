@@ -20,11 +20,13 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#154a8f, -10%)
+    -fx-background-color: derive(#154a8f, -10%);
+    -fx-pref-height: 30;
 }
 
 .menu {
     -fx-background-color: derive(#154a8f, -20%);
+    -fx-pref-height: 30;
 }
 
 .menu:hover {
@@ -189,6 +191,14 @@
 .gizmoContainer.selected .flipperGizmo {
     -fx-fill: derive(orange, -50%);
 }
+
+.flipperPivot {
+    -fx-fill: #ff6e00;
+}
+.gizmoContainer.selected .flipperPivot {
+    -fx-fill: derive(#ff6e00, -50%);
+}
+
 .absorberGizmo {
     -fx-fill: #ff00ff;
     /*-fx-fill: radial-gradient(center 30% 30%, radius 100%, #ff8cff, #ff00ff);*/
@@ -225,3 +235,52 @@
     -fx-background-color: derive(#154a8f, -10%);
     -fx-background-radius: 10;
 }
+
+.dialog-pane {
+    -fx-background-color: derive(#154a8f, -10%);
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: derive(#154a8f, -10%);
+    -fx-text-fill: white;
+}
+
+.dialog-pane .content{
+    -fx-text-fill: white;
+}
+
+.dialog-pane .button-bar {
+    -fx-alignment: center;
+}
+
+.dialog-pane .button  {
+    -fx-alignment: center;
+    -fx-border-width: 0;
+    -fx-pref-height: 50;
+    -fx-pref-width: 140;
+    -fx-background-color: #186ebf;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 18;
+}
+
+.dialog-pane .button:hover {
+    -fx-background-color: derive(#4b4b8f, -25%);
+}
+
+.dialog-pane .button:selected {
+    -fx-background-color: derive(#4b4b8f, -45%);
+}
+
+.dialog-pane .button:armed {
+    -fx-background-color: derive(#4b4b8f, -55%);
+}
+
+/*.dialog-pane .header-panel {*/
+    /*-fx-background-color: black;*/
+/*}*/
+
+/*.dialog-pane .header-panel .label {*/
+    /*-fx-font-style: italic;*/
+    /*-fx-font-size: 2em;*/
+/*}*/

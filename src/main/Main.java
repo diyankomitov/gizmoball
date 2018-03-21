@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.GizmoballModel;
 
@@ -18,6 +19,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         primaryStage.setTitle("Gizmoball");
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("../view/css/icon.png")));
 
         FXMLLoader mainFXML = new FXMLLoader(getClass().getResource("../view/fxml/GizmoballView.fxml"));
         Parent root = mainFXML.load();
