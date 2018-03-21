@@ -23,7 +23,15 @@ public class BoundingBox {
     }
 
     public boolean isOutside(){
-        return this.x1 > 20 || this.x2 > 21 || this.y1 > 20 || this.y2 > 21 || this.x1 < 0 || this.x2 < 1 || this.y1 < 0 || this.y2 < 1;
+        if (this.x1 > 19) return true;
+        if (this.x1 < 0) return true;
+        if (this.x2 > 20) return true;
+        if (this.x2 < 1) return true;
+        if (this.y1 > 19) return true;
+        if (this.y1 < 0) return true;
+        if (this.y2 > 20) return true;
+        if (this.y2 < 1) return true;
+        return false;
     }
 
 }

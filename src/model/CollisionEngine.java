@@ -229,8 +229,8 @@ class CollisionEngine {
 
         Map<Ball, List<Ball>> checked = new HashMap<>();
 
-        for (Ball ball1 : board.getBalls()) {
-            getCollisionDetails(ball1).setTimeUntilCollision(Double.MAX_VALUE);
+        for (Ball ball : board.getBalls()) {
+            getCollisionDetails(ball).setTimeUntilCollision(Double.MAX_VALUE);
         }
 
         for (Ball ball : board.getBalls()) {

@@ -388,26 +388,46 @@ public class GizmoballModel{
     private boolean ballVelocityIntersectionCheck(double x, double y, Ball ball){
         ball.setVelocity(new Vect(x,y));
         collisionEngine.findTimeUntilCollision();
-        return collisionEngine.getCollisionDetails(ball).getTimeUntilCollision() < 0.3;
+        if (collisionEngine.getCollisionDetails(ball).getTimeUntilCollision() < SECONDS_PER_FRAME) {
+            return true;
+        }
+
+        Gizmo gizmo = getGizmo(Math.floor(ball.getX()), Math.floor(ball.getY()));
+
+        if (gizmo != null) {
+            if (gizmo.getType() == SQUARE) {
+                return true;
+            }
+            if (gizmo.getType() == CIRCLE) {
+               double distance = Math.sqrt(Geometry.distanceSquared(ball.getCenter(), gizmo.getCenter()));
+
+               if (distance < ((ball.getDiameter()/2) + (ONE_L/2))) {
+                   return true;
+               }
+            }
+        }
+
+
+            return false;
     }
 
 
     private boolean isBallIntersecting(Ball ball){
         Vect orig = new Vect(ball.getVelocity().x(),ball.getVelocity().y());
         //LEFT
-        if(ballVelocityIntersectionCheck(0.1 + (ball.getDiameter()/2),0.0, ball)){
+        if(ballVelocityIntersectionCheck(0.01,0.0, ball)){
             return true;
         }
         //RIGHT
-        if(ballVelocityIntersectionCheck(-0.1 - (ball.getDiameter()/2),0.0, ball)){
+        if(ballVelocityIntersectionCheck(-0.01,0.0, ball)){
             return true;
         }
         //DOWN
-        if(ballVelocityIntersectionCheck(0.0, -0.1 - (ball.getDiameter()/2), ball)){
+        if(ballVelocityIntersectionCheck(0.0, -0.01, ball)){
             return true;
         }
         //DOWN
-        if(ballVelocityIntersectionCheck(0.0, 0.1 + (ball.getDiameter()/2), ball)){
+        if(ballVelocityIntersectionCheck(0.0, 0.01, ball)){
             return true;
         }
 

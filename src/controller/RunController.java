@@ -53,6 +53,12 @@ public class RunController {
 
         stopButton.setDisable(true);
 
+        startButton.setFocusTraversable(false);
+        stopButton.setFocusTraversable(false);
+        tickButton.setFocusTraversable(false);
+        switchButton.setFocusTraversable(false);
+        resetButton.setFocusTraversable(false);
+
         startButton.setOnAction(event -> {
             GizmoballController.disable.set(true);
             stopButton.requestFocus();
