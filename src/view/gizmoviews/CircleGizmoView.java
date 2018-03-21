@@ -1,5 +1,6 @@
 package view.gizmoviews;
 
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import model.board.gizmos.Gizmo;
 
@@ -7,11 +8,13 @@ import static util.Constants.ONE_L_IN_PIXELS;
 
 public class CircleGizmoView extends GizmoViewContainer {
 
+    private final Circle circle;
+
     public CircleGizmoView(Gizmo circleGizmo) {
         super(circleGizmo);
 
         double radius = ONE_L_IN_PIXELS/2;
-        Circle circle = new Circle(radius);
+        circle = new Circle(radius);
         circle.setCenterX(radius);
         circle.setCenterY(radius);
         circle.getStyleClass().add("circleGizmo");
@@ -25,5 +28,18 @@ public class CircleGizmoView extends GizmoViewContainer {
     public CircleGizmoView() {
         this(null);
 //        circle.setStyle("-fx-stroke: red; -fx-stroke-type: inside; -fx-stroke-width: 2");
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        if (circle != null) {
+            if (gizmo.isTriggered()) {
+                circle.setFill(Color.YELLOW);
+            }
+            else {
+                circle.setFill(Color.DEEPSKYBLUE);
+            }
+        }
     }
 }

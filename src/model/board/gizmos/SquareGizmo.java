@@ -105,7 +105,7 @@ public class SquareGizmo implements Gizmo {
 
     @Override
     public void trigger(boolean keyPressed, boolean keyReleaased) {
-        triggered = true;
+        triggered = !triggered;
     }
 
     @Override
@@ -124,7 +124,12 @@ public class SquareGizmo implements Gizmo {
 
     @Override
     public void activateAction() {
+        notifyObservers();
+    }
 
+    @Override
+    public boolean isTriggered() {
+        return triggered;
     }
 
     @Override

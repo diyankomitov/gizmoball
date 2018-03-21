@@ -128,7 +128,7 @@ public class TriangleGizmo implements Gizmo {
 
     @Override
     public void trigger(boolean keyPressed, boolean keyReleased) {
-        triggered = true;
+        triggered = !triggered;
     }
 
     @Override
@@ -147,7 +147,12 @@ public class TriangleGizmo implements Gizmo {
 
     @Override
     public void activateAction() {
+        notifyObservers();
+    }
 
+    @Override
+    public boolean isTriggered() {
+        return triggered;
     }
 
     @Override

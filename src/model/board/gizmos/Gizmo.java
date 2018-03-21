@@ -27,4 +27,6 @@ public interface Gizmo extends BoardObject, Observable {
     default boolean getKeyPressed() {
         return false;
     }
+
+    boolean isTriggered();
 }

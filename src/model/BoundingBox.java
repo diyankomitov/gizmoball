@@ -31,6 +31,7 @@ public class BoundingBox {
         if (this.y1 < 0) return true;
         if (this.y2 > 20) return true;
         if (this.y2 < 1) return true;
+
         return false;
     }
 

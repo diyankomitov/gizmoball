@@ -133,6 +133,11 @@ public class AbsorberGizmo implements Gizmo {
     }
 
     @Override
+    public boolean isTriggered() {
+        return triggered;
+    }
+
+    @Override
     public void trigger(boolean keyPressed, boolean keyReleased) {
         if (!this.keyPressed || this.keyReleased || keyPressed || !keyReleased) { //when a key is being held down dont trigger from gizmos
             this.keyReleased = keyReleased;
