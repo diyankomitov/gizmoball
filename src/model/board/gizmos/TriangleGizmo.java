@@ -15,10 +15,10 @@ public class TriangleGizmo implements Gizmo {
     private final double rCoefficient;
     private final List<LineSegment> sides;
     private final List<Circle> corners;
-    private BoardObjectType type;
+    private final BoardObjectType type;
     private double angle = 0;
-    private String name;
-    private List<Observer> observers;
+    private final String name;
+    private final List<Observer> observers;
     private boolean triggered;
 
     public TriangleGizmo(double x, double y, double side, String name) {
@@ -119,7 +119,6 @@ public class TriangleGizmo implements Gizmo {
         if(angle>=360){
             angle -= 360;
         }
-        System.out.println(angle);
         notifyObservers();
     }
 
@@ -134,7 +133,6 @@ public class TriangleGizmo implements Gizmo {
 
     @Override
     public void sendTrigger() {
-        //TODO: when we implement collision
     }
 
     @Override

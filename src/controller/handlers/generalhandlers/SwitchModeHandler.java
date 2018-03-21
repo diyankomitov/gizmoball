@@ -10,9 +10,6 @@ import javafx.geometry.HorizontalDirection;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
-import java.io.File;
-import java.io.IOException;
-
 import static controller.handlers.runhandlers.ResetGameHandler.SAVE_STATE;
 import static javafx.geometry.HorizontalDirection.*;
 

@@ -8,14 +8,13 @@ import javafx.scene.input.MouseEvent;
 import model.GizmoballModel;
 import model.board.Ball;
 import view.BallView;
-import view.gizmoviews.GizmoView;
 
 import static util.Constants.ONE_L_IN_PIXELS;
 
 public class SelectBallHandler implements BoardHandler {
 
     private final GizmoballModel model;
-    private BuildController buildController;
+    private final BuildController buildController;
     private BallView ballView;
 
     public SelectBallHandler(GizmoballModel model, BuildController buildController, ToggleButton selectBallButton) {

@@ -2,24 +2,21 @@ package controller.handlers.generalhandlers;
 
 import controller.BuildController;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.effect.GaussianBlur;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import util.BoardState;
 
-import java.io.File;
 import java.util.Optional;
 
 public class ExitHandler implements EventHandler<ActionEvent> {
-    private Stage stage;
+    private final Stage stage;
     private BuildController controller;
-    private SaveHandler saveHandler;
+    private final SaveHandler saveHandler;
     public ExitHandler(BuildController controller, Stage stage) {
         saveHandler = new SaveHandler(stage, controller);
         this.stage = stage;
@@ -46,18 +43,16 @@ public class ExitHandler implements EventHandler<ActionEvent> {
             Window window = alert.getDialogPane().getScene().getWindow();
             window.setOnCloseRequest(event1 -> window.hide());
             Optional<ButtonType> result = alert.showAndWait();
-            if(result.isPresent()){
-                if (result.get() == yes) {
+            result.ifPresent(buttonType -> {
+                if (buttonType == yes) {
                     saveHandler.handle(event);
                     System.exit(0);
-                }
-                else if (result.get() == no) {
+                } else if (buttonType == no) {
                     System.exit(0);
-                }
-                else {
+                } else {
                     event.consume();
                 }
-            }
+            });
 
             stage.getScene().getRoot().setEffect(null);
 

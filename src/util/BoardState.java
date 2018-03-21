@@ -6,7 +6,7 @@ import java.util.List;
 public class BoardState {
     private static boolean saved = true;
 
-    private static List<String> stateList = new ArrayList<>();
+    private static final List<String> stateList = new ArrayList<>();
 
     public static void add(String state) {
         stateList.add(state);

@@ -35,10 +35,8 @@ public class AddBallHandler extends AddHandler {
             double x = mouseEvent.getX() / ONE_L_IN_PIXELS;
             double y = mouseEvent.getY() / ONE_L_IN_PIXELS;
 
-            System.out.println(global);
             Node clicked = ((Node) event.getTarget());
 
-            System.out.println("clicked on: " + clicked);
                 if (global) {
                     if (model.addBall(x, y, 0, 0, "")) {
                         Ball ball = model.getBall(x, y);

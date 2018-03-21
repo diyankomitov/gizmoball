@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import util.Constants?>
-<?import view.*?>
-<?import view.gizmoviews.SquareGizmoView?>
-<?import view.gizmoviews.TriangleGizmoView?>
-<?import view.gizmoviews.CircleGizmoView?>
-<?import view.gizmoviews.FlipperGizmoView?>
-<?import view.gizmoviews.AbsorberGizmoView?>
-<?import javafx.scene.Group?>
-<?import javafx.geometry.Insets?>
+<?import view.BallView?>
+<?import view.gizmoviews.*?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="controller.BuildController"
@@ -83,13 +78,13 @@
                         <VBox fx:id="velocityContainer" disable="true">
                             <Label text="Ball X Velocity"/>
                             <HBox spacing="10">
-                                <Slider fx:id="ballXVelocitySlider" min="-200" max="200" showTickLabels="true"
+                                <Slider fx:id="ballXVelocitySlider" min="-200" max="200" majorTickUnit="50" showTickLabels="true"
                                         focusTraversable="false"/>
                                 <TextField fx:id="ballXVelocityField" maxWidth="50" focusTraversable="false"/>
                             </HBox>
                             <Label text="Ball Y Velocity"/>
                             <HBox spacing="10">
-                                <Slider fx:id="ballYVelocitySlider" min="-200" max="200" showTickLabels="true"
+                                <Slider fx:id="ballYVelocitySlider" min="-200" max="200" majorTickUnit="50" showTickLabels="true"
                                         focusTraversable="false"/>
                                 <TextField fx:id="ballYVelocityField" maxWidth="50" focusTraversable="false"/>
                             </HBox>
@@ -104,7 +99,7 @@
                     <VBox spacing="5">
                         <Label text="Gravity"/>
                         <HBox spacing="10">
-                            <Slider fx:id="gravitySlider" min="-1000" max="1000" showTickLabels="true"
+                            <Slider fx:id="gravitySlider" min="-1000" max="1000" majorTickUnit="500" showTickLabels="true"
                                     focusTraversable="false"/>
                             <TextField fx:id="gravityField" maxWidth="50" focusTraversable="false"/>
                         </HBox>
@@ -113,12 +108,12 @@
                     <VBox spacing="5">
                         <Label text="MU"/>
                         <HBox spacing="10">
-                            <Slider fx:id="frictionMuSlider" max="1000" showTickLabels="true" focusTraversable="false"/>
+                            <Slider fx:id="frictionMuSlider" max="200" majorTickUnit="50" showTickLabels="true" focusTraversable="false"/>
                             <TextField fx:id="frictionMuField" maxWidth="50" focusTraversable="false"/>
                         </HBox>
                         <Label text="MU2"/>
                         <HBox spacing="10">
-                            <Slider fx:id="frictionMu2Slider" max="1000" showTickLabels="true"
+                            <Slider fx:id="frictionMu2Slider" max="200" majorTickUnit="50" showTickLabels="true"
                                     focusTraversable="false"/>
                             <TextField fx:id="frictionMu2Field" maxWidth="50" focusTraversable="false"/>
                         </HBox>

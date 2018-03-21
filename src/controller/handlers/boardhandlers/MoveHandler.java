@@ -1,19 +1,13 @@
 package controller.handlers.boardhandlers;
 
-import controller.BoardController;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
 import model.GizmoballModel;
 import model.board.Ball;
-import model.board.BoardObjectType;
 import view.BallView;
-import view.gizmoviews.AbsorberGizmoView;
 import view.gizmoviews.GizmoView;
 
 import static util.Constants.ONE_L_IN_PIXELS;
@@ -21,13 +15,13 @@ import static util.Constants.ONE_L_IN_PIXELS;
 public class MoveHandler implements BoardHandler {
 
     private final GizmoballModel model;
-    boolean firstClick;
+    private boolean firstClick;
     private double firstx;
     private double firsty;
     private boolean gizmo;
     private GizmoView gizmoView;
     private BallView ballView;
-    private Label infoLabel;
+    private final Label infoLabel;
 
     public MoveHandler(GizmoballModel model, ToggleButton moveButton) {
         this.model = model;
@@ -50,8 +44,6 @@ public class MoveHandler implements BoardHandler {
     public void handle(Event event) {
 
         if (event.getEventType() == MouseEvent.MOUSE_CLICKED) {
-            Node test = ((Node)event.getTarget());
-            System.out.println(test);
 
 
             MouseEvent mouseEvent = (MouseEvent) event;
@@ -86,12 +78,9 @@ public class MoveHandler implements BoardHandler {
                     }
                 }
 
-
-                System.out.println(firstx + " " + firsty);
             } else {
                 firstClick = false;
                 if (gizmo) {
-                    System.out.println(firstx + " " + firsty + " " + Math.floor(mouseX)+ " " + Math.floor(mouseY));
                     model.moveGizmo(firstx, firsty, Math.floor(mouseX), Math.floor(mouseY));
                     gizmoView.setSelected(false);
                     gizmoView = null;

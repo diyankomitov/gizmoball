@@ -7,7 +7,7 @@ import model.GizmoballModel;
 
 public class ChangeGravityHandler implements ChangeListener<String> {
     private final GizmoballModel model;
-    private TextField textField;
+    private final TextField textField;
 
     public ChangeGravityHandler(GizmoballModel model, TextField textField) {
         this.model = model;

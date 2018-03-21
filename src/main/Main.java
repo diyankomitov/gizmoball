@@ -19,9 +19,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         primaryStage.setTitle("Gizmoball");
-        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("../view/css/icon.png")));
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/icon.png")));
 
-        FXMLLoader mainFXML = new FXMLLoader(getClass().getResource("../view/fxml/GizmoballView.fxml"));
+        FXMLLoader mainFXML = new FXMLLoader(getClass().getResource("/view/fxml/GizmoballView.fxml"));
         Parent root = mainFXML.load();
 
         GizmoballController gizmoballController = mainFXML.getController();
@@ -32,10 +32,7 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         scene.getStylesheets().add("view/css/styles.css");
 
-//        primaryStage.setFullScreen(true);
         primaryStage.setScene(scene);
         primaryStage.show();
-
-        System.out.println(scene.getWidth() + " " + scene.getHeight());
     }
 }

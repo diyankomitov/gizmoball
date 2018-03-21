@@ -12,8 +12,8 @@ import java.nio.file.Files;
 public class ResetGameHandler implements EventHandler<ActionEvent> {
 //    private final GizmoballModel model;
 
-    public static File SAVE_STATE = new File(System.getProperty("user.home") + File.separator + "Documents" + File.separator + "Gizmoball" + File.separator + "savestate.txt");
-    private LoadHandler loadHandler;
+    public static final File SAVE_STATE = new File(System.getProperty("user.home") + File.separator + "Documents" + File.separator + "Gizmoball" + File.separator + "savestate.txt");
+    private final LoadHandler loadHandler;
 
     public ResetGameHandler(GizmoballModel model, LoadHandler loadHandler) {
 //        this.model = model;

@@ -32,14 +32,14 @@ import java.io.*;
 import java.util.Optional;
 
 public class LoadHandler implements EventHandler<ActionEvent> {
-    private Stage stage;
-    private GizmoballModel model;
-    private BoardController boardController;
-    private BuildController buildController;
-    private SaveHandler saveHandler;
+    private final Stage stage;
+    private final GizmoballModel model;
+    private final BoardController boardController;
+    private final BuildController buildController;
+    private final SaveHandler saveHandler;
     private String errorMessages = "";
     private int errorCount = 0;
-    private Label infoLabel;
+    private final Label infoLabel;
 
     private ActionEvent event;
 
@@ -52,7 +52,6 @@ public class LoadHandler implements EventHandler<ActionEvent> {
         saveHandler = new SaveHandler(stage, buildController);
     }
 
-    //TODO add gravity and friction???
     @Override
     public void handle(ActionEvent event) {
 
@@ -86,8 +85,8 @@ public class LoadHandler implements EventHandler<ActionEvent> {
             Window window = alert.getDialogPane().getScene().getWindow();
             window.setOnCloseRequest(event1 -> window.hide());
             Optional<ButtonType> result = alert.showAndWait();
-            if(result.isPresent()) {
-                if (result.get() == yes) {
+            result.ifPresent(buttonType -> {
+                if (buttonType == yes) {
                     saveHandler.handle(event);
                     fileChooser.setTitle("Load Board");
                     File file = fileChooser.showOpenDialog(stage);
@@ -95,7 +94,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                     if (file != null) {
                         loadGame(file);
                     }
-                } else if (result.get() == no) {
+                } else if (buttonType == no) {
                     fileChooser.setTitle("Load Board");
                     File file = fileChooser.showOpenDialog(stage);
 
@@ -105,21 +104,19 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                 } else {
                     event.consume();
                 }
-            }
+            });
 
             stage.getScene().getRoot().setEffect(null);
         }
 
     }
 
-    public void clearBoard() {
+    private void clearBoard() {
         new ClearBoardHandler(boardController, model, infoLabel).handle(event);
     }
 
     public void loadGame(File file) {
         try {
-            System.out.println("At top of loadGame");
-
             clearBoard();
 
             errorCount = 0;
@@ -164,14 +161,14 @@ public class LoadHandler implements EventHandler<ActionEvent> {
             }
         } catch (FileNotFoundException e) {
             infoLabel.setText("Error: No file found.");
-            System.out.println("Error: No file found.");
+            System.err.println("Error: No file found." + e);
         } catch(IOException e ) {
             infoLabel.setText("Error: Wrong file format.");
-            System.out.println("Error: Wrong file format.");
+            System.err.println("Error: Wrong file format.");
         }
     }
 
-    public void checkAction(String[] string){
+    private void checkAction(String[] string){
 
         double x;
         double y;
@@ -186,7 +183,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                         errorHandler(String.join(" ", string));
                     }
                 } catch(Exception e){
-                    System.out.println("Something has gone wrong...");
+                    System.err.println("Something has gone wrong...");
                     errorHandler(String.join(" ", string));
                 }
                 break;
@@ -199,7 +196,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                     }
 
                 } catch(Exception e){
-                    System.out.println("Something has gone wrong...");
+                    System.err.println("Something has gone wrong...");
                     errorHandler(String.join(" ", string));
                 }
                 break;
@@ -211,7 +208,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                         errorHandler(String.join(" ", string));
                     }
                 } catch(Exception e){
-                    System.out.println("Something has gone wrong...");
+                    System.err.println("Something has gone wrong...");
                     errorHandler(String.join(" ", string));
                 }
                 break;
@@ -223,7 +220,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                         errorHandler(String.join(" ", string));
                     }
                 } catch(Exception e){
-                    System.out.println("Something has gone wrong...");
+                    System.err.println("Something has gone wrong...");
                     errorHandler(String.join(" ", string));
                 }
                 break;
@@ -235,7 +232,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                         errorHandler(String.join(" ", string));
                     }
                 } catch(Exception e){
-                    System.out.println("Something has gone wrong...");
+                    System.err.println("Something has gone wrong...");
                     errorHandler(String.join(" ", string));
                 }
                 break;
@@ -249,7 +246,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                         errorHandler(String.join(" ", string));
                     }
                 } catch(Exception e){
-                    System.out.println("Something has gone wrong...");
+                    System.err.println("Something has gone wrong...");
                     errorHandler(String.join(" ", string));
                 }
                 break;
@@ -263,7 +260,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                         errorHandler(String.join(" ", string));
                     }
                 } catch(Exception e){
-                    System.out.println("Something has gone wrong...");
+                    System.err.println("Something has gone wrong...");
                     errorHandler(String.join(" ", string));
                 }
                 break;
@@ -285,7 +282,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                     }
 
                 } catch(Exception e){
-                    System.out.println("Something has gone wrong...");
+                    System.err.println("Something has gone wrong...");
                     errorHandler(String.join(" ", string));
                 }
 
@@ -301,7 +298,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                         }
                     }
                 } catch (Exception e) {
-                    System.out.println("Something has gone wrong...");
+                    System.err.println("Something has gone wrong...");
                     errorHandler(String.join(" ", string));
                 }
                 break;
@@ -325,7 +322,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                     }
 
                     String modifier = string[2+keyLength];
-                    EventType<KeyEvent> eventType = null;
+                    EventType<KeyEvent> eventType;
 
 
                     if (modifier.equals("up")) {
@@ -347,19 +344,16 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                     }
 
                     Triggers.addTrigger(new KeyPress(keyCode, eventType), gizmo);
-                //TODO: error message
                 } catch(Exception e){
-                    System.out.println("Something has gone wrong...");
+                    System.err.println("Something has gone wrong...");
                     errorHandler(String.join(" ", string));
                 }
-
                 break;
             case "Connect":
                 try{
                     Triggers.addTrigger(model.getGizmo(string[1]), model.getGizmo(string[2]));
-                    //TODO: error check
                 } catch(Exception e) {
-                    System.out.println("Something has gone wrong...");
+                    System.err.println("Something has gone wrong...");
                     errorHandler(String.join(" ", string));
                 }
                 break;
@@ -369,7 +363,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                     model.setGravity(g);
 
                 } catch (Exception e) {
-                    System.out.println("Something has gone wrong...");
+                    System.err.println("Something has gone wrong...");
                     errorHandler(String.join(" ", string));
                 }
                 break;
@@ -380,7 +374,7 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                     model.setFriction(mu, mu2);
 
                 } catch (Exception e) {
-                    System.out.println("Something has gone wrong...");
+                    System.err.println("Something has gone wrong...");
                     errorHandler(String.join(" ", string));
                 }
                 break;
@@ -388,12 +382,8 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                 try {
                     String name = string[1];
                     double vx = Double.parseDouble(string[2]);
-                    System.out.println("parsing vx: " + vx);
                     double vy = Double.parseDouble(string[3]);
-                    System.out.println("parsing vy: " + vy);
                     boolean global = false;
-
-                    System.out.println("string length: " + string.length);
 
                     if (string.length > 4) {
                         if (!string[4].equals("global")) {
@@ -418,8 +408,6 @@ public class LoadHandler implements EventHandler<ActionEvent> {
                 errorHandler(String.join(" ", string));
                 break;
         }
-
-        System.out.println(model.getGizmos().size());
     }
 
     private void errorHandler(String s){

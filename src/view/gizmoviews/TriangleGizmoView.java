@@ -1,6 +1,5 @@
 package view.gizmoviews;
 
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import model.board.gizmos.Gizmo;
 

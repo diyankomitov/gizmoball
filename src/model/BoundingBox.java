@@ -16,39 +16,14 @@ public class BoundingBox {
     }
 
     public boolean isIntersecting(BoundingBox other) {
-//        System.out.println("this x1:" + this.x1 + " other x1:" + other.x1);
-//        System.out.println("this x2:" + this.x2 + " other x2:" + other.x2);
-//        System.out.println("this y1:" + this.y1 + " other y1:" + other.y1);
-//        System.out.println("this y2:" + this.y2 + " other y2:" + other.y2);
-//        System.out.println("");
-
         return this.x1 < other.x2
                 && other.x1 < this.x2
                 && this.y1 < other.y2
                 && other.y1 < this.y2;
-
-//        if (this.x1 > other.x2
-//                && this.x2 < other.x1
-//                && this.y1 > other.y2
-//                && this.y2 < other.y1) {
-//            return true;
-//        }
-
-//        if (this.x1 > other.x2
-//                && this.x2 < other.x1
-//                && this.y1 > other.y2
-//                && this.y2 < other.y1) {
-//            return true;
-//
-//        }
-
     }
 
     public boolean isOutside(){
-        if(this.x1 > 20 || this.x2 > 21 || this.y1 > 20 || this.y2 > 21 || this.x1 < 0 || this.x2 < 1 || this.y1 < 0 || this.y2 < 1){
-            return true;
-        }
-        return false;
+        return this.x1 > 20 || this.x2 > 21 || this.y1 > 20 || this.y2 > 21 || this.x1 < 0 || this.x2 < 1 || this.y1 < 0 || this.y2 < 1;
     }
 
 }

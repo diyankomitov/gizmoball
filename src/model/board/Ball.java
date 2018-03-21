@@ -1,6 +1,5 @@
 package model.board;
 
-import model.board.gizmos.Gizmo;
 import physics.Circle;
 import physics.LineSegment;
 import physics.Vect;
@@ -16,11 +15,10 @@ public class Ball implements BoardObject, Observable {
     private double y;
     private final double diameter;
     private final BoardObjectType type;
-    private String name;
+    private final String name;
     private Vect velocity;
-    private Vect potentialVelocity;
     private boolean inAbsorber = false;
-    private List<Observer> observers = new ArrayList<>();
+    private final List<Observer> observers = new ArrayList<>();
     private Vect privateVelocity;
     private boolean global;
 
@@ -31,7 +29,6 @@ public class Ball implements BoardObject, Observable {
         this.type = BoardObjectType.BALL;
         this.name = name;
         this.velocity = new Vect(xv, yv);
-        this.potentialVelocity = new Vect(0, 0);
         this.privateVelocity = new Vect(0,0);
     }
 
@@ -66,8 +63,6 @@ public class Ball implements BoardObject, Observable {
     }
 
     public void setVelocity(Vect velocity) {
-
-        System.out.println("setting velocity " + velocity);
         double velX = velocity.x();
         double signX = Math.signum(velX);
         double velY = velocity.y();

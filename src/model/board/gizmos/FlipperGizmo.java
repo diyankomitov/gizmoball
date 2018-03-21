@@ -20,16 +20,14 @@ public class FlipperGizmo implements Gizmo{
     private final double width;
     private final double length;
     private final double rCoefficient;
-    private ArrayList<LineSegment> sides;
-    private ArrayList<Circle> circles;
     private BoardObjectType type;
-    private String name;
+    private final String name;
     private double angle;
     private Vect pivot;
     private double angularVelocity;
     private boolean triggered;
 //    private double offset;
-    private List<Observer> observers;
+    private final List<Observer> observers;
     private boolean flipUp;
     private boolean keyPressed;
     private int rotationCount;
@@ -67,8 +65,8 @@ public class FlipperGizmo implements Gizmo{
 
         angle = a;
         oldAngle = angle;
-        sides = new ArrayList<>();
-        circles = new ArrayList<>();
+        ArrayList<LineSegment> sides = new ArrayList<>();
+        ArrayList<Circle> circles = new ArrayList<>();
         rCoefficient = 0.95;
 
         angularVelocity = Math.toRadians(FLIPPER_ANGULAR_VELOCITY);
@@ -172,7 +170,6 @@ public class FlipperGizmo implements Gizmo{
 
     @Override
     public void sendTrigger() {
-        //TODO: implement when working on the triggering system
     }
 
     @Override

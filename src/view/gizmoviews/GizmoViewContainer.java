@@ -4,25 +4,22 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Toggle;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Shape;
 import model.board.gizmos.Gizmo;
-import view.GlobalLighting;
 
 import static util.Constants.ONE_L_IN_PIXELS;
 
 public class GizmoViewContainer extends Pane implements GizmoView, Toggle{
 
-    protected final Gizmo gizmo;
+    final Gizmo gizmo;
     private boolean canFocus;
     protected Shape shape;
-    private BooleanProperty selected;
-    private ObjectProperty<ToggleGroup> toggleGroup;
+    private final BooleanProperty selected;
+    private final ObjectProperty<ToggleGroup> toggleGroup;
 //    private boolean selected;
 
     GizmoViewContainer(Gizmo gizmo) {
@@ -84,7 +81,6 @@ public class GizmoViewContainer extends Pane implements GizmoView, Toggle{
 
     @Override
     public void setSelected(boolean selected) {
-        System.out.println("setSelected");
         if (selected) {
             this.getStyleClass().add("selected");
         }

@@ -1,10 +1,8 @@
 package view.gizmoviews;
 
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import model.board.gizmos.AbsorberGizmo;
 import model.board.gizmos.Gizmo;
-import view.GlobalLighting;
 
 import static util.Constants.ONE_L_IN_PIXELS;
 

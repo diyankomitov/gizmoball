@@ -1,16 +1,13 @@
 package controller.handlers.generalhandlers;
 
-import controller.BoardController;
 import controller.BuildController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import util.BoardState;
-import view.BoardView;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -50,7 +47,7 @@ public class SaveHandler implements EventHandler<ActionEvent> {
 
     public void saveGame(File file) {
         try{
-            PrintWriter fileWriter = null;
+            PrintWriter fileWriter;
             fileWriter=new PrintWriter(file);
             List<String> stateList = BoardState.getStateList();
             for(String s: stateList) {
@@ -59,7 +56,6 @@ public class SaveHandler implements EventHandler<ActionEvent> {
             fileWriter.close();
             BoardState.setSavedBoard(true);
             controller.setInformation("Game has been saved");
-            System.out.println("Game has been saved");
 
 
         } catch (IOException e) {

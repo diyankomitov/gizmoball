@@ -7,9 +7,9 @@ import java.util.List;
 
 public class Board {
 
-    private Walls walls;
-    private List<Ball> balls;
-    private List<Gizmo> gizmos;
+    private final Walls walls;
+    private final List<Ball> balls;
+    private final List<Gizmo> gizmos;
 
     public Board() {
         walls = new Walls();
@@ -29,28 +29,6 @@ public class Board {
         return walls;
     }
 
-//    public List<LineSegment> getLines() {
-//        List<LineSegment> lines = new ArrayList<>();
-//
-//        gizmos.forEach(gizmo -> lines.addAll(gizmo.getLines()));
-//
-//        lines.addAll(walls.getLines());
-//
-//        return lines;
-//    }
-
-//    public List<Circle> getCircles() {
-//        List<Circle> circles = new ArrayList<>();
-//
-//        gizmos.forEach(gizmo -> circles.addAll(gizmo.getCircles()));
-//
-//        balls.forEach(ball -> circles.add(ball.getCircle()));
-//
-//        circles.addAll(walls.getCircles());
-//
-//        return circles;
-//    }
-
     public boolean addGizmo(Gizmo gizmo) {
         return gizmos.add(gizmo);
     }
@@ -65,7 +43,6 @@ public class Board {
     }
 
     public void removeGizmo(Gizmo gizmo) {
-        System.out.println(gizmos);
         gizmos.remove(gizmo);
     }
 

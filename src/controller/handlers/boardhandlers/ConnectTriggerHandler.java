@@ -4,14 +4,10 @@ import controller.BoardController;
 import javafx.event.Event;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.event.EventType;
-import javafx.scene.effect.BoxBlur;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.GizmoballModel;
@@ -26,12 +22,12 @@ import static util.Constants.ONE_L_IN_PIXELS;
 
 public class ConnectTriggerHandler implements BoardHandler {
     private final GizmoballModel model;
-    private ToggleButton connectButton;
+    private final ToggleButton connectButton;
     private final BoardController boardController;
     private final Stage stage;
     private boolean triggeredSelected;
     private Gizmo triggeredGizmo;
-    private Label infoLabel;
+    private final Label infoLabel;
     private GizmoView gizmoView;
 
     public ConnectTriggerHandler(GizmoballModel model, BoardController boardController, Stage stage, Label infoLabel, ToggleButton connectButton) {
@@ -102,13 +98,13 @@ public class ConnectTriggerHandler implements BoardHandler {
                     keyTypeAlert.getDialogPane().getScene().getStylesheets().add("view/css/styles.css");
 
                     Optional<ButtonType> result = keyTypeAlert.showAndWait();
-                    if (result.isPresent()) {
-                        if (result.get() == down) {
+                    result.ifPresent(buttonType -> {
+                        if (buttonType == down) {
                             Triggers.addTrigger(new KeyPress(keyCode, KeyEvent.KEY_PRESSED), triggeredGizmo);
                         }
 
-                        Triggers.addTrigger(new KeyPress(keyCode,KeyEvent.KEY_RELEASED), triggeredGizmo);
-                    }
+                        Triggers.addTrigger(new KeyPress(keyCode, KeyEvent.KEY_RELEASED), triggeredGizmo);
+                    });
 
                     stage.getScene().getRoot().setEffect(null);
 

@@ -2,7 +2,6 @@ package util;
 
 import model.board.BoardObjectType;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +15,7 @@ public class GizmoNames {
     private int rfCounter;
     private int aCounter;
 
-    private Set<String> nameSet;
+    private final Set<String> nameSet;
 
     public GizmoNames() {
         nameSet = new HashSet<>();

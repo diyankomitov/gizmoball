@@ -13,14 +13,14 @@ import java.util.List;
 public class SquareGizmo implements Gizmo {
     private double x;
     private double y;
-    private double width;
+    private final double width;
     private final double rCoefficient;
     private final List<LineSegment> sides;
     private final List<Circle> corners;
-    private BoardObjectType type;
+    private final BoardObjectType type;
 
-    private String name;
-    private List<Observer> observers;
+    private final String name;
+    private final List<Observer> observers;
 
     private boolean triggered;
     private double angle;
@@ -110,7 +110,6 @@ public class SquareGizmo implements Gizmo {
 
     @Override
     public void sendTrigger() {
-        //TODO: implement this when we are adding collision
     }
 
     @Override

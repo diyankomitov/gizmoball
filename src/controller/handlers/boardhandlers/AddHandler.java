@@ -13,11 +13,11 @@ import view.gizmoviews.*;
 import static util.Constants.ONE_L_IN_PIXELS;
 
 public class AddHandler implements BoardHandler {
-    protected final GizmoballModel model;
-    protected final BoardController boardController;
-    protected final BuildController buildController;
-    protected final BoardObjectType type;
-    private Label infoLabel;
+    final GizmoballModel model;
+    final BoardController boardController;
+    final BuildController buildController;
+    private final BoardObjectType type;
+    private final Label infoLabel;
 
     public AddHandler(GizmoballModel model, BoardController boardController, BuildController buildController, BoardObjectType type,  Label infoLabel) {
         this.model = model;
@@ -38,7 +38,6 @@ public class AddHandler implements BoardHandler {
 
             if (model.addGizmo(x,y,"", type)) {
                 Gizmo gizmo = model.getGizmo(x,y);
-                System.out.println(gizmo);
                 GizmoView gizmoView;
                 switch(type){
                     case CIRCLE:
@@ -75,7 +74,6 @@ public class AddHandler implements BoardHandler {
 
     public void handle(String name) {
         Gizmo gizmo = model.getGizmo(name);
-        System.out.println(gizmo);
         GizmoView gizmoView;
         switch(type){
             case CIRCLE:

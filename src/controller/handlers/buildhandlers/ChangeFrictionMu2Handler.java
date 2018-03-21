@@ -7,7 +7,7 @@ import model.GizmoballModel;
 
 public class ChangeFrictionMu2Handler implements ChangeListener<String> {
     private final GizmoballModel model;
-    private TextField textField;
+    private final TextField textField;
 
     public ChangeFrictionMu2Handler(GizmoballModel model, TextField textField) {
         this.model = model;

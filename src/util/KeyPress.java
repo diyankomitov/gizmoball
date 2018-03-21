@@ -6,8 +6,8 @@ import javafx.scene.input.KeyEvent;
 
 public class KeyPress {
 
-    private KeyCode code;
-    private EventType<KeyEvent> type;
+    private final KeyCode code;
+    private final EventType<KeyEvent> type;
 
     public KeyPress(KeyCode code, EventType<KeyEvent> type) {
         this.code = code;

@@ -3,9 +3,7 @@ package controller.handlers.boardhandlers;
 
 import controller.BoardController;
 import javafx.event.Event;
-import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import model.GizmoballModel;
 import view.BallView;

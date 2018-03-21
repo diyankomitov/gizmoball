@@ -1,7 +1,6 @@
 package model;
 
 import model.board.BoardObject;
-import model.board.gizmos.Gizmo;
 import physics.Vect;
 
 public class CollisionDetails {
@@ -20,7 +19,6 @@ public class CollisionDetails {
 
     public void setPotentialCollision(BoardObject potentialCollision) {
         this.potentialCollision = potentialCollision;
-        System.out.println("Setting pot collision: " + potentialCollision);
     }
 
     public BoardObject getCollidedBoardObject() {
@@ -28,7 +26,6 @@ public class CollisionDetails {
     }
 
     public void setCollidedBoardObject(BoardObject collidedBoardObject) {
-        System.out.println("Collided with: " + collidedBoardObject);
         this.collidedBoardObject = collidedBoardObject;
     }
 
@@ -47,24 +44,4 @@ public class CollisionDetails {
     public void setTimeUntilCollision(double timeUntilCollision) {
         this.timeUntilCollision = timeUntilCollision;
     }
-
-
-    //
-//    public void setTimeUntilCollission(Ball ball, double timeUntilCollission) {
-//        details.put(ball, timeUntilCollission);
-//    }
-//
-//    public double getTimeUntilCollision(Ball ball) {
-//        return details.get(ball);
-//    }
-//
-//    public void addBall(Ball ball) {
-//        System.out.println("added " + ball);
-//        details.put(ball, Double.MAX_VALUE);
-//    }
-//
-//    public void removeBall(Ball ball){
-//        System.out.println("removed " + ball);
-//        details.remove(ball);
-//    }
 }

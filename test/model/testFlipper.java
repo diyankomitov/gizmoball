@@ -1,4 +1,4 @@
-package test;
+package model;
 
 import model.GizmoballModel;
 import model.board.BoardObjectType;

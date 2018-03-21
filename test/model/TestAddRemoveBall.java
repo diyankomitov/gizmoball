@@ -1,11 +1,9 @@
-package test;
+package model;
 import model.*;
 
-import model.board.Ball;
 import model.board.BoardObjectType;
 import org.junit.Before;
 import org.junit.Test;
-import physics.Vect;
 
 import static org.junit.Assert.*;
 
@@ -19,7 +17,6 @@ public class TestAddRemoveBall {
 
     @Test
     public void testBallLocation() {
-        System.out.println(gizmoballModel.getBall("B1"));
         assertTrue(gizmoballModel.getBall("B1").getX()== 5);
         assertTrue(gizmoballModel.getBall("B1").getY()== 5);
 

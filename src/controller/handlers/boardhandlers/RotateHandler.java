@@ -1,18 +1,16 @@
 package controller.handlers.boardhandlers;
 
-import controller.BoardController;
 import controller.BuildController;
 import javafx.event.Event;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import model.GizmoballModel;
-import model.board.BoardObjectType;
 
 import static util.Constants.ONE_L_IN_PIXELS;
 
 public class RotateHandler implements BoardHandler{
     private final GizmoballModel model;
-    private BuildController buildController;
+    private final BuildController buildController;
 
     public RotateHandler(GizmoballModel model,  BuildController buildController) {
         this.model = model;
@@ -27,7 +25,6 @@ public class RotateHandler implements BoardHandler{
             double nodeX = Math.floor(clicked.getTranslateX()/ONE_L_IN_PIXELS);
             double nodeY = Math.floor(clicked.getTranslateY()/ONE_L_IN_PIXELS);
 
-            System.out.println(clicked);
 
             model.rotateGizmo(nodeX,nodeY);
             if(!model.getErrorMessage().equals("")){

@@ -15,10 +15,10 @@ public class CircleGizmo implements Gizmo {
     private double y;
     private final double diameter;
     private final double rCoefficient;
-    private List<Circle> circles;
-    private BoardObjectType type;
-    private String name;
-    private List<Observer> observers;
+    private final List<Circle> circles;
+    private final BoardObjectType type;
+    private final String name;
+    private final List<Observer> observers;
     private double angle;
     private boolean triggered;
 
@@ -85,7 +85,6 @@ public class CircleGizmo implements Gizmo {
 
     @Override
     public void sendTrigger() {
-        //TODO: implement this as we implement collision
     }
 
     @Override

@@ -17,13 +17,13 @@ import static util.Constants.ONE_L_IN_PIXELS;
 
 public class BallView extends Group implements Observer, Toggle{
 
-    private Circle ball;
-    private double x;
-    private double y;
+    private final Circle ball;
+    private final double x;
+    private final double y;
     private final Ball ballModel;
     private double hue;
-    private BooleanProperty selected;
-    private ObjectProperty<ToggleGroup> toggleGroup;
+    private final BooleanProperty selected;
+    private final ObjectProperty<ToggleGroup> toggleGroup;
     private boolean partyTime;
 
     public BallView(Ball ballModel) {
@@ -106,13 +106,10 @@ public class BallView extends Group implements Observer, Toggle{
 
     @Override
     public void setSelected(boolean selected) {
-        System.out.println("setSelected");
         if (selected) {
-            System.out.println("selected");
             this.getStyleClass().add("selected");
         }
         else {
-            System.out.println("not Selected");
             this.getStyleClass().remove("selected");
         }
         this.selected.setValue(selected);

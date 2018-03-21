@@ -7,7 +7,7 @@ import view.BoardView;
 
 public class StartLoopHandler implements EventHandler<ActionEvent> {
     private final Timeline timeline;
-    private BoardView boardView;
+    private final BoardView boardView;
 
     public StartLoopHandler(Timeline timeline, BoardView boardView) {
         this.timeline = timeline;

@@ -17,12 +17,12 @@ public class SquareGizmoTest {
     private SquareGizmo squareGizmo;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         squareGizmo = new SquareGizmo(1,1,1,"S");
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
     }
 
     @Test

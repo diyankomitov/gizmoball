@@ -2,33 +2,24 @@ package view;
 
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.effect.Light;
-import javafx.scene.effect.Lighting;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import view.gizmoviews.GizmoView;
 
 import static util.Constants.ONE_L_IN_PIXELS;
 
 public class BoardView extends Pane{
     private final Group cellGroup;
-    //    private Pane[][] cells;
-    private double cellSize;
     private boolean isGridOn;
-    private Group objectGroup;
+    private final Group objectGroup;
 
 
-    public BoardView() {    //TODO: Refactor
-        this.cellSize = ONE_L_IN_PIXELS;
-        this.setPrefSize(cellSize*20, cellSize*20);
-        this.setMinSize(cellSize*20, cellSize*20);
-        this.setMaxSize(cellSize*20, cellSize*20);
+    public BoardView() {
+        double cellSize = ONE_L_IN_PIXELS;
+        this.setPrefSize(cellSize *20, cellSize *20);
+        this.setMinSize(cellSize *20, cellSize *20);
+        this.setMaxSize(cellSize *20, cellSize *20);
 
         cellGroup = new Group();
-
-//        cells = new Pane[20][20];
 
         for (int y = 0; y<20; y++) {
             for (int x = 0; x<20; x++) {
@@ -44,7 +35,6 @@ public class BoardView extends Pane{
         this.getChildren().add(cellGroup);
 
         objectGroup = new Group();
-//        objectGroup.setEffect(GlobalLighting.get());
         this.getChildren().add(objectGroup);
 
         isGridOn = true;

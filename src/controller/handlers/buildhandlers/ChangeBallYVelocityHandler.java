@@ -10,8 +10,8 @@ import model.board.Ball;
 
 public class ChangeBallYVelocityHandler implements ChangeListener<String> {
     private final GizmoballModel model;
-    private TextField textField;
-    private BuildController buildController;
+    private final TextField textField;
+    private final BuildController buildController;
     private AddBallHandler addBallHandler;
     private boolean selectingBall;
 

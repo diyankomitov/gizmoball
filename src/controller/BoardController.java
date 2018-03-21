@@ -9,7 +9,7 @@ import view.gizmoviews.GizmoView;
 
 public class BoardController implements EventHandler<Event>{
 
-    private BoardView boardView;
+    private final BoardView boardView;
     private BoardHandler boardHandler;
     private boolean doNothing;
 

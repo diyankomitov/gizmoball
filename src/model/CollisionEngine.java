@@ -23,13 +23,13 @@ import static util.Constants.FRICTION_MU;
 import static util.Constants.FRICTION_MU_2;
 import static util.Constants.GRAVITY;
 
-public class CollisionEngine {
+class CollisionEngine {
 
     private double frictionMU2;
     private double frictionMU;
     private Vect gravity;
-    private Map<Ball, CollisionDetails> collisionDetailsMap;
-    private Board board;
+    private final Map<Ball, CollisionDetails> collisionDetailsMap;
+    private final Board board;
 
     CollisionEngine(Board board){
         this.board = board;
@@ -41,12 +41,10 @@ public class CollisionEngine {
     }
 
     public void addBall(Ball ball) {
-        System.out.println("added " + ball);
         collisionDetailsMap.put(ball, new CollisionDetails());
     }
 
     public void removeBall(Ball ball){
-        System.out.println("removed " + ball);
         collisionDetailsMap.remove(ball);
     }
 
@@ -65,17 +63,14 @@ public class CollisionEngine {
                     applyFriction(ball, moveTime);
 
                 } else {
-                    System.out.println("gonna collide");
                     if (details.getPotentialCollision() != null) {
-                        System.out.println(details.getPotentialCollision());
                         if (details.getPotentialCollision().getType() == ABSORBER) {
                             ((AbsorberGizmo) details.getPotentialCollision()).addBall(ball);
-                            System.out.println("BALL ADDED: " + ball.getName());
                         }
                         details.setCollidedBoardObject(details.getPotentialCollision());
                     }
                     ball.moveForTime(details.getTimeUntilCollision());
-                    ball.setVelocity(details.getPotentialVelocity()); //TODO: check if works
+                    ball.setVelocity(details.getPotentialVelocity());
                     applyGravity(ball, details.getTimeUntilCollision());
                     applyFriction(ball, details.getTimeUntilCollision());
                 }
@@ -98,11 +93,11 @@ public class CollisionEngine {
         ball.setVelocity(new Vect(vNewX, vNewY));
     }
 
-    public void setGravity(double yVelocity) { //TODO: probably check upper and lower bounds
+    public void setGravity(double yVelocity) {
         this.gravity = new Vect(0, yVelocity);
     }
 
-    public void setFriction(double mu, double mu2) { //TODO: probably check upper and lower bounds
+    public void setFriction(double mu, double mu2) {
         this.frictionMU = mu;
         this.frictionMU2 = mu2;
     }
@@ -118,23 +113,24 @@ public class CollisionEngine {
         Circle ballCircle = ball.getCircles().get(0);
 
         if ((gizmo.getType() == LEFT_FLIPPER || gizmo.getType() == RIGHT_FLIPPER)) {
-            //TODO: hopefully remove the casting, probably through interface for moving gizmos or maybe reduce it to one cast at the start
+
+            FlipperGizmo flipperGizmo = (FlipperGizmo) gizmo;
 
             for (LineSegment line : lines) {
-                time = Geometry.timeUntilRotatingWallCollision(line, gizmo.getCenter(), ((FlipperGizmo)gizmo).getAngularVelocity(), ballCircle, ball.getVelocity()); //TODO: Fix flipper collision
+                time = Geometry.timeUntilRotatingWallCollision(line, gizmo.getCenter(), flipperGizmo.getAngularVelocity(), ballCircle, ball.getVelocity());
                 if (time < timeUntilCollision) {
                     timeUntilCollision = time;
-                    velocity = Geometry.reflectRotatingWall(line, gizmo.getCenter(), ((FlipperGizmo)gizmo).getAngularVelocity(), ballCircle, ball.getVelocity(), gizmo.getRCoefficient());
+                    velocity = Geometry.reflectRotatingWall(line, gizmo.getCenter(), flipperGizmo.getAngularVelocity(), ballCircle, ball.getVelocity(), gizmo.getRCoefficient());
                     details.setPotentialVelocity(velocity);
                     details.setPotentialCollision(gizmo);
                 }
             }
 
             for (Circle circle : circles) {
-                time = Geometry.timeUntilRotatingCircleCollision(circle, gizmo.getCenter(), ((FlipperGizmo)gizmo).getAngularVelocity(), ballCircle, ball.getVelocity());
+                time = Geometry.timeUntilRotatingCircleCollision(circle, gizmo.getCenter(), flipperGizmo.getAngularVelocity(), ballCircle, ball.getVelocity());
                 if (time < timeUntilCollision) {
                     timeUntilCollision = time;
-                    velocity = Geometry.reflectRotatingCircle(circle, gizmo.getCenter(), ((FlipperGizmo)gizmo).getAngularVelocity(), ballCircle, ball.getVelocity(), gizmo.getRCoefficient());
+                    velocity = Geometry.reflectRotatingCircle(circle, gizmo.getCenter(), flipperGizmo.getAngularVelocity(), ballCircle, ball.getVelocity(), gizmo.getRCoefficient());
                     details.setPotentialVelocity(velocity);
                     details.setPotentialCollision(gizmo);
                 }
@@ -233,19 +229,21 @@ public class CollisionEngine {
 
         Map<Ball, List<Ball>> checked = new HashMap<>();
 
-        board.getBalls().forEach(ball -> {
-            getCollisionDetails(ball).setTimeUntilCollision(Double.MAX_VALUE);
-        });
+        for (Ball ball1 : board.getBalls()) {
+            getCollisionDetails(ball1).setTimeUntilCollision(Double.MAX_VALUE);
+        }
 
-        board.getBalls().forEach(ball -> {
-            board.getGizmos().forEach(gizmo -> findTimeUntilGizmoCollision(gizmo, ball));
+        for (Ball ball : board.getBalls()) {
+            for (Gizmo gizmo : board.getGizmos()) {
+                findTimeUntilGizmoCollision(gizmo, ball);
+            }
 
             findTimeUntilWallsCollission(board.getWalls(), ball);
 
             checked.put(ball, new ArrayList<>());
             checked.get(ball).add(ball);
 
-            board.getBalls().forEach(otherBall -> {
+            for (Ball otherBall : board.getBalls()) {
                 checked.putIfAbsent(otherBall, new ArrayList<>());
                 checked.get(otherBall).add(otherBall);
                 if (!checked.get(ball).contains(otherBall) && !checked.get(otherBall).contains(ball)) {
@@ -254,7 +252,7 @@ public class CollisionEngine {
 
                 checked.get(ball).add(otherBall);
                 checked.get(otherBall).add(ball);
-            });
-        });
+            }
+        }
     }
 }

@@ -17,12 +17,12 @@ public class CircleGizmoTest {
     private CircleGizmo circleGizmo;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         circleGizmo = new CircleGizmo(1,1,1,"C");
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
     }
 
     @Test

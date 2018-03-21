@@ -17,23 +17,21 @@ import static model.board.BoardObjectType.*;
 import static util.Constants.*;
 
 public class GizmoballModel{
-    private Board board;
-    private Vect gravity;
-    private double frictionMU;
-    private double frictionMU2;
+    private final Board board;
+    private final double frictionMU;
+    private final double frictionMU2;
 
-    private SimpleDoubleProperty gravityProperty;
-    private SimpleDoubleProperty frictionMUProperty;
-    private SimpleDoubleProperty frictionMU2Property;
+    private final SimpleDoubleProperty gravityProperty;
+    private final SimpleDoubleProperty frictionMUProperty;
+    private final SimpleDoubleProperty frictionMU2Property;
 
     private String errorMessage = "";
-    private GizmoNames gizmoNames;
+    private final GizmoNames gizmoNames;
 
-    private CollisionEngine collisionEngine;
+    private final CollisionEngine collisionEngine;
 
     public GizmoballModel() {
         board = new Board();
-        gravity = new Vect(0, GRAVITY);
         frictionMU = FRICTION_MU;
         frictionMU2 = FRICTION_MU_2;
         gravityProperty = new SimpleDoubleProperty(GRAVITY);
@@ -49,7 +47,7 @@ public class GizmoballModel{
         activateGizmoActions();
     }
 
-    private void sendTriggers() { //TODO: maybe move from here to outside the model
+    private void sendTriggers() {
         for (Ball ball : board.getBalls()) {
             BoardObject collidedBoardObject = collisionEngine.getCollisionDetails(ball).getCollidedBoardObject();
             if (collidedBoardObject != null && collidedBoardObject.getType() != WALLS && collidedBoardObject.getType() != BALL) {
@@ -284,18 +282,18 @@ public class GizmoballModel{
         gravityProperty.setValue(yVelocity);
     }
 
-    public void setFriction(double mu, double mu2) { //TODO: probably check upper and lower bounds
+    public void setFriction(double mu, double mu2) {
         collisionEngine.setFriction(mu, mu2);
         BoardState.add("Friction " + mu + " " + mu2);
-        frictionMUProperty.setValue(mu);
-        frictionMU2Property.setValue(mu2);
     }
 
     public void setFrictionMU(double mu) {
         setFriction(mu, frictionMU2);
+        frictionMUProperty.setValue(mu);
     }
     public void setFrictionMU2(double mu2) {
         setFriction(frictionMU, mu2);
+        frictionMU2Property.setValue(mu2);
     }
 
     public SimpleDoubleProperty getGravityProperty() {
@@ -310,11 +308,11 @@ public class GizmoballModel{
         return frictionMU2Property;
     }
 
-    public List<Gizmo> getGizmos(){ //TODO: Remove? Maybe return a copy
+    public List<Gizmo> getGizmos(){
         return board.getGizmos();
     }
 
-    public List<Ball> getBalls() { //TODO: Remove? Maybe return a copy
+    public List<Ball> getBalls() {
         return board.getBalls();
     }
 
@@ -390,8 +388,6 @@ public class GizmoballModel{
     private boolean ballVelocityIntersectionCheck(double x, double y, Ball ball){
         ball.setVelocity(new Vect(x,y));
         collisionEngine.findTimeUntilCollision();
-//        System.out.println(ball.getName());
-//        System.out.println(details.getTimeUntilCollision(ball));
         return collisionEngine.getCollisionDetails(ball).getTimeUntilCollision() < 0.3;
     }
 

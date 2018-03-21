@@ -16,16 +16,13 @@ public class TriggerHandler implements EventHandler<KeyEvent>{
     public void handle(KeyEvent event) {
         for (Gizmo gizmo : Triggers.getTriggeredGizmo(new KeyPress(event.getCode(), event.getEventType()))) {
             if (event.getEventType() == KeyEvent.KEY_PRESSED) {
-                System.out.println("key " + true + " " + false);
                 gizmo.trigger(true, false);
             }
             else {
                 if (gizmo.getKeyPressed()) {
-                    System.out.println("key " + true + " " + true);
                     gizmo.trigger(true, true);
                 }
                 else {
-                    System.out.println("key " + false + " " + true);
                     gizmo.trigger(false, true);
                 }
             }

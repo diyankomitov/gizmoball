@@ -4,7 +4,6 @@ import controller.handlers.boardhandlers.*;
 import controller.handlers.buildhandlers.*;
 import controller.handlers.generalhandlers.DoNothingHandler;
 import controller.handlers.generalhandlers.SwitchModeHandler;
-import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -26,15 +25,15 @@ import static model.board.BoardObjectType.*;
 
 public class BuildController {
     @FXML
-    public Slider ballYVelocitySlider;
+    private Slider ballYVelocitySlider;
     @FXML
-    public TextField ballYVelocityField;
+    private TextField ballYVelocityField;
     @FXML
-    public ToggleButton selectBallButton;
+    private ToggleButton selectBallButton;
     @FXML
-    public CheckBox globalCheckBox;
+    private CheckBox globalCheckBox;
     @FXML
-    public VBox velocityContainer;
+    private VBox velocityContainer;
     @FXML
     private BorderPane buildRoot;
     @FXML
@@ -137,9 +136,9 @@ public class BuildController {
         frictionMuField.textProperty().addListener(new ChangeFrictionMuHandler(model, frictionMuField));
         frictionMu2Field.textProperty().addListener(new ChangeFrictionMu2Handler(model, frictionMu2Field));
 
-        gravityField.textProperty().bind(Bindings.convert(model.getGravityProperty()));
-        frictionMuField.textProperty().bind(Bindings.convert(model.getFrictionMUProperty()));
-        frictionMu2Field.textProperty().bind(Bindings.convert(model.getFrictionMU2Property()));
+        gravityField.textProperty().bindBidirectional(model.getGravityProperty(), new NumberStringConverter());
+        frictionMuField.textProperty().bindBidirectional(model.getFrictionMUProperty(), new NumberStringConverter());
+        frictionMu2Field.textProperty().bindBidirectional(model.getFrictionMU2Property(),new NumberStringConverter());
 
 
         globalCheckBox.setOnAction(event -> {
@@ -195,12 +194,10 @@ public class BuildController {
             }
         };
 
-        TextFormatter<Double> textFormatter = new TextFormatter<>(stringConverter, 0.0, change -> {
+        return new TextFormatter<>(stringConverter, 0.0, change -> {
             String newText = change.getControlNewText();
             return pattern.matcher(newText).matches() ? change : null;
         });
-
-        return textFormatter;
     }
 
     private void toggleButton(Toggle toggle) {
@@ -250,7 +247,6 @@ public class BuildController {
             if (newValue) {
                 addBallSelected = true;
                 velocityContainer.setDisable(false);
-                System.out.println("is add a null" + addBallHandler);
             }
             else {
                 addBallSelected = false;

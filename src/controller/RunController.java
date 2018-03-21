@@ -15,45 +15,31 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.GizmoballModel;
-import view.BoardView;
 
 import static util.Constants.MILLIS_PER_FRAME;
 
 public class RunController {
 
     @FXML
-    public Button tickButton;
+    private Button tickButton;
     @FXML
-    public Button resetButton;
+    private Button resetButton;
     @FXML
-    public Pane boardPaneWrapper;
-
-    @FXML
-    public BorderPane playRoot;
+    private BorderPane playRoot;
     @FXML
     private Button switchButton;
-    @FXML
-    private BoardView board;
     @FXML
     private Button startButton;
     @FXML
     private Button stopButton;
-    private SwitchModeHandler switchToBuild;
-    private Stage stage;
     private TriggerHandler triggerHandler;
-    private LoadHandler loadHandler;
     private BoardController boardController;
     private DoNothingHandler doNothingHandler;
-    private GizmoballModel model;
     private Timeline timeline;
 
     public void setup(GizmoballModel model, BoardController boardController, SwitchModeHandler switchToBuild, Stage stage, LoadHandler loadHandler) {
-        this.model = model;
         this.boardController = boardController;
         this.doNothingHandler = new DoNothingHandler();
-        this.switchToBuild = switchToBuild;
-        this.stage = stage;
-        this.loadHandler = loadHandler;
 
         triggerHandler = new TriggerHandler();
 
@@ -79,7 +65,7 @@ public class RunController {
         });
         resetButton.setOnAction(new ResetGameHandler(model, loadHandler));
         tickButton.setOnAction(new TickLoopHandler(model));
-        switchButton.setOnAction(this.switchToBuild);
+        switchButton.setOnAction(switchToBuild);
 
         startButton.disableProperty().bind(GizmoballController.disable);
         stopButton.disableProperty().bind(GizmoballController.disable.not());

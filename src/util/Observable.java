@@ -5,7 +5,9 @@ import java.util.*;
 public interface Observable {
 
     default void notifyObservers() {
-        getObservers().forEach(Observer::update);
+        for (Observer observer : getObservers()) {
+            observer.update();
+        }
     }
 
     default void subscribe(Observer observer) {

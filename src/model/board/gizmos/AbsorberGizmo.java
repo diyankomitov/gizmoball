@@ -20,22 +20,22 @@ public class AbsorberGizmo implements Gizmo {
     private double width;
 
     private double height;
-    private double rCoefficient;
+    private final double rCoefficient;
 
     private final List<LineSegment> sides;
     private final List<Circle> corners;
-    private BoardObjectType type;
-    private String name;
+    private final BoardObjectType type;
+    private final String name;
 
-    private Queue<Ball> balls;
+    private final Queue<Ball> balls;
 
-    private boolean triggered;
+    private final boolean triggered;
 
-    private List<Observer> observers;
+    private final List<Observer> observers;
     private double angle;
     private boolean keyPressed;
     private boolean keyReleased;
-    private int shootTimer;
+    private final int shootTimer;
     private int numberOfTriggersLeft;
 
     public AbsorberGizmo(double x, double y, double x2, double y2, String name) {
@@ -115,7 +115,6 @@ public class AbsorberGizmo implements Gizmo {
 
     @Override
     public void sendTrigger() {
-        //TODO: implement this method when we implement the trigger system
     }
 
     @Override
@@ -151,28 +150,15 @@ public class AbsorberGizmo implements Gizmo {
         if (!this.keyPressed && this.keyReleased) {
             numberOfTriggersLeft++;
         }
-
-//
-//            this.keyPressed = keyPressed;
-//            triggered = true;
-
-        System.out.println("Absorber Triggered");
     }
 
     private void shootBall() {
-//        if (shootTimer > 0) {
-//            shootTimer--;
-//        }
-
-        System.out.println(shootTimer);
-        if (numberOfTriggersLeft > 0 && balls.size() > 0) {
+        if (numberOfTriggersLeft > 0 && balls.size() > 0 && this.getY() > 0) {
             Ball ball = balls.remove();
-            System.out.println("BALL SHOT: " + ball.getName());
             ball.setInAbsorber(false);
-            ball.setY(this.y - (ball.getDiameter() / 2)); //TODO: check if theres enough clearance
+            ball.setY(this.y - (ball.getDiameter() / 2));
             ball.setVelocity(new Vect(0, -50 * ONE_L));
             numberOfTriggersLeft--;
-//            shootTimer = 20;
         }
     }
 
@@ -209,7 +195,6 @@ public class AbsorberGizmo implements Gizmo {
         ball.setY(y + height - 0.25*ONE_L);
         ball.setInAbsorber(true);
         this.balls.add(ball);
-        System.out.println("Ball: " + ball + " added");
     }
 
     public Queue<Ball> getBalls() {
@@ -220,20 +205,12 @@ public class AbsorberGizmo implements Gizmo {
         return height;
     }
 
-    public void setHeight(double height) { //TODO: remove unless we implement resizing of absorber
-        this.height = height;
-    }
-
     public double getWidth() {
         return width;
     }
 
-    public void setWidth(double width) { //TODO: remove unless we implement resizing of absorber
+    public void setWidth(double width) {
         this.width = width;
-    }
-
-    public boolean isTriggered() {
-        return triggered;
     }
 
     @Override

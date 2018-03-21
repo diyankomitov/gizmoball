@@ -14,7 +14,7 @@ public class DisconnectTriggerHandler implements BoardHandler {
     private final GizmoballModel model;
     //private boolean triggeredSelected;
    // private Gizmo triggeredGizmo;
-    private Label infoLabel;
+    private final Label infoLabel;
 
     public DisconnectTriggerHandler(GizmoballModel model, Label infoLabel) {
         this.model = model;
