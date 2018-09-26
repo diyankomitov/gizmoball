@@ -1,26 +1,9 @@
-## Gizmoball CS308 Group MW_Th5
+## Gizmoball
 
-This is the Gizmoball git repository for group MW_Th5
+This was a 3rd year group project at the University of Strathclyde as part of the CS308 - Building Software Systems class of the Computer Science and Software Engineering courses.
 
-Developers:
-* Jessica Stephenson
-* Lauren Higgins
-* Tomas Chmelevskij
-* Alistair Gillies
-* Diyan Komitov
+It was developed in collaboration with Jessica Stephenson, Lauren Higgins and Alistair Gillies and supervised by Murray Wood
 
-Please use the develop branch or create your own feature branch for unstable code/new features.
+This project involved designing, documenting, building and testing a game called Gizmoball. Gizmoball is a a version of the game pinball with a couple of differences. The main one being that besides playing the game, the user is also able to design the playing field on which to play. That includes doing things such as adding different gizmos, adjusting the gravity and more.
 
-To clone this repo to your local machine:
-```
-git clone https://gitlab.cis.strath.ac.uk/mhb15157/cs308-gizmoball.git
-cd cs308-gizmoball
-```
-
-To add this repo to an existing folder:
-```
-cd existing_folder
-git init
-git remote add origin https://gitlab.cis.strath.ac.uk/mhb15157/cs308-gizmoball.git
-```
-
+Overall this was a really fun group project which allowed me to get the full experience of developing software. Not only building, but also requirements gathering, designing, and testing which are all an important part of software development.
